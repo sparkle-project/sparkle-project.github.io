@@ -9,6 +9,10 @@ body {
     margin: 10px auto 0px auto;
 }
 
+#background-imagery img {
+    display: block;
+}
+
 #menu {
     position: absolute;
     margin-top: -335px;
