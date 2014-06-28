@@ -151,3 +151,7 @@ a img {
     border-top: 3px solid gray;
     padding: 0px 25px 10px 25px;
 }
+
+.clear-both {
+    clear: both;
+}
