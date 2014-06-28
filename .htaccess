@@ -1,4 +1,0 @@
-Options -ExecCGI
-RewriteEngine on
-RewriteBase /
-RewriteRule ^documentation$ https://github.com/andymatuschak/Sparkle/wiki [R=301,L,NC]
