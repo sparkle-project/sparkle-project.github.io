@@ -71,7 +71,7 @@ body {
 }
 
 #content h3 {
-    font-family: "Lucida Grande", inherit;
+    font-family: "Lucida Grande", "Helvetica Neue", "Helvetica", sans-serif;
 }
 
 .features {
