@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+  <head>
+    {% if page.id == "documentation" %}
+    <meta http-equiv="refresh" content="0;url=https://github.com/sparkle-project/Sparkle/wiki"/>
+    {% endif %}
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{% if page.title %} {{ page.title }} - {% endif %} {{ site.title }}</title>
+
+    <link href="{{ "/css/main.css" | prepend: site.baseurl }}" media="screen, projection" rel="stylesheet" type="text/css" />
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <script type="text/javascript">
+    //<![CDATA[
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-52386963-1', 'auto');
+    ga('send', 'pageview');
+    //]]>
+    </script>
+  </head>
+  <body>
+    <nav class="navbar navbar-inverse {{ page.navbar_extra_styles }}">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="{{ "/" | prepend: site.baseurl }}"><img src="{{ "/images/icon.png" | prepend: site.baseurl }}" alt="[Logo]" /> Sparkle</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li class="{% if page.id == "index" %} active {% endif %}"><a href="{{ "/" | prepend: site.baseurl }}">Home</a></li>
+            <li class="{% if page.id == "about" %} active {% endif %}"><a href="{{ "/about" | prepend: site.baseurl }}">About</a></li>
+            <li class="{% if page.id == "documentation" %} active {% endif %}"><a href="{{ "/documentation" | prepend: site.baseurl }}">Documentation</a></li>
+            <li><a href="https://github.com/{{ site.github_username }}/Sparkle">GitHub</a></li>
+          </ul>
+        </div><!--/.navbar-collapse -->
+      </div>
+    </nav>
+
+    {{ content }}
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <footer>
+            <p>Copyright &#169; 2015 Sparkle Project. All Rights Reserved.</p>
+            <p>This website is <a href="https://github.com/{{ site.github_username }}/sparkle-project.github.io">open source</a>.</p>
+          </footer>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="{{ "/javascripts/bootstrap.min.js" | prepend: site.baseurl }}"></script>
+    <script src="{{ "/javascripts/retina.js" | prepend: site.baseurl }}"></script>
+
+    <script>
+    $(function() {
+      $.getJSON("https://api.github.com/repos/{{ site.github_username }}/Sparkle/releases/latest", function (data) {
+        var button = $('.download-button');
+        button.text('Download v' + data.tag_name);
+        button.attr('href', data.assets[0].browser_download_url);
+      });
+    });
+    </script>
+  </body>
+</html>

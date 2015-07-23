@@ -1,0 +1,97 @@
+---
+# Only the main Sass file needs front matter (the dashes are enough)
+---
+@charset "utf-8";
+
+$btn-primary-border: white;
+
+$brand-primary: #0099f0;
+
+$font-family-sans-serif: "Helvetica Light", "Helvetica Neue", Helvetica, Arial, sans-serif;
+$font-size-base: 16px;
+
+$gray-base: #333;
+
+$headings-color: #333;
+$headings-font-weight: 200;
+$headings-line-height: 1.3;
+
+$jumbotron-bg: $brand-primary;
+$jumbotron-color: white;
+
+$line-height-base: 1.6;
+
+$navbar-height: 100px;
+
+$navbar-inverse-bg: $jumbotron-bg;
+$navbar-inverse-color: $jumbotron-color;
+$navbar-inverse-link-color: $jumbotron-color;
+$navbar-inverse-link-hover-color: darken($navbar-inverse-link-color, 10%);
+$navbar-inverse-link-active-color: $navbar-inverse-link-color;
+$navbar-inverse-border: transparent;
+$navbar-inverse-toggle-border-color: $jumbotron-color;
+$navbar-inverse-toggle-hover-bg: transparent;
+
+body {
+    font-weight: 200;
+}
+
+@import "bootstrap";
+
+footer {
+    text-align: center;
+}
+
+.sparkle-jumbotron {
+    text-align: center;
+    padding-top: $navbar-height + $line-height-computed;
+
+    img.screenshot {
+        width: 100%;
+        max-width: 732px;
+    }
+
+    a.btn {
+        transition: all 0.4s ease;
+        margin-bottom: $padding-base-vertical;
+    }
+}
+
+.sparkle-features {
+    padding-bottom: $jumbotron-padding;
+}
+
+.sparkle-users-jumbotron {
+    text-align: center;
+
+    p {
+        margin-bottom: ($jumbotron-padding / 2) * 2;
+    }
+
+    p:last-child {
+        margin-bottom: ($jumbotron-padding / 2); // default
+    }
+
+    ul {
+        max-width: 50%;
+        margin: 0 auto;
+        padding: 0;
+
+        & > li {
+            display: inline-block;
+            margin: $line-height-computed / 2;
+            margin: $line-height-computed / 2;
+        }
+    }
+}
+
+.navbar-brand {
+    font-size: $font-size-base * 2;
+
+    img {
+        float: left;
+        height: 64px;
+        margin-top: -((64px - $line-height-computed) / 2);
+        margin-right: $line-height-computed;
+    }
+}
