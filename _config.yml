@@ -1,0 +1,8 @@
+# Site settings
+title: "Sparkle: open source software update framework for the Mac"
+baseurl: ""
+url: "http://sparkle-project.org"
+github_username: sparkle-project
+
+# Build settings
+markdown: kramdown
