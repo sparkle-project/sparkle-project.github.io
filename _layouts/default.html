@@ -53,6 +53,8 @@
       </div>
     </nav>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
     {{ content }}
 
     <div class="container">
@@ -65,19 +67,8 @@
         </div>
       </div>
     </div>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    
     <script src="{{ "/javascripts/bootstrap.min.js" | prepend: site.baseurl }}"></script>
     <script src="{{ "/javascripts/retina.js" | prepend: site.baseurl }}"></script>
-
-    <script>
-    $(function() {
-      $.getJSON("https://api.github.com/repos/{{ site.github_username }}/Sparkle/releases/latest", function (data) {
-        var button = $('.download-button');
-        button.text('Download v' + data.tag_name);
-        button.attr('href', data.assets[0].browser_download_url);
-      });
-    });
-    </script>
   </body>
 </html>

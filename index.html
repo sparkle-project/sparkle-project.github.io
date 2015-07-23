@@ -75,3 +75,12 @@ navbar_extra_styles: navbar-fixed-top
     <p><a class="btn btn-primary btn-lg" href="http://osx.iusethis.com/top?sparkle=1" role="button">More &#187;</a></p>
   </div>
 </div>
+<script>
+$(function() {
+  $.getJSON("https://api.github.com/repos/{{ site.github_username }}/Sparkle/releases/latest", function (data) {
+    var button = $('.download-button');
+    button.text('Download v' + data.tag_name);
+    button.attr('href', data.assets[0].browser_download_url);
+  });
+});
+</script>
