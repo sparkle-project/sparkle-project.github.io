@@ -1,5 +1,7 @@
 language: ruby
-before_install: apt-get install libxml2-utils
+before_install:
+  - sudo apt-get update -qq
+  - sudo apt-get install -qq libxml2-utils
 install: gem install jekyll
 script:
   - jekyll build
