@@ -1,0 +1,7 @@
+language: ruby
+before_install: apt-get install libxml2-utils
+install: gem install jekyll
+script:
+  - jekyll build
+  - jekyll doctor
+  - find _site -name '*.html' -exec xmllint --noout {} \;
