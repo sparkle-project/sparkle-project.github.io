@@ -23,6 +23,7 @@ $line-height-base: 1.6;
 
 $navbar-height: 100px;
 
+$navbar-border-radius: 0;
 $navbar-inverse-bg: $jumbotron-bg;
 $navbar-inverse-color: $jumbotron-color;
 $navbar-inverse-link-color: $jumbotron-color;
@@ -44,7 +45,6 @@ footer {
 
 .sparkle-jumbotron {
     text-align: center;
-    padding-top: $navbar-height + $line-height-computed;
 
     img.screenshot {
         width: 100%;
@@ -83,6 +83,10 @@ footer {
             margin: $line-height-computed / 2;
         }
     }
+}
+
+.navbar-home {
+    margin-bottom: 0;
 }
 
 .navbar-brand {
