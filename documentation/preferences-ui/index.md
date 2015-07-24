@@ -35,7 +35,7 @@ Follow directions similar to [Enable automatic checking](#enable-automatic-check
 
 These directions do not work for non-app bundles, as the updater you add to the nib will be the `sharedUpdater` for the application bundle. To be able to bind to the updater for your bundle, you can add the following accessor to your preferences controller (the owner of the nib):
 
-    - (SUUpdater **)updater {
+    - (SUUpdater *)updater {
         return [SUUpdater updaterForBundle:[NSBundle bundleForClass:[self class]]];
     }
 
