@@ -1,11 +1,12 @@
 language: ruby
 before_install:
   - sudo apt-get update -qq
-  - sudo apt-get install -qq default-jre libxml2-utils unzip
+  - sudo apt-get install -qq curl default-jre libxml2-utils unzip
 install: gem install jekyll
 script:
   - jekyll build
   - jekyll doctor
   - find _site -type f -name '*.html' -exec xmllint --noout {} \;
+  - curl -L -O https://github.com/validator/validator/releases/download/15.4.12/vnu.jar_15.4.12.zip
   - unzip -p vnu.jar_15.4.12.zip dist/vnu.jar > vnu.jar
   - java -jar vnu.jar --skip-non-html _site
