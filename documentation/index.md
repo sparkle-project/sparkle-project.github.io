@@ -5,7 +5,7 @@ title: Documentation
 ---
 ## Basic Setup
 
-Follow these simple steps, and you'll have your app auto-updating ASAP. Note that Sparkle does [not yet support](https://github.com/sparkle-project/Sparkle/issues/363) sandboxed applications.
+Follow these simple steps, and you'll have your app auto-updating ASAP. Note that Sparkle does [not yet support](https://github.com/{{ site.github_username }}/Sparkle/issues/363) sandboxed applications.
 
 ### 1. Add the Sparkle framework to your project
 
