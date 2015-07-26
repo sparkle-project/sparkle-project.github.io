@@ -9,7 +9,7 @@ Installing with [CocoaPods](https://cocoapods.org/pods/Sparkle) is identical to 
 
 ### 1. Add the Sparkle framework to your project
 
-* Add `pod 'Sparkle', '~> 1.10'` to your Podfile
+* Add `pod 'Sparkle', '~> 1.10'` to your Podfile.
 * The Sparkle framework must be signed. CocoaPods doesn't seem to handle this automatically, so a build script is required (courtesy of [furbo.org](http://furbo.org/2013/10/17/code-signing-and-mavericks/)).
 * Add a 'Run Script' build phase after the 'Copy Pods Resources' phase and enter the following script (you'll need to substitute 'Example' with your own iTunes identity):
 

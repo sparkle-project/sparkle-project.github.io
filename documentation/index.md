@@ -60,7 +60,7 @@ If you are using [CocoaPods](https://cocoapods.org), then follow these [alternat
 * Make a copy of the sample appcast included in the Sparkle distribution.
 * Read the sample appcast to familiarize yourself with the format, then edit out all the items and add one for the new version of your app by following the instructions at [Publishing an update](/documentation/publishing#publishing-an-update).
 * Upload your appcast to a webserver.
-* Add a <code>SUFeedURL</code> key to your Info.plist; set its value to the URL of your appcast. We strongly encourage you to use HTTPS URLs for the appcast
+* Add a <code>SUFeedURL</code> key to your Info.plist; set its value to the URL of your appcast. We strongly encourage you to use HTTPS URLs for the appcast.
 * Remember that your bundle must have a [properly formatted](/documentation/publishing#publishing-an-update) <code>CFBundleVersion</code> key in your Info.plist.
 
 ### 5. Test Sparkle out
