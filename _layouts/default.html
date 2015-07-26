@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{% if page.title %} {{ page.title }} - {% endif %} {{ site.title }}</title>
 
-    <link href="{{ "/css/main.css" | prepend: site.baseurl }}" media="screen, projection" rel="stylesheet" type="text/css" />
+    <link href="/css/main.css" media="screen" rel="stylesheet" type="text/css" />
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -37,13 +37,13 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="{{ "/" | prepend: site.baseurl }}"><img src="{{ "/images/icon.png" | prepend: site.baseurl }}" alt="[Logo]" /> Sparkle</a>
+          <a class="navbar-brand" href="/"><img src="/images/icon.png" alt="[Logo]" /> Sparkle</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li class="{% if page.id == "index" %} active {% endif %}"><a href="{{ "/" | prepend: site.baseurl }}">Home</a></li>
-            <li class="{% if page.id == "about" %} active {% endif %}"><a href="{{ "/about" | prepend: site.baseurl }}">About</a></li>
-            <li class="{% if page.id == "documentation" %} active {% endif %}"><a href="{{ "/documentation" | prepend: site.baseurl }}">Documentation</a></li>
+            <li class="{% if page.id == "index" %} active {% endif %}"><a href="/">Home</a></li>
+            <li class="{% if page.id == "about" %} active {% endif %}"><a href="/about">About</a></li>
+            <li class="{% if page.id == "documentation" %} active {% endif %}"><a href="/documentation">Documentation</a></li>
             <li><a href="https://github.com/{{ site.github_username }}/Sparkle">GitHub</a></li>
           </ul>
         </div><!--/.navbar-collapse -->
@@ -65,7 +65,7 @@
       </div>
     </div>
     
-    <script src="{{ "/javascripts/bootstrap.min.js" | prepend: site.baseurl }}"></script>
-    <script src="{{ "/javascripts/retina.js" | prepend: site.baseurl }}"></script>
+    <script src="/javascripts/bootstrap.min.js"></script>
+    <script src="/javascripts/retina.js"></script>
   </body>
 </html>
