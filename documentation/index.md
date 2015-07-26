@@ -9,7 +9,7 @@ Follow these simple steps, and you'll have your app auto-updating ASAP. Note tha
 
 ### 1. Add the Sparkle framework to your project
 
-if you are using [CocoaPods](https://cocoapods.org), then follow these [alternate instructions](/documentation/cocoapods).
+If you are using [CocoaPods](https://cocoapods.org), then follow these [alternate instructions](/documentation/cocoapods).
 
 * First, we'll link the Sparkle framework to your target:
   * Drag Sparkle.framework into the Frameworks folder of your Xcode project.
