@@ -19,6 +19,8 @@ To verify that your generated patch applies correctly:
 
 Version 2 patches created by BinaryDelta are not backwards compatible with Sparkle 1.9 or earlier. Pass `--version=1` when creating patches only if you want old versions to apply them.
 
+Note we don't recommend creating delta patches from an application that uses Sparkle 1.10, due to a potential crash in the updater for applying the updates.
+
 Presently, you'll have to build Sparkle from source to get the `BinaryDelta` tool. You don't need to distribute the tool with your app.
 
 Then you sign each `.delta` and add an entry to your appcast's `<item>` for each `.delta` you have created:
