@@ -40,13 +40,13 @@ If you are using [CocoaPods](https://cocoapods.org), then follow these [alternat
 ### 3. Segue for security concerns
 
 * Since Sparkle is downloading executable code to your users' systems, you must be very careful about security.
-* To let Sparkle be sure an update after being downloaded is not corrupted and came from you (instead of a malicious attacker), we recommend:
+* To let Sparkle know that a downloaded update is not corrupted and came from you (instead of a malicious attacker), we recommend:
   * Serving the update over https
   * Code-signing the application via Apple's Developer ID program or with your own certificate
-  * Specifying a [DSA Signature](https://en.wikipedia.org/wiki/Digital_signature) of the SHA-1 hash of the published update archive and including a public DSA key inside your update
+  * Specifying a [DSA signature](https://en.wikipedia.org/wiki/Digital_signature) of the SHA-1 hash of the published update archive and including a public DSA key inside your update
 
-* While signing your archive using DSA Signatures strengthens your update and may open up to additional features, they are not required to be used if the update is:
-  * Served over https (serving over http without using DSA Signatures is now deprecated)
+* While signing your archive using DSA signatures strengthens your update and may open up to additional features, they are not required to be used if the update is:
+  * Served over https (serving over http without using DSA signatures is now deprecated)
   * Packaged as a regular app (i.e, not a preference pane, plug-in, package installer, or some other type)
   * Distributed without providing binary delta patches for more efficient updates
 
@@ -54,14 +54,14 @@ If you are using [CocoaPods](https://cocoapods.org), then follow these [alternat
   * Note that embedding the Sparkle.framework into the bundle of a Developer ID application requires that you code-sign the framework with your Developer ID keys. Xcode should do this automatically if you let it "Code Sign on Copy" Sparkle's framework.
   * You can diagnose code signing problems with [RB App Checker app](http://brockerhoff.net/RB/AppCheckerLite/) and by checking logs in the Console.app.
 
-* If you are specifying a DSA Signature of your update's archive:
+* If you are specifying a DSA signature of your update's archive:
   * First, make yourself a pair of DSA keys; Sparkle includes a tool to help:
   * (from the Sparkle distribution root):<br />
   <code>./bin/generate_keys.sh</code>
   * You can use the keys this tool generates to sign your updates.
   * Back up your private key (dsa_priv.pem) and <strong>keep it safe.</strong> You don't want anyone else getting it, and if you lose it, you may not be able to issue any new updates.
   * Add your public key (dsa_pub.pem) to the Resources folder of your Xcode project.
-  * Add a <code>SUPublicDSAKeyFile</code> key to your Info.plist; set its value to your public key's filename—unless you renamed it, this will be dsa_pub.pem.
+  * Add an <code>SUPublicDSAKeyFile</code> key to your Info.plist; set its value to your public key's filename—unless you renamed it, this will be dsa_pub.pem.
 
 * If you decide to both code-sign your application and include a public DSA key for signing your update archive, Sparkle allows issuing a new update that changes either your code signing certificate or your DSA keys. Note however this is a last resort and should *only* be done if you lose access to one of them.
 
