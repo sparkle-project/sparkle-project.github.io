@@ -15,11 +15,11 @@ Alternatively, create an Installer .pkg with the same name as your app and put t
 
 ### Secure your update
 
-In order to prevent man-in-the-middle attacks against your users, you must cryptographically sign your updates. You can do that using Apple's code signing tools, with a Developer ID.
+In order to prevent corruption and man-in-the-middle attacks against your users, you must serve your updates over https or cryptographically sign your updates (or choose to do both!).
 
-If you can't code sign your app, you can make a DSA signature of the archive instead. Sparkle includes a script to help you sign your update. From the Sparkle distribution:
+To cryptographically sign your updates, Sparkle includes a script to help you make a DSA signature of the archive. From the Sparkle distribution:
 
-    ./bin/sign_update.sh path_to_your_update.zip path_to_your_dsa_priv.pem
+    ./bin/sign_update path_to_your_update.zip path_to_your_dsa_priv.pem
 
 The output string is your update's DSA signature; you'll add this as an attribute to your enclosure in the next step. You can remove any newlines in this string.
 
