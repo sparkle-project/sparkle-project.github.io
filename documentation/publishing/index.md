@@ -19,7 +19,7 @@ In order to prevent corruption and man-in-the-middle attacks against your users,
 
 To cryptographically sign your updates, Sparkle includes a script to help you make a DSA signature of the archive. From the Sparkle distribution:
 
-    ./bin/sign_update.sh path_to_your_update.zip path_to_your_dsa_priv.pem
+    ./bin/sign_update path_to_your_update.zip path_to_your_dsa_priv.pem
 
 The output string is your update's DSA signature; you'll add this as an attribute to your enclosure in the next step. You can remove any newlines in this string.
 

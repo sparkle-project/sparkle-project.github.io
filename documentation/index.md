@@ -57,7 +57,7 @@ If you are using [CocoaPods](https://cocoapods.org), then follow these [alternat
 * If you are specifying a DSA signature of your update's archive:
   * First, make yourself a pair of DSA keys; Sparkle includes a tool to help:
   * (from the Sparkle distribution root):<br />
-  <code>./bin/generate_keys.sh</code>
+  <code>./bin/generate_keys</code>
   * You can use the keys this tool generates to sign your updates.
   * Back up your private key (dsa_priv.pem) and <strong>keep it safe.</strong> You don't want anyone else getting it, and if you lose it, you may not be able to issue any new updates.
   * Add your public key (dsa_pub.pem) to the Resources folder of your Xcode project.
