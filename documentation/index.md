@@ -23,7 +23,7 @@ If you are using [CocoaPods](https://cocoapods.org), then follow these [alternat
   * Click the disclosure triangle next to the new build phase.
   * Choose Frameworks from the Destination list.
   * Drag Sparkle.framework from the Project Navigator left sidebar to the list in the new Copy Files phase.
-* In Build Settings tab set "Other Linker Flags" to <code>-Wl,-rpath,@loader_path/../Frameworks</code>.
+* In Build Settings tab set "Runpath Search Paths" to <code>@loader_path/../Frameworks</code> (for non-Xcode projects add the flags <code>-Wl,-rpath,@loader_path/../Frameworks</code>).
 * If you have your own process for copying/packaging Sparkle make sure to preserve symlinks!
 
 ### 2. Set up a Sparkle updater object
