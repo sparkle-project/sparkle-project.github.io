@@ -45,6 +45,8 @@ If you are using [CocoaPods](https://cocoapods.org), then follow these [alternat
   * Code-signing the application via Apple's Developer ID program or with your own certificate
   * Specifying a [DSA signature](https://en.wikipedia.org/wiki/Digital_signature) of the SHA-1 hash of the published update archive and including a public DSA key inside your update
 
+* If you are not serving updates over https and you are linking against the 10.11 or later SDK, you must comply with Apple's [App Transport Security](https://developer.apple.com/library/prerelease/ios/technotes/App-Transport-Security-Technote/). In short, http requests will be rejected by default unless an exception is added within your app. App Transport Security has other specific requirements too, so please test your app on 10.11 or later even if you already are serving over https!
+
 * While signing your archive using DSA signatures strengthens your update and may open up to additional features, they are not required to be used if the update is:
   * Served over https (serving over http without using DSA signatures is now deprecated)
   * Packaged as a regular app (i.e, not a preference pane, plug-in, package installer, or some other type)
