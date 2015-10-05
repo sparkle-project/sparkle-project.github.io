@@ -11,17 +11,19 @@ So you're ready to release a new version of your app. How do you go about doing 
 
 Put a copy of your .app (with the same name as the version it's replacing) in a .zip, .tar.gz, or .tar.bz2. If you distribute your .app in a .dmg, do not zip up the .dmg.
 
-Alternatively, create an Installer .pkg with the same name as your app and put that .pkg in one of the aforementioned archive formats.
+Alternatively, create an Installer .pkg with the same name as your app and put that .pkg in one of the aforementioned archive formats. By default Sparkle launches Installer with a GUI. If instead of .pkg extension you use .sparkle_guided.pkg, then installation will run in the backround without asking the user to confirm each step.
 
 ### Secure your update
 
-In order to prevent corruption and man-in-the-middle attacks against your users, you must serve your updates over https or cryptographically sign your updates (or choose to do both!).
+In order to prevent corruption and man-in-the-middle attacks against your users, you must cryptographically sign your updates.
 
 To cryptographically sign your updates, Sparkle includes a script to help you make a DSA signature of the archive. From the Sparkle distribution:
 
     ./bin/sign_update path_to_your_update.zip path_to_your_dsa_priv.pem
 
 The output string is your update's DSA signature; you'll add this as an attribute to your enclosure in the next step. You can remove any newlines in this string.
+
+Additionally, in Mac OS X 10.11 Apple has added App Transport Security policy which blocks Mac apps from using insecure HTTP connections. This restriction applies to Sparkle as well, so you will need to serve your appcast and the update files over HTTPS.
 
 ### Update your appcast
 
@@ -30,12 +32,12 @@ You need to create an `<item>` for your update in your appcast. See the [sample 
     <item>
         <title>Version 2.0 (2 bugs fixed; 3 new features)</title>
         <sparkle:releaseNotesLink>
-            http://you.com/app/2.0.html
+            https://example.com/release_notes/app_2.0.html
         </sparkle:releaseNotesLink>
-        <pubDate>Wed, 09 Jan 2006 19:20:11 +0000</pubDate>
-        <enclosure url="http://you.com/app/Your%20Great%20App%202.0.zip"
+        <pubDate>Mon, 05 Oct 2015 19:20:11 +0000</pubDate>
+        <enclosure url="https://example.com/downloads/app.zip.or.dmg.or.tar.etc"
                    sparkle:version="2.0"
-                   sparkle:dsaSignature="MC0CFBfeCa1JyW30nbkBwainOzrN6EQuAh=" <!-- if you're not code signing -->
+                   sparkle:dsaSignature="MC0CFBfeCa1JyW30nbkBwainOzrN6EQuAh="
                    length="1623481"
                    type="application/octet-stream" />
     </item>
@@ -48,10 +50,10 @@ If you want to provide a download link, instead of having Sparkle download and i
 
     <item>
       <title>Version 1.2.4</title>
-      <sparkle:releaseNotesLink>http://foo.bar/storage/downloads/macosx/release_notes_test.html</sparkle:releaseNotesLink>
+      <sparkle:releaseNotesLink>https://example.com/release_notes_test.html</sparkle:releaseNotesLink>
       <pubDate>Mon, 28 Jan 2013 14:30:00 +0500</pubDate>
       <sparkle:version>1.2.4</sparkle:version>
-      <link>http://foo.bar/download_link.html_or_dmg_whatever</link>
+      <link>https://example.com/manual_update_info.html</link>
     </item>
 
 ## Delta updates
@@ -60,22 +62,24 @@ If your app is large, or if you're updating primarily only a small part of it, y
 
 ## Internal build numbers
 
-If you use internal build numbers for your CFBundleVersion key (like an SVN revision number) and a human-readable CFBundleShortVersionString, you can make Sparkle hide the internal version from your users.
+If you use internal build numbers for your `CFBundleVersion` key (like an SVN revision number) and a human-readable `CFBundleShortVersionString`, you can make Sparkle hide the internal version from your users.
 
-Set the sparkle:version attribute on your enclosure to the internal version (ie: "248"). Then set a sparkle:shortVersionString attribute on the enclosure to the human readable version (ie: "2.0").
+Set the `sparkle:version` attribute on your enclosure to the internal, machine-readable version (ie: "1248"). Then set a `sparkle:shortVersionString` attribute on the enclosure to the human-readable version (ie: "12.X Sea Lion").
 
-[Remember](http://lists.apple.com/archives/carbon-dev/2006/Jun/msg00139.html) that the internal version number (CFBundleVersion and sparkle:version) is intended to be machine-readable and is not generally suitable for formatted text.
+[Remember](http://lists.apple.com/archives/carbon-dev/2006/Jun/msg00139.html) that the internal version number (`CFBundleVersion` and `sparkle:version`) is intended to be machine-readable and is not generally suitable for formatted text.
 
 ## Minimum system version requirements
 
 If an update to your application raises the required version of OS X, you can only offer that update to qualified users.
 
-Add a sparkle:minimumSystemVersion child to the `<item>` in question specifying the required system version, such as "10.8.4":
+Add a `sparkle:minimumSystemVersion` child to the `<item>` in question specifying the required system version, such as "10.8.4":
 
     <item>
         <title>Version 2.0 (2 bugs fixed; 3 new features)</title>
         <sparkle:minimumSystemVersion>10.8.4</sparkle:minimumSystemVersion>
     </item>
+
+Note that Sparkle only works with OS X 10.7 or later, so that's the minimum version you can use.
 
 ## Embedded release notes
 
@@ -95,14 +99,10 @@ Instead of linking external release notes using the `<sparkle:releaseNotesLink>`
 
 You can provide additional release notes for localization purposes. For instance:
 
-    <sparkle:releaseNotesLink>http://you.com/app/2.0.html</sparkle:releaseNotesLink>
-    <sparkle:releaseNotesLink xml:lang="de">http://you.com/app/2.0_German.html</sparkle:releaseNotesLink>
+    <sparkle:releaseNotesLink>https://example.com/app/2.0.html</sparkle:releaseNotesLink>
+    <sparkle:releaseNotesLink xml:lang="de">https://example.com/app/2.0_German.html</sparkle:releaseNotesLink>
 
 Use the `xml:lang` attribute with the appropriate two-letter country code for each localization. You can also use this attribute with the `<description>` tag.
-
-## Xcode integration
-
-[Here's a description](https://web.archive.org/web/20120708050000/http://www.entropy.ch/blog/Developer/2008/09/22/Sparkle-Appcast-Automation-in-Xcode.html) of how to automate the archiving and signing process with a script build phase in Xcode.
 
 ## Alternate download locations for other operating systems
 
@@ -113,3 +113,7 @@ To keep the appcast file compatible with the standard Sparkle implementation, a 
     <sparkle:enclosure sparkle:os="os_name" ...>
 
 Replace _os_name_ with either "windows" or "linux", respectively (mind the lower case!). Feel free to add other OS names as needed.
+
+## Xcode integration
+
+[There's an old description](https://web.archive.org/web/20120708050000/http://www.entropy.ch/blog/Developer/2008/09/22/Sparkle-Appcast-Automation-in-Xcode.html) of how to automate the archiving and signing process with a script build phase in Xcode. [Find other guides](https://www.google.com/search?q=Sparkle+Appcast+Automation).
