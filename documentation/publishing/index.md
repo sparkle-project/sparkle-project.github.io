@@ -11,7 +11,7 @@ So you're ready to release a new version of your app. How do you go about doing 
 
 Put a copy of your .app (with the same name as the version it's replacing) in a .zip, .tar.gz, or .tar.bz2. If you distribute your .app in a .dmg, do not zip up the .dmg.
 
-Alternatively, create an Installer .pkg with the same name as your app and put that .pkg in one of the aforementioned archive formats. By default Sparkle launches Installer with a GUI. If instead of .pkg extension you use .sparkle_guided.pkg, then installation will run in the backround without asking the user to confirm each step.
+Alternatively, create an Installer .pkg with the same name as your app and put that .pkg in one of the aforementioned archive formats. By default Sparkle launches Installer with a GUI. If instead of .pkg extension you use .sparkle_guided.pkg, then installation will run in the background without asking the user to confirm each step.
 
 ### Secure your update
 
