@@ -25,7 +25,7 @@ To cryptographically sign your updates, Sparkle includes a script to help you ma
 
 The output string is your update's DSA signature; you'll add this as an attribute to your enclosure in the next step. You can remove any newlines in this string.
 
-Additionally, in OS X 10.11 Apple has added [App Transport Security](https://developer.apple.com/library/prerelease/ios/technotes/App-Transport-Security-Technote/) policy which blocks Mac apps from using insecure HTTP connections. This restriction applies to Sparkle as well, so you will need to serve your appcast and the update files over HTTPS.
+Additionally, in OS X 10.11 Apple has added [App Transport Security](https://developer.apple.com/library/prerelease/mac/technotes/App-Transport-Security-Technote/) policy which blocks Mac apps from using insecure HTTP connections. This restriction applies to Sparkle as well, so you will need to serve your appcast and the update files over HTTPS.
 
 ### Update your appcast
 
