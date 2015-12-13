@@ -44,6 +44,12 @@ footer {
     margin-top: 3em;
 }
 
+samp {
+    font: inherit;
+    background: rgba(0,0,0,0.02);
+    padding: 1px;
+}
+
 .sparkle-jumbotron {
     text-align: center;
 

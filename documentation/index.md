@@ -19,7 +19,7 @@ If you are using [CocoaPods](https://cocoapods.org), then follow these [alternat
   * Click on your project in the Project Navigator.
   * Click your target in the project editor.
   * Click on the Build Phases tab.
-  * Choose Editor -> Add Build Phase -> Add Copy Files Build Phase.
+  * Choose <samp>Editor › Add Build Phase › Add Copy Files Build Phase</samp>.
   * Click the disclosure triangle next to the new build phase.
   * Choose Frameworks from the Destination list.
   * Drag Sparkle.framework from the Project Navigator left sidebar to the list in the new Copy Files phase.
@@ -29,13 +29,13 @@ If you are using [CocoaPods](https://cocoapods.org), then follow these [alternat
 ### 2. Set up a Sparkle updater object
 
 * Open up your MainMenu.nib.
-* Choose View -> Utilities -> Object Library...
+* Choose <samp>View › Utilities › Object Library...</samp>
 * Type "Object" in the search field under the object library (at the bottom of the right sidebar) and drag an Object into the left sidebar of the document editor.
 * Select the Object that was just added.
-* Choose View -> Utilities -> Identity Inspector.
-* Type <code>SUUpdater</code> in the Class box of the Custom Class section in the inspector.
-* If you'd like, make a "Check for Updates..." menu item in the application menu; set its target to the SUUpdater instance and its action to <code>checkForUpdates:</code>.
-* These instructions only work for .app bundles, because the SUUpdater instance instantiated in the nib will always be the <code>sharedUpdater</code>, which updates the hosting .app bundle. If you want to update a non-app bundle, such as a Preference Pane, see [bundles](/documentation/bundles) for alternative instructions.
+* Choose <samp>View › Utilities › Identity Inspector</samp>.
+* Type <code>SUUpdater</code> in the <samp>Class</samp> box of the <samp>Custom Class</samp> section in the inspector.
+* If you'd like, make a "<samp>Check for Updates...</samp>" menu item in the application menu; set its target to the <code>SUUpdater</code> instance and its action to <code>checkForUpdates:</code>.
+* These instructions only work for .app bundles, because the <code>SUUpdater</code> instance instantiated in the nib will always be the <code>sharedUpdater</code>, which updates the hosting .app bundle. If you want to update a non-app bundle, such as a Preference Pane, see [bundles](/documentation/bundles) for alternative instructions.
 
 ### 3. Segue for security concerns
 
@@ -79,7 +79,7 @@ If you are using [CocoaPods](https://cocoapods.org), then follow these [alternat
 
 ### 5. Test Sparkle out
 
-* Make sure the version specified for the update in your appcast is _greater than the CFBundleVersion of the app you're running_.
+* Make sure the version specified for the update in your appcast is _greater than the <code>CFBundleVersion</code> of the app you're running_.
 * Run your app, then quit, Sparkle doesn't ask the user about updates until the _second_ launch, in order to make your users' first-launch impression cleaner.
 * Run your app again. The update process should proceed as expected.
 
