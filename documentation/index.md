@@ -9,7 +9,7 @@ Follow these simple steps, and you'll have your app auto-updating ASAP. Note tha
 
 ### 1. Add the Sparkle framework to your project
 
-If you are using [CocoaPods](https://cocoapods.org), then follow these [alternate instructions](/documentation/cocoapods).
+If you are using [CocoaPods](https://cocoapods.org), then follow [step 1 for CocoaPods](/documentation/cocoapods) instead.
 
 * First, we'll link the Sparkle framework to your target:
   * Drag Sparkle.framework into the Frameworks folder of your Xcode project.
@@ -28,6 +28,8 @@ If you are using [CocoaPods](https://cocoapods.org), then follow these [alternat
 
 ### 2. Set up a Sparkle updater object
 
+These instructions are for regular .app bundles. If you want to update a non-app bundle, such as a Preference Pane or a plug-in, follow [step 2 for non-app bundles](/documentation/bundles).
+
 * Open up your MainMenu.nib.
 * Choose <samp>View › Utilities › Object Library...</samp>
 * Type "Object" in the search field under the object library (at the bottom of the right sidebar) and drag an Object into the left sidebar of the document editor.
@@ -35,15 +37,14 @@ If you are using [CocoaPods](https://cocoapods.org), then follow these [alternat
 * Choose <samp>View › Utilities › Identity Inspector</samp>.
 * Type `SUUpdater` in the <samp>Class</samp> box of the <samp>Custom Class</samp> section in the inspector.
 * If you'd like, make a "<samp>Check for Updates...</samp>" menu item in the application menu; set its target to the `SUUpdater` instance and its action to `checkForUpdates:`.
-* These instructions only work for .app bundles, because the `SUUpdater` instance instantiated in the nib will always be the `sharedUpdater`, which updates the hosting .app bundle. If you want to update a non-app bundle, such as a Preference Pane, see [bundles](/documentation/bundles) for alternative instructions.
 
 ### 3. Segue for security concerns
 
 Since Sparkle is downloading executable code to your users' systems, you must be very careful about security. To let Sparkle know that a downloaded update is not corrupted and came from you (instead of a malicious attacker), we recommend:
 
-  * Serving the update over HTTPS (your app *will not update on OS X 10.11* unless you comply with Apple's [App Transport Security](/documentation/app-transport-security/) requirements).
-  * Code-signing the application via Apple's Developer ID program or,
-  * specifying a DSA [signature](https://en.wikipedia.org/wiki/Digital_signature) of the SHA-1 hash of the published update archive and including a public DSA key inside your update.
+  * Serving the update over HTTPS (your app *will not update on OS X 10.11* unless you comply with Apple's [App Transport Security](/documentation/app-transport-security/) requirements),
+  * code-signing the application via Apple's Developer ID program and/or,
+  * code-signing the published update archive with a DSA [signature](https://en.wikipedia.org/wiki/Digital_signature) matching a public DSA key included in your app.
 
 If you are not serving updates over HTTPS and you are linking against the 10.11 SDK, **your updates will be blocked by OS X El Capitan**. You *must* comply with Apple's [App Transport Security](/documentation/app-transport-security/). In short, HTTP requests will be rejected by the system unless an exception is added within your app. App Transport Security has other specific requirements too, so please test updating your app on 10.11 even if you already are serving over HTTPS!
 
