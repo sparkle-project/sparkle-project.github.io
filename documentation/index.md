@@ -7,6 +7,8 @@ title: Documentation
 
 Follow these simple steps, and you'll have your app auto-updating ASAP. Note that Sparkle does [not yet support](https://github.com/{{ site.github_username }}/Sparkle/issues/363) sandboxed applications.
 
+If your app already has an older version of Sparkle, see [upgrading from previous versions](/documentation/upgrading).
+
 ### 1. Add the Sparkle framework to your project
 
 If you are using [CocoaPods](https://cocoapods.org), then follow [step 1 for CocoaPods](/documentation/cocoapods) instead.
