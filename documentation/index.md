@@ -18,12 +18,12 @@ If you are using [CocoaPods](https://cocoapods.org), then follow these [alternat
 * Now we'll make sure the framework is copied into your app bundle:
   * Click on your project in the Project Navigator.
   * Click your target in the project editor.
-  * Click on the Build Phases tab.
+  * Click on the <samp>Build Phases</samp> tab.
   * Choose <samp>Editor › Add Build Phase › Add Copy Files Build Phase</samp>.
   * Click the disclosure triangle next to the new build phase.
-  * Choose Frameworks from the Destination list.
-  * Drag Sparkle.framework from the Project Navigator left sidebar to the list in the new Copy Files phase.
-* In Build Settings tab set "Runpath Search Paths" to <code>@loader_path/../Frameworks</code> (for non-Xcode projects add the flags <code>-Wl,-rpath,@loader_path/../Frameworks</code>).
+  * Choose <samp>Frameworks</samp> from the Destination list.
+  * Drag Sparkle.framework from the Project Navigator left sidebar to the list in the new <samp>Copy Files</samp> phase.
+* In <samp>Build Settings</samp> tab set "<samp>Runpath Search Paths</samp>" to `@loader_path/../Frameworks` (for non-Xcode projects add the flags `-Wl,-rpath,@loader_path/../Frameworks`).
 * If you have your own process for copying/packaging Sparkle make sure to preserve symlinks!
 
 ### 2. Set up a Sparkle updater object
@@ -33,9 +33,9 @@ If you are using [CocoaPods](https://cocoapods.org), then follow these [alternat
 * Type "Object" in the search field under the object library (at the bottom of the right sidebar) and drag an Object into the left sidebar of the document editor.
 * Select the Object that was just added.
 * Choose <samp>View › Utilities › Identity Inspector</samp>.
-* Type <code>SUUpdater</code> in the <samp>Class</samp> box of the <samp>Custom Class</samp> section in the inspector.
-* If you'd like, make a "<samp>Check for Updates...</samp>" menu item in the application menu; set its target to the <code>SUUpdater</code> instance and its action to <code>checkForUpdates:</code>.
-* These instructions only work for .app bundles, because the <code>SUUpdater</code> instance instantiated in the nib will always be the <code>sharedUpdater</code>, which updates the hosting .app bundle. If you want to update a non-app bundle, such as a Preference Pane, see [bundles](/documentation/bundles) for alternative instructions.
+* Type `SUUpdater` in the <samp>Class</samp> box of the <samp>Custom Class</samp> section in the inspector.
+* If you'd like, make a "<samp>Check for Updates...</samp>" menu item in the application menu; set its target to the `SUUpdater` instance and its action to `checkForUpdates:`.
+* These instructions only work for .app bundles, because the `SUUpdater` instance instantiated in the nib will always be the `sharedUpdater`, which updates the hosting .app bundle. If you want to update a non-app bundle, such as a Preference Pane, see [bundles](/documentation/bundles) for alternative instructions.
 
 ### 3. Segue for security concerns
 
@@ -51,7 +51,7 @@ If you are not serving updates over HTTPS and you are linking against the 10.11 
 
 We recommend signing updates with DSA signatures. This type of signature is most secure and supported for all types of Sparkle updates.
 
-* Updates using Installer package (<code>.pkg</code>) must be signed with DSA.
+* Updates using Installer package (`.pkg`) must be signed with DSA.
 * Binary Delta updates must be signed with DSA.
 * [Updates of preference panes and plugins](/documentation/bundles/) must be signed with DSA.
 
@@ -60,10 +60,10 @@ DSA signatures are optional for updates using regular app bundles that are signe
 To sign update's archive with a DSA signature:
 
   * First, make yourself a pair of DSA keys. This needs to be done only once. Sparkle includes a tool to help: (from the Sparkle distribution root):<br />
-  <code>./bin/generate_keys</code>
+  `./bin/generate_keys`
   * Back up your private key (dsa_priv.pem) and <strong>keep it safe.</strong> You don't want anyone else getting it, and if you lose it, you may not be able to issue any new updates.
   * Add your public key (dsa_pub.pem) to the Resources folder of your Xcode project.
-  * Add an <code>SUPublicDSAKeyFile</code> key to your Info.plist; set its value to your public key's filename—unless you renamed it, this will be dsa_pub.pem.
+  * Add an `SUPublicDSAKeyFile` key to your Info.plist; set its value to your public key's filename—unless you renamed it, this will be dsa_pub.pem.
 
 #### Apple code signing
 
@@ -81,12 +81,12 @@ Sparkle uses appcasts to get information about software updates. An appcast is a
 * Make a copy of the sample appcast included in the Sparkle distribution.
 * Read the sample appcast to familiarize yourself with the format, then edit out all the items and add one for the new version of your app by following the instructions at [Publishing an update](/documentation/publishing#publishing-an-update).
 * Upload your appcast to a webserver.
-* Add a <code>SUFeedURL</code> key to your Info.plist; set its value to the URL of your appcast. We [strongly encourage you to use HTTPS](/documentation/app-transport-security/) URLs for the appcast.
-* Remember that your bundle must have a [properly formatted](/documentation/publishing#publishing-an-update) <code>CFBundleVersion</code> key in your Info.plist.
+* Add a `SUFeedURL` key to your Info.plist; set its value to the URL of your appcast. We [strongly encourage you to use HTTPS](/documentation/app-transport-security/) URLs for the appcast.
+* Remember that your bundle must have a [properly formatted](/documentation/publishing#publishing-an-update) `CFBundleVersion` key in your Info.plist.
 
 ### 5. Test Sparkle out
 
-* Make sure the version specified for the update in your appcast is _greater than the <code>CFBundleVersion</code> of the app you're running_.
+* Make sure the version specified for the update in your appcast is _greater than the `CFBundleVersion` of the app you're running_.
 * Run your app, then quit, Sparkle doesn't ask the user about updates until the _second_ launch, in order to make your users' first-launch impression cleaner.
 * Run your app again. The update process should proceed as expected.
 
