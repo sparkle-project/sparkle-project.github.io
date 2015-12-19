@@ -32,7 +32,7 @@ Sparkle has kept the same API since the "classic" version 1.5. It should be a dr
 
 ### Mac OS X 10.7+ required
 
-To avoid sending incompatible app to users on Mac OS 10.6 or older, add to your appcast `<item>`:
+To avoid sending incompatible app to users on Mac OS X 10.6 or older, add to your appcast `<item>`:
 
     <sparkle:minimumSystemVersion>10.7</sparkle:minimumSystemVersion>
 
