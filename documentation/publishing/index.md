@@ -97,6 +97,8 @@ Instead of linking external release notes using the `<sparkle:releaseNotesLink>`
         ...
     </item>
 
+You can embed just marked up text (it'll be displayed using standard system font), or a full document with `<!DOCTYPE html><style>`, etc.
+
 ## Localization
 
 You can provide additional release notes for localization purposes. For instance:
