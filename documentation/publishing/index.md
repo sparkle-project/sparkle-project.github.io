@@ -25,7 +25,7 @@ To cryptographically sign your updates, Sparkle includes a script to help you ma
 
 The output string is your update's DSA signature; you'll add this as an attribute to your enclosure in the next step. You can remove any newlines in this string.
 
-Additionally, in OS X 10.11 Apple has added [App Transport Security](https://developer.apple.com/library/prerelease/mac/technotes/App-Transport-Security-Technote/) policy which blocks Mac apps from using insecure HTTP connections. This restriction applies to Sparkle as well, so you will need to serve your appcast and the update files over HTTPS.
+Additionally, in OS X 10.11 Apple has added [App Transport Security](//developer.apple.com/library/prerelease/mac/technotes/App-Transport-Security-Technote/) policy which blocks Mac apps from using insecure HTTP connections. This restriction applies to Sparkle as well, so you will need to serve your appcast and the update files over HTTPS.
 
 ### Update your appcast
 
@@ -60,7 +60,7 @@ If you want to provide a download link, instead of having Sparkle download and i
 
 ## Delta updates
 
-If your app is large, or if you're updating primarily only a small part of it, you may find [delta updates](/documentation/delta-updates) useful: they allow your users to only download the bits that have changed.
+If your app is large, or if you're updating primarily only a small part of it, you may find [delta updates](/documentation/delta-updates/) useful: they allow your users to only download the bits that have changed.
 
 ## Internal build numbers
 
@@ -68,7 +68,7 @@ If you use internal build numbers for your `CFBundleVersion` key (like an SVN re
 
 Set the `sparkle:version` attribute on your enclosure to the internal, machine-readable version (ie: "1248"). Then set a `sparkle:shortVersionString` attribute on the enclosure to the human-readable version (ie: "12.X Sea Lion").
 
-[Remember](http://lists.apple.com/archives/carbon-dev/2006/Jun/msg00139.html) that the internal version number (`CFBundleVersion` and `sparkle:version`) is intended to be machine-readable and is not generally suitable for formatted text.
+[Remember](//lists.apple.com/archives/carbon-dev/2006/Jun/msg00139.html) that the internal version number (`CFBundleVersion` and `sparkle:version`) is intended to be machine-readable and is not generally suitable for formatted text.
 
 ## Minimum system version requirements
 
@@ -120,4 +120,4 @@ Replace _os_name_ with either "windows" or "linux", respectively (mind the lower
 
 ## Xcode integration
 
-[There's an old description](https://web.archive.org/web/20120708050000/http://www.entropy.ch/blog/Developer/2008/09/22/Sparkle-Appcast-Automation-in-Xcode.html) of how to automate the archiving and signing process with a script build phase in Xcode. [Find other guides](https://www.google.com/search?q=Sparkle+Appcast+Automation).
+[There's an old description](//web.archive.org/web/20120708050000/http://www.entropy.ch/blog/Developer/2008/09/22/Sparkle-Appcast-Automation-in-Xcode.html) of how to automate the archiving and signing process with a script build phase in Xcode. [Find other guides](//www.google.com/search?q=Sparkle+Appcast+Automation).

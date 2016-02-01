@@ -6,7 +6,7 @@ title: Upgrading from previous versions of Sparkle
 
 We strongly recommend using Sparkle 1.11.1 or later, as there have been major improvements to reliability and integrity of updates. Very old versions of Sparkle also suffer some incompatibilities with the latest OS X versions.
 
-If you're upgrading from a very old version of Sparkle we recommend using [Sparkle 1.13 or later](https://github.com/{{ site.github_username }}/Sparkle/releases). The API is backwards-compatible.
+If you're upgrading from a very old version of Sparkle we recommend using [Sparkle 1.13 or later](//github.com/{{ site.github_username }}/Sparkle/releases). The API is backwards-compatible.
 
 ## Upgrading to SDK 10.11 (affects all versions of Sparkle)
 

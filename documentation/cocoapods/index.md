@@ -5,7 +5,7 @@ title: CocoaPods
 ---
 ## CocoaPods
 
-Installing with [CocoaPods](https://cocoapods.org/pods/Sparkle) is identical to the [normal install](/documentation#basic-setup) except for step 1.
+Installing with [CocoaPods](//cocoapods.org/pods/Sparkle) is identical to the [normal install](/documentation/#basic-setup) except for step 1.
 
 ### 1. Add the Sparkle framework to your project
 
@@ -20,6 +20,6 @@ Installing with [CocoaPods](https://cocoapods.org/pods/Sparkle) is identical to 
 
       codesign --verbose --force --sign "$CODE_SIGN_IDENTITY" "$LOCATION/Sparkle.framework/Versions/A"
 
-That's all. Build your project to confirm that it builds and signs the framework, then continue with the [basic setup](/documentation#set-up-a-sparkle-updater-object).
+That's all. Build your project to confirm that it builds and signs the framework, then continue with the [basic setup](/documentation/#set-up-a-sparkle-updater-object).
 
 The Sparkle Project maintains its own CocoaPod Podspec and it is kept up-to-update in sync with official releases.

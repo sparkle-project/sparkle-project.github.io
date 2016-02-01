@@ -7,9 +7,9 @@ title: Sparkle App Transport Security
 
 Apple has deprecated insecure HTTP in OS X 10.11 (El Capitan). Applications compiled with 10.11 SDK are by default **blocked from using HTTP** and will not be able to download any updates over HTTP. You **must** either:
 
-* Switch to HTTPS entirely. Change the appcast URL in Info.plist and download URLs in the appcast to use HTTPS. This is recommended, and you can get free certificates from [Let's Encrypt](https://letsencrypt.org/).
+* Switch to HTTPS entirely. Change the appcast URL in Info.plist and download URLs in the appcast to use HTTPS. This is recommended, and you can get free certificates from [Let's Encrypt](//letsencrypt.org/) or [AWS Certificate Manager](//aws.amazon.com/certificate-manager/).
 
-* Add an exception to Info.plist in your app if you can't stop using HTTP yet. [The exception properties are in Apple's documentation](https://developer.apple.com/library/prerelease/mac/technotes/App-Transport-Security-Technote/).
+* Add an exception to Info.plist in your app if you can't stop using HTTP yet. [The exception properties are in Apple's documentation](//developer.apple.com/library/prerelease/mac/technotes/App-Transport-Security-Technote/).
 
 If you don't do this, your app will not be able to download updates on OS X El Capitan, and your users will be stuck with an old version forever.
 

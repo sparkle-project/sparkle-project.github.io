@@ -29,7 +29,7 @@ title: Adding a Preferences UI
 
 ### Other preferences
 
-Follow directions similar to [Enable automatic checking](#enable-automatic-checking). to bind a check button to `sendsSystemProfile` or `automaticallyDownloadsUpdates`. See [customization](/documentation/customization#infoplist-settings) for details on the available keys.
+Follow directions similar to [Enable automatic checking](#enable-automatic-checking). to bind a check button to `sendsSystemProfile` or `automaticallyDownloadsUpdates`. See [customization](/documentation/customization/#infoplist-settings) for details on the available keys.
 
 ### Preferences for non-app bundles
 

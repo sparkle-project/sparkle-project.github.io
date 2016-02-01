@@ -5,7 +5,7 @@ title: Delta Updates
 ---
 ## Delta Updates
 
-Sparkle supports "delta updates" for your application: when possible, users can download only the bits that have changed. Note that you will need to [generate DSA keys](/documentation#segue-for-security-concerns) for your application.
+Sparkle supports "delta updates" for your application: when possible, users can download only the bits that have changed. Note that you will need to [generate DSA keys](/documentation/#segue-for-security-concerns) for your application.
 
 For each new version you release, you can provide a list of `.delta` files in addition to the "full" archive of the version. Each `.delta` contains the information necessary to upgrade from a single older version.
 

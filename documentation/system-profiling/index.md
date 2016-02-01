@@ -19,7 +19,7 @@ Thanks to the work of [Tom Harrington](http://atomicbird.com/), Sparkle now supp
 * Application name (as indicated by CFBundleName)
 * Application version (as indicated by CFBundleVersion)
 * User's preferred language
-* Anything else you'd like to send along (via a delegate method; see [Customizing Sparkle](/documentation/customization))
+* Anything else you'd like to send along (via a delegate method; see [Customizing Sparkle](/documentation/customization/))
 
 This information will be provided via GET, so if your feed URL is `http://you.org/app.xml`, the request will be made to `http://you.org/app.xml?cpusubtype=4&ncpu=2&appName=App.app&cpuFreqMHz=1830[...]`.
 
@@ -36,6 +36,6 @@ Finally, set the SUFeedURL to your server-side script (eg. profileInfo.php) inst
 ### Known Backends
 
 * Tom Harrington's original PHP-based backend: [download it here](/files/php_sparkle_stats_server.zip)
-* Full-featured backend for CakePHP: [on GitHub here](https://github.com/balthisar/JDSparkle)
-* Ruby on Rails app for collecting statistics and displaying graphs: [Sparkler](https://github.com/mackuba/sparkler)
-* Playful weekly user-profile visualizer in PHP. No DB required: [Sparkle-Posse](http://habilis.net/sparkle-posse/)
+* Full-featured backend for CakePHP: [on GitHub here](//github.com/balthisar/JDSparkle)
+* Ruby on Rails app for collecting statistics and displaying graphs: [Sparkler](//github.com/mackuba/sparkler)
+* Playful weekly user-profile visualizer in PHP. No DB required: [Sparkle-Posse](//habilis.net/sparkle-posse/)

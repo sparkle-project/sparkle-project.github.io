@@ -5,13 +5,13 @@ title: Documentation
 ---
 ## Basic Setup
 
-Follow these simple steps, and you'll have your app auto-updating ASAP. Note that Sparkle does [not yet support](https://github.com/{{ site.github_username }}/Sparkle/issues/363) sandboxed applications.
+Follow these simple steps, and you'll have your app auto-updating ASAP. Note that Sparkle does [not yet support](//github.com/{{ site.github_username }}/Sparkle/issues/363) sandboxed applications.
 
-If your app already has an older version of Sparkle, see [upgrading from previous versions](/documentation/upgrading).
+If your app already has an older version of Sparkle, see [upgrading from previous versions](/documentation/upgrading/).
 
 ### 1. Add the Sparkle framework to your project
 
-If you are using [CocoaPods](https://cocoapods.org), then follow [step 1 for CocoaPods](/documentation/cocoapods) instead.
+If you are using [CocoaPods](//cocoapods.org), then follow [step 1 for CocoaPods](/documentation/cocoapods/) instead.
 
 * First, we'll link the Sparkle framework to your target:
   * Drag Sparkle.framework into the Frameworks folder of your Xcode project.
@@ -30,7 +30,7 @@ If you are using [CocoaPods](https://cocoapods.org), then follow [step 1 for Coc
 
 ### 2. Set up a Sparkle updater object
 
-These instructions are for regular .app bundles. If you want to update a non-app bundle, such as a Preference Pane or a plug-in, follow [step 2 for non-app bundles](/documentation/bundles).
+These instructions are for regular .app bundles. If you want to update a non-app bundle, such as a Preference Pane or a plug-in, follow [step 2 for non-app bundles](/documentation/bundles/).
 
 * Open up your MainMenu.nib.
 * Choose <samp>View › Utilities › Object Library...</samp>
@@ -46,7 +46,7 @@ Since Sparkle is downloading executable code to your users' systems, you must be
 
   * Serving the update over HTTPS (your app *will not update on OS X 10.11* unless you comply with Apple's [App Transport Security](/documentation/app-transport-security/) requirements),
   * code-signing the application via Apple's Developer ID program and/or,
-  * code-signing the published update archive with a DSA [signature](https://en.wikipedia.org/wiki/Digital_signature) matching a public DSA key included in your app.
+  * code-signing the published update archive with a DSA [signature](//en.wikipedia.org/wiki/Digital_signature) matching a public DSA key included in your app.
 
 If you are not serving updates over HTTPS and you are linking against the 10.11 SDK, **your updates will be blocked by OS X El Capitan**. You *must* comply with Apple's [App Transport Security](/documentation/app-transport-security/). In short, HTTP requests will be rejected by the system unless an exception is added within your app. App Transport Security has other specific requirements too, so please test updating your app on 10.11 even if you already are serving over HTTPS!
 
@@ -73,7 +73,7 @@ To sign update's archive with a DSA signature:
 If you are code-signing your application via Apple's Developer ID program (which is recommended for OS X 10.8+), Sparkle will ensure the new version's author matches the old version's. Sparkle also performs basic (but not deep) validation for testing if the new application is archived/distributed correctly as you intended.
 
   * Note that embedding the Sparkle.framework into the bundle of a Developer ID application requires that you code-sign the framework with your Developer ID keys. Xcode should do this automatically if you let it "<samp>Code Sign on Copy</samp>" Sparkle's framework.
-  * You can diagnose code signing problems with [RB App Checker app](http://brockerhoff.net/RB/AppCheckerLite/) and by checking logs in the Console.app.
+  * You can diagnose code signing problems with [RB App Checker app](//brockerhoff.net/RB/AppCheckerLite/) and by checking logs in the Console.app.
 
 If you decide to both code-sign your application and include a public DSA key for signing your update archive, Sparkle allows issuing a new update that changes either your code signing certificate or your DSA keys. Note however this is a last resort and should *only* be done if you lose access to one of them.
 
@@ -82,10 +82,10 @@ If you decide to both code-sign your application and include a public DSA key fo
 Sparkle uses appcasts to get information about software updates. An appcast is an RSS feed with some extra information for Sparkle's purposes.
 
 * Make a copy of the sample appcast included in the Sparkle distribution.
-* Read the sample appcast to familiarize yourself with the format, then edit out all the items and add one for the new version of your app by following the instructions at [Publishing an update](/documentation/publishing#publishing-an-update).
+* Read the sample appcast to familiarize yourself with the format, then edit out all the items and add one for the new version of your app by following the instructions at [Publishing an update](/documentation/publishing/#publishing-an-update).
 * Upload your appcast to a webserver.
 * Add a `SUFeedURL` key to your Info.plist; set its value to the URL of your appcast. We [strongly encourage you to use HTTPS](/documentation/app-transport-security/) URLs for the appcast.
-* Remember that your bundle must have a [properly formatted](/documentation/publishing#publishing-an-update) `CFBundleVersion` key in your Info.plist.
+* Remember that your bundle must have a [properly formatted](/documentation/publishing/#publishing-an-update) `CFBundleVersion` key in your Info.plist.
 
 ### 5. Test Sparkle out
 
@@ -97,7 +97,7 @@ Sparkle uses appcasts to get information about software updates. An appcast is a
 
 That's it! You're done! You don't have to do any more. But you might want to:
 
-* [Adjust Sparkle's settings and behavior](/documentation/customization) for your product.
-* [Add update settings](/documentation/preferences-ui) to your preferences panel.
-* [Add delta updates](/documentation/delta-updates) to your application.
-* Learn about [gathering anonymous statistics about your users' systems](/documentation/system-profiling).
+* [Adjust Sparkle's settings and behavior](/documentation/customization/) for your product.
+* [Add update settings](/documentation/preferences-ui/) to your preferences panel.
+* [Add delta updates](/documentation/delta-updates/) to your application.
+* Learn about [gathering anonymous statistics about your users' systems](/documentation/system-profiling/).
