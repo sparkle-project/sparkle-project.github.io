@@ -25,6 +25,11 @@
 
     ga('create', 'UA-52386963-1', 'auto');
     ga('send', 'pageview');
+
+    // on GitHub pages we can't distinguish server-side between CDN and users' visits
+    if ('sparkle-project.github.io' === location.hostname) {
+      location.href = 'https://sparkle-project.org'+location.path;
+    }
     //]]>
     </script>
   </head>
