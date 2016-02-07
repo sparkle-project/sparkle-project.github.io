@@ -28,7 +28,7 @@
 
     // on GitHub pages we can't distinguish server-side between CDN and users' visits
     if ('sparkle-project.github.io' === location.hostname) {
-      location.href = 'https://sparkle-project.org' + location.path;
+        location.href = 'https://sparkle-project.org' + location.pathname;
     }
     //]]>
     </script>
