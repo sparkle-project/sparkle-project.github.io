@@ -18,6 +18,6 @@ Thanks to [Radoslaw Karpowicz](//vulnsec.com) for reporting the vulnerabilty.
 
 ### Bug bounty program
 
-We're going to award a bug bounty for this bug, and we'll be starting a bug bounty program. We'll announce the details soon.
+We've awarded a $250 bounty for Radoslaw's report. We're starting an official bug bounty program. We'll announce the details soon.
 
 If you've found a vulnerability affecting Sparkle please report it to pornel@pornel.net.
