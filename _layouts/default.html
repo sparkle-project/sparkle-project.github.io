@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="canonical" href="https://sparkle-project.org{{ page.url  | replace: '/index.html' , '/' }}" />
     <title>{% if page.title %} {{ page.title }} - {% endif %} {{ site.title }}</title>
 
     <link href="/css/main.css" media="screen" rel="stylesheet" type="text/css" />
@@ -24,6 +25,11 @@
 
     ga('create', 'UA-52386963-1', 'auto');
     ga('send', 'pageview');
+
+    // on GitHub pages we can't distinguish server-side between CDN and users' visits
+    if ('sparkle-project.github.io' === location.hostname) {
+      location.href = 'https://sparkle-project.org' + location.path;
+    }
     //]]>
     </script>
   </head>
@@ -59,8 +65,8 @@
       <div class="row">
         <div class="col-md-12">
           <footer>
-            <p>Copyright &#169; 2015 Sparkle Project. All Rights Reserved.</p>
-            <p>This website is <a href="//github.com/{{ site.github_username }}/{{ site.github_username }}.github.io">open source</a>.</p>
+            <p>©&#8202;2016 Sparkle Project. All Rights Reserved.</p>
+            <p>This website is <a rel="alternate" href="//github.com/{{ site.github_username }}/sparkle-project.github.io/blob/master/{{page.path}}">open source</a>.</p>
             <p>Project Sponsor:<br/><a href="//www.bandwidthhog.com/?utm_source=sparkle-www&amp;utm_medium=link&amp;utm_campaign=footer">Bandwidth Hog</a> by MaxCDN</p>
           </footer>
         </div>
