@@ -9,8 +9,10 @@ All Sparkle versions older than 1.13.1 which fetch appcast or release notes over
 
 Applications using Sparkle with **HTTPS appcast feed URLs and HTTPS release notes links (if any) are safe**.
 
-The vulnerability is [fixed in version 1.13.1](//github.com/sparkle-project/Sparkle/releases/tag/1.13.1). Patches for older versions are available: [a6e9c](//github.com/sparkle-project/Sparkle/commit/a6e9c8aff644f0cf5314c9f10e039c34cd350561),
-[70f69](//github.com/sparkle-project/Sparkle/commit/70f6929ac766b404e8e0d28d5cbda7872dc2ee3f).
+The vulnerability is [fixed in version 1.13.1](//github.com/sparkle-project/Sparkle/releases/tag/1.13.1). We recommend all developers to update ASAP. For most applications it's as easy as replacing `Sparkle.framework` with the new version.
+
+Patches for older versions of Sparkle are available: [a6e9c](//github.com/sparkle-project/Sparkle/commit/a6e9c8aff644f0cf5314c9f10e039c34cd350561), [70f69](//github.com/sparkle-project/Sparkle/commit/70f6929ac766b404e8e0d28d5cbda7872dc2ee3f).
+If you use any older versions of Sparkle, or forks of the official version, please verify that they have these patches applied.
 
 Thanks to [Radoslaw Karpowicz](//vulnsec.com) for reporting the vulnerabilty.
 
