@@ -4,13 +4,19 @@ id: documentation
 title: Upgrading from previous versions of Sparkle
 ---
 
-We strongly recommend using Sparkle 1.11.1 or later, as there have been major improvements to reliability and integrity of updates. Very old versions of Sparkle also suffer some incompatibilities with the latest OS X versions.
+We strongly recommend using Sparkle 1.13.1 or later, as there have been important fixes in reliability and [security](/documentation/security) of updates. Very old versions of Sparkle also suffer some incompatibilities with the latest OS X versions.
 
-If you're upgrading from a very old version of Sparkle we recommend using [Sparkle 1.13 or later](//github.com/{{ site.github_username }}/Sparkle/releases). The API is backwards-compatible.
+If you're upgrading from a very old version of Sparkle we recommend using [Sparkle 1.14 or later](//github.com/{{ site.github_username }}/Sparkle/releases). The API is backwards-compatible.
 
 ## Upgrading to SDK 10.11 (affects all versions of Sparkle)
 
 Apps compiled with SDK 10.11 are required to use HTTPS only or configure exceptions to allow HTTP access. If you're not using HTTPS yet, please see [App Transport Security](/documentation/app-transport-security/) to ensure that users on OS X 10.11 will be able to get updates.
+
+## Upgrading from Sparkle 1.13 and older
+
+Sparkle doesn't try to "fix" incorrect URLs in the appcast. URLs with any un-encoded non-ASCII characters need to use URL-encoding, e.g. `<enclosure url="https://example.com/Zürich app.zip">` should be changed to `<enclosure url="https://example.com/Z%C3%BCrich%20app.zip">`.
+
+JavaScript is now disabled by default when showing release notes' HTML. It can be re-enabled by setting `SUEnableJavaScript` in the app's `Info.plist`.
 
 ## Upgrading from Sparkle 1.12 and older
 
