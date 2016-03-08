@@ -15,7 +15,7 @@ This vulnerability can be exploited by performing a Man-in-the-Middle attack whe
 
 Thanks to [Radoslaw Karpowicz](//vulnsec.com) for reporting the vulnerabilty.
 
-## Mitigations
+#### Mitigations
 
 * Upgrade to atleast [SparkleUpdater framework 1.13.1]((//github.com/sparkle-project/Sparkle/releases/tag/1.13.1). This version enhances security by further restricting permissions for the webview used in the update dialog and disables external entity parsing all together. These changes protect your users from both the RCE and the info-disclosure vulnerabilities. 
 * If you are unable to update to 1.13.1 for some reason. Patches for older versions of Sparkle are available: [a6e9c](//github.com/sparkle-project/Sparkle/commit/a6e9c8aff644f0cf5314c9f10e039c34cd350561), [70f69](//github.com/sparkle-project/Sparkle/commit/70f6929ac766b404e8e0d28d5cbda7872dc2ee3f). If you use any older versions of Sparkle, or forks of the official version, please verify that they have these patches applied.
