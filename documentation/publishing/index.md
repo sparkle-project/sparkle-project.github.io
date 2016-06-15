@@ -11,7 +11,7 @@ So you're ready to release a new version of your app. How do you go about doing 
 
 Put a copy of your .app (with the same name as the version it's replacing) in a .zip, .tar.gz, or .tar.bz2. If you distribute your .app in a .dmg, do _not_ zip up the .dmg.
 
-Make sure symlinks are preserved when you create the archive. OS X frameworks use symlinks, and their code signature will be broken if your archival tool follows symlinks instead of archiving them (e.g. for `zip` you must add `--symlink` or `-y`).
+Make sure symlinks are preserved when you create the archive. macOS frameworks use symlinks, and their code signature will be broken if your archival tool follows symlinks instead of archiving them (e.g. for `zip` you must add `--symlink` or `-y`).
 
 Alternatively, create an Installer .pkg with the same name as your app and put that .pkg in one of the aforementioned archive formats. By default Sparkle launches Installer with a GUI. If instead of .pkg extension you use .sparkle_guided.pkg, then installation will run in the background without asking the user to confirm each step.
 
@@ -25,7 +25,7 @@ To cryptographically sign your updates, Sparkle includes a script to help you ma
 
 The output string is your update's DSA signature; you'll add this as an attribute to your enclosure in the next step. You can remove any newlines in this string.
 
-Additionally, in OS X 10.11 Apple has added [App Transport Security](//developer.apple.com/library/prerelease/mac/technotes/App-Transport-Security-Technote/) policy which blocks Mac apps from using insecure HTTP connections. This restriction applies to Sparkle as well, so you will need to serve your appcast and the update files over HTTPS.
+Additionally, in macOS 10.11 Apple has added [App Transport Security](//developer.apple.com/library/prerelease/mac/technotes/App-Transport-Security-Technote/) policy which blocks macOS apps from using insecure HTTP connections. This restriction applies to Sparkle as well, so you will need to serve your appcast and the update files over HTTPS.
 
 ### Update your appcast
 
@@ -72,7 +72,7 @@ Set the `sparkle:version` attribute on your enclosure to the internal, machine-r
 
 ## Minimum system version requirements
 
-If an update to your application raises the required version of OS X, you can only offer that update to qualified users.
+If an update to your application raises the required version of macOS, you can only offer that update to qualified users.
 
 Add a `sparkle:minimumSystemVersion` child to the `<item>` in question specifying the required system version, such as "10.8.4":
 
@@ -81,7 +81,7 @@ Add a `sparkle:minimumSystemVersion` child to the `<item>` in question specifyin
         <sparkle:minimumSystemVersion>10.8.4</sparkle:minimumSystemVersion>
     </item>
 
-Note that Sparkle only works with OS X 10.7 or later, so that's the minimum version you can use.
+Note that Sparkle only works with macOS 10.7 or later, so that's the minimum version you can use.
 
 ## Embedded release notes
 
@@ -112,7 +112,7 @@ Use the `xml:lang` attribute with the appropriate two-letter country code for ea
 
 Sparkle is available for [Windows](http://winsparkle.org).
 
-To keep the appcast file compatible with the standard Sparkle implementation, a new tag has to be used for cross platform support. It is suggested to use the following to specify downloads for non OS X systems:
+To keep the appcast file compatible with the standard Sparkle implementation, a new tag has to be used for cross platform support. It is suggested to use the following to specify downloads for non macOS systems:
 
     <sparkle:enclosure sparkle:os="os_name" ...>
 

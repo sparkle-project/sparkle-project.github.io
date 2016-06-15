@@ -44,11 +44,11 @@ These instructions are for regular .app bundles. If you want to update a non-app
 
 Since Sparkle is downloading executable code to your users' systems, you must be very careful about security. To let Sparkle know that a downloaded update is not corrupted and came from you (instead of a malicious attacker), we recommend:
 
-  * Serving the update over HTTPS (your app *will not update on OS X 10.11* unless you comply with Apple's [App Transport Security](/documentation/app-transport-security/) requirements),
+  * Serving the update over HTTPS (your app *will not update on macOS 10.11* unless you comply with Apple's [App Transport Security](/documentation/app-transport-security/) requirements),
   * code-signing the application via Apple's Developer ID program and/or,
   * code-signing the published update archive with a DSA [signature](//en.wikipedia.org/wiki/Digital_signature) matching a public DSA key included in your app.
 
-If you are not serving updates over HTTPS and you are linking against the 10.11 SDK, **your updates will be blocked by OS X El Capitan**. You *must* comply with Apple's [App Transport Security](/documentation/app-transport-security/). In short, HTTP requests will be rejected by the system unless an exception is added within your app. App Transport Security has other specific requirements too, so please test updating your app on 10.11 even if you already are serving over HTTPS!
+If you are not serving updates over HTTPS and you are linking against the 10.11 SDK, **your updates will be blocked by macOS El Capitan**. You *must* comply with Apple's [App Transport Security](/documentation/app-transport-security/). In short, HTTP requests will be rejected by the system unless an exception is added within your app. App Transport Security has other specific requirements too, so please test updating your app on 10.11 even if you already are serving over HTTPS!
 
 #### DSA signatures
 
@@ -70,7 +70,7 @@ To sign update's archive with a DSA signature:
 
 #### Apple code signing
 
-If you are code-signing your application via Apple's Developer ID program (which is recommended for OS X 10.8+), Sparkle will ensure the new version's author matches the old version's. Sparkle also performs basic (but not deep) validation for testing if the new application is archived/distributed correctly as you intended.
+If you are code-signing your application via Apple's Developer ID program (which is recommended for macOS 10.8+), Sparkle will ensure the new version's author matches the old version's. Sparkle also performs basic (but not deep) validation for testing if the new application is archived/distributed correctly as you intended.
 
   * Note that embedding the Sparkle.framework into the bundle of a Developer ID application requires that you code-sign the framework with your Developer ID keys. Xcode should do this automatically if you let it "<samp>Code Sign on Copy</samp>" Sparkle's framework.
   * You can diagnose code signing problems with [RB App Checker app](//brockerhoff.net/RB/AppCheckerLite/) and by checking logs in the Console.app.

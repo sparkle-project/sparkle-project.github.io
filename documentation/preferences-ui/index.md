@@ -43,4 +43,4 @@ Then just bind the controls to the File's Owner, and start the Model Key Path wi
 
 ### Watch out for preference caching
 
-OS X caches plist files in `~/Library/Preferences`, so don't edit them directly. If you want to tweak these files for testing (e.g. change last update check date), use [PrefsEditor](http://www.tempel.org/PrefsEditor) or the `defaults` command.
+macOS caches plist files in `~/Library/Preferences`, so don't edit them directly. If you want to tweak these files for testing (e.g. change last update check date), use [PrefsEditor](http://www.tempel.org/PrefsEditor) or the `defaults` command.

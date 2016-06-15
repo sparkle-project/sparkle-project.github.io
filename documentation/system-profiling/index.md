@@ -9,7 +9,7 @@ Thanks to the work of [Tom Harrington](http://atomicbird.com/), Sparkle now supp
 
 ### Collected data
 
-* OS X version
+* macOS version
 * CPU type/subtype (see mach/machine.h for decoder information on this data)
 * Mac model
 * Number of CPUs (or CPU cores, in the case of something like a Core Duo)

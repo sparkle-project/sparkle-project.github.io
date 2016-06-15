@@ -4,13 +4,13 @@ id: documentation
 title: Upgrading from previous versions of Sparkle
 ---
 
-We strongly recommend using Sparkle 1.13.1 or later, as there have been important fixes in reliability and [security](/documentation/security) of updates. Very old versions of Sparkle also suffer some incompatibilities with the latest OS X versions.
+We strongly recommend using Sparkle 1.13.1 or later, as there have been important fixes in reliability and [security](/documentation/security) of updates. Very old versions of Sparkle also suffer some incompatibilities with the latest macOS versions.
 
 If you're upgrading from a very old version of Sparkle we recommend using [Sparkle 1.14 or later](//github.com/{{ site.github_username }}/Sparkle/releases). The API is backwards-compatible.
 
 ## Upgrading to SDK 10.11 (affects all versions of Sparkle)
 
-Apps compiled with SDK 10.11 are required to use HTTPS only or configure exceptions to allow HTTP access. If you're not using HTTPS yet, please see [App Transport Security](/documentation/app-transport-security/) to ensure that users on OS X 10.11 will be able to get updates.
+Apps compiled with SDK 10.11 are required to use HTTPS only or configure exceptions to allow HTTP access. If you're not using HTTPS yet, please see [App Transport Security](/documentation/app-transport-security/) to ensure that users on macOS 10.11 will be able to get updates.
 
 ## Upgrading from Sparkle 1.13 and older
 
@@ -36,9 +36,9 @@ Sparkle will print to the console verbose messages detailing problems found. Try
 
 Sparkle has kept the same API since the "classic" version 1.5. It should be a drop-in replacement apart from updated system requirements:
 
-### Mac OS X 10.7+ required
+### macOS 10.7+ required
 
-To avoid sending incompatible app to users on Mac OS X 10.6 or older, add to your appcast `<item>`:
+To avoid sending incompatible app to users on macOS 10.6 or older, add to your appcast `<item>`:
 
     <sparkle:minimumSystemVersion>10.7</sparkle:minimumSystemVersion>
 
@@ -50,7 +50,7 @@ Sparkle uses modern Objective C runtime, so it does not support PowerPC or the p
 
 ## About old versions of Sparkle
 
-Apps containing Sparkle version 1.5b6 will not pass code signing verification in OS X El Capitan due to broken symlinks included in the framework.
+Apps containing Sparkle version 1.5b6 will not pass code signing verification in macOS El Capitan due to broken symlinks included in the framework.
 
 We've reviewed update verification code and made it stricter in the current versions. If you must use old versions of Sparkle, please use it with appcast feed and update downloads over HTTPS only.
 
