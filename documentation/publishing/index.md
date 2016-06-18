@@ -11,7 +11,9 @@ So you're ready to release a new version of your app. How do you go about doing 
 
 Put a copy of your .app (with the same name as the version it's replacing) in a .zip, .tar.gz, or .tar.bz2. If you distribute your .app in a .dmg, do _not_ zip up the .dmg.
 
-Make sure symlinks are preserved when you create the archive. macOS frameworks use symlinks, and their code signature will be broken if your archival tool follows symlinks instead of archiving them (e.g. for `zip` you must add `--symlink` or `-y`).
+Make sure symlinks are preserved when you create the archive. macOS frameworks use symlinks, and their code signature will be broken if your archival tool follows symlinks instead of archiving them. For creating zip archives, `ditto` can be used (behaves the same as Finder's Compress option):
+
+    ditto -c -k --sequesterRsrc --keepParent <src_path_to_app> <zip_dest>
 
 Alternatively, create an Installer .pkg with the same name as your app and put that .pkg in one of the aforementioned archive formats. By default Sparkle launches Installer with a GUI. If instead of .pkg extension you use .sparkle_guided.pkg, then installation will run in the background without asking the user to confirm each step.
 
