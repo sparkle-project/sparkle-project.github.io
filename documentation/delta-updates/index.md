@@ -54,7 +54,7 @@ If the user is running a version of the app for which you haven't provided a `.d
 
 ### Tips for Improving Download Size & Performance
 
-We recommend reading Apple's article on [reducing the download size for iOS app updates](https://developer.apple.com/library/content/qa/qa1779/_index.html), which is applicable here too. To quote:
+We recommend reading Apple's article on [reducing the download size for iOS app updates](https://developer.apple.com/library/content/qa/qa1779/_index.html), which is applicable here too. To reword:
 
-* Do not make unnecessary modifications to files. Compare the contents of the prior and new versions of your app with diff or another directory comparison tool and verify that you've only changed what you expect within your app bundle.
-* Content that you expect to change in an update should be stored in separate files from content that you don't expect to change. This reduces the size of the update package and increases its install speed.
+* Do not make unnecessary modifications to files. Compare the contents of the prior and new versions of your app and verify that you've only changed what you expect within your app bundle. Running `BinaryDelta --verbose` will show a diff of what has changed.
+* Content that you expect to change in an update should be stored in separate files from content that you don't expect to change. This reduces the size of the delta update and increases its install speed.
