@@ -10,7 +10,7 @@ Installing with [CocoaPods](//cocoapods.org/pods/Sparkle) is identical to the [n
 ### 1. Add the Sparkle framework to your project
 
 * Add `pod 'Sparkle'` to your Podfile.
-* Add or uncomment `use_frameworks!` to your Podfile.
+* Add or uncomment `use_frameworks!` in your Podfile.
 
 ### 2. Code Signing Sparkle
 
