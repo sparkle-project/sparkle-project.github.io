@@ -51,3 +51,10 @@ Then you sign each `.delta` and add an entry to your appcast's `<item>` for each
     </item>
 
 If the user is running a version of the app for which you haven't provided a `.delta`, or if the patch doesn't apply cleanly, they'll use the non-delta "full" update.
+
+### Tips for Improving Download Size & Performance
+
+We recommend reading Apple's article on [reducing the download size for iOS app updates](https://developer.apple.com/library/content/qa/qa1779/_index.html), which is applicable here too. To quote:
+
+* Do not make unnecessary modifications to files. Compare the contents of the prior and new versions of your app with diff or another directory comparison tool and verify that you've only changed what you expect within your app bundle.
+* Content that you expect to change in an update should be stored in separate files from content that you don't expect to change. This reduces the size of the update package and increases its install speed.
