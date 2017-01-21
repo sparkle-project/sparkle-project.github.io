@@ -9,8 +9,16 @@ Guided Package Installation allows Sparkle to download and install a package, `p
 
 ### Deploying a Package
 
-A guided installation occurs when Sparkle finds a `*.sparkle_guided.pkg` or `*.sparkle_guided.mpkg` in the root of the download.
+#### Automatic installation
+
+A guided installation occurs when Sparkle finds a `*.pkg` or `*.mpkg` file in the root of the download archive ([older versions](/documentation/upgrading/) of Sparkle required the filename to be `*.sparkle_guided.pkg`).
 
 The installer package is installed using macOS's built-in command line installer, `/usr/sbin/installer`. No installation interface is shown to the user.
 
 A guided installation can be started by applications other than the application being replaced. This is particularly useful where helper applications or agents are used.
+
+#### Interactive GUI Installer
+
+An interactive installation occurs when Sparkle finds a `*.sparkle_interactive.pkg` or `*.sparkle_interactive.mpkg` file in the root of the download archive.
+
+The package will be installed using macOS's built-in GUI installer. The installation will require user to manually click through the steps, so we don't recommend this type of installation.
