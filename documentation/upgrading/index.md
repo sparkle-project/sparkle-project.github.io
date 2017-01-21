@@ -20,17 +20,13 @@ JavaScript is now disabled by default when showing release notes' HTML. It can b
 
 ## Upgrading from Sparkle 1.12 and older
 
-To work around a bug in Sparkle versions up to 1.10 we've changed bundle ID of the framework (from `org.andymatuschak.Sparkle` to `org.sparkle-project.Sparkle`).
-
-It shouldn't affect normal usage of the framework, so you don't need to do anything unless you've built custom tools dependent on the bundle ID.
+To work around a bug in Sparkle versions up to 1.10 we've changed bundle ID of the framework (from `org.andymatuschak.Sparkle` to `org.sparkle-project.Sparkle`). It shouldn't affect normal usage of the framework, so you don't need to do anything unless you've built custom tools dependent on the bundle ID.
 
 ## Upgrading from Sparkle 1.10 and older
 
 Sparkle now checks whether the updated version will be able to verify future updates as well. This prevents accidentally updating apps to a version that wouldn't be able to update itself any more.
 
-Updates now must either use DSA keys correctly, or not try to use them at all. Same goes for Apple Code Signing.
-
-Sparkle will print to the console verbose messages detailing problems found. Try updating and see Console.app if the updates are rejected.
+Updates now must either use DSA keys correctly, or not try to use them at all. Same goes for Apple Code Signing. Sparkle will print to the console verbose messages detailing problems found. Try updating and see Console.app if the updates are rejected.
 
 ## Upgrading from Sparkle 1.6 and older
 

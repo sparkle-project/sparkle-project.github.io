@@ -5,9 +5,9 @@ title: Documentation
 ---
 ## Basic Setup
 
-Follow these simple steps, and you'll have your app auto-updating ASAP. Note that Sparkle does [not yet support](//github.com/{{ site.github_username }}/Sparkle/issues/363) sandboxed applications.
-
 If your app already has an older version of Sparkle, see [upgrading from previous versions](/documentation/upgrading/).
+
+Note that Sparkle does [not yet support](//github.com/{{ site.github_username }}/Sparkle/issues/363) sandboxed applications.
 
 ### 0. Distributing your App
 
