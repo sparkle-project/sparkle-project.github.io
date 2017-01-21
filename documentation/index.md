@@ -11,7 +11,7 @@ If your app already has an older version of Sparkle, see [upgrading from previou
 
 ### 0. Distributing your App
 
-Before even updating your application, you will first want to consider the method used for distribution. If you use a package installer, you may skip reading this section.
+Before even updating your application, you will first want to consider the method used for distribution. If you use a [package installer](/documentation/package-updates/), you may skip reading this section.
 
 We recommend the following:
 
@@ -66,8 +66,8 @@ If you are not serving updates over HTTPS and you are linking against the 10.11 
 
 We recommend signing updates with DSA signatures. This type of signature is most secure and supported for all types of Sparkle updates.
 
-* Updates using Installer package (`.pkg`) must be signed with DSA.
-* Binary Delta updates must be signed with DSA.
+* Updates using [Installer package](/documentation/package-updates/) (`.pkg`) must be signed with DSA.
+* [Binary Delta updates](/documentation/delta-updates/) must be signed with DSA.
 * [Updates of preference panes and plugins](/documentation/bundles/) must be signed with DSA.
 
 DSA signatures are optional for updates using regular app bundles that are signed with Apple code signing (Apple's Developer ID program or your own certificate), but we still recommended DSA signatures as a backup.
@@ -111,5 +111,5 @@ That's it! You're done! You don't have to do any more. But you might want to:
 
 * [Adjust Sparkle's settings and behavior](/documentation/customization/) for your product.
 * [Add update settings](/documentation/preferences-ui/) to your preferences panel.
-* [Add delta updates](/documentation/delta-updates/) to your application.
+* [Add binary delta updates](/documentation/delta-updates/) to your application.
 * Learn about [gathering anonymous statistics about your users' systems](/documentation/system-profiling/).
