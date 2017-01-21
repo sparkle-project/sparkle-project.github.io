@@ -4,9 +4,11 @@ id: documentation
 title: Upgrading from previous versions of Sparkle
 ---
 
-We strongly recommend using Sparkle 1.13.1 or later, as there have been important fixes in reliability and [security](/documentation/security) of updates. Very old versions of Sparkle also suffer some incompatibilities with the latest macOS versions.
+We strongly recommend upgrading Sparkle to the [latest version](//github.com/{{ site.github_username }}/Sparkle/releases), as there have been important fixes in reliability and [security](/documentation/security) of updates. Very old versions of Sparkle also suffer some incompatibilities with the latest macOS versions.
 
-If you're upgrading from a very old version of Sparkle we recommend using [Sparkle 1.14 or later](//github.com/{{ site.github_username }}/Sparkle/releases). The API is backwards-compatible.
+## Upgrading from Sparkle 1.15 and older
+
+For updates that [use the `.pkg` format](https://sparkle-project.org/documentation/package-updates/), Sparkle no longer shows the full Installer GUI by default. Rename your `.pkg` file to `.sparkle_interactive.pkg` to keep the old behavior.
 
 ## Upgrading to SDK 10.11 (affects all versions of Sparkle)
 
