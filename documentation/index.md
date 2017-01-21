@@ -23,7 +23,13 @@ These guidelines follow Apple's best practices and works best with App Transloca
 
 ### 1. Add the Sparkle framework to your project
 
-If you are using [CocoaPods](//cocoapods.org), then follow [step 1 for CocoaPods](/documentation/cocoapods/) instead.
+We recommend using [CocoaPods](//cocoapods.org). If you use CocoaPods:
+
+  * Add `pod 'Sparkle'` to your Podfile.
+  * Add or uncomment `use_frameworks!` in your Podfile.
+  * [Xcode 7 and older require more steps](/documentation/cocoapods/).
+
+If you don't have CocoaPods, then add Sparkle manually:
 
 * Get the [latest version](//github.com/{{ site.github_username }}/Sparkle/releases) of Sparkle.
 * Link the Sparkle framework to your app target:
