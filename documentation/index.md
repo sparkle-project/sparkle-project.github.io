@@ -101,11 +101,22 @@ If you both code-sign your application and include a public DSA key for signing 
 
 Sparkle uses appcasts to get information about software updates. An appcast is an RSS feed with some extra information for Sparkle's purposes.
 
-* Make a copy of the sample appcast included in the Sparkle distribution.
-* Read the sample appcast to familiarize yourself with the format, then edit out all the items and add one for the new version of your app by following the instructions at [Publishing an update](/documentation/publishing/#publishing-an-update).
-* Upload your appcast to a webserver.
-* Add a `SUFeedURL` key to your Info.plist; set its value to the URL of your appcast. We [strongly encourage you to use HTTPS](/documentation/app-transport-security/) URLs for the appcast.
-* Remember that your bundle must have a [properly formatted](/documentation/publishing/#publishing-an-update) `CFBundleVersion` key in your Info.plist.
+  * Add a `SUFeedURL` key to your `Info.plist`; set its value to a URL where your appcast will be hosted, e.g. `https://yourcompany.example.com/appcast.xml`. We [strongly encourage you to use HTTPS](/documentation/app-transport-security/) URLs for the appcast.
+  * Remember that your bundle must have a [properly formatted `CFBundleVersion`](/documentation/publishing/#publishing-an-update) key in your `Info.plist`.
+
+If you update regular app bundles and you have set up DSA signatures, you can use a tool to generate appcasts automatically:
+
+  * Build your app and compress it (e.g. in a ZIP or tar.bz2 archive), and put the archive in a new folder. This folder will be used to store all your future updates.
+  * Run `generate_appcast` tool from Sparkle's distribution archive specifying the path to your DSA private key, and the folder with update archives:
+
+        ./bin/generate_appcast /path/to/your/dsa_priv.pem /path/to/your/updates_folder/
+
+  * The tool will generate the appcast file (using filename from `SUFeedURL`) and also [`*.delta` update](/documentation/delta-updates/) files. Upload your archives, the delta updates and the appcast to your server.
+
+You can also create the appcast file manually:
+
+  * Make a copy of the sample appcast included in the Sparkle distribution.
+  * Read the sample appcast to familiarize yourself with the format, then edit out all the items and add one for the new version of your app by following the instructions at [Publishing an update](/documentation/publishing/#publishing-an-update).
 
 ### 5. Test Sparkle out
 
