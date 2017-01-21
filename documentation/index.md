@@ -11,15 +11,20 @@ Note that Sparkle does [not yet support](//github.com/{{ site.github_username }}
 
 ### 0. Distributing your App
 
-Before even updating your application, you will first want to consider the method used for distribution. If you use a [package installer](/documentation/package-updates/), you may skip reading this section.
+For best compatibility with macOS Sierra and later you should use [*signed* disk image (DMG)](https://developer.apple.com/library/content/technotes/tn2206/_index.html#//apple_ref/doc/uid/DTS40007919-CH1-TNTAG17) for distribution of apps from your product's website. The system will quarantine ([translocate](http://lapcatsoftware.com/articles/app-translocation.html)) apps downloaded from the Internet, unless they're from a signed DMG, installer package, or are moved using Finder.
 
-We recommend the following:
+If you distribute your app as a ZIP or a tar archive:
 
-* Ship your application as a dmg on your product's website. Add an `/Applications` symlink in your dmg, or otherwise encourage the user to copy the app out of it. For updating your app through Sparkle, other supported archive formats like zip are still okay.
-* Avoid placing your app inside another folder in your archive. If you ship an archive that is not a dmg on your product's website, which we do not recommend, the archive should then not contain multiple items. An exception to this guideline is if you use a signed dmg, but please be careful - the system may not warn you if the dmg is not signed properly!
-* Sign the dmg using macOS 10.11.5 or later if you have a Developer ID Application certificate available from Apple. If you attempt signing with an older OS, this will not work correctly. Be sure to verify the dmg is signed after downloading it from your server. Signed dmg's are backwards compatible to older systems.
+  * Encourage users to move the app to `/Applications`, e.g. use [LetsMove](https://github.com/potionfactory/LetsMove/). The system will not allow the app to update itself until it's moved.
+  * Avoid placing your app inside another folder in your archive, because copying of the folder as a whole doesn't remove the quarantine.
 
-These guidelines follow Apple's best practices and works best with App Translocation which affects macOS 10.12 and later. When an application is running from a dmg or is translocated, Sparkle will not be able to update your application. Therefore, you should distribute your application in a way that will most likely be moved by the user.
+If you distribute your app as a disk image (DMG):
+
+  * Add an `/Applications` symlink in your DMG, or otherwise encourage the user to copy the app out of it (the app can't be updated when it's launched straight from the disk).
+  * Make sure the DMG signed with a Developer ID and use macOS 10.11.5 or later to sign it (an older OS may not sign correctly). Signed DMG archives are backwards compatible.
+  * If you do not sign the DMG, avoid placing your app inside another folder in your archive.
+
+Sparkle supports updating from DMG, ZIP archives, tarballs, and installer packages, so you can generally reuse the same archive for distribution of your app on your website as well as Sparkle updates.
 
 ### 1. Add the Sparkle framework to your project
 
