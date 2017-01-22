@@ -21,14 +21,14 @@ If you distribute your app as a ZIP or a tar archive:
 If you distribute your app as a disk image (DMG):
 
   * Add an `/Applications` symlink in your DMG, or otherwise encourage the user to copy the app out of it (the app can't be updated when it's launched straight from the disk).
-  * Make sure the DMG signed with a Developer ID and use macOS 10.11.5 or later to sign it (an older OS may not sign correctly). Signed DMG archives are backwards compatible.
+  * Make sure the DMG is signed with a Developer ID and use macOS 10.11.5 or later to sign it (an older OS may not sign correctly). Signed DMG archives are backwards compatible.
   * If you do not sign the DMG, avoid placing your app inside another folder in your archive.
 
 Sparkle supports updating from DMG, ZIP archives, tarballs, and installer packages, so you can generally reuse the same archive for distribution of your app on your website as well as Sparkle updates.
 
 ### 1. Add the Sparkle framework to your project
 
-We recommend using [CocoaPods](//cocoapods.org). If you use CocoaPods:
+If you use [CocoaPods](//cocoapods.org):
 
   * Add `pod 'Sparkle'` to your Podfile.
   * Add or uncomment `use_frameworks!` in your Podfile.
