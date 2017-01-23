@@ -13,16 +13,17 @@ Note that Sparkle does [not yet support](//github.com/{{ site.github_username }}
 
 For best compatibility with macOS Sierra and later you should use [*signed* disk image (DMG)](https://developer.apple.com/library/content/technotes/tn2206/_index.html#//apple_ref/doc/uid/DTS40007919-CH1-TNTAG17) for distribution of apps from your product's website. The system will quarantine ([translocate](http://lapcatsoftware.com/articles/app-translocation.html)) apps downloaded from the Internet, unless they're from a signed DMG, installer package, or are moved using Finder.
 
-If you distribute your app as a ZIP or a tar archive:
-
-  * Encourage users to move the app to `/Applications`, e.g. use [LetsMove](https://github.com/potionfactory/LetsMove/). The system will not allow the app to update itself until it's moved.
-  * Avoid placing your app inside another folder in your archive, because copying of the folder as a whole doesn't remove the quarantine.
-
 If you distribute your app as a disk image (DMG):
 
   * Add an `/Applications` symlink in your DMG, or otherwise encourage the user to copy the app out of it (the app can't be updated when it's launched straight from the disk).
   * Make sure the DMG is signed with a Developer ID and use macOS 10.11.5 or later to sign it (an older OS may not sign correctly). Signed DMG archives are backwards compatible.
   * If you do not sign the DMG, avoid placing your app inside another folder in your archive.
+
+If you distribute your app as a ZIP or a tar archive:
+
+  * Encourage users to move the app to `/Applications` (e.g. use [LetsMove](https://github.com/potionfactory/LetsMove/)). The system will not allow the app to update itself until it's moved.
+  * Avoid placing your app inside another folder in your archive, because copying of the folder as a whole doesn't remove the quarantine.
+  * Avoid putting more than just the single app in the archive.
 
 Sparkle supports updating from DMG, ZIP archives, tarballs, and installer packages, so you can generally reuse the same archive for distribution of your app on your website as well as Sparkle updates.
 
