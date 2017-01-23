@@ -5,9 +5,17 @@ title: Delta Updates
 ---
 ## Delta Updates
 
-Sparkle supports "delta updates" for your application: when possible, users can download only the bits that have changed. Note that you will need to [generate DSA keys](/documentation/#segue-for-security-concerns) for your application.
+Sparkle supports "delta updates" for your application: when possible, users can download only the bits that have changed. These updates are much smaller and faster than DMG.
 
 For each new version you release, you can provide a list of `.delta` files in addition to the "full" archive of the version. Each `.delta` contains the information necessary to upgrade from a single older version.
+
+If the user is running a version of the app for which you haven't provided a `.delta`, or if the patch doesn't apply cleanly, they'll use the non-delta "full" update.
+
+### Automated generation
+
+The `./bin/generate_appcast` tool that comes with Sparkle [automatically generates and signs delta updates](/documentation/#publish-your-appcast).
+
+### Manual generation
 
 To generate a `.delta`, you use the `BinaryDelta` tool included with Sparkle like this:
 
@@ -23,7 +31,7 @@ Version 2 patches created by BinaryDelta are not backwards compatible with Spark
 <strong>Note:</strong> We don't recommend creating delta patches from an application that uses Sparkle 1.10, due to a potential crash in the updater for applying the updates.
 </div>
 
-Then you sign each `.delta` and add an entry to your appcast's `<item>` for each `.delta` you have created:
+[Sign each `.delta` file](/documentation/#segue-for-security-concerns) and add an enclosure to your appcast's `<item>` in `<sparkle:deltas>` for each `.delta` file:
 
     <item>
        <title>Version 2.0 </title>
@@ -49,8 +57,6 @@ Then you sign each `.delta` and add an entry to your appcast's `<item>` for each
                       sparkle:dsaSignature="..." />
        </sparkle:deltas>
     </item>
-
-If the user is running a version of the app for which you haven't provided a `.delta`, or if the patch doesn't apply cleanly, they'll use the non-delta "full" update.
 
 ### Tips for Improving Download Size & Performance
 
