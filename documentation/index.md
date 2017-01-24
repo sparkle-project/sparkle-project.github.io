@@ -39,7 +39,7 @@ If you don't have CocoaPods, then add Sparkle manually:
 
 * Get the [latest version](//github.com/{{ site.github_username }}/Sparkle/releases) of Sparkle.
 * Link the Sparkle framework to your app target:
-  * Drag Sparkle.framework into the <samp>Frameworks</samp> folder of your Xcode project.
+  * Drag `Sparkle.framework` into the <samp>Frameworks</samp> folder of your Xcode project.
   * Be sure to check the "Copy items into the destination group's folder" box in the sheet that appears.
   * Make sure the box is checked for your app's target in the sheet's <samp>Add to targets</samp> list.
 * Make sure the framework is copied into your app bundle:
