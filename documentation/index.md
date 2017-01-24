@@ -9,24 +9,6 @@ If your app already has an older version of Sparkle, see [upgrading from previou
 
 Note that Sparkle does [not yet support](//github.com/{{ site.github_username }}/Sparkle/issues/363) sandboxed applications.
 
-### 0. Distributing your App
-
-For best compatibility with macOS Sierra and later you should use [*signed* disk image (DMG)](https://developer.apple.com/library/content/technotes/tn2206/_index.html#//apple_ref/doc/uid/DTS40007919-CH1-TNTAG17) for distribution of apps from your product's website. The system will quarantine ([translocate](http://lapcatsoftware.com/articles/app-translocation.html)) apps downloaded from the Internet, unless they're from a signed DMG, installer package, or are moved using Finder.
-
-If you distribute your app as a disk image (DMG):
-
-  * Add an `/Applications` symlink in your DMG, or otherwise encourage the user to copy the app out of it (the app can't be updated when it's launched straight from the disk).
-  * Make sure the DMG is signed with a Developer ID and use macOS 10.11.5 or later to sign it (an older OS may not sign correctly). Signed DMG archives are backwards compatible.
-  * If you do not sign the DMG, avoid placing your app inside another folder in your archive.
-
-If you distribute your app as a ZIP or a tar archive:
-
-  * Encourage users to move the app to `/Applications` (e.g. use [LetsMove](https://github.com/potionfactory/LetsMove/)). The system will not allow the app to update itself until it's moved.
-  * Avoid placing your app inside another folder in your archive, because copying of the folder as a whole doesn't remove the quarantine.
-  * Avoid putting more than just the single app in the archive.
-
-Sparkle supports updating from DMG, ZIP archives, tarballs, and installer packages, so you can generally reuse the same archive for distribution of your app on your website as well as Sparkle updates.
-
 ### 1. Add the Sparkle framework to your project
 
 If you use [CocoaPods](//cocoapods.org):
@@ -98,7 +80,25 @@ If you are code-signing your application via Apple's Developer ID program, Spark
 
 If you both code-sign your application and include a public DSA key for signing your update archive, Sparkle allows issuing a new update that changes either your code signing certificate or your DSA keys. Note however this is a last resort and should *only* be done if you lose access to one of them.
 
-### 4. Publish your appcast
+### 4. Distributing your App
+
+For best compatibility with macOS Sierra and later you should use [*signed* disk image (DMG)](https://developer.apple.com/library/content/technotes/tn2206/_index.html#//apple_ref/doc/uid/DTS40007919-CH1-TNTAG17) for distribution of apps from your product's website. The system will quarantine ([translocate](http://lapcatsoftware.com/articles/app-translocation.html)) apps downloaded from the Internet, unless they're from a signed DMG, installer package, or are moved using Finder.
+
+If you distribute your app as a disk image (DMG):
+
+  * Add an `/Applications` symlink in your DMG, or otherwise encourage the user to copy the app out of it (the app can't be updated when it's launched straight from the disk).
+  * Make sure the DMG is signed with a Developer ID and use macOS 10.11.5 or later to sign it (an older OS may not sign correctly). Signed DMG archives are backwards compatible.
+  * If you do not sign the DMG, avoid placing your app inside another folder in your archive.
+
+If you distribute your app as a ZIP or a tar archive:
+
+  * Encourage users to move the app to `/Applications` (e.g. use [LetsMove](https://github.com/potionfactory/LetsMove/)). The system will not allow the app to update itself until it's moved.
+  * Avoid placing your app inside another folder in your archive, because copying of the folder as a whole doesn't remove the quarantine.
+  * Avoid putting more than just the single app in the archive.
+
+Sparkle supports updating from DMG, ZIP archives, tarballs, and installer packages, so you can generally reuse the same archive for distribution of your app on your website as well as Sparkle updates.
+
+### 5. Publish your appcast
 
 Sparkle uses appcasts to get information about software updates. An appcast is an RSS feed with some extra information for Sparkle's purposes.
 
@@ -107,7 +107,7 @@ Sparkle uses appcasts to get information about software updates. An appcast is a
 
 If you update regular app bundles and you have set up DSA signatures, you can use a tool to generate appcasts automatically:
 
-  * Build your app and compress it (e.g. in a ZIP or tar.bz2 archive), and put the archive in a new folder. This folder will be used to store all your future updates.
+  * Build your app and compress it (e.g. in a DMG/ZIP/tar.bz2 archive), and put the archive in a new folder. This folder will be used to store all your future updates.
   * Run `generate_appcast` tool from Sparkle's distribution archive specifying the path to your DSA private key, and the folder with update archives:
 
         ./bin/generate_appcast /path/to/your/dsa_priv.pem /path/to/your/updates_folder/
@@ -119,7 +119,7 @@ You can also create the appcast file manually:
   * Make a copy of the sample appcast included in the Sparkle distribution.
   * Read the sample appcast to familiarize yourself with the format, then edit out all the items and add one for the new version of your app by following the instructions at [Publishing an update](/documentation/publishing/#publishing-an-update).
 
-### 5. Test Sparkle out
+### 6. Test Sparkle out
 
 * Use an older verison of your app, or if you don't have one yet, make one by editing `Info.plist` and change `CFBundleVersion` to a lower version.
   * A genuine older version of the app is required to test [delta updates](/documentation/delta-updates/), because Sparkle will ignore the delta update if the app doesn't match update's checksum.
