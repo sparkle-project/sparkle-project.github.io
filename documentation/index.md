@@ -108,7 +108,7 @@ Sparkle uses appcasts to get information about software updates. An appcast is a
 If you update regular app bundles and you have set up DSA signatures, you can use a tool to generate appcasts automatically:
 
   * Build your app and compress it (e.g. in a DMG/ZIP/tar.bz2 archive), and put the archive in a new folder. This folder will be used to store all your future updates.
-  * Run `generate_appcast` tool from Sparkle's distribution archive specifying the path to your DSA private key, and the folder with update archives:
+  * Run `generate_appcast` tool from Sparkle's distribution archive specifying the path to your [DSA private key](#dsa-signatures), and the folder with update archives:
 
         ./bin/generate_appcast /path/to/your/dsa_priv.pem /path/to/your/updates_folder/
 
