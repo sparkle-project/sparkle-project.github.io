@@ -69,7 +69,7 @@ To prepare signing with DSA signatures:
   `./bin/generate_keys`
   * Back up your private key (dsa_priv.pem) and <strong>keep it safe.</strong> You don't want anyone else getting it, and if you lose it, you may not be able to issue any new updates.
   * Add your public key (dsa_pub.pem) to the <samp>Resources</samp> folder of your Xcode project.
-  * Add an `SUPublicDSAKeyFile` key to your `Info.plist`; set its value to your public key's filename—unless you renamed it, this will be `dsa_pub.pem`.
+  * Add an [`SUPublicDSAKeyFile`](/documentation/customization/) key to your `Info.plist`; set its value to your public key's filename—unless you renamed it, this will be `dsa_pub.pem`.
 
 #### Apple code signing
 
@@ -102,7 +102,7 @@ Sparkle supports updating from DMG, ZIP archives, tarballs, and installer packag
 
 Sparkle uses appcasts to get information about software updates. An appcast is an RSS feed with some extra information for Sparkle's purposes.
 
-  * Add a `SUFeedURL` key to your `Info.plist`; set its value to a URL where your appcast will be hosted, e.g. `https://yourcompany.example.com/appcast.xml`. We [strongly encourage you to use HTTPS](/documentation/app-transport-security/) URLs for the appcast.
+  * Add a [`SUFeedURL`](/documentation/customization/) key to your `Info.plist`; set its value to a URL where your appcast will be hosted, e.g. `https://yourcompany.example.com/appcast.xml`. We [strongly encourage you to use HTTPS](/documentation/app-transport-security/) URLs for the appcast.
   * Remember that your bundle must have a [properly formatted `CFBundleVersion`](/documentation/publishing/#publishing-an-update) key in your `Info.plist`.
 
 If you update regular app bundles and you have set up DSA signatures, you can use a tool to generate appcasts automatically:
@@ -112,7 +112,7 @@ If you update regular app bundles and you have set up DSA signatures, you can us
 
         ./bin/generate_appcast /path/to/your/dsa_priv.pem /path/to/your/updates_folder/
 
-  * The tool will generate the appcast file (using filename from `SUFeedURL`) and also [`*.delta` update](/documentation/delta-updates/) files. Upload your archives, the delta updates and the appcast to your server.
+  * The tool will generate the appcast file (using filename from [`SUFeedURL`](/documentation/customization/)) and also [`*.delta` update](/documentation/delta-updates/) files. Upload your archives, the delta updates and the appcast to your server.
 
 You can also create the appcast file manually:
 
