@@ -11,14 +11,14 @@ Here are the main routes by which you can bend Sparkle's behavior to your will:
 
 {:.table .table-bordered}
 | Key | Type | Value |
-| --- | ---- | ----- |
-| `SUFeedURL` | String | The URL of your appcast.|
-| `SUEnableAutomaticChecks` | Boolean | If this is set, Sparkle will use this value to determine whether or not it should check for updates. This can still be overridden by a call to SUUpdater's setAutomaticallyChecksForUpdates:, but the initial prompt for permission to check for updates will be suppressed in favor of this value.<br /><br />Basically, set this to YES to turn on checking for updates without asking your users for permission. |
-| `SUEnableSystemProfiling` | Boolean | Describes whether anonymous system profiling is enabled. See System Profiling for more. |
-| `SUShowReleaseNotes` | Boolean | Set this flag to hide the release notes display from the update alert. |
-| `SUPublicDSAKeyFile` | String | The filename of the public DSA key in your app's Resources folder. |
-| `SUScheduledCheckInterval` | Number | The number of seconds between updates. This must be set otherwise automatic updates will not occur. To set it to daily updates, set the value to 86400 (i.e. 24hrs * 60mins/hr * 60sec/min).<br /><br />**Note:** this has a minimum bound of 1 hour in order to keep you from accidentally DoSing yourself with a dumb update. |
-| `SUAllowsAutomaticUpdates` | Boolean | Sparkle presents your users with the option to automatically download any available updates. Set this to NO to remove this option. |
+| --- | ---- | ----- | ------- |
+| `SUFeedURL` | String | The URL of your appcast, e.g. `https://example.com/appcast.xml`. It's recommended to always set it in Info.plist, even if you change it later programmatically. |
+| `SUEnableAutomaticChecks` | Boolean | Setting to `YES` (recommended) enables checking for updates (but not installation) by default, without asking your users for permission first. <br>By default, if it's not set to any value, users will be prompted for permission before the first update check. <br>Setting to `NO` disables update checks, but can be overridden by a call to `SUUpdater`'s `setAutomaticallyChecksForUpdates:` |
+| `SUPublicDSAKeyFile` | String | The filename of the public DSA key in your app's Resources folder, e.g. `dsa_pub.pem`. |
+| `SUEnableSystemProfiling` | Boolean | Default: `NO`. Enables anonymous system profiling. See [System Profiling](/documentation/system-profiling) for more. |
+| `SUScheduledCheckInterval` | Number | The number of seconds between updates. The default is `86400` (1 day). Setting to 0 disables updates. <br /><br />**Note:** this has a minimum bound of 1 hour in order to keep you from accidentally overloading your servers. |
+| `SUAllowsAutomaticUpdates` | Boolean | Default: `YES`. Sparkle presents your users with the *option* to allow to automatically download and install any available updates. Set this to `NO` to disallow automatic updates and require manual installation every time. |
+| `SUShowReleaseNotes` | Boolean | Default: `YES`. Set this to `NO` to hide release notes display from the update alert. |
 | `SUBundleName` | String | Optional alternative bundle display name. For example, if your bundle name already has a version number appended to it, setting this may help smooth out certain messages, e.g. "MyApp 3 4.0 is now available" vs "MyApp 4.0 is now available". |
 
 ### Calls to SUUpdater
