@@ -24,9 +24,9 @@ Here are the main routes by which you can bend Sparkle's behavior to your will:
 
 ### Calls to SUUpdater
 
-The `SUUpdater` object is the main controller for the updating system in your app. There is a singleton instance of this class for each bundle being updated. If you're trying to update the running .app, you can retrieve the appropriate `SUUpdater` by calling `[SUUpdater sharedUpdater]`. If you're trying to update some other bundle, you can use `[SUUpdater updaterForBundle:(NSBundle *)myBundle]`.
+The `SUUpdater` object is the main controller for the updating system in your app. There is a singleton instance of this class for each bundle being updated. If you're trying to update the running .app, you can retrieve the appropriate `SUUpdater` by calling `[SUUpdater sharedUpdater]`. If you're trying to update some [other bundle](/documentation/bundles/), you can use `[SUUpdater updaterForBundle:(NSBundle *)myBundle]`.
 
-Once you have the `SUUpdater` instance, there are a few interesting accessors you could use:
+Once you have the `SUUpdater` instance, there are a few interesting accessors you could use. Please use them only if you need dynamic behavior (e.g. user preferences). Do not use these functions to set default configuration. Use Info.plist keys to set default configuration instead.
 
     - (void)setAutomaticallyChecksForUpdates:(BOOL)automaticallyChecks;
     - (BOOL)automaticallyChecksForUpdates;
@@ -43,7 +43,7 @@ Once you have the `SUUpdater` instance, there are a few interesting accessors yo
     - (void)setAutomaticallyDownloadsUpdates:(BOOL)automaticallyDownloadsUpdates;
     - (BOOL)automaticallyDownloadsUpdates;
 
-If you want to make sure these settings are changed before the first automatic update check, you should do this in the `NSApplication` delegate method `-applicationWillFinishLaunching:`. For a non-app bundle you should then make the changes immediately after you first create the `SUUpdater` instance in your code.
+There is a risk of race conditions. If you want to make sure these settings are changed before the first automatic update check, you should do this in the `NSApplication` delegate method `-applicationWillFinishLaunching:`. For a non-app bundle you should then make the changes immediately after you first create the `SUUpdater` instance in your code.
 
 A few more methods of interest:
 
@@ -56,6 +56,9 @@ A few more methods of interest:
     // proceeds as usual. If the automated downloading is turned on, however,
     // this will invoke that behavior, and if an update is found, it will be
     // downloaded and prepped for installation.
+    //
+    // You do not need to call this. Sparkle calls it automatically according to
+    // the update schedule.
     - (void)checkForUpdatesInBackground;
 
     // This begins a "probing" check for updates which will not actually offer to
@@ -64,7 +67,7 @@ A few more methods of interest:
     // Essentially, you can use this to UI-lessly determine if there's an update.
     - (void)checkForUpdateInformation;
 
-    // Date of last update check. Returns null if no check has been performed.
+    // Date of last update check. Returns nil if no check has been performed.
     - (NSDate *)lastUpdateCheckDate;
 
     // Call this to appropriately schedule or cancel the update checking timer according
