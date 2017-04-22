@@ -21,6 +21,7 @@ Here are the main routes by which you can bend Sparkle's behavior to your will:
 | `SUAutomaticallyUpdate` | Boolean | Default: `NO`. Enables automatic download and installation of updates. If set to `YES`, users will not be informed about updates, and updates will be silently installed when the app quits.
 | `SUShowReleaseNotes` | Boolean | Default: `YES`. Set this to `NO` to hide release notes display from the update alert. |
 | `SUBundleName` | String | Optional alternative bundle display name. For example, if your bundle name already has a version number appended to it, setting this may help smooth out certain messages, e.g. "MyApp 3 4.0 is now available" vs "MyApp 4.0 is now available". |
+| `SUDefaultsDomain` | String | Optional alternative `NSUserDefaults` domain name if you don't want to use the standard user defaults, for example when accessing preferences from an App Group suite. |
 
 ### Calls to SUUpdater
 
