@@ -131,7 +131,7 @@ You can control the SUUpdater's behavior a little more closely by providing it w
     // with keys: "key", "value", "displayKey", "displayValue", the latter two
     // being human-readable variants of the former two.
     - (NSArray *)feedParametersForUpdater:(SUUpdater *)updater
-                 sendingSystemProfile:(BOOL)sendingProfile;                          
+                 sendingSystemProfile:(BOOL)sendingProfile;
 
 ### Other options
 
