@@ -112,6 +112,9 @@ You can control the SUUpdater's behavior a little more closely by providing it w
 
     // Called immediately before relaunching.
     - (void)updaterWillRelaunchApplication:(SUUpdater *)updater;
+    
+    // Called if the application has been relaunched from an update
+    - (void)updaterDidRelaunchApplication:(SUUpdater *)updater;  
 
     // This method allows you to provide a custom version comparator.
     // If you don't implement this method or return nil, the standard version
