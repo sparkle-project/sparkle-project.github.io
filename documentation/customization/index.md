@@ -112,6 +112,9 @@ You can control the SUUpdater's behavior a little more closely by providing it w
 
     // Called immediately before relaunching.
     - (void)updaterWillRelaunchApplication:(SUUpdater *)updater;
+    
+    // Called if the application has been relaunched from an update
+    - (void)updaterDidRelaunchApplication:(SUUpdater *)updater;  
 
     // This method allows you to provide a custom version comparator.
     // If you don't implement this method or return nil, the standard version
@@ -128,7 +131,7 @@ You can control the SUUpdater's behavior a little more closely by providing it w
     // with keys: "key", "value", "displayKey", "displayValue", the latter two
     // being human-readable variants of the former two.
     - (NSArray *)feedParametersForUpdater:(SUUpdater *)updater
-                 sendingSystemProfile:(BOOL)sendingProfile;
+                 sendingSystemProfile:(BOOL)sendingProfile;                          
 
 ### Other options
 
