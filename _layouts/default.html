@@ -45,8 +45,10 @@
     ga('send', 'pageview');
 
     // on GitHub pages we can't distinguish server-side between CDN and users' visits
-    if ('sparkle-project.github.io' === location.hostname) {
-        location.href = 'https://sparkle-project.org' + location.pathname;
+    if (/^(w{1,3}\.)?sparkle-project\.(com|org|github\.io)$/.test(location.hostname)) {
+        var newValue = 'sparkle-project.org';
+        if (location.hostname !== newValue)
+            location.hostname = newValue;
     }
     //]]>
     </script>
