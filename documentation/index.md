@@ -65,7 +65,7 @@ Since Sparkle is downloading executable code to your users' systems, you must be
 
 To prepare signing with DSA signatures:
 
-  * First, make yourself a pair of DSA keys. This needs to be done only once. Sparkle includes a tool to help: (from the Sparkle distribution root):<br />
+  * **Sorry! We have a compatibility problem with macOS High Sierra and later. Apple's Security framework fails to work with DSA keys generated on High Sierra and Mojave. We don't know workaround other than using an old macOS Sierra to generate the key. We'll be migrating to another signing method, but it'll take a couple of months to implement**. First, make yourself a pair of DSA keys. This needs to be done only once. Sparkle includes a tool to help: (from the Sparkle distribution root):<br />
   `./bin/generate_keys`
   * Back up your private key (dsa_priv.pem) and <strong>keep it safe.</strong> You don't want anyone else getting it, and if you lose it, you may not be able to issue any new updates.
   * Add your public key (dsa_pub.pem) to the <samp>Resources</samp> folder of your Xcode project.
