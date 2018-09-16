@@ -6,6 +6,17 @@ title: Upgrading from previous versions of Sparkle
 
 We strongly recommend upgrading Sparkle to the [latest version](//github.com/{{ site.github_username }}/Sparkle/releases), as there have been important fixes in reliability and [security](/documentation/security) of updates. Very old versions of Sparkle also suffer some incompatibilities with the latest macOS versions.
 
+## Upgrading from Sparkle 1.20 and older
+
+Support for EDDSA (ed25519) signatures has been added. We recommend migrating to the new keys.
+
+ 1. Run `bin/generate_keys`. It will generate a new EDDSA keypair and print a public key.
+ 2. Add the public key to your app's `Info.plist` as `SUPublicEDKey` property.
+
+If you're using `generate_appcast` tool, that's all you need.
+
+If you were using manual DSA signing with the `sign_update` script, the script has been moved to `bin/old_dsa_scripts`. The new `sign_update` tool is only for EDDSA keys. To transition to new keys, you will need to use both tools.
+
 ## Upgrading from Sparkle 1.15 and older
 
 For updates that [use the `.pkg` format](https://sparkle-project.org/documentation/package-updates/), Sparkle no longer shows the full Installer GUI by default. Rename your `.pkg` file to `.sparkle_interactive.pkg` to keep the old behavior.
