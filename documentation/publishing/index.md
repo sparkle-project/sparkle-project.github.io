@@ -21,13 +21,15 @@ If you can't use regular app bundles, you can also create an Installer .pkg with
 
 In order to prevent corruption and man-in-the-middle attacks against your users, you must cryptographically sign your updates.
 
-To cryptographically sign your updates, Sparkle includes a script to help you make a DSA signature of the archive. From the Sparkle distribution:
+Signatures are automatically generated when you make an appcast using `generate_appcast` tool. This is a recommended method.
 
-    ./bin/sign_update path_to_your_update.zip path_to_your_dsa_priv.pem
+To manually generate signatures for your updates, Sparkle includes a tool to help you make a EDDSA signature of the archive. From the Sparkle distribution:
 
-The output string is your update's DSA signature; you'll add this as an attribute to your enclosure in the next step. You can remove any newlines in this string.
+    ./bin/sign_update path_to_your_update.zip
 
-Additionally, in macOS 10.11 Apple has added [App Transport Security](//developer.apple.com/library/prerelease/mac/technotes/App-Transport-Security-Technote/) policy which blocks macOS apps from using insecure HTTP connections. This restriction applies to Sparkle as well, so you will need to serve your appcast and the update files over HTTPS.
+The output will be an XML fragment with your update's EDDSA signature and (optional) file size; you'll add this attribute to your enclosure in the next step.
+
+Since 10.11, macOS has [App Transport Security](//developer.apple.com/library/prerelease/mac/technotes/App-Transport-Security-Technote/) policy which blocks apps from using insecure HTTP connections. This restriction applies to Sparkle as well, so you will need to serve your appcast and the update files over HTTPS.
 
 ### Update your appcast
 
@@ -41,7 +43,7 @@ You need to create an `<item>` for your update in your appcast. See the [sample 
         <pubDate>Mon, 05 Oct 2015 19:20:11 +0000</pubDate>
         <enclosure url="https://example.com/downloads/app.zip.or.dmg.or.tar.etc"
                    sparkle:version="2.0"
-                   sparkle:dsaSignature="MC0CFBfeCa1JyW30nbkBwainOzrN6EQuAh="
+                   sparkle:edSignature="7cLALFUHSwvEJWSkV8aMreoBe4fhRa4FncC5NoThKxwThL6FDR7hTiPJh1fo2uagnPogisnQsgFgq6mGkt2RBw=="
                    length="1623481"
                    type="application/octet-stream" />
     </item>
