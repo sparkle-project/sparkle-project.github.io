@@ -41,20 +41,20 @@ Version 2 patches created by BinaryDelta are not backwards compatible with Spark
                   sparkle:version="2.0"
                   length="123"
                   type="application/octet-stream"
-                  sparkle:dsaSignature="..." />
+                  sparkle:edSignature="..." />
        <sparkle:deltas>
            <enclosure url="http://you.com/1.5-2.0.delta"
                       sparkle:version="2.0"
                       sparkle:deltaFrom="1.5"
                       length="1485"
                       type="application/octet-stream"
-                      sparkle:dsaSignature="..." />
+                      sparkle:edSignature="..." />
            <enclosure url="http://you.com/1.6-2.0.delta"
                       sparkle:version="2.0"
                       sparkle:deltaFrom="1.6"
                       length="1428"
                       type="application/octet-stream"
-                      sparkle:dsaSignature="..." />
+                      sparkle:edSignature="..." />
        </sparkle:deltas>
     </item>
 

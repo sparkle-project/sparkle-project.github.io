@@ -52,76 +52,76 @@ These instructions are for regular .app bundles. If you want to update a non-app
 Since Sparkle is downloading executable code to your users' systems, you must be very careful about security. To let Sparkle know that a downloaded update is not corrupted and came from you (instead of a malicious attacker), we recommend:
 
   * Serve updates over HTTPS.
-    * Your app *will not update on macOS 10.11* unless you comply with Apple's [App Transport Security](/documentation/app-transport-security/) requirements. HTTP requests will be rejected by the system unless an exception is added within your app. App Transport Security has other specific requirements too, so please test updating your app on 10.11 even if you already are serving over HTTPS!
+    * Your app *will not update on macOS 10.11 or later* unless you comply with Apple's [App Transport Security](/documentation/app-transport-security/) requirements. HTTP requests will be rejected by the system.
     * You can get free certificates from [Let's Encrypt](https://certbot.eff.org/), and test [server configuration](https://mozilla.github.io/server-side-tls/ssl-config-generator/) with [ssltest](https://www.ssllabs.com/ssltest/).
   * Sign the application via Apple's Developer ID program.
-  * Sign the published update archive with Sparkle's DSA signature.
-    * Updates using [Installer package](/documentation/package-updates/) (`.pkg`) *must* be signed with DSA.
-    * [Binary Delta updates](/documentation/delta-updates/) *must* be signed with DSA.
-    * [Updates of preference panes and plugins](/documentation/bundles/) *must* be signed with DSA.
-    * DSA signatures are optional for updates using regular app bundles that are signed with Apple code signing (Apple's Developer ID program or your own certificate), but we still recommended DSA signatures as a backup.
+  * Sign the published update archive with Sparkle's EDDSA (ed25519) signature.
+    * Updates using [Installer package](/documentation/package-updates/) (`.pkg`) *must* be signed with EDDSA.
+    * [Binary Delta updates](/documentation/delta-updates/) *must* be signed with EDDSA.
+    * [Updates of preference panes and plugins](/documentation/bundles/) *must* be signed with EDDSA.
+    * EDDSA signatures are optional for updates using regular app bundles that are signed with Apple code signing (Apple's Developer ID program), but we still recommended EDDSA signatures as a backup.
 
-#### DSA signatures
+#### EDDSA (ed25519) signatures
 
-To prepare signing with DSA signatures:
+To prepare signing with EDDSA signatures:
 
-  * **Sorry! We have a compatibility problem with macOS High Sierra and later. Apple's Security framework fails to work with DSA keys generated on High Sierra and Mojave. We don't know workaround other than using an old macOS Sierra to generate the key. We'll be migrating to another signing method, but it'll take a couple of months to implement**. First, make yourself a pair of DSA keys. This needs to be done only once. Sparkle includes a tool to help: (from the Sparkle distribution root):<br />
-  `./bin/generate_keys`
-  * Back up your private key (dsa_priv.pem) and <strong>keep it safe.</strong> You don't want anyone else getting it, and if you lose it, you may not be able to issue any new updates.
-  * Add your public key (dsa_pub.pem) to the <samp>Resources</samp> folder of your Xcode project.
-  * Add an [`SUPublicDSAKeyFile`](/documentation/customization/) key to your `Info.plist`; set its value to your public key's filename—unless you renamed it, this will be `dsa_pub.pem`.
+  1. First, run `./bin/generate_keys` tool (from the Sparkle distribution root). This needs to be done only once. This tool will do two things:
+    * It will generate a private key and save it in your login Keychain on your Mac. You don't need to do anything with it, but don't lose access to your Mac's Keychain. If you lose it, you may not be able to issue any new updates!
+    * It will print your public key to embed into applications. Copy that key (it's a base64-encoded string). You can run `./bin/generate_keys` again to see your public key at any time.
+  2. Add your public key to your app's `Info.plist` as a [`SUPublicEDKey`](/documentation/customization/) property.
+
+Sparkle before version 1.21 used to use only older DSA signatures, which are now deprecated. They are still supported for updating old apps, and both DSA and EDDSA may be used together.
 
 #### Apple code signing
 
 If you are code-signing your application via Apple's Developer ID program, Sparkle will ensure the new version's author matches the old version's. Sparkle also performs basic (but not deep) validation for testing if the new application is archived/distributed correctly as you intended.
 
-  * Note that embedding the Sparkle.framework into the bundle of a Developer ID application requires that you code-sign the framework with your Developer ID keys. Xcode should do this automatically if you let it "<samp>Code Sign on Copy</samp>" Sparkle's framework.
+  * Note that embedding the `Sparkle.framework` into the bundle of a Developer ID application requires that you code-sign the framework with your Developer ID keys. Xcode should do this automatically if you let it "<samp>Code Sign on Copy</samp>" Sparkle's framework.
   * You can diagnose code signing problems with [RB App Checker app](//brockerhoff.net/RB/AppCheckerLite/) and by checking logs in the Console.app.
 
-If you both code-sign your application and include a public DSA key for signing your update archive, Sparkle allows issuing a new update that changes either your code signing certificate or your DSA keys. Note however this is a last resort and should *only* be done if you lose access to one of them.
+If you both code-sign your application and include a public EDDSA key for signing your update archive, Sparkle allows issuing a new update that changes either your code signing certificate or your EDDSA keys. Note however this is a last resort and should *only* be done if you lose access to one of them.
 
 ### 4. Distributing your App
 
-For best compatibility with macOS Sierra and later you should use [*signed* disk image (DMG)](https://developer.apple.com/library/content/technotes/tn2206/_index.html#//apple_ref/doc/uid/DTS40007919-CH1-TNTAG17) for distribution of apps from your product's website. The system will quarantine ([translocate](http://lapcatsoftware.com/articles/app-translocation.html)) apps downloaded from the Internet, unless they're from a signed DMG, installer package, or are moved using Finder.
+If you distribute your app as a [Apple-certificate-signed disk image](https://developer.apple.com/library/content/technotes/tn2206/_index.html#//apple_ref/doc/uid/DTS40007919-CH1-TNTAG17) (DMG):
 
-If you distribute your app as a disk image (DMG):
-
-  * Add an `/Applications` symlink in your DMG, or otherwise encourage the user to copy the app out of it (the app can't be updated when it's launched straight from the disk).
+  * Add an `/Applications` symlink in your DMG, or otherwise encourage the user to copy the app out of it (due to [quarantine/translocation](https://lapcatsoftware.com/articles/app-translocation.html) the app can't be updated when it's launched straight from the disk).
   * Make sure the DMG is signed with a Developer ID and use macOS 10.11.5 or later to sign it (an older OS may not sign correctly). Signed DMG archives are backwards compatible.
-  * If you do not sign the DMG, avoid placing your app inside another folder in your archive.
 
 If you distribute your app as a ZIP or a tar archive:
 
-  * Encourage users to move the app to `/Applications` (e.g. use [LetsMove](https://github.com/potionfactory/LetsMove/)). The system will not allow the app to update itself until it's moved.
+  * Encourage users to move the app to `/Applications` (e.g. use [LetsMove](https://github.com/potionfactory/LetsMove/)). Due to [quarantine/translocation](https://lapcatsoftware.com/articles/app-translocation.html) the system will not allow the app to update itself until it's moved.
   * Avoid placing your app inside another folder in your archive, because copying of the folder as a whole doesn't remove the quarantine.
   * Avoid putting more than just the single app in the archive.
 
 Sparkle supports updating from DMG, ZIP archives, tarballs, and installer packages, so you can generally reuse the same archive for distribution of your app on your website as well as Sparkle updates.
 
+For Sparkle, tarballs and ZIPs are fastest and most reliable. DMG are slowest. Installer packages should be used only if absolutely necessary (e.g. kernel extensions).
+
 ### 5. Publish your appcast
 
 Sparkle uses appcasts to get information about software updates. An appcast is an RSS feed with some extra information for Sparkle's purposes.
 
-  * Add a [`SUFeedURL`](/documentation/customization/) key to your `Info.plist`; set its value to a URL where your appcast will be hosted, e.g. `https://yourcompany.example.com/appcast.xml`. We [strongly encourage you to use HTTPS](/documentation/app-transport-security/) URLs for the appcast.
-  * Remember that your bundle must have a [properly formatted `CFBundleVersion`](/documentation/publishing/#publishing-an-update) key in your `Info.plist`.
+  * Add a [`SUFeedURL`](/documentation/customization/) property to your `Info.plist`; set its value to a URL where your appcast will be hosted, e.g. `https://yourcompany.example.com/appcast.xml`. We [strongly encourage you to use HTTPS](/documentation/app-transport-security/) URLs for the appcast.
+  * Remember that your app bundle must have a [properly formatted `CFBundleVersion`](/documentation/publishing/#publishing-an-update) key in your `Info.plist`.
 
-If you update regular app bundles and you have set up DSA signatures, you can use a tool to generate appcasts automatically:
+If you update regular app bundles and you have set up EDDSA signatures, you can use a tool to generate appcasts automatically:
 
-  * Build your app and compress it (e.g. in a DMG/ZIP/tar.bz2 archive), and put the archive in a new folder. This folder will be used to store all your future updates.
-  * Run `generate_appcast` tool from Sparkle's distribution archive specifying the path to your [DSA private key](#dsa-signatures), and the folder with update archives:
+  1. Build your app and compress it (e.g. in a DMG/ZIP/tar.bz2 archive), and put the archive in a new folder. This folder will be used to store all your future updates.
+  2. Run `generate_appcast` tool from Sparkle's distribution archive specifying the path to the folder with update archives. Allow it to access the Keychain if it asks for it (it's needed to generate signatueres in the appcast).
 
-        ./bin/generate_appcast /path/to/your/dsa_priv.pem /path/to/your/updates_folder/
+        ./bin/generate_appcast /path/to/your/updates_folder/
 
-  * The tool will generate the appcast file (using filename from [`SUFeedURL`](/documentation/customization/)) and also [`*.delta` update](/documentation/delta-updates/) files. Upload your archives, the delta updates and the appcast to your server.
+  3. The tool will generate the appcast file (using filename from [`SUFeedURL`](/documentation/customization/)) and also [`*.delta` update](/documentation/delta-updates/) files for faster incremental updates. Upload your archives, the delta updates, and the appcast to your server.
 
-You can also create the appcast file manually:
+You can also create the appcast file manually (not recommended):
 
   * Make a copy of the sample appcast included in the Sparkle distribution.
   * Read the sample appcast to familiarize yourself with the format, then edit out all the items and add one for the new version of your app by following the instructions at [Publishing an update](/documentation/publishing/#publishing-an-update).
 
 ### 6. Test Sparkle out
 
-* Use an older verison of your app, or if you don't have one yet, make one by editing `Info.plist` and change `CFBundleVersion` to a lower version.
+* Use an older verison of your app, or if you don't have one yet, make one seem older by editing `Info.plist` and change `CFBundleVersion` to a lower version.
   * A genuine older version of the app is required to test [delta updates](/documentation/delta-updates/), because Sparkle will ignore the delta update if the app doesn't match update's checksum.
   * Editing `CFBundleVersion` of the latest version of the app is useful for testing the latest version of Sparkle framework.
 * Run the app, then quit. Sparkle doesn't ask the user about updates until the _second_ launch, in order to make your users' first-launch impression cleaner.
