@@ -23,11 +23,11 @@ In order to prevent corruption and man-in-the-middle attacks against your users,
 
 Signatures are automatically generated when you make an appcast using `generate_appcast` tool. This is a recommended method.
 
-To manually generate signatures for your updates, Sparkle includes a tool to help you make a EDDSA signature of the archive. From the Sparkle distribution:
+To manually generate signatures for your updates, Sparkle includes a tool to help you make a EdDSA signature of the archive. From the Sparkle distribution:
 
     ./bin/sign_update path_to_your_update.zip
 
-The output will be an XML fragment with your update's EDDSA signature and (optional) file size; you'll add this attribute to your enclosure in the next step.
+The output will be an XML fragment with your update's EdDSA signature and (optional) file size; you'll add this attribute to your enclosure in the next step.
 
 Since 10.11, macOS has [App Transport Security](//developer.apple.com/library/prerelease/mac/technotes/App-Transport-Security-Technote/) policy which blocks apps from using insecure HTTP connections. This restriction applies to Sparkle as well, so you will need to serve your appcast and the update files over HTTPS.
 

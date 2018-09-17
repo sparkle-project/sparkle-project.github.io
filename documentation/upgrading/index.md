@@ -8,14 +8,14 @@ We strongly recommend upgrading Sparkle to the [latest version](//github.com/{{ 
 
 ## Upgrading from Sparkle 1.20 and older
 
-Support for EDDSA (ed25519) signatures has been added. We recommend migrating to the new keys.
+Support for EdDSA (ed25519) signatures has been added. We recommend migrating to the new keys.
 
- 1. Run `bin/generate_keys`. It will generate a new EDDSA keypair and print a public key.
+ 1. Run `bin/generate_keys`. It will generate a new EdDSA keypair and print a public key.
  2. Add the public key to your app's `Info.plist` as `SUPublicEDKey` property.
 
 If you're using `generate_appcast` tool, that's all you need.
 
-If you were using manual DSA signing with the `sign_update` script, the script has been moved to `bin/old_dsa_scripts`. The new `sign_update` tool is only for EDDSA keys. To transition to new keys, you will need to use both tools.
+If you were using manual DSA signing with the `sign_update` script, the script has been moved to `bin/old_dsa_scripts`. The new `sign_update` tool is only for EdDSA keys. To transition to new keys, you will need to use both tools.
 
 ## Upgrading from Sparkle 1.15 and older
 

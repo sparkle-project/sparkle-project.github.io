@@ -55,22 +55,22 @@ Since Sparkle is downloading executable code to your users' systems, you must be
     * Your app *will not update on macOS 10.11 or later* unless you comply with Apple's [App Transport Security](/documentation/app-transport-security/) requirements. HTTP requests will be rejected by the system.
     * You can get free certificates from [Let's Encrypt](https://certbot.eff.org/), and test [server configuration](https://mozilla.github.io/server-side-tls/ssl-config-generator/) with [ssltest](https://www.ssllabs.com/ssltest/).
   * Sign the application via Apple's Developer ID program.
-  * Sign the published update archive with Sparkle's EDDSA (ed25519) signature.
-    * Updates using [Installer package](/documentation/package-updates/) (`.pkg`) *must* be signed with EDDSA.
-    * [Binary Delta updates](/documentation/delta-updates/) *must* be signed with EDDSA.
-    * [Updates of preference panes and plugins](/documentation/bundles/) *must* be signed with EDDSA.
-    * EDDSA signatures are optional for updates using regular app bundles that are signed with Apple code signing (Apple's Developer ID program), but we still recommended EDDSA signatures as a backup.
+  * Sign the published update archive with Sparkle's EdDSA (ed25519) signature.
+    * Updates using [Installer package](/documentation/package-updates/) (`.pkg`) *must* be signed with EdDSA.
+    * [Binary Delta updates](/documentation/delta-updates/) *must* be signed with EdDSA.
+    * [Updates of preference panes and plugins](/documentation/bundles/) *must* be signed with EdDSA.
+    * EdDSA signatures are optional for updates using regular app bundles that are signed with Apple code signing (Apple's Developer ID program), but we still recommended EdDSA signatures as a backup.
 
-#### EDDSA (ed25519) signatures
+#### EdDSA (ed25519) signatures
 
-To prepare signing with EDDSA signatures:
+To prepare signing with EdDSA signatures:
 
   1. First, run `./bin/generate_keys` tool (from the Sparkle distribution root). This needs to be done only once. This tool will do two things:
     * It will generate a private key and save it in your login Keychain on your Mac. You don't need to do anything with it, but don't lose access to your Mac's Keychain. If you lose it, you may not be able to issue any new updates!
     * It will print your public key to embed into applications. Copy that key (it's a base64-encoded string). You can run `./bin/generate_keys` again to see your public key at any time.
   2. Add your public key to your app's `Info.plist` as a [`SUPublicEDKey`](/documentation/customization/) property.
 
-Sparkle before version 1.21 used to use only older DSA signatures, which are now deprecated. They are still supported for updating old apps, and both DSA and EDDSA may be used together.
+Sparkle before version 1.21 used to use only older DSA signatures, which are now deprecated. They are still supported for updating old apps, and both DSA and EdDSA may be used together.
 
 #### Apple code signing
 
@@ -79,7 +79,7 @@ If you are code-signing your application via Apple's Developer ID program, Spark
   * Note that embedding the `Sparkle.framework` into the bundle of a Developer ID application requires that you code-sign the framework with your Developer ID keys. Xcode should do this automatically if you let it "<samp>Code Sign on Copy</samp>" Sparkle's framework.
   * You can diagnose code signing problems with [RB App Checker app](//brockerhoff.net/RB/AppCheckerLite/) and by checking logs in the Console.app.
 
-If you both code-sign your application and include a public EDDSA key for signing your update archive, Sparkle allows issuing a new update that changes either your code signing certificate or your EDDSA keys. Note however this is a last resort and should *only* be done if you lose access to one of them.
+If you both code-sign your application and include a public EdDSA key for signing your update archive, Sparkle allows issuing a new update that changes either your code signing certificate or your EdDSA keys. Note however this is a last resort and should *only* be done if you lose access to one of them.
 
 ### 4. Distributing your App
 
@@ -105,7 +105,7 @@ Sparkle uses appcasts to get information about software updates. An appcast is a
   * Add a [`SUFeedURL`](/documentation/customization/) property to your `Info.plist`; set its value to a URL where your appcast will be hosted, e.g. `https://yourcompany.example.com/appcast.xml`. We [strongly encourage you to use HTTPS](/documentation/app-transport-security/) URLs for the appcast.
   * Remember that your app bundle must have a [properly formatted `CFBundleVersion`](/documentation/publishing/#publishing-an-update) key in your `Info.plist`.
 
-If you update regular app bundles and you have set up EDDSA signatures, you can use a tool to generate appcasts automatically:
+If you update regular app bundles and you have set up EdDSA signatures, you can use a tool to generate appcasts automatically:
 
   1. Build your app and compress it (e.g. in a DMG/ZIP/tar.bz2 archive), and put the archive in a new folder. This folder will be used to store all your future updates.
   2. Run `generate_appcast` tool from Sparkle's distribution archive specifying the path to the folder with update archives. Allow it to access the Keychain if it asks for it (it's needed to generate signatueres in the appcast).
