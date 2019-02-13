@@ -9,7 +9,6 @@ Here are the main routes by which you can bend Sparkle's behavior to your will:
 
 ### Info.plist Settings
 
-{:.table .table-bordered}
 | Key | Type | Value |
 | --- | ---- | ----- | ------- |
 | `SUFeedURL` | String | The URL of your appcast, e.g. `https://example.com/appcast.xml`. It's recommended to always set it in Info.plist, even if you change it later programmatically. |
