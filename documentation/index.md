@@ -114,6 +114,8 @@ If you update regular app bundles and you have set up EdDSA signatures, you can 
 
   3. The tool will generate the appcast file (using filename from [`SUFeedURL`](/documentation/customization/)) and also [`*.delta` update](/documentation/delta-updates/) files for faster incremental updates. Upload your archives, the delta updates, and the appcast to your server.
 
+When generating the appcast, if an `.html` file exists with the same name as the archive, then it will added as the `releaseNotesLink`.
+
 You can also create the appcast file manually (not recommended):
 
   * Make a copy of the sample appcast included in the Sparkle distribution.
