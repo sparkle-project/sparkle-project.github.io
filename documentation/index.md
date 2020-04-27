@@ -66,8 +66,10 @@ Since Sparkle is downloading executable code to your users' systems, you must be
 To prepare signing with EdDSA signatures:
 
   1. First, run `./bin/generate_keys` tool (from the Sparkle distribution root). This needs to be done only once. This tool will do two things:
-    * It will generate a private key and save it in your login Keychain on your Mac. You don't need to do anything with it, but don't lose access to your Mac's Keychain. If you lose it, you may not be able to issue any new updates!
-    * It will print your public key to embed into applications. Copy that key (it's a base64-encoded string). You can run `./bin/generate_keys` again to see your public key at any time.
+
+  * It will generate a private key and save it in your login Keychain on your Mac. You don't need to do anything with it, but don't lose access to your Mac's Keychain. If you lose it, you may not be able to issue any new updates!
+  * It will print your public key to embed into applications. Copy that key (it's a base64-encoded string). You can run `./bin/generate_keys` again to see your public key at any time.
+
   2. Add your public key to your app's `Info.plist` as a [`SUPublicEDKey`](/documentation/customization/) property.
 
 Sparkle before version 1.21 used to use only older DSA signatures, which are now deprecated. They are still supported for updating old apps, and both DSA and EdDSA may be used together.
