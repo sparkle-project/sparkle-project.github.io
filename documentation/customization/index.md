@@ -17,11 +17,18 @@ Here are the main routes by which you can bend Sparkle's behavior to your will:
 | `SUPublicEDKey` | String | The base64-encoded public EdDSA key. Use Sparkle's `generate_keys` tool to get it. |
 | `SUEnableSystemProfiling` | Boolean | Default: `NO`. Enables anonymous system profiling. See [System Profiling](/documentation/system-profiling) for more. |
 | `SUScheduledCheckInterval` | Number | The number of seconds between updates. The default is `86400` (1 day). Setting to 0 disables updates. <br /><br />**Note:** this has a minimum bound of 1 hour in order to keep you from accidentally overloading your servers. |
-| `SUAllowsAutomaticUpdates` | Boolean | Default: `YES`. Sparkle presents your users with the *option* to allow to automatically download and install any available updates. Set this to `NO` to disallow automatic updates and require manual installation every time. |
+| `SUAllowsAutomaticUpdates` | Boolean | Default: `YES`. Sparkle presents your users with the *option* to allow to automatically download and install any available updates. Set this to `NO` to disallow automatic updates and require manual installation every time. Override this for individual updates using the `sparkle:doNotAutomaticallyUpdate` appcast setting. |
 | `SUAutomaticallyUpdate` | Boolean | Default: `NO`. Enables automatic download and installation of updates. If set to `YES`, users will not be informed about updates, and updates will be silently installed when the app quits.
 | `SUShowReleaseNotes` | Boolean | Default: `YES`. Set this to `NO` to hide release notes display from the update alert. |
 | `SUBundleName` | String | Optional alternative bundle display name. For example, if your bundle name already has a version number appended to it, setting this may help smooth out certain messages, e.g. "MyApp 3 4.0 is now available" vs "MyApp 4.0 is now available". |
 | `SUDefaultsDomain` | String | Optional alternative `NSUserDefaults` domain name if you don't want to use the standard user defaults, for example when accessing preferences from an App Group suite. |
+
+### Appcast Settings
+
+{:.table .table-bordered}
+| Key | Type | Value |
+| --- | ---- | ----- | ------- |
+| `sparkle:doNotAutomaticallyUpdate` | Boolean | Default: `NO`. If this is set to `YES` / `1` in a given appcast, the `SUAutomaticallyUpdate` user defaults value will have no effect - the update referenced by this appcast will not be applied automatically. This is useful for paid updates that should not be applied without an explicit user decision. |
 
 ### Calls to SUUpdater
 
