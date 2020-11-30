@@ -28,7 +28,7 @@ Here are the main routes by which you can bend Sparkle's behavior to your will:
 {:.table .table-bordered}
 | Key | Type | Value |
 | --- | ---- | ----- | ------- |
-| `sparkle:doNotAutomaticallyUpdate` | Boolean | Default: `NO`. If this is set to `YES` / `1` in a given appcast, the `SUAutomaticallyUpdate` user defaults value will have no effect - the update referenced by this appcast will not be applied automatically. This is useful for paid updates that should not be applied without an explicit user decision. |
+| `sparkle:automaticallyUpdate` | Boolean | Default: `true` - the `SUAutomaticallyUpdate` user defaults value will apply. If this is set to `false` in a given appcast, the `SUAutomaticallyUpdate` user defaults value will have no effect - the update referenced by this appcast will not be applied automatically. This is useful for paid updates that should not be applied without an explicit user decision. |
 
 ### Calls to SUUpdater
 
