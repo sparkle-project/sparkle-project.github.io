@@ -87,6 +87,19 @@ Add a `sparkle:minimumSystemVersion` child to the `<item>` in question specifyin
 
 Note that Sparkle only works with macOS 10.7 or later, so that's the minimum version you can use.
 
+## Preventing automatic updates
+
+If an update to your application is a paid upgrade, you may want to prevent it from being applied automatically.
+
+Add a `sparkle:minimumAutoupdateVersion` child to the `<item>` in question specifying the paid update's `<CFBundleVersion>`, such as "1248.48":
+
+    <item>
+        <title>Version 2.0 (2 bugs fixed; 3 new features)</title>
+        <sparkle:minimumAutoupdateVersion>1248.48</sparkle:minimumAutoupdateVersion>
+    </item>
+
+If this value is set, it indicates the lowest version that can automatically update to the version referenced by the appcast (i.e. without showing the _update available_ GUI). Apps with a lower `CFBundleVersion` will always see the _update available_ GUI, regardless of their `SUAutomaticallyUpdate` user defaults setting.
+
 ## Embedded release notes
 
 Instead of linking external release notes using the `<sparkle:releaseNotesLink>` element, you can also embed the release notes directly in the appcast item, inside a `<description>` element. If you wrap it in `<![CDATA[ ... ]]>`, you can use unescaped HTML.
