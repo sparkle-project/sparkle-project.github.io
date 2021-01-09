@@ -5,9 +5,9 @@ title: Documentation
 ---
 ## Basic Setup
 
-If your app already has an older version of Sparkle, see [upgrading from previous versions](/documentation/upgrading/).
+If your app already has an older version of Sparkle or you wish to migrate to Sparkle 2.0 beta, see [upgrading from previous versions](/documentation/upgrading/).
 
-Note that Sparkle does [not yet support](//github.com/{{ site.github_username }}/Sparkle/issues/363) sandboxed applications.
+Note sandboxed applications are only supported in Sparkle 2.0 which is currently in beta.
 
 ### 1. Add the Sparkle framework to your project
 
@@ -15,7 +15,6 @@ If you use [CocoaPods](//cocoapods.org):
 
   * Add `pod 'Sparkle'` to your Podfile.
   * Add or uncomment `use_frameworks!` in your Podfile.
-  * [Xcode 7 and older require more steps](/documentation/cocoapods/).
 
 If you don't have CocoaPods, then add Sparkle manually:
 
@@ -27,13 +26,12 @@ If you don't have CocoaPods, then add Sparkle manually:
 * Make sure the framework is copied into your app bundle:
   * Click on your project in the Project Navigator.
   * Click your target in the project editor.
-  * Click on the <samp>Build Phases</samp> tab.
-  * Choose <samp>Editor › Add Build Phase › Add Copy Files Build Phase</samp>.
-  * Click the disclosure triangle next to the new build phase.
-  * Choose <samp>Frameworks</samp> from the Destination list.
-  * Drag Sparkle.framework from the Project Navigator left sidebar to the list in the new <samp>Copy Files</samp> phase.
-* In <samp>Build Settings</samp> tab set "<samp>Runpath Search Paths</samp>" to `@loader_path/../Frameworks` (for non-Xcode projects add the flags `-Wl,-rpath,@loader_path/../Frameworks`).
+  * Click on the <samp>General</samp> tab.
+  * In <samp>Frameworks, Libraries, and Embedded Content</samp> section, change Sparkle.framework to <samp>Embed & Sign</samp>.
+* In <samp>Build Settings</samp> tab set "<samp>Runpath Search Paths</samp>" to `@loader_path/../Frameworks` (for non-Xcode projects add the flags `-Wl,-rpath,@loader_path/../Frameworks`). This is not a necessary step in recent versions of Xcode.
 * If you have your own process for copying/packaging your app make sure it preserves symlinks!
+
+CocoaPods and pre-built binaries for Sparkle 2.x aren't currently available. To build [2.x](https://github.com/sparkle-project/Sparkle/tree/2.x), clone Sparkle's repository with all its submodules, `git checkout 2.x` branch, run `make release`, and check out the binaries in the resulting `Sparkle-2.0.0.tar.xz` archive. Sandboxed applications using Sparkle 2.x require [additional setup](/documentation/sandboxing).
 
 ### 2. Set up a Sparkle updater object
 
@@ -47,6 +45,8 @@ These instructions are for regular .app bundles. If you want to update a non-app
 * Type `SUUpdater` in the <samp>Class</samp> box of the <samp>Custom Class</samp> section in the inspector.
 * If you'd like, make a "<samp>Check for Updates...</samp>" menu item in the application menu; set its target to the `SUUpdater` instance and its action to `checkForUpdates:`.
 
+If you are using Sparkle 2.x, `SUUpdater` is a deprecated stub. While it is still functional for transitional purposes, new applications will want to use `SPUStandardUpdaterController` in the above steps instead.
+
 ### 3. Segue for security concerns
 
 Since Sparkle is downloading executable code to your users' systems, you must be very careful about security. To let Sparkle know that a downloaded update is not corrupted and came from you (instead of a malicious attacker), we recommend:
@@ -59,7 +59,7 @@ Since Sparkle is downloading executable code to your users' systems, you must be
     * Updates using [Installer package](/documentation/package-updates/) (`.pkg`) *must* be signed with EdDSA.
     * [Binary Delta updates](/documentation/delta-updates/) *must* be signed with EdDSA.
     * [Updates of preference panes and plugins](/documentation/bundles/) *must* be signed with EdDSA.
-    * EdDSA signatures are optional for updates using regular app bundles that are signed with Apple code signing (Apple's Developer ID program), but we still recommended EdDSA signatures as a backup.
+    * EdDSA signatures are optional for updates using regular app bundles that are signed with Apple code signing (Apple's Developer ID program), but we still recommended EdDSA signatures as a backup. In Sparkle 2.x, not supplying EdDSA signatures will emit a deprecation warning.
 
 #### EdDSA (ed25519) signatures
 
@@ -78,8 +78,8 @@ Sparkle before version 1.21 used to use only older DSA signatures, which are now
 
 If you are code-signing your application via Apple's Developer ID program, Sparkle will ensure the new version's author matches the old version's. Sparkle also performs basic (but not deep) validation for testing if the new application is archived/distributed correctly as you intended.
 
-  * Note that embedding the `Sparkle.framework` into the bundle of a Developer ID application requires that you code-sign the framework with your Developer ID keys. Xcode should do this automatically if you let it "<samp>Code Sign on Copy</samp>" Sparkle's framework.
-  * You can diagnose code signing problems with [RB App Checker app](//brockerhoff.net/RB/AppCheckerLite/) and by checking logs in the Console.app.
+  * Note that embedding the `Sparkle.framework` into the bundle of a Developer ID application requires that you code-sign the framework with your Developer ID keys. Xcode should do this automatically if you create an archive via <samp>Product › Archive</samp> and <samp>Distribute App</samp> choosing <samp>Developer ID</samp> method of distribution.
+  * You can diagnose code signing problems with `codesign --deep -vvv --verify <path-to-app>` for code signing validity, `spctl -a -t exec -vv <path-to-app>` for Gatekeeper validity, and by checking logs in the Console.app. See [Code Signing in Depth](https://developer.apple.com/library/archive/technotes/tn2206/_index.html) for more code signing details.
 
 If you both code-sign your application and include a public EdDSA key for signing your update archive, Sparkle allows issuing a new update that changes either your code signing certificate or your EdDSA keys. Note however this is a last resort and should *only* be done if you lose access to one of them.
 
@@ -87,14 +87,15 @@ If you both code-sign your application and include a public EdDSA key for signin
 
 If you distribute your app as a [Apple-certificate-signed disk image](https://developer.apple.com/library/content/technotes/tn2206/_index.html#//apple_ref/doc/uid/DTS40007919-CH1-TNTAG17) (DMG):
 
-  * Add an `/Applications` symlink in your DMG, or otherwise encourage the user to copy the app out of it (due to [quarantine/translocation](https://lapcatsoftware.com/articles/app-translocation.html) the app can't be updated when it's launched straight from the disk).
+  * Add an `/Applications` symlink in your DMG, to encourage the user to copy the app out of it.
   * Make sure the DMG is signed with a Developer ID and use macOS 10.11.5 or later to sign it (an older OS may not sign correctly). Signed DMG archives are backwards compatible.
 
-If you distribute your app as a ZIP or a tar archive:
+If you distribute your app as a ZIP or a tar archive (due to [app translocation](https://lapcatsoftware.com/articles/app-translocation.html)):
 
-  * Encourage users to move the app to `/Applications` (e.g. use [LetsMove](https://github.com/potionfactory/LetsMove/)). Due to [quarantine/translocation](https://lapcatsoftware.com/articles/app-translocation.html) the system will not allow the app to update itself until it's moved.
   * Avoid placing your app inside another folder in your archive, because copying of the folder as a whole doesn't remove the quarantine.
   * Avoid putting more than just the single app in the archive.
+
+If your app is running from a read-only mount, you can encourage (if you so desire) your user to move the app into /Applications. Some frameworks, although not officially sanctioned, exist for this purpose. Note Sparkle will not by default automatically disturb your user if an update cannot be performed.
 
 Sparkle supports updating from DMG, ZIP archives, tarballs, and installer packages, so you can generally reuse the same archive for distribution of your app on your website as well as Sparkle updates.
 
