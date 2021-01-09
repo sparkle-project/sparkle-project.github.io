@@ -29,7 +29,7 @@ If you create a `SPUUpdater` instance programatically, you can now create an upd
 
 `SPUUpdater` does not maintain singleton or global instances (unlike `SUUpdater`). Plug-ins that share the same process as their host should prefer to use an external tool like [sparkle-cli](/documentation/sparkle-cli) instead, rather than sharing or injecting a Sparkle.framework in its host. A bit more details about updating bundles [here](/documentation/bundles#sparkle-2x-beta).
 
-If you have scripts that reference Sparkle.framework's helper tools, here are the new paths (note Autoupdate is now a command line tool):
+If you have scripts that reference Sparkle.framework's helper tools, here are the new paths (note Autoupdate is now a command line tool and the UI bits moved to Updater.app):
 ```
 Sparkle.framework/Versions/A/Resources/Autoupdate
 Sparkle.framework/Versions/A/Resources/Updater.app/
