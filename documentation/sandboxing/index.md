@@ -19,6 +19,8 @@ In an extracted `Sparkle-2.0.0.tar.xz` distribution in the `XPCServices/` direct
 * org.sparkle-project.InstallerStatus.xpc
 * org.sparkle-project.Downloader.xpc & org.sparkle-project.Downloader.entitlements
 
+If you build Sparkle yourself, you can choose to change `XPC_SERVICE_BUNDLE_ID_PREFIX` in `ConfigCommon.xcconfig` from `org.sparkle-project` to your own prefix.
+
 ### Downloader Service
 
 The last downloader XPC Service is optional. Use it only if your sandboxed application does not request the `com.apple.security.network.client` entitlement. The downloader service allows using Sparkle without forcing the network client entitlement on your entire application. There are a couple caveats with using the downloader service though:
@@ -38,9 +40,7 @@ Otherwise, if you use other workflows you will also need to code sign these serv
 
 I used "Developer ID Application" for my certificate; you may need to adjust this.
 
-### Adding the Services
-
-Then you will need to add the XPC Services to your application project:
+### Adding the XPC Services
 
 * Add the XPC Services to your app target:
   * Drag the XPC Services you need into your Xcode project.
@@ -57,5 +57,5 @@ Then you will need to add the XPC Services to your application project:
 
 ### Testing
 
-Due to the XPC Services being code signed with the Hardened Runtime enabled, Xcode cannot debug the XPC Services and you may see that updating does not work when your application is attached to Xcode's debugger. You can work around this either by editing your project's Scheme and disabling *Debug XPC services used by app*, or by testing your application detached from Xcode, or by altering the script to not sign the services with Hardened Runtime enabled for development builds.
+Due to the XPC Services being code signed with the Hardened Runtime enabled, Xcode cannot debug the XPC Services and you may see that updating does not work when your application is attached to Xcode's debugger. You can work around this either by editing your project's Scheme and disabling *Debug XPC services used by app* or by testing your application detached from Xcode.
 
