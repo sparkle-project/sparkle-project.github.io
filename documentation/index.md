@@ -78,12 +78,14 @@ Sparkle before version 1.21 used to use only older DSA signatures, which are now
 
 If you are code-signing your application via Apple's Developer ID program, Sparkle will ensure the new version's author matches the old version's. Sparkle also performs basic (but not deep) validation for testing if the new application is archived/distributed correctly as you intended.
 
-  * Note that embedding the `Sparkle.framework` into the bundle of a Developer ID application requires that you code-sign the framework with your Developer ID keys. Xcode should do this automatically if you create an archive via <samp>Product › Archive</samp> and <samp>Distribute App</samp> choosing <samp>Developer ID</samp> method of distribution.
+  * Note that embedding the `Sparkle.framework` into the bundle of a Developer ID application requires that you code-sign the framework and its helper tools with your Developer ID keys. Xcode should do this automatically if you create an archive via <samp>Product › Archive</samp> and <samp>Distribute App</samp> choosing <samp>Developer ID</samp> method of distribution.
   * You can diagnose code signing problems with `codesign --deep -vvv --verify <path-to-app>` for code signing validity, `spctl -a -t exec -vv <path-to-app>` for Gatekeeper validity, and by checking logs in the Console.app. See [Code Signing in Depth](https://developer.apple.com/library/archive/technotes/tn2206/_index.html) for more code signing details.
 
 If you both code-sign your application and include a public EdDSA key for signing your update archive, Sparkle allows issuing a new update that changes either your code signing certificate or your EdDSA keys. Note however this is a last resort and should *only* be done if you lose access to one of them.
 
 ### 4. Distributing your App
+
+We recommend distributing your app in Xcode by creating a <samp>Product › Archive</samp> and <samp>Distribute App</samp> choosing <samp>Developer ID</samp> method of distribution. Using Xcode's Archive Organizer will ensure Sparkle's helper tools are code signed properly for distribution.
 
 If you distribute your app as a [Apple-certificate-signed disk image](https://developer.apple.com/library/content/technotes/tn2206/_index.html#//apple_ref/doc/uid/DTS40007919-CH1-TNTAG17) (DMG):
 
@@ -95,7 +97,7 @@ If you distribute your app as a ZIP or a tar archive (due to [app translocation]
   * Avoid placing your app inside another folder in your archive, because copying of the folder as a whole doesn't remove the quarantine.
   * Avoid putting more than just the single app in the archive.
 
-If your app is running from a read-only mount, you can encourage (if you so desire) your user to move the app into /Applications. Some frameworks, although not officially sanctioned, exist for this purpose. Note Sparkle will not by default automatically disturb your user if an update cannot be performed.
+If your app is running from a read-only mount, you can encourage (if you so desire) your user to move the app into /Applications. Some frameworks, although not officially sanctioned here, exist for this purpose. Note Sparkle will not by default automatically disturb your user if an update cannot be performed.
 
 Sparkle supports updating from DMG, ZIP archives, tarballs, and installer packages, so you can generally reuse the same archive for distribution of your app on your website as well as Sparkle updates.
 
