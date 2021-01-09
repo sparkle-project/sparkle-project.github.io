@@ -15,9 +15,9 @@ The `SUUpdater` class has been deprecated and split up in Sparkle 2.x, but it is
 Sparkle 2.x includes three new classes / protocols:
 * **SPUUpdater** - The main API in Sparkle for controlling the update mechanism.
 * **SPUUserDriver** - The API in Sparkle for controlling the user interface & interaction (`SPUStandardUserDriver` is the standard one).
-* **SPUStandardUpdaterController** - A controller class that instantiates a `SPUUpdater` using `SPUStandardUserDriver` in a nib and allows binding UI to it.
+* **SPUStandardUpdaterController** - A controller class that instantiates a `SPUUpdater` using `SPUStandardUserDriver` in a nib and allows [binding UI](/documentation/preferences-ui#sparkle-2x-beta) to it.
 
-If you were previously instantiating a `SUUpdater` in a nib, you will want to adopt `SPUStandardUpdaterController` as shown in the [basic setup](/documentation/).
+If you were previously instantiating a `SUUpdater` in a nib, you will want to adopt `SPUStandardUpdaterController` as shown in the [basic setup](/documentation#2-set-up-a-sparkle-updater-object).
 
 If you were previously instantiating a `SUUpdater` in code, you will want to adopt instantiating a `SPUUpdater`.
 
