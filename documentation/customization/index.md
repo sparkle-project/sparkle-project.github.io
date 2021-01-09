@@ -235,7 +235,7 @@ You can control the SPUUpdater's behavior a little more closely by providing it 
     // prompt for permission on the first launch instead of the second.
     - (BOOL)updaterShouldPromptForPermissionToCheckForUpdates:(SPUUpdater *)updater;
 
-    - (void)updater:(SUUpdater *)updater didFinishLoadingAppcast:(SUAppcast *)appcast;
+    - (void)updater:(SPUUpdater *)updater didFinishLoadingAppcast:(SUAppcast *)appcast;
 
     // If you're using special logic or extensions in your appcast, implement
     // this to use your own logic for finding a valid update, if any, in the given appcast.
@@ -264,4 +264,4 @@ You can control the SPUUpdater's behavior a little more closely by providing it 
     // the system profile. This method should return an array of dictionaries
     // with keys: "key", "value", "displayKey", "displayValue", the latter two
     // being human-readable variants of the former two.
-    - (NSArray *)feedParametersForUpdater:(SUUpdater *)updater sendingSystemProfile:(BOOL)sendingProfile;
+    - (NSArray *)feedParametersForUpdater:(SPUUpdater *)updater sendingSystemProfile:(BOOL)sendingProfile;
