@@ -4,11 +4,11 @@ id: documentation
 title: Upgrading from previous versions of Sparkle
 ---
 
-We strongly recommend upgrading Sparkle to the [latest stable version](//github.com/{{ site.github_username }}/Sparkle/releases), as there have been important fixes in reliability and [security](/documentation/security) of updates. Very old versions of Sparkle also suffer some incompatibilities with the latest macOS versions.
+We strongly recommend upgrading Sparkle to the [latest production release](//github.com/{{ site.github_username }}/Sparkle/releases), as there have been important fixes in reliability and [security](/documentation/security) of updates. Very old versions of Sparkle also suffer some incompatibilities with the latest macOS versions.
 
-## Upgrading from Sparkle 1.x to 2.x (Beta)
+## Upgrading from Sparkle 1.x to 2.0 (Beta)
 
-**Note**: Sparkle 2.x is in a pre-release / beta state and not production ready.
+**Note**: Sparkle 2.0 is in a pre-release / beta state and not production ready yet.
 
 The `SUUpdater` class has been deprecated and split up in Sparkle 2.x, but it is still functional for transitional purposes.
 
@@ -35,7 +35,15 @@ Sparkle.framework/Versions/A/Resources/Autoupdate
 Sparkle.framework/Versions/A/Resources/Updater.app/
 ```
 
-If you use package (pkg) based updates, please see [Package Updates](/documentation/package-updates) for migration notes. In particular, your appcast items must now include an appropriate installation type now.
+Additionally, if you use the `InstallerLauncher` XPC Service, these helpers are in:
+```
+org.sparkle-project.InstallerLauncher.xpc/Contents/MacOS/Autoupdate
+org.sparkle-project.InstallerLauncher.xpc/Contents/MacOS/Updater.app/
+```
+
+(In the case of using the `InstallerLauncher` XPC Service, the helpers in Sparkle.framework are unused and can be removed; note in this case you may need to re-sign Sparkle.framework)
+
+If you use package (pkg) based updates, please see [Package Updates](/documentation/package-updates) for migration notes. In particular, your appcast items must now include an appropriate installation type now to help Sparkle decide if authorization is needed ahead of time.
 
 See [Sparkle 2.x's APIs](/documentation/customization#sparkle-2x-apis-beta) for more information.
 
