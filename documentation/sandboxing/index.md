@@ -28,7 +28,9 @@ The last downloader XPC Service is optional. Use it only if your sandboxed appli
 
 ### Code Signing
 
-All the other XPC Services are required. You will also need to code sign these services by running:
+**Note**: Skip this code signing step if you use Xcode's Archive Organizer to [Distribute your App](/documentation#4-distributing-your-app), which is the recommended way of distributing applications. It will manage re-signing these services in your application with the appropriate entitlements automatically.
+
+Otherwise, if you use other workflows you will also need to code sign these services by running:
 
 ```
 ./bin/codesign_embedded_executable "Developer ID Application" XPCServices/*.xpc
@@ -55,5 +57,5 @@ Then you will need to add the XPC Services to your application project:
 
 ### Testing
 
-Due to the `./bin/codesign_embedded_executable` script signing the XPC Services with the Hardened Runtime enabled, Xcode cannot debug the XPC Services and you may see that updating does not work when your application is attached to Xcode. You can work around this either by editing your project's Scheme and disabling *Debug XPC services used by app*, or by testing your application detached from Xcode, or by altering the script to not sign the services with Hardened Runtime enabled for development builds.
+Due to the XPC Services being code signed with the Hardened Runtime enabled, Xcode cannot debug the XPC Services and you may see that updating does not work when your application is attached to Xcode's debugger. You can work around this either by editing your project's Scheme and disabling *Debug XPC services used by app*, or by testing your application detached from Xcode, or by altering the script to not sign the services with Hardened Runtime enabled for development builds.
 
