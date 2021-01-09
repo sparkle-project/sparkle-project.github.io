@@ -41,7 +41,7 @@ org.sparkle-project.InstallerLauncher.xpc/Contents/MacOS/Autoupdate
 org.sparkle-project.InstallerLauncher.xpc/Contents/MacOS/Updater.app/
 ```
 
-(In the case of using the `InstallerLauncher` XPC Service, the helpers in Sparkle.framework are unused and can be removed; note in this case you may need to re-sign Sparkle.framework)
+(In the case of using the `InstallerLauncher` XPC Service, the helpers in Sparkle.framework are unused and can optionally be removed; note in this case you may need to re-sign Sparkle.framework)
 
 Please see the additional setup on using XPC Services and using Sparkle in [sandboxed applications](/documentation/sandboxing). Note using the XPC Services are only required for sandboxed applications, which Sparkle 1.x didn't support.
 
