@@ -35,6 +35,8 @@ Sparkle.framework/Versions/A/Resources/Autoupdate
 Sparkle.framework/Versions/A/Resources/Updater.app/
 ```
 
+If you use package (pkg) based updates, please see [Package Updates](/documentation/package-updates) for migration notes. In particular, your appcast items must now include an appropriate installation type now.
+
 See [Sparkle 2.x's APIs](/documentation/customization#sparkle-2x-apis-beta) for more information.
 
 ## Upgrading from Sparkle 1.20 and older
