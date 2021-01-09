@@ -26,7 +26,7 @@ If you build Sparkle yourself, you can optionally choose to change `XPC_SERVICE_
 The last downloader XPC Service is optional. Use it only if your sandboxed application does not request the `com.apple.security.network.client` entitlement. The downloader service allows using Sparkle without forcing the network client entitlement on your entire application. There are a couple caveats with using the downloader service though:
 
 * It may not work well if your release notes reference external content that would require making additional network requests.
-* We fall back to using legacy WebKit view due to a [known WKWebView defect](https://github.com/feedback-assistant/reports/issues/1).
+* We fall back to using legacy WebKit view for release notes due to a [known WKWebView defect](https://github.com/feedback-assistant/reports/issues/1).
 
 ### Code Signing
 
