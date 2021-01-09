@@ -10,8 +10,6 @@ Sparkle 2.0 includes a command line utility that can update Sparkle-based applic
 
 ### Usage
 
-Check out its usage:
-
 ```
 ./sparkle.app/Contents/MacOS/sparkle
 
@@ -71,7 +69,7 @@ Options:
 
 ### Example
 
-For example, I updated an application on my machine I knew was out of date by running:
+One example is I updated an application on my machine I knew was out of date by running:
 
 ```
 ./sparkle.app/Contents/MacOS/sparkle --check-immediately /Applications/Hex\ Fiend.app/
