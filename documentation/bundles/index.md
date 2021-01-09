@@ -3,7 +3,10 @@ layout: documentation
 id: documentation
 title: Bundles
 ---
-### Bundles
+
+### Sparkle 1.x
+
+#### Bundles
 
 If you want to support updating for a non-app bundle, such as a Preference Pane, you cannot simply instantiate an SUUpdater instance in your MainMenu.nib as described in [Basic Setup](/documentation/#basic-setup). The reason is that SUUpdater creates a separate shared instance for every bundle, and the instance that is instantiated in a .nib file will always be the instance for the hosting .app bundle. This is the SUUpdater instance returned by `[SUUpdater sharedUpdater]` or `[[SUUpdater alloc] init]`. Note that the latter is used to instantiate an instance of a custom class in a .nib.
 
@@ -17,7 +20,7 @@ For Sparkle version 1.5b6 there is one more consideration. If SUUpdater is insta
 
 Due to poor design, if you want to use profiling with a bundle, you'll have to proxy a call to applicationDidFinishLaunching to get the permission dialog to appear: <//answers.edge.launchpad.net/sparkle/+question/88790>
 
-### Subclassing SUUpdater
+#### Subclassing SUUpdater
 
 An alternative approach is to use a subclass of SUUpdater whose shared instance is the updater for your bundle. You can then also instantiate this class in a .nib, so you can essentially follow step 2 in [Basic Setup](/documentation/#basic-setup) to initialize your updater. Make sure you also read in the header for your SUUpdater subclass in your .nib.
 
@@ -32,3 +35,15 @@ The subclass only needs to implement the following two methods:
 	{
 	    return [self initForBundle:[NSBundle bundleForClass:[self class]]];
 	}
+
+### Sparkle 2.x (Beta)
+
+#### Bundles
+
+The story with updating bundles between Sparkle 1.x and 2.x is a bit different.
+
+First, Sparkle 2.x supports updating any Sparkle-based bundle, which is not just limited to your own application or process. The updater distinguishes the `hostBundle` from the `applicationBundle`. The `hostBundle` is the bundle that Sparkle updates and the `applicationBundle` is the bundle that is re-launched (if applicable). See [Sparkle 2.x's APIs](/documentation/customization#sparkle-2x-apis-beta) for more information on instantiating your own updater.
+
+Second, Sparkle 2.x doesn't keep track of shared updater instances and doesn't try to prohibit multiple updater instances from existing  -- either inside the same process or multiple updaters updating the same bundle from different processes. In fact, it is even possible for one updater to start an update (say a silent deferred one), and for a second updater (say sparkle-cli) to resume that same update for the same bundle.
+
+If you want to update a plug-in, injecting Sparkle.framework or sharing a version of Sparkle with the host process is not advisable. Instead, look into calling out to an out-of-process tool that can update the plug-in like [sparkle-cli](/documentation/sparkle-cli) can.

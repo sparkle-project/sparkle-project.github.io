@@ -19,4 +19,4 @@ A guided installation can be started by applications other than the application 
 
 An interactive installation occurs when Sparkle finds a `*.sparkle_interactive.pkg` or `*.sparkle_interactive.mpkg` file in the root of the download archive.
 
-The package will be installed using macOS's built-in GUI installer. The installation will require user to manually click through the steps, so we don't recommend this type of installation.
+The package will be installed using macOS's built-in GUI installer. The installation will require user to manually click through the steps, so we don't recommend this type of installation. This type of installation is also deprecated in Sparkle 2.x and may be removed one day.

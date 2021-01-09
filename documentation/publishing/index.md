@@ -68,9 +68,9 @@ If your app is large, or if you're updating primarily only a small part of it, y
 
 ## Internal build numbers
 
-If you use internal build numbers for your `CFBundleVersion` key (like an SVN revision number) and a human-readable `CFBundleShortVersionString`, you can make Sparkle hide the internal version from your users.
+If you use internal build numbers for your `CFBundleVersion` key and a human-readable `CFBundleShortVersionString`, you can make Sparkle hide the internal version from your users.
 
-Set the `sparkle:version` attribute on your enclosure to the internal, machine-readable version (ie: "1248"). Then set a `sparkle:shortVersionString` attribute on the enclosure to the human-readable version (ie: "12.X Sea Lion").
+Set the `sparkle:version` attribute on your enclosure to the internal, machine-readable version (ie: "1248"). Then set a `sparkle:shortVersionString` attribute on the enclosure to the human-readable version (ie: "1.5.1").
 
 [Remember](//lists.apple.com/archives/carbon-dev/2006/Jun/msg00139.html) that the internal version number (`CFBundleVersion` and `sparkle:version`) is intended to be machine-readable and is not generally suitable for formatted text.
 
@@ -99,6 +99,8 @@ Add a `sparkle:minimumAutoupdateVersion` child to the `<item>` in question speci
     </item>
 
 If this value is set, it indicates the lowest version that can automatically update to the version referenced by the appcast (i.e. without showing the _update available_ GUI). Apps with a lower `CFBundleVersion` will always see the _update available_ GUI, regardless of their `SUAutomaticallyUpdate` user defaults setting.
+
+**Note**: Currently, Sparkle 2.x (Beta) does not support this feature.
 
 ## Embedded release notes
 
