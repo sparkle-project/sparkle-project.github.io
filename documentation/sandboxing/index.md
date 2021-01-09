@@ -19,7 +19,7 @@ In an extracted `Sparkle-2.0.0.tar.xz` distribution in the `XPCServices/` direct
 * org.sparkle-project.InstallerStatus.xpc
 * org.sparkle-project.Downloader.xpc & org.sparkle-project.Downloader.entitlements
 
-If you build Sparkle yourself, you can choose to change `XPC_SERVICE_BUNDLE_ID_PREFIX` in `ConfigCommon.xcconfig` from `org.sparkle-project` to your own prefix.
+If you build Sparkle yourself, you can optionally choose to change `XPC_SERVICE_BUNDLE_ID_PREFIX` in `ConfigCommon.xcconfig` from `org.sparkle-project` to your own prefix.
 
 ### Downloader Service
 
