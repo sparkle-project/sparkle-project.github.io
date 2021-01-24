@@ -17,4 +17,4 @@ jobs:
       run: |
         docker run \
         -v ${{ github.workspace }}:/srv/jekyll -v ${{ github.workspace }}/_site:/srv/jekyll/_site \
-        jekyll/builder:latest /bin/bash -c "chmod 777 /srv/jekyll && jekyll build --future && find /srv/jekyll/_site -type f -name '*.html' -exec xmllint --noout {} \; && curl -L -O https://github.com/validator/validator/releases/download/18.11.5/vnu.jar_18.11.5.zip && unzip -p vnu.jar_18.11.5.zip dist/vnu.jar > vnu.jar && java -jar vnu.jar --skip-non-html /srv/jekyll/_site"
+        jekyll/builder:latest /bin/bash -c "chmod 777 /srv/jekyll && jekyll build --future && find /srv/jekyll/_site -type f -name '*.html' -exec xmllint --noout {} \; && wget https://github.com/validator/validator/releases/download/18.11.5/vnu.jar_18.11.5.zip && unzip -p vnu.jar_18.11.5.zip dist/vnu.jar > vnu.jar && java -jar vnu.jar --skip-non-html /srv/jekyll/_site"
