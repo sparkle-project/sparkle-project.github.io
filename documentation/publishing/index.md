@@ -100,8 +100,6 @@ Add a `sparkle:minimumAutoupdateVersion` child to the `<item>` in question speci
 
 If this value is set, it indicates the lowest version that can automatically update to the version referenced by the appcast (i.e. without showing the _update available_ GUI). Apps with a lower `CFBundleVersion` will always see the _update available_ GUI, regardless of their `SUAutomaticallyUpdate` user defaults setting.
 
-**Note**: Currently, Sparkle 2.x (Beta) does not support this feature.
-
 ## Embedded release notes
 
 Instead of linking external release notes using the `<sparkle:releaseNotesLink>` element, you can also embed the release notes directly in the appcast item, inside a `<description>` element. If you wrap it in `<![CDATA[ ... ]]>`, you can use unescaped HTML.
