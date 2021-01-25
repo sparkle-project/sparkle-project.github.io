@@ -1,4 +1,4 @@
-# Sparkle Website [![Build Status](https://travis-ci.org/sparkle-project/sparkle-project.github.io.svg?branch=master)](https://travis-ci.org/sparkle-project/sparkle-project.github.io)
+# Sparkle Website ![Build Status](https://github.com/sparkle-project/sparkle-project.github.io/workflows/Jekyll%20site%20CI/badge.svg?branch=master)
 
 Website for Sparkle, an easy-to-use software update framework for macOS applications.
 
