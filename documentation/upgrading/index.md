@@ -49,9 +49,9 @@ If you use package (pkg) based updates, please see [Package Updates](/documentat
 
 See [Sparkle 2.x's APIs](/documentation/customization#sparkle-2x-apis-beta) for more information.
 
-## Upgrading from Sparkle <placeholder-version> and older
+## Upgrading from Sparkle 1.26 and older
 
-Support for serving non-archived flat packages (`*.pkg` or `*.mpkg`) has been added. Please see [Package Updates](/documentation/package-updates) for migration details.
+Support for serving bare, or non-archived, flat packages (`*.pkg` or `*.mpkg`) has been added. Please see [Package Updates](/documentation/package-updates) for migration details.
 
 ## Upgrading from Sparkle 1.20 and older
 
