@@ -45,9 +45,13 @@ org.sparkle-project.InstallerLauncher.xpc/Contents/MacOS/Updater.app/
 
 Please see the additional setup on using XPC Services and using Sparkle in [sandboxed applications](/documentation/sandboxing). Note using the XPC Services are only required for sandboxed applications, which Sparkle 1.x didn't support.
 
-If you use package (pkg) based updates, please see [Package Updates](/documentation/package-updates) for migration notes. In particular, your appcast items must now include an appropriate installation type now to help Sparkle decide if authorization is needed ahead of time.
+If you use package (pkg) based updates, please see [Package Updates](/documentation/package-updates) for migration notes. In particular, your appcast items may need to include an appropriate installation type to help Sparkle decide if authorization is needed ahead of time.
 
 See [Sparkle 2.x's APIs](/documentation/customization#sparkle-2x-apis-beta) for more information.
+
+## Upgrading from Sparkle 1.26 and older
+
+Support for serving bare, or non-archived, flat packages (`*.pkg` or `*.mpkg`) has been added, but you should still use archived packages until majority of your users update. Please see [Package Updates](/documentation/package-updates) for migration details.
 
 ## Upgrading from Sparkle 1.20 and older
 
