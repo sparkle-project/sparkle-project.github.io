@@ -15,7 +15,7 @@ An automatic archived installation occurs when Sparkle finds a `*.pkg` or `*.mpk
 
 ### Automatic Bare Installation
 
-Sparkle [1.26 or later](/documentation/upgrading/) supports serving and signing flat `*.pkg` or `*.mpkg` packages directly without having to zip or archive them. You may want to keep archiving them however until majority of your users update to your application with a version of Sparkle that supports this.
+Sparkle [1.26 or later](/documentation/upgrading/) supports serving and signing flat `*.pkg` or `*.mpkg` packages directly without having to zip or archive them. You will want to keep archiving them however until majority of your users update to your application with a version of Sparkle that supports this.
 
 ### Interactive Archived UI Installation
 
