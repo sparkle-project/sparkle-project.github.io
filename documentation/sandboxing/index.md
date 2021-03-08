@@ -30,9 +30,9 @@ The last downloader XPC Service is optional. Use it only if your sandboxed appli
 
 ### Code Signing
 
-**Note**: Skip this code signing step if you use Xcode's Archive Organizer to [Distribute your App](/documentation#4-distributing-your-app), which is the recommended way of distributing applications. It will manage re-signing these services in your application with the appropriate entitlements automatically.
+**Note**: By default, Sparkle builds XPC Services with an ad-hoc signature and with the Hardened Runtime enabled. In many cases this may be suffice for development. If you use Xcode's Archive Organizer to [Distribute your App](/documentation#4-distributing-your-app), it will manage re-signing these services with a Developer ID certificate and preserve the applied entitlements automatically.
 
-Otherwise, if you use other workflows you will also need to code sign these services by running:
+Otherwise if you use alternate methods of distributing your application or you need to use a different certificate for development, you can code sign these services by running:
 
 ```
 ./bin/codesign_embedded_executable "Developer ID Application" XPCServices/*.xpc
@@ -57,5 +57,5 @@ I used "Developer ID Application" for my certificate; you may need to adjust thi
 
 ### Testing
 
-Due to the XPC Services being code signed with the Hardened Runtime enabled, Xcode cannot debug the XPC Services and you may see that updating does not work when your application is attached to Xcode's debugger. You can work around this either by editing your project's Scheme and disabling *Debug XPC services used by app* or by testing your application detached from Xcode.
+Due to the XPC Services being code signed with the Hardened Runtime enabled by default, Xcode cannot debug the XPC Services and you may see that updating does not work when your application is attached to Xcode's debugger. You can work around this either by editing your project's Scheme and disabling *Debug XPC services used by app* or by testing your application detached from Xcode.
 

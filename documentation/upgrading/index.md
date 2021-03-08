@@ -31,8 +31,8 @@ If you create a `SPUUpdater` instance programatically, you can now create an upd
 
 If you have scripts that reference Sparkle.framework's helper tools, here are the new paths (note Autoupdate is now a command line tool and the UI bits moved to Updater.app):
 ```
-Sparkle.framework/Versions/A/Resources/Autoupdate
-Sparkle.framework/Versions/A/Resources/Updater.app/
+Sparkle.framework/Autoupdate (symbolic link to Sparkle.framework/Versions/A/Autoupdate)
+Sparkle.framework/Updater.app (symbolic link to Sparkle.framework/Versions/A/Updater.app)
 ```
 
 Additionally, if you use the `InstallerLauncher` XPC Service, these helpers are in:
@@ -45,13 +45,13 @@ org.sparkle-project.InstallerLauncher.xpc/Contents/MacOS/Updater.app/
 
 Please see the additional setup on using XPC Services and using Sparkle in [sandboxed applications](/documentation/sandboxing). Note using the XPC Services are only required for sandboxed applications, which Sparkle 1.x didn't support.
 
-If you use package (pkg) based updates, please see [Package Updates](/documentation/package-updates) for migration notes. In particular, your appcast items may need to include an appropriate installation type to help Sparkle decide if authorization is needed ahead of time.
+If you use package (pkg) based updates, please see [Package Updates](/documentation/package-updates) for migration notes. In particular, your appcast items may need to include an appropriate installation type to help Sparkle decide if authorization is needed before starting the installer.
 
 See [Sparkle 2.x's APIs](/documentation/customization#sparkle-2x-apis-beta) for more information.
 
-## Upgrading from Sparkle 1.26 and older
+## Upgrading from Sparkle 1.25 and older
 
-Support for serving bare, or non-archived, flat packages (`*.pkg` or `*.mpkg`) has been added, but you should still use archived packages until majority of your users update. Please see [Package Updates](/documentation/package-updates) for migration details.
+Support for serving bare, or non-archived, flat packages (`*.pkg` or `*.mpkg`) has been added in Sparkle 1.26, but you should still use archived packages until majority of your users update. Please see [Package Updates](/documentation/package-updates) for migration details.
 
 ## Upgrading from Sparkle 1.20 and older
 
