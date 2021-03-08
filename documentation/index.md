@@ -7,7 +7,7 @@ title: Documentation
 
 If your app already has an older version of Sparkle or you wish to migrate to Sparkle 2.0 beta, see [upgrading from previous versions](/documentation/upgrading/).
 
-Note sandboxed applications are only supported in Sparkle 2.0 which is currently in beta.
+Note sandboxed applications are only supported in Sparkle 2 (beta).
 
 ### 1. Add the Sparkle framework to your project
 
@@ -31,7 +31,7 @@ If you don't have CocoaPods, then add Sparkle manually:
 * In <samp>Build Settings</samp> tab set "<samp>Runpath Search Paths</samp>" to `@loader_path/../Frameworks` (for non-Xcode projects add the flags `-Wl,-rpath,@loader_path/../Frameworks`). This is not a necessary step in recent versions of Xcode.
 * If you have your own process for copying/packaging your app make sure it preserves symlinks!
 
-CocoaPods and pre-built binaries for Sparkle 2.x aren't currently available. To build [2.x](https://github.com/sparkle-project/Sparkle/tree/2.x), clone Sparkle's repository with all its submodules, `git checkout 2.x` branch, run `make release`, and check out the binaries in the resulting `Sparkle-2.0.0.tar.xz` archive. Sandboxed applications using Sparkle 2.x require [additional setup](/documentation/sandboxing).
+CocoaPods and official binaries for Sparkle 2 aren't currently available. A nightly distribution can be downloaded from our [GitHub Actions page](https://github.com/sparkle-project/Sparkle/actions?query=event%3Apush+is%3Asuccess+branch%3A2.x) by selecting a recent workflow commit and downloading the `Sparkle-distribution*.tar.xz` artifact. Alternatively, you may checkout the [2.x](https://github.com/sparkle-project/Sparkle/tree/2.x) branch, clone Sparkle's repository with all its submodules, run `make release`, and extract the binaries in the resulting `Sparkle-2.0.0.tar.xz` (or `.bz2`) archive. Sandboxed applications using Sparkle 2 require [additional setup](/documentation/sandboxing).
 
 ### 2. Set up a Sparkle updater object
 
@@ -45,7 +45,7 @@ These instructions are for regular .app bundles. If you want to update a non-app
 * Type `SUUpdater` in the <samp>Class</samp> box of the <samp>Custom Class</samp> section in the inspector.
 * If you'd like, make a "<samp>Check for Updates...</samp>" menu item in the application menu; set its target to the `SUUpdater` instance and its action to `checkForUpdates:`.
 
-If you are using Sparkle 2.x, `SUUpdater` is a deprecated stub. While it is still functional for transitional purposes, new applications will want to use `SPUStandardUpdaterController` in the above steps instead.
+If you are using Sparkle 2, `SUUpdater` is a deprecated stub. While it is still functional for transitional purposes, new applications will want to use `SPUStandardUpdaterController` in the above steps instead.
 
 ### 3. Segue for security concerns
 
@@ -59,7 +59,7 @@ Since Sparkle is downloading executable code to your users' systems, you must be
     * Updates using [Installer package](/documentation/package-updates/) (`.pkg`) *must* be signed with EdDSA.
     * [Binary Delta updates](/documentation/delta-updates/) *must* be signed with EdDSA.
     * [Updates of preference panes and plugins](/documentation/bundles/) *must* be signed with EdDSA.
-    * EdDSA signatures are optional for updates using regular app bundles that are signed with Apple code signing (Apple's Developer ID program), but we still recommended EdDSA signatures as a backup. In Sparkle 2.x, not supplying EdDSA signatures will emit a deprecation warning.
+    * EdDSA signatures are optional for updates using regular app bundles that are signed with Apple code signing (Apple's Developer ID program), but we still recommended EdDSA signatures as a backup. In Sparkle 2, not supplying EdDSA signatures will emit a deprecation warning.
 
 #### EdDSA (ed25519) signatures
 
