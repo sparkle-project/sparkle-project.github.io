@@ -13,7 +13,7 @@ Here are the main routes by which you can bend Sparkle's behavior to your will:
 | Key | Type | Value |
 | --- | ---- | ----- | ------- |
 | `SUFeedURL` | String | The URL of your appcast, e.g. `https://example.com/appcast.xml`. It's recommended to always set it in Info.plist, even if you change it later programmatically. |
-| `SUEnableAutomaticChecks` | Boolean | Setting to `YES` (recommended) enables checking for updates (but not installation) by default, without asking your users for permission first. <br>By default, if it's not set to any value, users will be prompted for permission before the first update check. <br>Setting to `NO` disables update checks, but can be overridden by a call to `SUUpdater`'s (or `SPUUpdater`'s in 2.x) `setAutomaticallyChecksForUpdates:` |
+| `SUEnableAutomaticChecks` | Boolean | Setting to `YES` (recommended) enables checking for updates (but not installation) by default, without asking your users for permission first. <br>By default, if it's not set to any value, users will be prompted for permission before the first update check. <br>Setting to `NO` disables update checks, but can be overridden by a call to `SUUpdater`'s (or `SPUUpdater`'s in 'Sparkle 2) `setAutomaticallyChecksForUpdates:` |
 | `SUPublicEDKey` | String | The base64-encoded public EdDSA key. Use Sparkle's `generate_keys` tool to get it. |
 | `SUEnableSystemProfiling` | Boolean | Default: `NO`. Enables anonymous system profiling. See [System Profiling](/documentation/system-profiling) for more. |
 | `SUScheduledCheckInterval` | Number | The number of seconds between updates. The default is `86400` (1 day). Setting to 0 disables updates. <br /><br />**Note:** this has a minimum bound of 1 hour in order to keep you from accidentally overloading your servers. |
@@ -23,7 +23,7 @@ Here are the main routes by which you can bend Sparkle's behavior to your will:
 | `SUBundleName` | String | Optional alternative bundle display name. For example, if your bundle name already has a version number appended to it, setting this may help smooth out certain messages, e.g. "MyApp 3 4.0 is now available" vs "MyApp 4.0 is now available". |
 | `SUDefaultsDomain` | String | Optional alternative `NSUserDefaults` domain name if you don't want to use the standard user defaults, for example when accessing preferences from an App Group suite. |
 
-### Sparkle 1.x APIs
+### Sparkle 1 APIs
 
 #### Calls to SUUpdater
 
@@ -141,7 +141,7 @@ If these methods aren't enough to do what you need, you're going to have to dig 
 
 ---
 
-### Sparkle 2.x APIs (Beta)
+### Sparkle 2 APIs (Beta)
 
 #### Calls to SPUUpdater
 
@@ -180,7 +180,7 @@ A few methods of interest if you are instantiating `SPUUpdater` programmatically
     // Checks for updates and display progress while doing so. This is meant for users initiating an update check.
     - (void)checkForUpdates;
 
-The `SPUUserDriver` protocol is the API in Sparkle for controlling the user interface and interaction. If you are using `SPUStandardUpdaterController` in a nib, you can retrieve the user driver via its `userDriver` property. If you are interested in creating your own user interface, please see the header documentation in [`SPUUserDriver.h`](https://github.com/sparkle-project/Sparkle/blob/2.x/Sparkle/SPUUserDriver.h). Note few of the user-facing delegate methods in Sparkle 1.x's `SUUpdaterDelegate` were moved to `SPUStandardUserDriverDelegate`.
+The `SPUUserDriver` protocol is the API in Sparkle for controlling the user interface and interaction. If you are using `SPUStandardUpdaterController` in a nib, you can retrieve the user driver via its `userDriver` property. If you are interested in creating your own user interface, please see the header documentation in [`SPUUserDriver.h`](https://github.com/sparkle-project/Sparkle/blob/2.x/Sparkle/SPUUserDriver.h). Note few of the user-facing delegate methods in Sparkle 1's `SUUpdaterDelegate` were moved to `SPUStandardUserDriverDelegate`.
 
 Properties of interest if you are instantiating the standard user driver `SPUStandardUserDriver` yourself:
 

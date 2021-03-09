@@ -5,7 +5,7 @@ title: Adding a Preferences UI
 ---
 ## Adding a Preferences UI
 
-### Sparkle 1.x
+### Sparkle 1
 
 #### Add the updater to your preferences
 
@@ -45,7 +45,7 @@ Then just bind the controls to the File's Owner, and start the Model Key Path wi
 
 ---
 
-### Sparkle 2.x (Beta)
+### Sparkle 2 (Beta)
 
 #### Add the updater to your preferences
 
