@@ -14,10 +14,10 @@ In order for Sparkle to work in a sandboxed application, the application must ca
 
 In an extracted `Sparkle-2.0.0.tar.xz` distribution in the `XPCServices/` directory you will notice:
 
-* org.sparkle-project.InstallerLauncher.xpc (required)
-* org.sparkle-project.Downloader.xpc & org.sparkle-project.Downloader.entitlements (optional)
-* org.sparkle-project.InstallerConnection.xpc (optional)
-* org.sparkle-project.InstallerStatus.xpc (optional)
+* org.sparkle-project.InstallerLauncher.xpc
+* org.sparkle-project.Downloader.xpc & org.sparkle-project.Downloader.entitlements
+* org.sparkle-project.InstallerConnection.xpc
+* org.sparkle-project.InstallerStatus.xpc
 
 If you build Sparkle yourself, you can optionally choose to change `XPC_SERVICE_BUNDLE_ID_PREFIX` in `ConfigCommon.xcconfig` from `org.sparkle-project` to your own prefix. Please see notes below on integrating each of these services.
 
