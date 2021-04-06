@@ -7,7 +7,7 @@ title: Documentation
 
 If your app already has an older version of Sparkle or you wish to migrate to Sparkle 2.0 beta, see [upgrading from previous versions](/documentation/upgrading/).
 
-Note sandboxed applications are only supported in Sparkle 2 (beta).
+Note [sandboxed applications](/documentation/sandboxing) are only supported in Sparkle 2 (beta).
 
 ### 1. Add the Sparkle framework to your project
 
