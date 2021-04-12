@@ -62,9 +62,9 @@ If you cannot add entitlements (eg: your process inherits another application's 
 If you can:
 * Use the distributed XPC Services that are signed with an ad-hoc signature and Hardened Runtime enabled for development
 * Use Xcode's Archive Organizer to [Distribute your App](/documentation#4-distributing-your-app), which will re-sign your XPC Services with a Developer ID certificate and preserve entitlements / hardened runtime during export
-* Avoid using the Installer Connection & Status Services above, which both need entitlements targetting your bundle's bundle identifier
+* Avoid using the Installer Connection & Status Services above, which both need entitlements targetting your application's bundle identifier
 
-Then you can probably skip onto Adding the XPC Services section below.
+Then you can probably skip onto [Adding the XPC Services](#adding-the-xpc-services) section.
 
 Otherwise if you use alternate methods of distributing your application, or you need to use a different certificate for development, you can code sign these services by running the `bin/codesign_xpc_service` script. For example:
 
