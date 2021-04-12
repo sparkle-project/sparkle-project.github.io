@@ -16,8 +16,8 @@ In an extracted `Sparkle-2.0.0.tar.xz` distribution in the `XPCServices/` direct
 
 * org.sparkle-project.InstallerLauncher.xpc
 * org.sparkle-project.Downloader.xpc & org.sparkle-project.Downloader.entitlements
-* org.sparkle-project.InstallerConnection.xpc
-* org.sparkle-project.InstallerStatus.xpc
+* org.sparkle-project.InstallerConnection.xpc & org.sparkle-project.InstallerConnection.entitlements
+* org.sparkle-project.InstallerStatus.xpc & org.sparkle-project.InstallerStatus.entitlements
 
 If you build Sparkle yourself, you can optionally choose to change `XPC_SERVICE_BUNDLE_ID_PREFIX` in `ConfigCommon.xcconfig` from `org.sparkle-project` to your own prefix. Please see notes below on integrating each of these services.
 
@@ -59,12 +59,17 @@ If you cannot add entitlements (eg: your process inherits another application's 
 
 ### Code Signing
 
-**Note**: By default, Sparkle builds XPC Services with an ad-hoc signature and with the Hardened Runtime enabled. In many cases this may be suffice for development. If you use Xcode's Archive Organizer to [Distribute your App](/documentation#4-distributing-your-app), it will manage re-signing these services with a Developer ID certificate and preserve the applied entitlements automatically.
+If you can:
+* Use the distributed XPC Services that are signed with an ad-hoc signature and Hardened Runtime enabled for development
+* Use Xcode's Archive Organizer to [Distribute your App](/documentation#4-distributing-your-app), which will re-sign your XPC Services with a Developer ID certificate and preserve entitlements / hardened runtime during export
+* Avoid using the Installer Connection & Status Services above, which both need entitlements targetting your bundle's bundle identifier
 
-Otherwise if you use alternate methods of distributing your application or you need to use a different certificate for development, you can code sign these services by running:
+Then you can probably skip onto Adding the XPC Services section below.
+
+Otherwise if you use alternate methods of distributing your application, or you need to use a different certificate for development, you can code sign these services by running the `bin/codesign_xpc_service` script. For example:
 
 ```
-./bin/codesign_embedded_executable "Developer ID Application" XPCServices/*.xpc
+./bin/codesign_xpc_service "Developer ID Application" XPCServices/org.sparkle-project.InstallerLauncher.xpc XPCServices/org.sparkle-project.Downloader.xpc
 ```
 
 I used "Developer ID Application" for my certificate; you may need to adjust this.
