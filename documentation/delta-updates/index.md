@@ -35,22 +35,21 @@ Version 2 patches created by BinaryDelta are not backwards compatible with Spark
 
     <item>
        <title>Version 2.0 </title>
+       <link>https://myproductwebsite.com</link>
+       <sparkle:version>2.0</sparkle:version>
        <description>foo bar baz</description>
        <pubDate>Wed, 09 Jan 2006 19:20:11 +0000</pubDate>
        <enclosure url="http://you.com/2.0_full.zip"
-                  sparkle:version="2.0"
                   length="123"
                   type="application/octet-stream"
                   sparkle:edSignature="..." />
        <sparkle:deltas>
            <enclosure url="http://you.com/1.5-2.0.delta"
-                      sparkle:version="2.0"
                       sparkle:deltaFrom="1.5"
                       length="1485"
                       type="application/octet-stream"
                       sparkle:edSignature="..." />
            <enclosure url="http://you.com/1.6-2.0.delta"
-                      sparkle:version="2.0"
                       sparkle:deltaFrom="1.6"
                       length="1428"
                       type="application/octet-stream"

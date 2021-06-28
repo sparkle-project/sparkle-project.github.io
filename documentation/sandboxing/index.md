@@ -23,7 +23,9 @@ If you build Sparkle yourself, you can optionally choose to change `XPC_SERVICE_
 
 #### Installer Launcher Service
 
-The Installer Launcher Service is required. This service bundles a copy of Sparkle's helper tools `Autoupdate` and `Updater.app`. To optimize for space, a sandboxed application that uses this service may optionally choose to remove the helper tools from the `Sparkle.framework` and re-sign the framework:
+The Installer Launcher Service is required. This service bundles a copy of Sparkle's helper tools `Autoupdate` and `Updater.app`.
+
+To optimize for space, a sandboxed application that uses this service may optionally choose to remove the helper tools from the `Sparkle.framework` and re-sign the framework:
 
 ```
 rm -f Sparkle.framework/Autoupdate

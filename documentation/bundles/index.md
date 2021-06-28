@@ -42,8 +42,10 @@ The subclass only needs to implement the following two methods:
 
 The story with updating bundles between Sparkle 1 and 2 is a bit different.
 
-First, Sparkle 2 supports updating any Sparkle-based bundle, which is not just limited to your own application or process. The updater distinguishes the `hostBundle` from the `applicationBundle`. The `hostBundle` is the bundle that Sparkle updates and the `applicationBundle` is the bundle that is re-launched (if applicable). See [Sparkle 2's APIs](/documentation/customization#sparkle-2x-apis-beta) for more information on instantiating your own updater.
+First, Sparkle 2 supports updating any Sparkle-based bundle, which is not just limited to your own application or process. The updater distinguishes the `hostBundle` from the `applicationBundle`. The `hostBundle` is the bundle that Sparkle updates and the `applicationBundle` is the bundle that can be terminated and re-launched (if applicable). See [Sparkle 2's APIs](/documentation/customization#sparkle-2x-apis-beta) for more information on instantiating your own updater. Some kinds of plug-ins in particular may want to use `SURelaunchHostBundle` key there for re-launching the host bundle.
 
 Second, Sparkle 2 doesn't keep track of shared updater instances and doesn't try to prohibit multiple updater instances from existing  -- either inside the same process or multiple updaters updating the same bundle from different processes. In fact, it is even possible for one updater to start an update (say a silent deferred one), and for a second updater (say sparkle-cli) to resume that same update for the same bundle.
 
 If you want to update a plug-in, injecting Sparkle.framework or sharing a version of Sparkle with the host process is not advisable. Instead, look into calling out to an out-of-process tool that can update the plug-in like [sparkle-cli](/documentation/sparkle-cli) can.
+
+If your plug-in inherits a sandbox environment, you may need to use a companion application with XPC Services and follow Sparkle's [Sandboxing guide](/documentation/sandboxing).

@@ -30,19 +30,20 @@ To manually generate signatures for your updates, Sparkle includes a tool to hel
 The output will be an XML fragment with your update's EdDSA signature and (optional) file size; you'll add this attribute to your enclosure in the next step.
 
 Since 10.11, macOS has [App Transport Security](//developer.apple.com/library/prerelease/mac/technotes/App-Transport-Security-Technote/) policy which blocks apps from using insecure HTTP connections. This restriction applies to Sparkle as well, so you will need to serve your appcast and the update files over HTTPS.
-
+f
 ### Update your appcast
 
 You need to create an `<item>` for your update in your appcast. See the [sample appcast](/files/sparkletestcast.xml) for an example. Here's a template you might use:
 
     <item>
         <title>Version 2.0 (2 bugs fixed; 3 new features)</title>
+        <link>https://myproductwebsite.com</link>
+        <sparkle:version>2.0</sparkle:version>
         <sparkle:releaseNotesLink>
             https://example.com/release_notes/app_2.0.html
         </sparkle:releaseNotesLink>
         <pubDate>Mon, 05 Oct 2015 19:20:11 +0000</pubDate>
         <enclosure url="https://example.com/downloads/app.zip.or.dmg.or.tar.etc"
-                   sparkle:version="2.0"
                    sparkle:edSignature="7cLALFUHSwvEJWSkV8aMreoBe4fhRa4FncC5NoThKxwThL6FDR7hTiPJh1fo2uagnPogisnQsgFgq6mGkt2RBw=="
                    length="1623481"
                    type="application/octet-stream" />
@@ -59,7 +60,7 @@ If you want to provide a download link, instead of having Sparkle download and i
       <sparkle:releaseNotesLink>https://example.com/release_notes_test.html</sparkle:releaseNotesLink>
       <pubDate>Mon, 28 Jan 2013 14:30:00 +0500</pubDate>
       <sparkle:version>1.2.4</sparkle:version>
-      <link>https://example.com/manual_update_info.html</link>
+      <link>https://myproductwebsite.com</link>
     </item>
 
 ## Delta updates
@@ -70,35 +71,43 @@ If your app is large, or if you're updating primarily only a small part of it, y
 
 If you use internal build numbers for your `CFBundleVersion` key and a human-readable `CFBundleShortVersionString`, you can make Sparkle hide the internal version from your users.
 
-Set the `sparkle:version` attribute on your enclosure to the internal, machine-readable version (ie: "1248"). Then set a `sparkle:shortVersionString` attribute on the enclosure to the human-readable version (ie: "1.5.1").
+Set the `sparkle:version` element in your item to the internal, machine-readable version (ie: "1248"). Then set a `sparkle:shortVersionString` element on in your item to the human-readable version (ie: "1.5.1").
 
-[Remember](//lists.apple.com/archives/carbon-dev/2006/Jun/msg00139.html) that the internal version number (`CFBundleVersion` and `sparkle:version`) is intended to be machine-readable and is not generally suitable for formatted text.
+Note that the internal version number (`CFBundleVersion` and `sparkle:version`) is intended to be machine-readable and is not generally suitable for formatted text.
 
 ## Minimum system version requirements
 
 If an update to your application raises the required version of macOS, you can only offer that update to qualified users.
 
-Add a `sparkle:minimumSystemVersion` child to the `<item>` in question specifying the required system version, such as "10.8.4":
+Add a `sparkle:minimumSystemVersion` child to the `<item>` in question specifying the required system version, such as "10.11.0" (be sure to specify a three-part version in form of *major.minor.patch*):
 
     <item>
         <title>Version 2.0 (2 bugs fixed; 3 new features)</title>
-        <sparkle:minimumSystemVersion>10.8.4</sparkle:minimumSystemVersion>
+        <link>https://myproductwebsite.com</link>
+        <sparkle:version>2.0</sparkle:version>
+        <sparkle:minimumSystemVersion>10.11.0</sparkle:minimumSystemVersion>
     </item>
 
-Note that Sparkle only works with macOS 10.7 or later, so that's the minimum version you can use.
+Note that Sparkle only works with macOS 10.9 or later (macOS 10.11 or later for Sparkle 2), so that's the minimum version you can use.
 
-## Preventing automatic updates
+## Major upgrades
 
-If an update to your application is a paid upgrade, you may want to prevent it from being applied automatically.
+If an update to your application is a major or paid upgrade, you may want to prevent the update from being applied automatically.
 
-Add a `sparkle:minimumAutoupdateVersion` child to the `<item>` in question specifying the paid update's `<CFBundleVersion>`, such as "1248.48":
+Add a `sparkle:minimumAutoupdateVersion` child to the `<item>` in question specifying the major update's `<CFBundleVersion>`, such as "2.0":
 
     <item>
-        <title>Version 2.0 (2 bugs fixed; 3 new features)</title>
-        <sparkle:minimumAutoupdateVersion>1248.48</sparkle:minimumAutoupdateVersion>
+        <title>Version 2.1 (2 bugs fixed; 3 new features)</title>
+        <link>https://myproductwebsite.com</link>
+        <sparkle:version>2.1</sparkle:version>
+        <sparkle:minimumAutoupdateVersion>2.0</sparkle:minimumAutoupdateVersion>
     </item>
 
 If this value is set, it indicates the lowest version that can automatically update to the version referenced by the appcast (i.e. without showing the _update available_ GUI). Apps with a lower `CFBundleVersion` will always see the _update available_ GUI, regardless of their `SUAutomaticallyUpdate` user defaults setting.
+
+Additionally in Sparkle 2:
+* A developer can publish a new minor patch release preceding the major release and Sparkle will prefer to install the latest minor release available. For example, if 2.0 is marked as a major release (with `sparkle:minimumAutoupdateVersion` set), but 1.9.4 is available then 1.9.4 will be offered first.
+* A user can choose to skip out of future update alerts to a major upgrade. For example, if 2.0 is a major release offered and the user is on 1.9.4, they can choose to skip 2.0. Sparkle will confirm with the user if they want to skip automatic alerts for 2.0 and future updates (eg 2.1). The user can later undo this if they check for updates manually.
 
 ## Embedded release notes
 
@@ -106,6 +115,8 @@ Instead of linking external release notes using the `<sparkle:releaseNotesLink>`
 
     <item>
         <title>Version 2.0 (2 bugs fixed; 3 new features)</title>
+        <link>https://myproductwebsite.com</link>
+        <sparkle:version>2.0</sparkle:version>
         <description><![CDATA[
             <h2>New Features</h2>
             ...
@@ -134,7 +145,3 @@ To keep the appcast file compatible with the standard Sparkle implementation, a 
     <sparkle:enclosure sparkle:os="os_name" ...>
 
 Replace _os_name_ with either "windows" or "linux", respectively (mind the lower case!). Feel free to add other OS names as needed.
-
-## Xcode integration
-
-[There's an old description](//web.archive.org/web/20120708050000/http://www.entropy.ch/blog/Developer/2008/09/22/Sparkle-Appcast-Automation-in-Xcode.html) of how to automate the archiving and signing process with a script build phase in Xcode. [Find other guides](//www.google.com/search?q=Sparkle+Appcast+Automation).

@@ -10,6 +10,8 @@ We strongly recommend upgrading Sparkle to the [latest production release](//git
 
 **Note**: Sparkle 2.0 is in a pre-release / beta state and not production ready yet.
 
+Sparkle 2 now requires macOS 10.11 (El Capitan) or later.
+
 The `SUUpdater` class has been deprecated and split up in Sparkle 2, but it is still functional for transitional purposes.
 
 Sparkle 2 includes three new classes / protocols:
@@ -23,7 +25,7 @@ If you were previously instantiating a `SUUpdater` in code, you will want to ado
 
 The deprecated `SUUpdater` in 2 is now a stub that uses both a `SPUUpdater` and `SPUStandardUserDriver`.
 
-If you create a `SPUUpdater` instance programatically, you can now create an updater that can update other Sparkle-based bundles and/or an updater that can use your own `SPUUserDriver` / user interface. [sparkle-cli](/documentation/sparkle-cli) makes use of both features as an example.
+If you create a `SPUUpdater` instance programatically, you are now able to create an updater that can update other Sparkle-based bundles and/or an updater that can use your own `SPUUserDriver` / user interface. [sparkle-cli](/documentation/sparkle-cli) makes use of both features as an example.
 
 `SPUUpdater` and its delegate `SPUUpdaterDelegate` (unlike `SUUpdater`) do not contain any user-interface or AppKit logic. The UI bits were separated into classes implementing `SPUUserDriver` and its delegates. A developer writing their own updater user interface may choose to use the new `SparkleCore` framework which strips out the UI bits that Sparkle provides out of the box.
 
@@ -41,11 +43,11 @@ org.sparkle-project.InstallerLauncher.xpc/Contents/MacOS/Autoupdate
 org.sparkle-project.InstallerLauncher.xpc/Contents/MacOS/Updater.app/
 ```
 
-(In the case of using the `InstallerLauncher` XPC Service, the helpers in Sparkle.framework are unused and can optionally be removed; note in this case you may need to re-sign Sparkle.framework)
-
-Please see the additional setup on using XPC Services and using Sparkle in [sandboxed applications](/documentation/sandboxing). Note using the XPC Services are only required for sandboxed applications, which Sparkle 1 didn't support.
+Sparkle 2 supports [sandboxed applications](/documentation/sandboxing) via integration of XPC Services. Note using the XPC Services are only required for sandboxed applications, which Sparkle 1 didn't support.
 
 If you use package (pkg) based updates, please see [Package Updates](/documentation/package-updates) for migration notes. In particular, your appcast items may need to include an appropriate installation type to help Sparkle decide if authorization is needed before starting the installer.
+
+Sparkle 2 enhances support for [major upgrades](/documentation/publishing#Major-upgrades).
 
 See [Sparkle 2's APIs](/documentation/customization#sparkle-2x-apis-beta) for more information.
 
