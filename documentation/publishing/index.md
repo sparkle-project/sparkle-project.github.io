@@ -30,7 +30,7 @@ To manually generate signatures for your updates, Sparkle includes a tool to hel
 The output will be an XML fragment with your update's EdDSA signature and (optional) file size; you'll add this attribute to your enclosure in the next step.
 
 Since 10.11, macOS has [App Transport Security](//developer.apple.com/library/prerelease/mac/technotes/App-Transport-Security-Technote/) policy which blocks apps from using insecure HTTP connections. This restriction applies to Sparkle as well, so you will need to serve your appcast and the update files over HTTPS.
-f
+
 ### Update your appcast
 
 You need to create an `<item>` for your update in your appcast. See the [sample appcast](/files/sparkletestcast.xml) for an example. Here's a template you might use:
