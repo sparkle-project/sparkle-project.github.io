@@ -27,9 +27,11 @@ The deprecated `SUUpdater` in 2 is now a stub that uses both a `SPUUpdater` and 
 
 If you create a `SPUUpdater` instance programatically, you are now able to create an updater that can update other Sparkle-based bundles and/or an updater that can use your own `SPUUserDriver` / user interface. [sparkle-cli](/documentation/sparkle-cli) makes use of both features as an example.
 
-`SPUUpdater` and its delegate `SPUUpdaterDelegate` (unlike `SUUpdater`) do not contain any user-interface or AppKit logic. The UI bits were separated into classes implementing `SPUUserDriver` and its delegates. A developer writing their own updater user interface may choose to use the new `SparkleCore` framework which strips out the UI bits that Sparkle provides out of the box.
+`SPUUpdater` and its delegate `SPUUpdaterDelegate` (unlike `SUUpdater`) do not contain any user-interface or AppKit logic. The UI bits were separated into classes implementing `SPUUserDriver` and its delegates. A developer writing their own updater user interface may choose to build Sparkle with `SPARKLE_BUILD_UI_BITS=0` which strips out the UI bits that Sparkle provides out of the box.
 
 `SPUUpdater` does not maintain singleton or global instances (unlike `SUUpdater`). Plug-ins that share the same process as their host should prefer to use an external tool like [sparkle-cli](/documentation/sparkle-cli) instead, rather than sharing or injecting a Sparkle.framework in its host. A bit more details about updating bundles [here](/documentation/bundles#sparkle-2x-beta).
+
+Downgrades were poorly supported in Sparkle 1 and are now unavailable in Sparkle 2 (via `SPARKLE_AUTOMATED_DOWNGRADES`).
 
 If you have scripts that reference Sparkle.framework's helper tools, here are the new paths (note Autoupdate is now a command line tool and the UI bits moved to Updater.app):
 ```

@@ -11,12 +11,18 @@ Note [sandboxed applications](/documentation/sandboxing) are only supported in S
 
 ### 1. Add the Sparkle framework to your project
 
+If you use [Swift Package Manager](https://swift.org/package-manager/):
+
+  * In your Xcode project: <samp>File</samp> › <samp>Swift Packages</samp> › <samp>Add Package Dependencies</samp>
+  * Enter `https://github.com/sparkle-project/Sparkle` as the package repository URL
+  * Choose the Package Options. The default options will let Xcode automatically update versions of Sparkle 1.
+
 If you use [CocoaPods](//cocoapods.org):
 
   * Add `pod 'Sparkle'` to your Podfile.
   * Add or uncomment `use_frameworks!` in your Podfile.
 
-If you don't have CocoaPods, then add Sparkle manually:
+If you want to add Sparkle manually:
 
 * Get the [latest version](//github.com/{{ site.github_username }}/Sparkle/releases) of Sparkle.
 * Link the Sparkle framework to your app target:
@@ -31,7 +37,7 @@ If you don't have CocoaPods, then add Sparkle manually:
 * In <samp>Build Settings</samp> tab set "<samp>Runpath Search Paths</samp>" to `@loader_path/../Frameworks` (for non-Xcode projects add the flags `-Wl,-rpath,@loader_path/../Frameworks`). This is not a necessary step in recent versions of Xcode.
 * If you have your own process for copying/packaging your app make sure it preserves symlinks!
 
-CocoaPods and official binaries for Sparkle 2 aren't currently available. A nightly distribution can be downloaded from our [GitHub Actions page](https://github.com/sparkle-project/Sparkle/actions?query=event%3Apush+is%3Asuccess+branch%3A2.x) by selecting a recent workflow commit and downloading the `Sparkle-distribution*.tar.xz` artifact. Alternatively, you may checkout the [2.x](https://github.com/sparkle-project/Sparkle/tree/2.x) branch, clone Sparkle's repository with all its submodules, run `make release`, and extract the binaries in the resulting `Sparkle-2.0.0.tar.xz` (or `.bz2`) archive. Sandboxed applications using Sparkle 2 require [additional setup](/documentation/sandboxing).
+Package management and official binaries for Sparkle 2 aren't currently available. A nightly distribution can be downloaded from our [GitHub Actions page](https://github.com/sparkle-project/Sparkle/actions?query=event%3Apush+is%3Asuccess+branch%3A2.x) by selecting a recent workflow commit and downloading the `Sparkle-distribution*.tar.xz` artifact. Alternatively, you may checkout the [2.x](https://github.com/sparkle-project/Sparkle/tree/2.x) branch, clone Sparkle's repository with all its submodules, run `make release`, and extract the binaries in the resulting `Sparkle-2.0.0.tar.xz` (or `.bz2`) archive. Sandboxed applications using Sparkle 2 require [additional setup](/documentation/sandboxing).
 
 ### 2. Set up a Sparkle updater object
 
@@ -108,7 +114,7 @@ For Sparkle, tarballs and ZIPs are fastest and most reliable. DMG are slowest. I
 Sparkle uses appcasts to get information about software updates. An appcast is an RSS feed with some extra information for Sparkle's purposes.
 
   * Add a [`SUFeedURL`](/documentation/customization/) property to your `Info.plist`; set its value to a URL where your appcast will be hosted, e.g. `https://yourcompany.example.com/appcast.xml`. We [strongly encourage you to use HTTPS](/documentation/app-transport-security/) URLs for the appcast.
-  * Remember that your app bundle must have a [properly formatted `CFBundleVersion`](/documentation/publishing/#publishing-an-update) key in your `Info.plist`.
+  * Note that your app bundle must have a [properly formatted `CFBundleVersion`](https://developer.apple.com/documentation/bundleresources/information_property_list/cfbundleversion) key in your `Info.plist`.
 
 If you update regular app bundles and you have set up EdDSA signatures, you can use a tool to generate appcasts automatically:
 
@@ -140,6 +146,7 @@ Update process will be logged to `Console.app`. If anything goes wrong, you shou
 
 That's it! You're done! You don't have to do any more. But you might want to:
 
+* [Read more on publishing an update](/documentation/publishing/#publishing-an-update)
 * [Adjust Sparkle's settings and behavior](/documentation/customization/) for your product.
 * [Add update settings](/documentation/preferences-ui/) to your preferences panel.
 * [Add binary delta updates](/documentation/delta-updates/) to your application.

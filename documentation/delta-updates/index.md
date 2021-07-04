@@ -5,7 +5,7 @@ title: Delta Updates
 ---
 ## Delta Updates
 
-Sparkle supports "delta updates" for your application: when possible, users can download only the bits that have changed. These updates are much smaller and faster than DMG.
+Sparkle supports "delta updates" for your application: when possible, users can download only the bits that have changed. These updates can be much smaller to download and faster to install.
 
 For each new version you release, you can provide a list of `.delta` files in addition to the "full" archive of the version. Each `.delta` contains the information necessary to upgrade from a single older version.
 

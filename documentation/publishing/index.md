@@ -51,29 +51,34 @@ You need to create an `<item>` for your update in your appcast. See the [sample 
 
 Test your update, and you're done!
 
-## Downloading from a web site
-
-If you want to provide a download link, instead of having Sparkle download and install the update itself, you can omit the `<enclosure>` tag and add `<sparkle:version>` and `<link>` tags. For example:
-
-    <item>
-      <title>Version 1.2.4</title>
-      <sparkle:releaseNotesLink>https://example.com/release_notes_test.html</sparkle:releaseNotesLink>
-      <pubDate>Mon, 28 Jan 2013 14:30:00 +0500</pubDate>
-      <sparkle:version>1.2.4</sparkle:version>
-      <link>https://myproductwebsite.com</link>
-    </item>
+Note on `sparkle:version`: Our previous documentation used to recommend specifying `sparkle:version` (and `sparkle:shortVersionString`) as part of the `enclosure` item. While this works fine, for overall consistency we now recommend specifying them as top level items instead as shown here. This is supported across all versions of Sparkle.
 
 ## Delta updates
 
-If your app is large, or if you're updating primarily only a small part of it, you may find [delta updates](/documentation/delta-updates/) useful: they allow your users to only download the bits that have changed.
+If your app is large, or if you're updating primarily only a small part of it, you may find [delta updates](/documentation/delta-updates/) useful: they allow your users to only download the bits that have changed. The `generate_appcast` tool automatically generates delta updates.
 
 ## Internal build numbers
 
 If you use internal build numbers for your `CFBundleVersion` key and a human-readable `CFBundleShortVersionString`, you can make Sparkle hide the internal version from your users.
 
-Set the `sparkle:version` element in your item to the internal, machine-readable version (ie: "1248"). Then set a `sparkle:shortVersionString` element on in your item to the human-readable version (ie: "1.5.1").
+Set the `sparkle:version` element in your item to the internal, machine-readable version (ie: "1248"). Then set a `sparkle:shortVersionString` element on in your item to the human-readable version (ie: "1.5.1"). For example:
 
-Note that the internal version number (`CFBundleVersion` and `sparkle:version`) is intended to be machine-readable and is not generally suitable for formatted text.
+    <item>
+        <title>Version 1.5.1 (bug fixes)</title>
+        <link>https://myproductwebsite.com</link>
+        <sparkle:version>1248</sparkle:version>
+        <sparkle:shortVersionString>1.5.1</sparkle:shortVersionString>
+        <sparkle:releaseNotesLink>
+            https://example.com/release_notes/app_2.0.html
+        </sparkle:releaseNotesLink>
+        <pubDate>Mon, 05 Oct 2015 19:20:11 +0000</pubDate>
+        <enclosure url="https://example.com/downloads/app.zip.or.dmg.or.tar.etc"
+                   sparkle:edSignature="7cLALFUHSwvEJWSkV8aMreoBe4fhRa4FncC5NoThKxwThL6FDR7hTiPJh1fo2uagnPogisnQsgFgq6mGkt2RBw=="
+                   length="1623481"
+                   type="application/octet-stream" />
+    </item>
+
+Note that the internal version number (`CFBundleVersion` and `sparkle:version`) is intended to be machine-readable and is not generally suitable for formatted text or git changeset IDs.
 
 ## Minimum system version requirements
 
@@ -88,11 +93,15 @@ Add a `sparkle:minimumSystemVersion` child to the `<item>` in question specifyin
         <sparkle:minimumSystemVersion>10.11.0</sparkle:minimumSystemVersion>
     </item>
 
-Note that Sparkle only works with macOS 10.9 or later (macOS 10.11 or later for Sparkle 2), so that's the minimum version you can use.
+Note that Sparkle only works with macOS 10.9 or later (macOS 10.11 or later for Sparkle 2), so that's the lowest minimum version you can use.
+
+Sparkle also supports a `sparkle:maximumSystemVersion` element that can limit the maximum system version similarly.
+
+Additionally in Sparkle 2, if the user checks for new updates manually and the cannot update because of an operating system requirement, the standard updater alert will inform the user their operating system is incompatible and provide them an option to visit your website specified by the `<link>` element.
 
 ## Major upgrades
 
-If an update to your application is a major or paid upgrade, you may want to prevent the update from being applied automatically.
+If an update to your application is a major or paid upgrade, you may want to prevent the update from being installed automatically.
 
 Add a `sparkle:minimumAutoupdateVersion` child to the `<item>` in question specifying the major update's `<CFBundleVersion>`, such as "2.0":
 
@@ -106,8 +115,102 @@ Add a `sparkle:minimumAutoupdateVersion` child to the `<item>` in question speci
 If this value is set, it indicates the lowest version that can automatically update to the version referenced by the appcast (i.e. without showing the _update available_ GUI). Apps with a lower `CFBundleVersion` will always see the _update available_ GUI, regardless of their `SUAutomaticallyUpdate` user defaults setting.
 
 Additionally in Sparkle 2:
-* A developer can publish a new minor patch release preceding the major release and Sparkle will prefer to install the latest minor release available. For example, if 2.0 is marked as a major release (with `sparkle:minimumAutoupdateVersion` set), but 1.9.4 is available then 1.9.4 will be offered first.
-* A user can choose to skip out of future update alerts to a major upgrade. For example, if 2.0 is a major release offered and the user is on 1.9.4, they can choose to skip 2.0. Sparkle will confirm with the user if they want to skip automatic alerts for 2.0 and future updates (eg 2.1). The user can later undo this if they check for updates manually.
+* A developer can publish a new minor patch release preceding the major release and Sparkle will prefer to install the latest minor release available. For example, if 2.0 is marked as a major release (with `sparkle:minimumAutoupdateVersion` set to 2.0), but 1.9.4 is available then 1.9.4 will be offered first.
+* A user can choose to skip out of future update alerts to a major upgrade. For example, if 2.0 is a major release offered and the user is on 1.9.4, they can choose to skip 2.0. Sparkle will confirm with the user if they want to skip automatic alerts for 2.0 and future updates beyond it (eg 2.1). The user can later undo this if they check for updates manually.
+
+## Downloading from a web site
+
+If you want to provide a download link, instead of having Sparkle download and install the update itself, you can omit the `<enclosure>` tag and add `<sparkle:version>` and `<link>` tags. For example:
+
+    <item>
+      <title>Version 1.2.4</title>
+      <sparkle:version>1.2.4</sparkle:version>
+      <sparkle:releaseNotesLink>https://example.com/release_notes_test.html</sparkle:releaseNotesLink>
+      <pubDate>Mon, 28 Jan 2013 14:30:00 +0500</pubDate>
+      <link>https://myproductwebsite.com</link>
+    </item>
+
+Apps that use Sparkle 2 can use the new `<sparkle:informationalUpdate>` tag instead of omitting the `<enclosure>` tag. This also allows specifying which application versions should see an update as only informational:
+
+    <item>
+      <title>Version 1.2.4</title>
+      <sparkle:version>1.2.4</sparkle:version>
+      <sparkle:informationalUpdate>
+        <sparkle:version>1.2.3</sparkle:version>
+      </sparkle:informationalUpdate>
+      <sparkle:releaseNotesLink>https://example.com/release_notes_test.html</sparkle:releaseNotesLink>
+      <pubDate>Mon, 28 Jan 2013 14:30:00 +0500</pubDate>
+      <link>https://myproductwebsite.com</link>
+      <enclosure url="https://example.com/downloads/app.zip.or.dmg.or.tar.etc"
+                   sparkle:edSignature="7cLALFUHSwvEJWSkV8aMreoBe4fhRa4FncC5NoThKxwThL6FDR7hTiPJh1fo2uagnPogisnQsgFgq6mGkt2RBw=="
+                   length="1623481"
+                   type="application/octet-stream" />
+    </item>
+
+In this example, because `<sparkle:version>1.2.3</sparkle:version>` is specified in `<sparkle:informationalUpdate>`, only version `1.2.3` will see this update as an informational one with a download link. Other versions of the application will see this as an update they can install from inside the application. You can add more children to specify, for example, that version 1.2.2 should also see the update as informational. If you do not specify any children to `<sparkle:informationalUpdate>`, then the update is informational to all versions.
+
+## Critical updates
+
+Updates that are marked critical are shown to the user more promptly and do not let the user skip them. You can use the `<sparkle:criticalUpdate>` tag. For example, if version 1.2.4 is a critical update:
+
+    <item>
+      <title>Version 1.2.4</title>
+      <sparkle:version>1.2.4</sparkle:version>
+      <sparkle:releaseNotesLink>https://example.com/release_notes_test.html</sparkle:releaseNotesLink>
+      <pubDate>Mon, 28 Jan 2013 14:30:00 +0500</pubDate>
+      <link>https://myproductwebsite.com</link>
+      <sparkle:tags>
+        <sparkle:criticalUpdate></sparkle:criticalUpdate>
+      </sparkle:tags>
+      <enclosure url="https://example.com/downloads/app.zip.or.dmg.or.tar.etc"
+                   sparkle:edSignature="7cLALFUHSwvEJWSkV8aMreoBe4fhRa4FncC5NoThKxwThL6FDR7hTiPJh1fo2uagnPogisnQsgFgq6mGkt2RBw=="
+                   length="1623481"
+                   type="application/octet-stream" />
+    </item>
+
+Apps that use Sparkle 2 can use the newer `<sparkle:criticalUpdate>` tag that is a top-level element and not placed within `<sparkle:tags>`. Additionally, the version that was last critical can be specified. For example, when 1.2.5 is released you can specify that only versions less than 1.2.4 should treat this as a critical update:
+
+    <item>
+      <title>Version 1.2.5</title>
+      <sparkle:version>1.2.5</sparkle:version>
+      <sparkle:releaseNotesLink>https://example.com/release_notes_test.html</sparkle:releaseNotesLink>
+      <pubDate>Mon, 28 Jan 2013 14:30:00 +0500</pubDate>
+      <link>https://myproductwebsite.com</link>
+      <sparkle:criticalUpdate sparkle:version=1.2.4></sparkle:criticalUpdate>
+      <enclosure url="https://example.com/downloads/app.zip.or.dmg.or.tar.etc"
+                   sparkle:edSignature="7cLALFUHSwvEJWSkV8aMreoBe4fhRa4FncC5NoThKxwThL6FDR7hTiPJh1fo2uagnPogisnQsgFgq6mGkt2RBw=="
+                   length="1623481"
+                   type="application/octet-stream" />
+    </item>
+
+## Phased Group Rollouts
+
+Phased group rollouts allows distributing your update to users in different groups and phases. For example on the first day an update is posted, one group of your users may be notified of a new update, but the second group will only be notified of the update on the second day. And so on. This allows posting updates out in the field more gradually.
+
+This feature requires:
+* Adding a `<pubDate>` tag in your update item. The `E, dd MMM yyyy HH:mm:ss Z` date format will work.
+* Adding a `<sparkle:phasedRolloutInterval>` tag with the specified phased rollout interval between groups in seconds.
+
+For example:
+
+    <item>
+      <title>Version 1.2.5</title>
+      <sparkle:version>1.2.5</sparkle:version>
+      <sparkle:releaseNotesLink>https://example.com/release_notes_test.html</sparkle:releaseNotesLink>
+      <pubDate>Mon, 28 Jan 2013 14:30:00 +0500</pubDate>
+      <link>https://myproductwebsite.com</link>
+      <sparkle:phasedRolloutInterval>86400</sparkle:phasedRolloutInterval>
+      <enclosure url="https://example.com/downloads/app.zip.or.dmg.or.tar.etc"
+                   sparkle:edSignature="7cLALFUHSwvEJWSkV8aMreoBe4fhRa4FncC5NoThKxwThL6FDR7hTiPJh1fo2uagnPogisnQsgFgq6mGkt2RBw=="
+                   length="1623481"
+                   type="application/octet-stream" />
+    </item>
+
+This update item specifies the `phasedRolloutInterval` as 86400 seconds, or 1 day. This means that there is 1 day of interval between groups. Sparkle hardcodes the number of groups to 7, so this means that the update will be rolled out completely in 7 days and an update will be rolled out to a new group each day after the `pubDate`.
+
+Sparkle generates a random group ID in the application's user defaults using the `SUUpdateGroupIdentifier` key. This ID is sometimes re-generated (upon downloading an update) and is not transmitted to servers.
+
+Phased group rollouts do not take effect for updates that are marked critical or for when the user manually checks for new updates.
 
 ## Embedded release notes
 
