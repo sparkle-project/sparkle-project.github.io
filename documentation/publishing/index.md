@@ -176,7 +176,7 @@ Apps that use Sparkle 2 can use the newer `<sparkle:criticalUpdate>` tag that is
       <sparkle:releaseNotesLink>https://example.com/release_notes_test.html</sparkle:releaseNotesLink>
       <pubDate>Mon, 28 Jan 2013 14:30:00 +0500</pubDate>
       <link>https://myproductwebsite.com</link>
-      <sparkle:criticalUpdate sparkle:version=1.2.4></sparkle:criticalUpdate>
+      <sparkle:criticalUpdate sparkle:version="1.2.4"></sparkle:criticalUpdate>
       <enclosure url="https://example.com/downloads/app.zip.or.dmg.or.tar.etc"
                    sparkle:edSignature="7cLALFUHSwvEJWSkV8aMreoBe4fhRa4FncC5NoThKxwThL6FDR7hTiPJh1fo2uagnPogisnQsgFgq6mGkt2RBw=="
                    length="1623481"
