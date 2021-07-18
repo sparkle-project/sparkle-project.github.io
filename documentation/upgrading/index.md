@@ -47,6 +47,8 @@ org.sparkle-project.InstallerLauncher.xpc/Contents/MacOS/Updater.app/
 
 Sparkle 2 supports [sandboxed applications](/documentation/sandboxing) via integration of XPC Services. Note using the XPC Services are only required for sandboxed applications, which Sparkle 1 didn't support.
 
+If you are migrating from earlier alpha versions of Sparkle 2, you may find that some of the XPC Services are now optional and re-signing the services may not be necessary. Please read the updated [sandboxing guide](/documentation/sandboxing) for more information.
+
 If you use package (pkg) based updates, please see [Package Updates](/documentation/package-updates) for migration notes. In particular, your appcast items may need to include an appropriate installation type to help Sparkle decide if authorization is needed before starting the installer.
 
 Sparkle 2 enhances support for [major upgrades](/documentation/publishing#Major-upgrades).
@@ -66,7 +68,9 @@ Support for EdDSA (ed25519) signatures has been added. We recommend migrating to
 
 If you're using `generate_appcast` tool, that's all you need.
 
-If you were using manual DSA signing with the `sign_update` script, the script has been moved to `bin/old_dsa_scripts`. The new `sign_update` tool is only for EdDSA keys. To transition to new keys, you will need to use both tools.
+If you were using manual DSA signing with the `sign_update` script, the script has been moved to `bin/old_dsa_scripts`. The new `sign_update` tool is only for EdDSA keys. To transition to new keys, you may need to use both tools.
+
+Please visit [Migrating to EdDSA from DSA](/documentation/eddsa-migration) for more information.
 
 ## Upgrading from Sparkle 1.15 and older
 
