@@ -33,6 +33,14 @@ If you create a `SPUUpdater` instance programatically, you are now able to creat
 
 Downgrades were poorly supported in Sparkle 1 and are now unavailable in Sparkle 2 (via `SPARKLE_AUTOMATED_DOWNGRADES`).
 
+The behavior for the `-bestValidUpdateInAppcast:forUpdater:` delegate method on `SPUUpdaterDelegate` has changed. Please review its header documentation for more information. In short:
+* Delta updates cannot be returned. A top level item must be returned.
+* Constructing new appcast items is strongly discouraged.
+* Using this method when [channels](/documentation/publishing#channels) or [other features](/documentation/publishing) can be used instead is discouraged.
+* An empty update can now be returned (via `SUAppcastItem.emptyAppcastItem`)
+* An update whose version is below the current application's version should not be returned if the current application's version is available in the appcast
+* Sparkle filters update items for minimum/maximum OS version requirements before calling this method now
+
 If you have scripts that reference Sparkle.framework's helper tools, here are the new paths (note Autoupdate is now a command line tool and the UI bits moved to Updater.app):
 ```
 Sparkle.framework/Autoupdate (symbolic link to Sparkle.framework/Versions/A/Autoupdate)
