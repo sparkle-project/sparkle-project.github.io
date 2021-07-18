@@ -35,7 +35,6 @@ Downgrades were poorly supported in Sparkle 1 and are now unavailable in Sparkle
 
 The behavior for the `-bestValidUpdateInAppcast:forUpdater:` delegate method on `SPUUpdaterDelegate` has changed. Please review its header documentation for more information. In short:
 * Delta updates cannot be returned. A top level item must be returned.
-* Constructing new appcast items is strongly discouraged.
 * Using this method when [channels](/documentation/publishing#channels) or [other features](/documentation/publishing) can be used instead is discouraged.
 * An empty update can now be returned (via `SUAppcastItem.emptyAppcastItem`)
 * An update whose version is below the current application's version should not be returned if the current application's version is available in the appcast
