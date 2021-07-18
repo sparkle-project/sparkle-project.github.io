@@ -183,7 +183,7 @@ Apps that use Sparkle 2 can use the newer `<sparkle:criticalUpdate>` tag that is
                    type="application/octet-stream" />
     </item>
 
-## Phased Group Rollouts
+## Phased group rollouts
 
 Phased group rollouts allows distributing your update to users in different groups and phases. For example on the first day an update is posted, one group of your users may be notified of a new update, but the second group will only be notified of the update on the second day. And so on. This allows posting updates out in the field more gradually.
 
@@ -212,6 +212,55 @@ Sparkle generates a random group ID in the application's user defaults using the
 
 Phased group rollouts do not take effect for updates that are marked critical or for when the user manually checks for new updates.
 
+## Channels
+
+Sparkle 2 provides specifying what channel an update is on. Examples of channels may include beta updates or updates that are staged and not ready for production. By default, updaters only look for updates that are on the default channel.
+
+Updates are posted on the default channel unless specified otherwise. This example shows an update posted on the "beta" channel:
+
+
+    <item>
+      <title>Version 2.0 (Beta 1)</title>
+      <sparkle:channel>beta</sparkle:channel>
+      <sparkle:version>20001</sparkle:version>
+      <sparkle:shortVersionString>2.0b1</sparkle:shortVersionString>
+    </item>
+
+Only updaters that are allowed to look in the beta channel can find this update. An updater may use `-[SPUUpdaterDelegate allowedChannelsForUpdater:]` to find this update in addition to updates that are on the default channel:
+
+    func allowedChannels(for updater: SPUUpdater) -> Set<String> {
+        return Set(["beta"])
+    }
+
+Note that an updater cannot exclude itself from the default channel. Channels are intended to be a way to branch off updates to your application until newer updates are ready to come back to the default channel.
+
+Channels can only be used when all of your users downloading your appcast are running a version of Sparkle that supports them. Sparkle 2 beta added them as of [June 27, 2021](https://github.com/sparkle-project/Sparkle/pull/1879). You can expedite this process by [switching to a new appcast](#upgrading-to-newer-features). Otherwise older versions of Sparkle may need to set the feed url programmatically below.
+
+
+## Setting the feed programmatically
+
+The appcast feed URL can be changed programatically at runtime. If the feed URL is always static and the same, please set it in the Info.plist with the `SUFeedURL` key instead. Even if you have a secondary appcast feed, we recommend keeping a default one specified in the application's Info.plist.
+
+If you want to set the feed programmatically to provide beta/nightly updates, please try to adopt [channels](#channels) in the future instead. If you are supporting older Sparkle versions, continue reading on.
+
+The recommended way to change the feed URL programatically is using `-[SUUpdater feedURLStringForUpdater:]` (or `-[SPUUpdater feedURLStringForUpdater:]` in Sparkle 2).
+
+Here is an example:
+
+    func feedURLString(for updater: SPUUpdater) -> String? {
+        return UserDefaults.standard.bool(forKey: "beta") ? BETA_FEED_URL_STRING : STABLE_FEED_URL_STRING
+    }
+
+Sparkle also has `-setFeedURL:` or `feedURL` property on the updater which we do not recommend using due to race conditions and user defaults permanence. If you wish to migrate away from this API, you should set the feed URL to nil using this API to clear out any custom feed you have previously set in the bundle's user defaults, so Sparkle doesn't automatically read it.
+
+## Upgrading to newer features
+
+To make use of Sparkle's newest features (such as channels or dropping DSA signatures), you may not be able to adopt these features unless all your users are using a recent version of Sparkle.
+
+One approach is just waiting until the majority of your users are running a recent version of Sparkle and your application.
+
+A second approach is migrating to a new `SUFeedURL` in your new application's `Info.plist`. This ensures that the application versions using your newer appcast have access to newer features.
+
 ## Embedded release notes
 
 Instead of linking external release notes using the `<sparkle:releaseNotesLink>` element, you can also embed the release notes directly in the appcast item, inside a `<description>` element. If you wrap it in `<![CDATA[ ... ]]>`, you can use unescaped HTML.
@@ -238,6 +287,44 @@ You can provide additional release notes for localization purposes. For instance
     <sparkle:releaseNotesLink xml:lang="de">https://example.com/app/2.0_German.html</sparkle:releaseNotesLink>
 
 Use the `xml:lang` attribute with the appropriate two-letter country code for each localization. You can also use this attribute with the `<description>` tag.
+
+## Extending the appcast
+
+You can define your own top level elements in the appcast item using your own custom XML namespace (specified by `xmlns`). Here is an example defining `xmlns:myapp` namespace and creating a `myapp:messageOfTheDay` element:
+
+    <?xml version="1.0" encoding="utf-8"?>
+    <rss version="2.0" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" xmlns:myapp="https://myproductpage.com/" xmlns:dc="http://purl.org/dc/elements/1.1/">
+      <channel>
+        <title>My App Changelog</title>
+        <language>en</language>
+          <item>
+            <title>Version 2.0</title>
+            <myapp:messageOfTheDay>Tip: you can do X by using Y</myapp:messageOfTheDay>
+            <!-- The rest of the feed item -->
+          </item>
+      </channel>
+    </rss>
+
+In Sparkle 2, one place to parse this custom property is in `-[SPUUpdaterDelegate updaterDidNotFindUpdate:error:]`. Here's an example:
+
+    func updaterDidNotFindUpdate(_ updater: SPUUpdater, error: Error) {
+        let userInfo = (error as NSError).userInfo
+        guard
+            let latestUpdateItem = userInfo[SPULatestAppcastItemFoundKey] as? SUAppcastItem,
+            let userInitiated = userInfo[SPUNoUpdateFoundUserInitiatedKey] as? Bool,
+            let reasonValue = userInfo[SPUNoUpdateFoundReasonKey] as? OSStatus,
+            let reason = SPUNoUpdateFoundReason(rawValue: reasonValue),
+            let messageOfTheDay = latestUpdateItem.propertiesDictionary["myapp:messageOfTheDay"] as? String else {
+            return
+        }
+        
+        if !userInitiated &&
+            !latestUpdateItem.isMajorUpgrade &&
+            !latestUpdateItem.isCriticalUpdate &&
+            (reason == .onLatestVersion || reason == .onNewerThanLatestVersion) {
+            print(messageOfTheDay)
+        }
+    }
 
 ## Alternate download locations for other operating systems
 

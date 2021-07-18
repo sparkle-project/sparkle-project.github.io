@@ -12,7 +12,7 @@ Note using Sparkle in a sandboxed application is only supported in Sparkle 2.0, 
 
 In order for Sparkle to work in a sandboxed application, the application must call out to XPC Services to perform the updating and installation. Only the InstallerLauncher XPC Service is strictly required. The other serices are optional depending on your use case.
 
-In an extracted `Sparkle-2.0.0.tar.xz` distribution in the `XPCServices/` directory you will notice:
+In an extracted `Sparkle-2*.tar.xz` distribution in the `XPCServices/` directory you will notice:
 
 * org.sparkle-project.InstallerLauncher.xpc
 * org.sparkle-project.Downloader.xpc & org.sparkle-project.Downloader.entitlements
@@ -66,7 +66,7 @@ If you can:
 * Use Xcode's Archive Organizer to [Distribute your App](/documentation#4-distributing-your-app), which will re-sign your XPC Services with a Developer ID certificate and preserve entitlements / hardened runtime during export
 * Avoid using the Installer Connection & Status Services above, which both need entitlements targetting your application's bundle identifier
 
-Then you can probably skip onto [Adding the XPC Services](#adding-the-xpc-services) section.
+Then you can probably skip onto [Adding the XPC Services](#adding-the-xpc-services) section and do not need to specially re-sign these services.
 
 Otherwise if you use alternate methods of distributing your application, or you need to use a different certificate for development, you can code sign these services by running the `bin/codesign_xpc_service` script. For example:
 
@@ -93,4 +93,4 @@ I used "Developer ID Application" for my certificate; you may need to adjust thi
 
 ### Testing
 
-Due to the XPC Services being code signed with the Hardened Runtime enabled by default, Xcode cannot debug the XPC Services and you may see that updating does not work when your application is attached to Xcode's debugger. You can work around this either by editing your project's Scheme and disabling *Debug XPC services used by app* or by testing your application detached from Xcode.
+Due to the XPC Services being code signed with the Hardened Runtime enabled by default, Xcode may not be able to debug the XPC Services and you may see that updating does not work when your application is attached to Xcode's debugger. You can work around this either by editing your project's Scheme and disabling *Debug XPC services used by app* or by testing your application detached from Xcode.

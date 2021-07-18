@@ -33,6 +33,13 @@ If you create a `SPUUpdater` instance programatically, you are now able to creat
 
 Downgrades were poorly supported in Sparkle 1 and are now unavailable in Sparkle 2 (via `SPARKLE_AUTOMATED_DOWNGRADES`).
 
+The behavior for the `-bestValidUpdateInAppcast:forUpdater:` delegate method on `SPUUpdaterDelegate` has changed. Please review its header documentation for more information. In short:
+* Delta updates cannot be returned. A top level item must be returned.
+* Using this method when [channels](/documentation/publishing#channels) or [other features](/documentation/publishing) can be used instead is discouraged.
+* An empty update can now be returned (via `SUAppcastItem.emptyAppcastItem`)
+* An update whose version is below the current application's version should not be returned if the current application's version is available in the appcast
+* Sparkle filters update items for minimum/maximum OS version requirements before calling this method now
+
 If you have scripts that reference Sparkle.framework's helper tools, here are the new paths (note Autoupdate is now a command line tool and the UI bits moved to Updater.app):
 ```
 Sparkle.framework/Autoupdate (symbolic link to Sparkle.framework/Versions/A/Autoupdate)
@@ -46,6 +53,8 @@ org.sparkle-project.InstallerLauncher.xpc/Contents/MacOS/Updater.app/
 ```
 
 Sparkle 2 supports [sandboxed applications](/documentation/sandboxing) via integration of XPC Services. Note using the XPC Services are only required for sandboxed applications, which Sparkle 1 didn't support.
+
+If you are migrating from earlier alpha versions of Sparkle 2, you may find that some of the XPC Services are now optional and re-signing the services may not be necessary. Please read the updated [sandboxing guide](/documentation/sandboxing) for more information.
 
 If you use package (pkg) based updates, please see [Package Updates](/documentation/package-updates) for migration notes. In particular, your appcast items may need to include an appropriate installation type to help Sparkle decide if authorization is needed before starting the installer.
 
@@ -66,7 +75,9 @@ Support for EdDSA (ed25519) signatures has been added. We recommend migrating to
 
 If you're using `generate_appcast` tool, that's all you need.
 
-If you were using manual DSA signing with the `sign_update` script, the script has been moved to `bin/old_dsa_scripts`. The new `sign_update` tool is only for EdDSA keys. To transition to new keys, you will need to use both tools.
+If you were using manual DSA signing with the `sign_update` script, the script has been moved to `bin/old_dsa_scripts`. The new `sign_update` tool is only for EdDSA keys. To transition to new keys, you may need to use both tools.
+
+Please visit [Migrating to EdDSA from DSA](/documentation/eddsa-migration) for more information.
 
 ## Upgrading from Sparkle 1.15 and older
 
