@@ -20,7 +20,7 @@ Read the below sections for more details. Chances are they apply to you as you p
 
 ## Upgrading from Sparkle 1.21 or later for Developer ID signed applications
 
-If all of your users are running Sparkle 1.21 or later which introduced EdDSA support and your old and new updates are signed with the same Apple Developer ID code signing certificate, you are able to just remove the DSA public key (`SUPublicDSAKeyFile`) in your new update and remove the DSA signature (`sparkle:dsaSignature`) in your appcast.
+If all of your users are running Sparkle 1.21 or later which introduced EdDSA support and your old and new updates are signed with the same Apple Developer ID code signing certificate, you are able to just remove the DSA public key (`SUPublicDSAKeyFile`) in your new update and remove the DSA signature (`sparkle:dsaSignature`) in your appcast. Your new update will need a EdDSA public key (`SUPublicEDKey`) and EdDSA signature (`sparkle:edSignature`) in the appcast.
 
 This works because Sparkle uses the matching Apple code signature to trust the change in Sparkle public keys in your new application update. Note to test this, you may need to run a build of your application that uses the same code signing certificate (and not one used only for development).
 
