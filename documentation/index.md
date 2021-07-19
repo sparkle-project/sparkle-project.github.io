@@ -53,6 +53,8 @@ These instructions are for regular .app bundles. If you want to update a non-app
 
 If you are using Sparkle 2, `SUUpdater` is a deprecated stub. While it is still functional for transitional purposes, new applications will want to use `SPUStandardUpdaterController` in the above steps instead.
 
+Sparkle can also be instantiated and [set up programmatically](/documentation/programatic-setup).
+
 ### 3. Segue for security concerns
 
 Since Sparkle is downloading executable code to your users' systems, you must be very careful about security. To let Sparkle know that a downloaded update is not corrupted and came from you (instead of a malicious attacker), we recommend:
