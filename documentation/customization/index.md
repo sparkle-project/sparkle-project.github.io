@@ -147,7 +147,7 @@ If these methods aren't enough to do what you need, you're going to have to dig 
 
 #### Calls to SPUUpdater
 
-The `SPUUpdater` object is the main controller for the updating system in your app. If you are using `SPUStandardUpdaterController` in a nib, you can retrieve the updater via its `updater` property. Otherwise you will have had to create an `SPUUpdater` and start the updater (`-startUpdater:error:`) yourself.
+The `SPUUpdater` object is the main controller for the updating system in your app. If you are using `SPUStandardUpdaterController`, you can retrieve the updater via its `updater` property. Otherwise you will have had to create an `SPUStandardUpdaterController` or `SPUUpdater` and may need to start the updater (`-startUpdater` or `-startUpdater:error:` respectively) yourself.
 
 Once you have the `SPUUpdater` instance, there are a few interesting accessors you could use. Please use them only if you need dynamic behavior (e.g. user preferences). Do not use these functions to set default configuration. Use Info.plist keys to set default configuration instead.
 
@@ -164,7 +164,7 @@ Once you have the `SPUUpdater` instance, there are a few interesting accessors y
 
     @property (nonatomic) BOOL automaticallyDownloadsUpdates;
 
-There is a risk of race conditions. If you want to make sure these settings are changed before the first automatic update check, you should do this as soon as possible. For an application instantiating `SPUStandardUpdaterController` in a nib, this will be in the `NSApplication` delegate method `-applicationWillFinishLaunching:`. Otherwise this will be right after you instantiate a `SPUUpdater` instance in your code.
+There is a risk of race conditions. If you want to make sure these settings are changed before the first automatic update check, you should do this as soon as possible. For an application instantiating `SPUStandardUpdaterController` in a nib, this will be in the `NSApplication` delegate method `-applicationWillFinishLaunching:`. Otherwise this will be right after a `SPUUpdater` instance is instantiated and before you start the updater in your code.
 
 A few methods of interest if you are instantiating `SPUUpdater` programmatically:
 
@@ -191,7 +191,7 @@ Properties of interest if you are instantiating the standard user driver `SPUSta
     // If you were using -[SUUpdater updateInProgress] in Sparkle 1.x, you can use !canCheckForUpdates instead.
     @property (nonatomic, readonly) BOOL canCheckForUpdates;
 
-These are properties of interest if you are using `SPUStandardUpdaterController`. You should hook these up in Xcode's interface builder and not programmatically.
+These are properties of interest if you are using `SPUStandardUpdaterController`. You should hook the outlets in Xcode's interface builder and not programmatically.
 
     // Interface builder outlet for the updater's delegate
     @property (nonatomic, weak, nullable) IBOutlet id<SPUUpdaterDelegate> updaterDelegate;
@@ -239,12 +239,8 @@ You can control the SPUUpdater's behavior a little more closely by providing it 
 
     - (void)updater:(SPUUpdater *)updater didFinishLoadingAppcast:(SUAppcast *)appcast;
 
-    // If you're using special logic or extensions in your appcast, implement
-    // this to use your own logic for finding a valid update, if any, in the given appcast.
-    - (nullable SUAppcastItem *)bestValidUpdateInAppcast:(SUAppcast *)appcast forUpdater:(SPUUpdater *)updater;
-
     - (void)updater:(SPUUpdater *)updater didFindValidUpdate:(SUAppcastItem *)item;
-    - (void)updaterDidNotFindUpdate:(SPUUpdater *)updater;
+    - (void)updaterDidNotFindUpdate:(SPUUpdater *)updater error:(NSError *)error;
 
     // Sent immediately before installing the specified update.
     - (void)updater:(SPUUpdater *)updater willInstallUpdate:(SUAppcastItem *)item;
@@ -255,6 +251,13 @@ You can control the SPUUpdater's behavior a little more closely by providing it 
 
     // Called immediately before relaunching.
     - (BOOL)updaterShouldRelaunchApplication:(SPUUpdater *)updater;
+
+    // Specifies what update channels the updater is allowed to look in
+    // Useful for eg beta updates
+    - (NSSet<NSString *> *)allowedChannelsForUpdater:(SPUUpdater *)updater;
+
+    // Specifies what feed URL to use
+    - (nullable NSString *)feedURLStringForUpdater:(SPUUpdater *)updater;
 
     // This method allows you to provide a custom version comparator.
     // If you don't implement this method or return nil, the standard version
