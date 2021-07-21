@@ -14,7 +14,7 @@ This guide assumes you are currently shipping updates with a DSA public key usin
 
 The most latest versions of Sparkle have complete support in dropping DSA public keys and signatures in new application updates. This includes Sparkle 1.27 (not yet released) and Sparkle 2 beta (as of [July 10, 2021](https://github.com/sparkle-project/Sparkle/pull/1888)). These versions are also optimized by not verifying DSA signatures if both EdDSA and DSA keys are present.
 
-You may first need to ship an update that provides both DSA and EdDSA public keys (`SUPublicDSAKeyFile` and `SUPublicEDKey`) and signatures (`sparkle:dsaSignature` and `sparkle:edSignature`) however before being able to drop DSA. Application updates signed with a Developer ID certifiate may be an exception and be able to shortcut this though.
+You may first need to ship an update that provides both DSA and EdDSA public keys (`SUPublicDSAKeyFile` and `SUPublicEDKey`) and signatures (`sparkle:dsaSignature` and `sparkle:edSignature`) however before being able to drop DSA. Application updates signed with a Developer ID certificate may be an exception and be able to shortcut this though.
 
 Read the below sections for more details. Chances are they apply to you as you probably have users running earlier versions of Sparkle.
 
