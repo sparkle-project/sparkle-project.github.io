@@ -312,8 +312,10 @@ You can embed just marked up text (it'll be displayed using standard system font
 
 You can provide additional release notes for localization purposes. For instance:
 
-    <sparkle:releaseNotesLink>https://example.com/app/2.0.html</sparkle:releaseNotesLink>
-    <sparkle:releaseNotesLink xml:lang="de">https://example.com/app/2.0_German.html</sparkle:releaseNotesLink>
+```xml
+<sparkle:releaseNotesLink>https://example.com/app/2.0.html</sparkle:releaseNotesLink>
+<sparkle:releaseNotesLink xml:lang="de">https://example.com/app/2.0_German.html</sparkle:releaseNotesLink>
+```
 
 Use the `xml:lang` attribute with the appropriate two-letter country code for each localization. You can also use this attribute with the `<description>` tag.
 
@@ -366,7 +368,7 @@ Sparkle is available for [Windows](http://winsparkle.org).
 To keep the appcast file compatible with the standard Sparkle implementation, a new tag has to be used for cross platform support. It is suggested to use the following to specify downloads for non macOS systems:
 
 ```xml
-<sparkle:enclosure sparkle:os="os_name" ...>
+<sparkle:enclosure sparkle:os="os_name" ... />
 ```
 
 Replace _os_name_ with either "windows" or "linux", respectively (mind the lower case!). Feel free to add other OS names as needed.
