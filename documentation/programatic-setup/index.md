@@ -8,23 +8,25 @@ title: Setting up Sparkle programmatically
 
 Here is an example of creating an updater in Sparkle 2 (beta) with Cocoa programmatically. It hooks up a menu item's target/action for checking for updates.
 
-    import Cocoa
-    import Sparkle
+```swift
+import Cocoa
+import Sparkle
 
-    @NSApplicationMain
-    @objc class AppDelegate: NSObject, NSApplicationDelegate {
-        @IBOutlet var checkForUpdatesMenuItem: NSMenuItem! // Hooked up in Interface Builder
-        
-        let updaterController = SPUStandardUpdaterController(startingUpdater: false, updaterDelegate: nil, userDriverDelegate: nil)
-        
-        func applicationDidFinishLaunching(_ notification: Notification) {
-            checkForUpdatesMenuItem.target = updaterController
-            checkForUpdatesMenuItem.action = #selector(SPUStandardUpdaterController.checkForUpdates(_:))
-            
-            // SPUStandardUpdaterController was instantiated by not starting the updater automatically
-            updaterController.startUpdater()
-        }
+@NSApplicationMain
+@objc class AppDelegate: NSObject, NSApplicationDelegate {
+    @IBOutlet var checkForUpdatesMenuItem: NSMenuItem! // Hooked up in Interface Builder
+
+    let updaterController = SPUStandardUpdaterController(startingUpdater: false, updaterDelegate: nil, userDriverDelegate: nil)
+
+    func applicationDidFinishLaunching(_ notification: Notification) {
+        checkForUpdatesMenuItem.target = updaterController
+        checkForUpdatesMenuItem.action = #selector(SPUStandardUpdaterController.checkForUpdates(_:))
+
+        // SPUStandardUpdaterController was instantiated by not starting the updater automatically
+        updaterController.startUpdater()
     }
+}
+```
 
 In Sparkle 2 you can also choose to instantiate and use `SPUUpdater` directly instead of the `SPUStandardUpdaterController` wrapper if you need more control over your user interface or what bundle to update.
 

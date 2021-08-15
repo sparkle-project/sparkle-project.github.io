@@ -33,109 +33,115 @@ The `SUUpdater` object is the main controller for the updating system in your ap
 
 Once you have the `SUUpdater` instance, there are a few interesting accessors you could use. Please use them only if you need dynamic behavior (e.g. user preferences). Do not use these functions to set default configuration. Use Info.plist keys to set default configuration instead.
 
-    - (void)setAutomaticallyChecksForUpdates:(BOOL)automaticallyChecks;
-    - (BOOL)automaticallyChecksForUpdates;
+```objc
+- (void)setAutomaticallyChecksForUpdates:(BOOL)automaticallyChecks;
+- (BOOL)automaticallyChecksForUpdates;
 
-    - (void)setUpdateCheckInterval:(NSTimeInterval)interval;
-    - (NSTimeInterval)updateCheckInterval;
+- (void)setUpdateCheckInterval:(NSTimeInterval)interval;
+- (NSTimeInterval)updateCheckInterval;
 
-    - (void)setFeedURL:(NSURL *)feedURL;
-    - (NSURL *)feedURL;
+- (void)setFeedURL:(NSURL *)feedURL;
+- (NSURL *)feedURL;
 
-    - (void)setSendsSystemProfile:(BOOL)sendsSystemProfile;
-    - (BOOL)sendsSystemProfile;
+- (void)setSendsSystemProfile:(BOOL)sendsSystemProfile;
+- (BOOL)sendsSystemProfile;
 
-    - (void)setAutomaticallyDownloadsUpdates:(BOOL)automaticallyDownloadsUpdates;
-    - (BOOL)automaticallyDownloadsUpdates;
+- (void)setAutomaticallyDownloadsUpdates:(BOOL)automaticallyDownloadsUpdates;
+- (BOOL)automaticallyDownloadsUpdates;
+```
 
 There is a risk of race conditions. If you want to make sure these settings are changed before the first automatic update check, you should do this in the `NSApplication` delegate method `-applicationWillFinishLaunching:`. For a non-app bundle you should then make the changes immediately after you first create the `SUUpdater` instance in your code.
 
 A few more methods of interest:
 
-    // This IBAction is meant for a main menu item. Hook up any menu item to this action,
-    // and Sparkle will check for updates and report back its findings through UI.
-    - (IBAction)checkForUpdates:sender;
+```objc
+// This IBAction is meant for a main menu item. Hook up any menu item to this action,
+// and Sparkle will check for updates and report back its findings through UI.
+- (IBAction)checkForUpdates:sender;
 
-    // This kicks off an update meant to be programmatically initiated. That is,
-    // it will display no UI unless it actually finds an update, in which case it
-    // proceeds as usual. If the automated downloading is turned on, however,
-    // this will invoke that behavior, and if an update is found, it will be
-    // downloaded and prepped for installation.
-    //
-    // You do not need to call this. Sparkle calls it automatically according to
-    // the update schedule.
-    - (void)checkForUpdatesInBackground;
+// This kicks off an update meant to be programmatically initiated. That is,
+// it will display no UI unless it actually finds an update, in which case it
+// proceeds as usual. If the automated downloading is turned on, however,
+// this will invoke that behavior, and if an update is found, it will be
+// downloaded and prepped for installation.
+//
+// You do not need to call this. Sparkle calls it automatically according to
+// the update schedule.
+- (void)checkForUpdatesInBackground;
 
-    // This begins a "probing" check for updates which will not actually offer to
-    // update to that version. The delegate methods, though, (up to updater:didFindValidUpdate:
-    // and updaterDidNotFindUpdate:), are called, so you can use that information in your UI.
-    // Essentially, you can use this to UI-lessly determine if there's an update.
-    - (void)checkForUpdateInformation;
+// This begins a "probing" check for updates which will not actually offer to
+// update to that version. The delegate methods, though, (up to updater:didFindValidUpdate:
+// and updaterDidNotFindUpdate:), are called, so you can use that information in your UI.
+// Essentially, you can use this to UI-lessly determine if there's an update.
+- (void)checkForUpdateInformation;
 
-    // Date of last update check. Returns nil if no check has been performed.
-    - (NSDate *)lastUpdateCheckDate;
+// Date of last update check. Returns nil if no check has been performed.
+- (NSDate *)lastUpdateCheckDate;
 
-    // Call this to appropriately schedule or cancel the update checking timer according
-    // to the preferences for time interval and automatic checks. If this SUUpdater instance
-    // was not present during the application's launch, you must call this method to start
-    // the update cycle explicitly.
-    - (void)resetUpdateCycle;
+// Call this to appropriately schedule or cancel the update checking timer according
+// to the preferences for time interval and automatic checks. If this SUUpdater instance
+// was not present during the application's launch, you must call this method to start
+// the update cycle explicitly.
+- (void)resetUpdateCycle;
 
-    - (BOOL)updateInProgress;
+- (BOOL)updateInProgress;
 
-    - (void)setDelegate:(id)delegate; // See below for more information on the delegate.
-    - delegate;
+- (void)setDelegate:(id)delegate; // See below for more information on the delegate.
+- delegate;
+```
 
 #### SUUpdater delegate methods
 
 You can control the SUUpdater's behavior a little more closely by providing it with a delegate. Here are the delegate methods you might implement:
 
-    // Use this to override the default behavior for Sparkle prompting the
-    // user about automatic update checks. You could use this to make Sparkle
-    // prompt for permission on the first launch instead of the second.
-    - (BOOL)updaterShouldPromptForPermissionToCheckForUpdates:(SUUpdater *)bundle;
+```objc
+// Use this to override the default behavior for Sparkle prompting the
+// user about automatic update checks. You could use this to make Sparkle
+// prompt for permission on the first launch instead of the second.
+- (BOOL)updaterShouldPromptForPermissionToCheckForUpdates:(SUUpdater *)bundle;
 
-    - (void)updater:(SUUpdater *)updater didFinishLoadingAppcast:(SUAppcast *)appcast;
+- (void)updater:(SUUpdater *)updater didFinishLoadingAppcast:(SUAppcast *)appcast;
 
-    // If you're using special logic or extensions in your appcast, implement
-    // this to use your own logic for finding a valid update, if any, in the given appcast.
-    - (SUAppcastItem *)bestValidUpdateInAppcast:(SUAppcast *)appcast
-                       forUpdater:(SUUpdater *)bundle;
+// If you're using special logic or extensions in your appcast, implement
+// this to use your own logic for finding a valid update, if any, in the given appcast.
+- (SUAppcastItem *)bestValidUpdateInAppcast:(SUAppcast *)appcast
+                   forUpdater:(SUUpdater *)bundle;
 
-    - (void)updater:(SUUpdater *)updater didFindValidUpdate:(SUAppcastItem *)update;
-    - (void)updaterDidNotFindUpdate:(SUUpdater *)update;
+- (void)updater:(SUUpdater *)updater didFindValidUpdate:(SUAppcastItem *)update;
+- (void)updaterDidNotFindUpdate:(SUUpdater *)update;
 
-    // Sent immediately before installing the specified update.
-    - (void)updater:(SUUpdater *)updater willInstallUpdate:(SUAppcastItem *)update;
+// Sent immediately before installing the specified update.
+- (void)updater:(SUUpdater *)updater willInstallUpdate:(SUAppcastItem *)update;
 
-    // Return YES to delay the relaunch until you do some processing.
-    // Invoke the provided NSInvocation to continue the relaunch.
-    - (BOOL)updater:(SUUpdater *)updater
-            shouldPostponeRelaunchForUpdate:(SUAppcastItem *)update
-            untilInvoking:(NSInvocation *)invocation;
+// Return YES to delay the relaunch until you do some processing.
+// Invoke the provided NSInvocation to continue the relaunch.
+- (BOOL)updater:(SUUpdater *)updater
+        shouldPostponeRelaunchForUpdate:(SUAppcastItem *)update
+        untilInvoking:(NSInvocation *)invocation;
 
-    // Called immediately before relaunching.
-    - (void)updaterWillRelaunchApplication:(SUUpdater *)updater;
+// Called immediately before relaunching.
+- (void)updaterWillRelaunchApplication:(SUUpdater *)updater;
 
-    // Called if the application has been relaunched from an update
-    - (void)updaterDidRelaunchApplication:(SUUpdater *)updater;
+// Called if the application has been relaunched from an update
+- (void)updaterDidRelaunchApplication:(SUUpdater *)updater;
 
-    // This method allows you to provide a custom version comparator.
-    // If you don't implement this method or return nil, the standard version
-    // comparator will be used. See SUVersionComparisonProtocol.h for more.
-    - (id <SUVersionComparison>)versionComparatorForUpdater:(SUUpdater *)updater;
+// This method allows you to provide a custom version comparator.
+// If you don't implement this method or return nil, the standard version
+// comparator will be used. See SUVersionComparisonProtocol.h for more.
+- (id <SUVersionComparison>)versionComparatorForUpdater:(SUUpdater *)updater;
 
-    // Returns the path which is used to relaunch the client after the update
-    // is installed. By default, the path of the host bundle.
-    - (NSString *)pathToRelaunchForUpdater:(SUUpdater *)updater;
+// Returns the path which is used to relaunch the client after the update
+// is installed. By default, the path of the host bundle.
+- (NSString *)pathToRelaunchForUpdater:(SUUpdater *)updater;
 
-    // This method allows you to add extra parameters to the appcast URL,
-    // potentially based on whether or not Sparkle will also be sending along
-    // the system profile. This method should return an array of dictionaries
-    // with keys: "key", "value", "displayKey", "displayValue", the latter two
-    // being human-readable variants of the former two.
-    - (NSArray *)feedParametersForUpdater:(SUUpdater *)updater
-                 sendingSystemProfile:(BOOL)sendingProfile;
+// This method allows you to add extra parameters to the appcast URL,
+// potentially based on whether or not Sparkle will also be sending along
+// the system profile. This method should return an array of dictionaries
+// with keys: "key", "value", "displayKey", "displayValue", the latter two
+// being human-readable variants of the former two.
+- (NSArray *)feedParametersForUpdater:(SUUpdater *)updater
+             sendingSystemProfile:(BOOL)sendingProfile;
+```
 
 #### Other options
 
@@ -151,122 +157,134 @@ The `SPUUpdater` object is the main controller for the updating system in your a
 
 Once you have the `SPUUpdater` instance, there are a few interesting accessors you could use. Please use them only if you need dynamic behavior (e.g. user preferences). Do not use these functions to set default configuration. Use Info.plist keys to set default configuration instead.
 
-    @property (nonatomic) BOOL automaticallyChecksForUpdates;
+```objc
+@property (nonatomic) BOOL automaticallyChecksForUpdates;
 
-    @property (nonatomic) NSTimeInterval updateCheckInterval;
+@property (nonatomic) NSTimeInterval updateCheckInterval;
 
-    @property (nonatomic, readonly) NSURL *feedURL;
+@property (nonatomic, readonly) NSURL *feedURL;
 
-    // Using this method is discouraged. Consider -[SPUUpdaterDelegate feedURLStringForUpdater:] or -[SPUUpdaterDelegate feedParametersForUpdater:sendingSystemProfile:] instead.
-    - (void)setFeedURL:(NSURL *)feedURL;
+// Using this method is discouraged. Consider -[SPUUpdaterDelegate feedURLStringForUpdater:] or -[SPUUpdaterDelegate feedParametersForUpdater:sendingSystemProfile:] instead.
+- (void)setFeedURL:(NSURL *)feedURL;
 
-    @property (nonatomic) BOOL sendsSystemProfile;
+@property (nonatomic) BOOL sendsSystemProfile;
 
-    @property (nonatomic) BOOL automaticallyDownloadsUpdates;
+@property (nonatomic) BOOL automaticallyDownloadsUpdates;
+```
 
 There is a risk of race conditions. If you want to make sure these settings are changed before the first automatic update check, you should do this as soon as possible. For an application instantiating `SPUStandardUpdaterController` in a nib, this will be in the `NSApplication` delegate method `-applicationWillFinishLaunching:`. Otherwise this will be right after a `SPUUpdater` instance is instantiated and before you start the updater in your code.
 
 A few methods of interest if you are instantiating `SPUUpdater` programmatically:
 
-    // This is the SPUUpdater initializer. You choose:
-    // `hostBundle` - The bundle that should be targetted for updating.
-    // `applicationBundle` - The application bundle that should be relaunched and waited for termination. Usually this can be the same as hostBundle. This may differ when updating a plug-in or other non-application bundle.
-    // `userDriver` - The user driver that Sparkle uses for user update interaction. Use a `SPUStandardUserDriver` for Sparkle's standard UI.
-    // `delegate` - The optional delegate for SPUUpdater.
-    - (instancetype)initWithHostBundle:(NSBundle *)hostBundle applicationBundle:(NSBundle *)applicationBundle userDriver:(id <SPUUserDriver>)userDriver delegate:(id<SPUUpdaterDelegate> _Nullable)delegate;
+```objc
+// This is the SPUUpdater initializer. You choose:
+// `hostBundle` - The bundle that should be targetted for updating.
+// `applicationBundle` - The application bundle that should be relaunched and waited for termination. Usually this can be the same as hostBundle. This may differ when updating a plug-in or other non-application bundle.
+// `userDriver` - The user driver that Sparkle uses for user update interaction. Use a `SPUStandardUserDriver` for Sparkle's standard UI.
+// `delegate` - The optional delegate for SPUUpdater.
+- (instancetype)initWithHostBundle:(NSBundle *)hostBundle applicationBundle:(NSBundle *)applicationBundle userDriver:(id <SPUUserDriver>)userDriver delegate:(id<SPUUpdaterDelegate> _Nullable)delegate;
 
-    // This method checks if Sparkle is configured properly, may show a prompt asking for automatic updates (if needed),
-    // and may start an update check if automatic update checking is enabled. Must be called to start the updater.
-    - (BOOL)startUpdater:error:;
+// This method checks if Sparkle is configured properly, may show a prompt asking for automatic updates (if needed),
+// and may start an update check if automatic update checking is enabled. Must be called to start the updater.
+- (BOOL)startUpdater:error:;
 
-    // Checks for updates and display progress while doing so. This is meant for users initiating an update check.
-    - (void)checkForUpdates;
+// Checks for updates and display progress while doing so. This is meant for users initiating an update check.
+- (void)checkForUpdates;
+```
 
 The `SPUUserDriver` protocol is the API in Sparkle for controlling the user interface and interaction. If you are using `SPUStandardUpdaterController` in a nib, you can retrieve the user driver via its `userDriver` property. If you are interested in creating your own user interface, please see the header documentation in [`SPUUserDriver.h`](https://github.com/sparkle-project/Sparkle/blob/2.x/Sparkle/SPUUserDriver.h). Note few of the user-facing delegate methods in Sparkle 1's `SUUpdaterDelegate` were moved to `SPUStandardUserDriverDelegate`.
 
 Properties of interest if you are instantiating the standard user driver `SPUStandardUserDriver` yourself:
 
-    // Indicates whether or not an update is in progress as far as the user's perspective is concerned
-    // A typical application may rely on this property for its check for updates menu item validation
-    // If you were using -[SUUpdater updateInProgress] in Sparkle 1.x, you can use !canCheckForUpdates instead.
-    @property (nonatomic, readonly) BOOL canCheckForUpdates;
+```objc
+// Indicates whether or not an update is in progress as far as the user's perspective is concerned
+// A typical application may rely on this property for its check for updates menu item validation
+// If you were using -[SUUpdater updateInProgress] in Sparkle 1.x, you can use !canCheckForUpdates instead.
+@property (nonatomic, readonly) BOOL canCheckForUpdates;
+```
 
 These are properties of interest if you are using `SPUStandardUpdaterController`. You should hook the outlets in Xcode's interface builder and not programmatically.
 
-    // Interface builder outlet for the updater's delegate
-    @property (nonatomic, weak, nullable) IBOutlet id<SPUUpdaterDelegate> updaterDelegate;
+```objc
+// Interface builder outlet for the updater's delegate
+@property (nonatomic, weak, nullable) IBOutlet id<SPUUpdaterDelegate> updaterDelegate;
 
-    // Interface builder outlet for the user driver's delegate.
-    @property (nonatomic, weak, nullable) IBOutlet id<SPUStandardUserDriverDelegate> userDriverDelegate;
+// Interface builder outlet for the user driver's delegate.
+@property (nonatomic, weak, nullable) IBOutlet id<SPUStandardUserDriverDelegate> userDriverDelegate;
 
-    // Explicitly lets the user check for updates and displays a progress dialog while doing so.
-    // Connect this action to a main menu item if so desired.
-    - (IBAction)checkForUpdates:(id)sender;
+// Explicitly lets the user check for updates and displays a progress dialog while doing so.
+// Connect this action to a main menu item if so desired.
+- (IBAction)checkForUpdates:(id)sender;
+```
 
 More methods of interest on `SPUUpdater`:
 
-    // This kicks off an update meant to be programmatically initiated. That is,
-    // it will display no UI unless it actually finds an update, in which case it
-    // proceeds as usual. If the automated downloading is turned on, however,
-    // this will invoke that behavior, and if an update is found, it will be
-    // downloaded and prepped for installation.
-    //
-    // You do not need to call this. Sparkle calls it automatically according to
-    // the update schedule.
-    - (void)checkForUpdatesInBackground;
+```objc
+// This kicks off an update meant to be programmatically initiated. That is,
+// it will display no UI unless it actually finds an update, in which case it
+// proceeds as usual. If the automated downloading is turned on, however,
+// this will invoke that behavior, and if an update is found, it will be
+// downloaded and prepped for installation.
+//
+// You do not need to call this. Sparkle calls it automatically according to
+// the update schedule.
+- (void)checkForUpdatesInBackground;
 
-    // This begins a "probing" check for updates which will not actually offer to
-    // update to that version. The delegate methods, though, (up to updater:didFindValidUpdate:
-    // and updaterDidNotFindUpdate:), are called, so you can use that information in your UI.
-    // Essentially, you can use this to UI-lessly determine if there's an update.
-    - (void)checkForUpdateInformation;
+// This begins a "probing" check for updates which will not actually offer to
+// update to that version. The delegate methods, though, (up to updater:didFindValidUpdate:
+// and updaterDidNotFindUpdate:), are called, so you can use that information in your UI.
+// Essentially, you can use this to UI-lessly determine if there's an update.
+- (void)checkForUpdateInformation;
 
-    // Date of last update check. Returns nil if no check has been performed.
-    @property (nonatomic, readonly, copy, nullable) NSDate *lastUpdateCheckDate;
+// Date of last update check. Returns nil if no check has been performed.
+@property (nonatomic, readonly, copy, nullable) NSDate *lastUpdateCheckDate;
 
-    // Call this to appropriately schedule or cancel the update checking timer according
-    // to the preferences for time interval and automatic checks.
-    - (void)resetUpdateCycle;
+// Call this to appropriately schedule or cancel the update checking timer according
+// to the preferences for time interval and automatic checks.
+- (void)resetUpdateCycle;
+```
 
 #### Delegate methods
 
 You can control the SPUUpdater's behavior a little more closely by providing it with a delegate. Here are the delegate methods you might implement:
 
-    // Use this to override the default behavior for Sparkle prompting the
-    // user about automatic update checks. You could use this to make Sparkle
-    // prompt for permission on the first launch instead of the second.
-    - (BOOL)updaterShouldPromptForPermissionToCheckForUpdates:(SPUUpdater *)updater;
+```objc
+// Use this to override the default behavior for Sparkle prompting the
+// user about automatic update checks. You could use this to make Sparkle
+// prompt for permission on the first launch instead of the second.
+- (BOOL)updaterShouldPromptForPermissionToCheckForUpdates:(SPUUpdater *)updater;
 
-    - (void)updater:(SPUUpdater *)updater didFinishLoadingAppcast:(SUAppcast *)appcast;
+- (void)updater:(SPUUpdater *)updater didFinishLoadingAppcast:(SUAppcast *)appcast;
 
-    - (void)updater:(SPUUpdater *)updater didFindValidUpdate:(SUAppcastItem *)item;
-    - (void)updaterDidNotFindUpdate:(SPUUpdater *)updater error:(NSError *)error;
+- (void)updater:(SPUUpdater *)updater didFindValidUpdate:(SUAppcastItem *)item;
+- (void)updaterDidNotFindUpdate:(SPUUpdater *)updater error:(NSError *)error;
 
-    // Sent immediately before installing the specified update.
-    - (void)updater:(SPUUpdater *)updater willInstallUpdate:(SUAppcastItem *)item;
+// Sent immediately before installing the specified update.
+- (void)updater:(SPUUpdater *)updater willInstallUpdate:(SUAppcastItem *)item;
 
-    // Return YES to delay the relaunch until you do some processing.
-    // Invoke the provided installHandler block to continue the relaunch.
-    - (BOOL)updater:(SPUUpdater *)updater shouldPostponeRelaunchForUpdate:(SUAppcastItem *)item untilInvokingBlock:(void (^)(void))installHandler;
+// Return YES to delay the relaunch until you do some processing.
+// Invoke the provided installHandler block to continue the relaunch.
+- (BOOL)updater:(SPUUpdater *)updater shouldPostponeRelaunchForUpdate:(SUAppcastItem *)item untilInvokingBlock:(void (^)(void))installHandler;
 
-    // Called immediately before relaunching.
-    - (BOOL)updaterShouldRelaunchApplication:(SPUUpdater *)updater;
+// Called immediately before relaunching.
+- (BOOL)updaterShouldRelaunchApplication:(SPUUpdater *)updater;
 
-    // Specifies what update channels the updater is allowed to look in
-    // Useful for eg beta updates
-    - (NSSet<NSString *> *)allowedChannelsForUpdater:(SPUUpdater *)updater;
+// Specifies what update channels the updater is allowed to look in
+// Useful for eg beta updates
+- (NSSet<NSString *> *)allowedChannelsForUpdater:(SPUUpdater *)updater;
 
-    // Specifies what feed URL to use
-    - (nullable NSString *)feedURLStringForUpdater:(SPUUpdater *)updater;
+// Specifies what feed URL to use
+- (nullable NSString *)feedURLStringForUpdater:(SPUUpdater *)updater;
 
-    // This method allows you to provide a custom version comparator.
-    // If you don't implement this method or return nil, the standard version
-    // comparator will be used. See SUVersionComparisonProtocol.h for more.
-    - (nullable id<SUVersionComparison>)versionComparatorForUpdater:(SPUUpdater *)updater;
+// This method allows you to provide a custom version comparator.
+// If you don't implement this method or return nil, the standard version
+// comparator will be used. See SUVersionComparisonProtocol.h for more.
+- (nullable id<SUVersionComparison>)versionComparatorForUpdater:(SPUUpdater *)updater;
 
-    // This method allows you to add extra parameters to the appcast URL,
-    // potentially based on whether or not Sparkle will also be sending along
-    // the system profile. This method should return an array of dictionaries
-    // with keys: "key", "value", "displayKey", "displayValue", the latter two
-    // being human-readable variants of the former two.
-    - (NSArray *)feedParametersForUpdater:(SPUUpdater *)updater sendingSystemProfile:(BOOL)sendingProfile;
+// This method allows you to add extra parameters to the appcast URL,
+// potentially based on whether or not Sparkle will also be sending along
+// the system profile. This method should return an array of dictionaries
+// with keys: "key", "value", "displayKey", "displayValue", the latter two
+// being human-readable variants of the former two.
+- (NSArray *)feedParametersForUpdater:(SPUUpdater *)updater sendingSystemProfile:(BOOL)sendingProfile;
+```

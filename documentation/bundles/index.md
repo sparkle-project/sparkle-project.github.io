@@ -26,15 +26,17 @@ An alternative approach is to use a subclass of SUUpdater whose shared instance 
 
 The subclass only needs to implement the following two methods:
 
-	+ (id)sharedUpdater
-	{
-	    return [self updaterForBundle:[NSBundle bundleForClass:[self class]]];
-	}
+```objc
++ (id)sharedUpdater
+{
+    return [self updaterForBundle:[NSBundle bundleForClass:[self class]]];
+}
 
-	- (id)init
-	{
-	    return [self initForBundle:[NSBundle bundleForClass:[self class]]];
-	}
+- (id)init
+{
+    return [self initForBundle:[NSBundle bundleForClass:[self class]]];
+}
+```
 
 ### Sparkle 2 (Beta)
 
