@@ -241,10 +241,12 @@ samp {
     }
 }
 
-/*! Source: https://github.com/richleland/pygments-css/blob/master/friendly.css */
-/* CSS syntax highlighting generated from pygments generator */
+/*
+    CSS syntax highlighting generated from:
+    pygmentize -S friendly -f html -a .highlight
+ */
 .highlight .hll { background-color: #ffffcc }
-.highlight  { background: #f0f0f0; }
+.highlight { background: #f0f0f0; }
 .highlight .c { color: #60a0b0; font-style: italic } /* Comment */
 .highlight .err { border: 1px solid #FF0000 } /* Error */
 .highlight .k { color: #007020; font-weight: bold } /* Keyword */
