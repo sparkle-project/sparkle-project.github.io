@@ -71,7 +71,7 @@ Options:
 
 One example is I updated an application on my machine I knew was out of date by running:
 
-```
+```sh
 ./sparkle.app/Contents/MacOS/sparkle --check-immediately /Applications/Hex\ Fiend.app/
 ```
 

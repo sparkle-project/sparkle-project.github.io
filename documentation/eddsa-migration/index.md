@@ -39,10 +39,14 @@ Then we recommend migrating in two steps.
 
 First, ship a new update using Sparkle 1.27 or later that specifies both DSA and EdDSA public keys (`SUPublicDSAKeyFile` and `SUPublicEDKey`) and signatures in your appcast (`sparkle:dsaSignature` and `sparkle:edSignature`). For example, the appcast item enclosure may look similar to:
 
-    <enclosure url="http://sparkle-project.org/myupdate.zip" sparkle:version="2" type="application/octet-stream" sparkle:dsaSignature="MCwCFAdLjBvvjJN0fnfMnn7BCl650VqNAhR+XuFABVK2y8zJn/oKtC1sv58ySQ==" sparkle:edSignature="ify59pDIuduaZcLnLvQjGqNQIAqi4dVgeA3L/e7I7xaqn9pVdiVZH7Na3v+Gp4ElAKJfX4Pfq8cgElfXmZc4Cg==" length="1879795" />
+```xml
+<enclosure url="http://sparkle-project.org/myupdate.zip" sparkle:version="2" type="application/octet-stream" sparkle:dsaSignature="MCwCFAdLjBvvjJN0fnfMnn7BCl650VqNAhR+XuFABVK2y8zJn/oKtC1sv58ySQ==" sparkle:edSignature="ify59pDIuduaZcLnLvQjGqNQIAqi4dVgeA3L/e7I7xaqn9pVdiVZH7Na3v+Gp4ElAKJfX4Pfq8cgElfXmZc4Cg==" length="1879795" />
+```
 
 Once all of your users are running a version of your application with these new updates, you can then ship a new update that drops the DSA public keys and signatures in your appcast. Your new appcast item enclosure may look like:
 
-    <enclosure url="http://sparkle-project.org/myupdate.zip" sparkle:version="2" type="application/octet-stream" sparkle:edSignature="ify59pDIuduaZcLnLvQjGqNQIAqi4dVgeA3L/e7I7xaqn9pVdiVZH7Na3v+Gp4ElAKJfX4Pfq8cgElfXmZc4Cg==" length="1879795" />
+```xml
+<enclosure url="http://sparkle-project.org/myupdate.zip" sparkle:version="2" type="application/octet-stream" sparkle:edSignature="ify59pDIuduaZcLnLvQjGqNQIAqi4dVgeA3L/e7I7xaqn9pVdiVZH7Na3v+Gp4ElAKJfX4Pfq8cgElfXmZc4Cg==" length="1879795" />
+```
 
 You may be able to [upgrade using new appcasts](/documentation/publishing#upgrading-to-newer-features) to expedite this process.

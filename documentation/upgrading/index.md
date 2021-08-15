@@ -111,7 +111,9 @@ Sparkle has kept the same API since the "classic" version 1.5. It should be a dr
 
 To avoid sending incompatible app to users on macOS 10.6 or older, add to your appcast `<item>`:
 
-    <sparkle:minimumSystemVersion>10.7</sparkle:minimumSystemVersion>
+```xml
+<sparkle:minimumSystemVersion>10.7</sparkle:minimumSystemVersion>
+```
 
 ### 64-bit, ARC or manual memory management
 

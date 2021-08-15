@@ -135,7 +135,9 @@ If you update regular app bundles and you have set up EdDSA signatures, you can 
   1. Build your app and compress it (e.g. in a DMG/ZIP/tar.bz2 archive), and put the archive in a new folder. This folder will be used to store all your future updates.
   2. Run `generate_appcast` tool from Sparkle's distribution archive specifying the path to the folder with update archives. Allow it to access the Keychain if it asks for it (it's needed to generate signatueres in the appcast).
 
-        ./bin/generate_appcast /path/to/your/updates_folder/
+    ```sh
+    ./bin/generate_appcast /path/to/your/updates_folder/
+    ```
 
   3. The tool will generate the appcast file (using filename from [`SUFeedURL`](/documentation/customization/)) and also [`*.delta` update](/documentation/delta-updates/) files for faster incremental updates. Upload your archives, the delta updates, and the appcast to your server.
 

@@ -27,7 +27,7 @@ The Installer Launcher Service is required. This service bundles a copy of Spark
 
 To optimize for space, a sandboxed application that uses this service may optionally choose to remove the helper tools from the `Sparkle.framework` and re-sign the framework:
 
-```
+```sh
 rm -f Sparkle.framework/Autoupdate
 rm -f Sparkle.framework/Updater
 rm -f Sparkle.framework/Versions/A/Autoupdate
@@ -47,7 +47,7 @@ The Downloader XPC Service is optional. Use it only if your sandboxed applicatio
 
 The Installer Connection & Status Services are optional (as of changes integrated on [April 4, 2021](https://github.com/sparkle-project/Sparkle/pull/1812)). Instead of using these services, we recommend adding the following entitlement to your sandboxed application:
 
-```
+```xml
 <key>com.apple.security.temporary-exception.mach-lookup.global-name</key>
 <array>
     <string>$(PRODUCT_BUNDLE_IDENTIFIER)-spks</string>
@@ -70,7 +70,7 @@ Then you can probably skip onto [Adding the XPC Services](#adding-the-xpc-servic
 
 Otherwise if you use alternate methods of distributing your application, or you need to use a different certificate for development, you can code sign these services by running the `bin/codesign_xpc_service` script. For example:
 
-```
+```sh
 ./bin/codesign_xpc_service "Developer ID Application" XPCServices/org.sparkle-project.InstallerLauncher.xpc XPCServices/org.sparkle-project.Downloader.xpc
 ```
 

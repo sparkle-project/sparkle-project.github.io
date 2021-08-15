@@ -37,9 +37,11 @@ Follow directions similar to [Enable automatic checking](#enable-automatic-check
 
 These directions do not work for non-app bundles, as the updater you add to the nib will be the `sharedUpdater` for the application bundle. To be able to bind to the updater for your bundle, you can add the following accessor to your preferences controller (the owner of the nib):
 
-    - (SUUpdater *)updater {
-        return [SUUpdater updaterForBundle:[NSBundle bundleForClass:[self class]]];
-    }
+```objc
+- (SUUpdater *)updater {
+    return [SUUpdater updaterForBundle:[NSBundle bundleForClass:[self class]]];
+}
+```
 
 Then just bind the controls to the File's Owner, and start the Model Key Path with updater., e.g. updater.automaticallyChecksForUpdates.
 
