@@ -17,21 +17,21 @@ The `SUUpdater` class has been deprecated and split up in Sparkle 2, but it is s
 Sparkle 2 includes three new classes / protocols:
 * **SPUUpdater** - The main API in Sparkle for controlling the update mechanism.
 * **SPUUserDriver** - The API in Sparkle for controlling the user interface & interaction (`SPUStandardUserDriver` is the standard one).
-* **SPUStandardUpdaterController** - A controller class that instantiates a `SPUUpdater` using `SPUStandardUserDriver` in a nib and allows [binding UI](/documentation/preferences-ui#sparkle-2x-beta) to it.
+* **SPUStandardUpdaterController** - A convenient controller class that instantiates a `SPUUpdater` targeting the main application bundle and uses Sparkle's standard user interface (`SPUStandardUserDriver`). This class can also be instantiated in a nib and allows [binding UI](/documentation/preferences-ui#sparkle-2x-beta) to it.
 
 If you were previously instantiating a `SUUpdater` in a nib, you will want to adopt `SPUStandardUpdaterController` as shown in the [basic setup](/documentation#2-set-up-a-sparkle-updater-object).
 
-If you were previously instantiating a `SUUpdater` in code, you will want to adopt instantiating a `SPUUpdater`.
+If you were previously instantiating a `SUUpdater` in code, please refer to the [programmatic setup guide](/documentation/programmatic-setup).
 
-The deprecated `SUUpdater` in 2 is now a stub that uses both a `SPUUpdater` and `SPUStandardUserDriver`.
+The deprecated `SUUpdater` in Sparkle 2 is now a stub that uses both a `SPUUpdater` and `SPUStandardUserDriver`.
 
-If you create a `SPUUpdater` instance programatically, you are now able to create an updater that can update other Sparkle-based bundles and/or an updater that can use your own `SPUUserDriver` / user interface. [sparkle-cli](/documentation/sparkle-cli) makes use of both features as an example.
+If you create a `SPUUpdater` instance directly, you can now create an updater that can update other Sparkle-based bundles and/or an updater that can use your own user interface (`SPUUserDriver`). [sparkle-cli](/documentation/sparkle-cli) makes use of both features as an example.
 
-`SPUUpdater` and its delegate `SPUUpdaterDelegate` (unlike `SUUpdater`) do not contain any user-interface or AppKit logic. The UI bits were separated into classes implementing `SPUUserDriver` and its delegates. A developer writing their own updater user interface may choose to build Sparkle with `SPARKLE_BUILD_UI_BITS=0` which strips out the UI bits that Sparkle provides out of the box.
+`SPUUpdater` and its delegate `SPUUpdaterDelegate` (unlike `SUUpdater`) do not contain any user-interface or AppKit logic. The UI bits were separated into classes implementing `SPUUserDriver` and its delegates. A developer writing their own updater user interface may choose to build Sparkle with `SPARKLE_BUILD_UI_BITS=0` which strips out the standard UI bits that Sparkle provides out of the box.
 
 `SPUUpdater` does not maintain singleton or global instances (unlike `SUUpdater`). Plug-ins that share the same process as their host should prefer to use an external tool like [sparkle-cli](/documentation/sparkle-cli) instead, rather than sharing or injecting a Sparkle.framework in its host. A bit more details about updating bundles [here](/documentation/bundles#sparkle-2x-beta).
 
-Downgrades were poorly supported in Sparkle 1 and are now unavailable in Sparkle 2 (via `SPARKLE_AUTOMATED_DOWNGRADES`).
+Downgrades were poorly supported in Sparkle 1 (via `SPARKLE_AUTOMATED_DOWNGRADES`) and are now unavailable in Sparkle 2.
 
 The behavior for the `-bestValidUpdateInAppcast:forUpdater:` delegate method on `SPUUpdaterDelegate` has changed. Please review its header documentation for more information. In short:
 * Delta updates cannot be returned. A top level item must be returned.
@@ -56,7 +56,7 @@ Sparkle 2 supports [sandboxed applications](/documentation/sandboxing) via integ
 
 If you are migrating from earlier alpha versions of Sparkle 2, you may find that some of the XPC Services are now optional and re-signing the services may not be necessary. Please read the updated [sandboxing guide](/documentation/sandboxing) for more information.
 
-If you use package (pkg) based updates, please see [Package Updates](/documentation/package-updates) for migration notes. In particular, your appcast items may need to include an appropriate installation type to help Sparkle decide if authorization is needed before starting the installer.
+If you use package (pkg) based updates, please see [Package Updates](/documentation/package-updates) for migration notes. In particular, your appcast items may need to include an appropriate installation type to help Sparkle decide if authorization is needed before starting the installer. This is not needed for bare package updates.
 
 Sparkle 2 enhances support for [major upgrades](/documentation/publishing#Major-upgrades).
 

@@ -264,11 +264,11 @@ Channels can only be used when all of your users downloading your appcast are ru
 
 ## Setting the feed programmatically
 
-The appcast feed URL can be changed programatically at runtime. If the feed URL is always static and the same, please set it in the Info.plist with the `SUFeedURL` key instead. Even if you have a secondary appcast feed, we recommend keeping a default one specified in the application's Info.plist.
+The appcast feed URL can be changed programmatically at runtime. If the feed URL is always static and the same, please set it in the Info.plist with the `SUFeedURL` key instead. Even if you have a secondary appcast feed, we recommend keeping a default one specified in the application's Info.plist.
 
 If you want to set the feed programmatically to provide beta/nightly updates, please try to adopt [channels](#channels) in the future instead. If you are supporting older Sparkle versions, continue reading on.
 
-The recommended way to change the feed URL programatically is using `-[SUUpdaterDelegate feedURLStringForUpdater:]` (or `-[SPUUpdaterDelegate feedURLStringForUpdater:]` in Sparkle 2).
+The recommended way to change the feed URL programmatically is using `-[SUUpdaterDelegate feedURLStringForUpdater:]` (or `-[SPUUpdaterDelegate feedURLStringForUpdater:]` in Sparkle 2).
 
 Here is an example:
 

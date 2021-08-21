@@ -13,7 +13,7 @@ Sparkle 2.0 includes a command line utility that can update Sparkle-based applic
 ```
 ./sparkle.app/Contents/MacOS/sparkle
 
-Usage: sparkle.app/Contents/MacOS/sparkle bundle [--application <app-path>] [--check-immediately] [--probe] [--grant-automatic-checks] [--send-profile] [--defer-install] [--interactive] [--verbose]
+Usage: ./sparkle.app/Contents/MacOS/sparkle bundle [--application app-path] [--check-immediately] [--probe] [--channels chan1,chan2,…] [--feed-url feed-url] [--grant-automatic-checks] [--send-profile] [--defer-install] [--interactive] [--allow-major-upgrades] [--verbose]
 Description:
   Check if any new updates for a Sparkle supported bundle need to be installed.
 
@@ -44,6 +44,12 @@ Options:
  --probe
     Probe for updates. Check if any updates are available but do not install.
     An exit status of 0 is returned if a new update is available.
+ --allow-major-upgrades
+    Allows probing and installing major upgrades. Without passing this, an exit
+    status of 2 is returned if a major upgrade is found.
+ --channels
+    List of allowed Sparkle channels to look for updates in. By default,
+    only the default channel is used.
  --feed-url
     URL for appcast feed. This URL will be used for the feed instead of the one
     in the bundle's Info.plist or in the bundle's user defaults.

@@ -53,7 +53,7 @@ These instructions are for regular .app bundles. If you want to update a non-app
 
 If you are using Sparkle 2, `SUUpdater` is a deprecated stub. While it is still functional for transitional purposes, new applications will want to use `SPUStandardUpdaterController` in the above steps instead.
 
-Sparkle can also be instantiated and [set up programmatically](/documentation/programatic-setup).
+Sparkle can also be instantiated and [set up programmatically](/documentation/programmatic-setup).
 
 ### 3. Segue for security concerns
 
