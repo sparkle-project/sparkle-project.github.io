@@ -1,0 +1,1055 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>SPUUpdater Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+	<meta name="viewport" content="width=device-width, viewport-fit=cover, initial-scale=1.0" />
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/objc/Class/SPUUpdater" class="dashAnchor"></a>
+    <a title="SPUUpdater Class Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p>
+          <a href="../index.html">Sparkle 2.0.0-beta.1 Docs</a>
+          <span class="no-mobile"> (58% documented)</span>
+        </p>
+    
+    
+      </div>
+    </header>
+    <div id="breadcrumbs-container">
+      <div class="content-wrapper">
+        <p id="breadcrumbs">
+          <span class="no-mobile">
+            <a href="../index.html">Sparkle Reference</a>
+            <img id="carat" src="../img/carat.png" />
+          </span>
+          SPUUpdater Class Reference
+        </p>
+      </div>
+    </div>
+    <div class="wrapper">
+      <div class="article-wrapper">
+        <article class="main-content">
+          <section>
+            <section class="section">
+              <h1>SPUUpdater</h1>
+                <div class="declaration">
+                  <div class="language">
+                    <p class="aside-title">Objective-C</p>
+                    <pre class="highlight objective_c"><code><span class="k">@interface</span> <span class="nc">SPUUpdater</span> <span class="p">:</span> <span class="nc">NSObject</span></code></pre>
+
+                  </div>
+                  <div class="language">
+                    <p class="aside-title">Swift</p>
+                    <pre class="highlight swift"><code><span class="kd">class</span> <span class="kt">SPUUpdater</span> <span class="p">:</span> <span class="kt">NSObject</span></code></pre>
+
+                  </div>
+                </div>
+              <p>The main API in Sparkle for controlling the update mechanism.</p>
+
+<p>This class is used to configure the update parameters as well as manually and automatically schedule and control checks for updates.</p>
+
+<p>For convenience, you can create a standard or nib instantiable updater by using <code><a href="../Classes/SPUStandardUpdaterController.html">SPUStandardUpdaterController</a></code>.</p>
+
+<p>Prefer to set initial properties in your bundle&rsquo;s Info.plist as described in <a href="https://sparkle-project.org/documentation/customization/">Customizing Sparkle</a>.</p>
+
+<p>Otherwise only if you need dynamic behavior (eg. for user preferences) should you set properties on the updater such as:</p>
+
+<ul>
+<li><code>automaticallyChecksForUpdates</code></li>
+<li><code>updateCheckInterval</code></li>
+<li><code>automaticallyDownloadsUpdates</code></li>
+<li><code>feedURL</code></li>
+</ul>
+
+<p>Please view the documentation on each of these properties for more detail if you are to configure them dynamically.</p>
+
+            </section>
+            <section class="section task-group-section">
+              <div class="task-group">
+                <ul>
+                  <li class="item">
+                    <div>
+                      <code>
+                      <a name="/c:objc(cs)SPUUpdater(im)initWithHostBundle:applicationBundle:userDriver:delegate:"></a>
+                      <a name="//apple_ref/objc/Method/-initWithHostBundle:applicationBundle:userDriver:delegate:" class="dashAnchor"></a>
+                      <a class="token" href="#/c:objc(cs)SPUUpdater(im)initWithHostBundle:applicationBundle:userDriver:delegate:">-initWithHostBundle:<wbr>applicationBundle:<wbr>userDriver:<wbr>delegate:<wbr></a>
+                      </code>
+                    </div>
+                    <div class="height-container">
+                      <div class="pointer-container"></div>
+                      <section class="section">
+                        <div class="pointer"></div>
+                        <div class="abstract">
+                          <p>Initializes a new <code>SPUUpdater</code> instance</p>
+
+<p>This creates an updater, but to start it and schedule update checks <code><a href="../Classes/SPUUpdater.html#/c:objc(cs)SPUUpdater(im)startUpdater:">-startUpdater:</a></code> needs to be invoked first.</p>
+
+<p>Related: See <code><a href="../Classes/SPUStandardUpdaterController.html">SPUStandardUpdaterController</a></code> which wraps a <code>SPUUpdater</code> instance and is suitable for instantiating inside of nib files.</p>
+
+                        </div>
+                        <div class="declaration">
+                          <h4>Declaration</h4>
+                          <div class="language">
+                            <p class="aside-title">Objective-C</p>
+                            <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">nonnull</span> <span class="n">instancetype</span><span class="p">)</span><span class="nf">initWithHostBundle</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n">NSBundle</span> <span class="o">*</span><span class="p">)</span><span class="nv">hostBundle</span>
+                         <span class="nf">applicationBundle</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n">NSBundle</span> <span class="o">*</span><span class="p">)</span><span class="nv">applicationBundle</span>
+                                <span class="nf">userDriver</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n">id</span><span class="o">&lt;</span><span class="n"><a href="../Protocols/SPUUserDriver.html">SPUUserDriver</a></span><span class="o">&gt;</span><span class="p">)</span><span class="nv">userDriver</span>
+                                  <span class="nf">delegate</span><span class="p">:</span>
+                                      <span class="p">(</span><span class="n">nullable</span> <span class="n">id</span><span class="o">&lt;</span><span class="n"><a href="../Protocols/SPUUpdaterDelegate.html">SPUUpdaterDelegate</a></span><span class="o">&gt;</span><span class="p">)</span><span class="nv">delegate</span><span class="p">;</span></code></pre>
+
+                          </div>
+                        </div>
+                        <div>
+                          <h4>Parameters</h4>
+                          <table class="graybox">
+                            <tbody>
+                              <tr>
+                                <td>
+                                  <code>
+                                  <em>hostBundle</em>
+                                  </code>
+                                </td>
+                                <td>
+                                  <div>
+                                    <p>The bundle that should be targetted for updating.</p>
+                                  </div>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>
+                                  <code>
+                                  <em>applicationBundle</em>
+                                  </code>
+                                </td>
+                                <td>
+                                  <div>
+                                    <p>The application bundle that should be waited for termination and relaunched (unless overridden). Usually this can be the same as hostBundle. This may differ when updating a plug-in or other non-application bundle.</p>
+                                  </div>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>
+                                  <code>
+                                  <em>userDriver</em>
+                                  </code>
+                                </td>
+                                <td>
+                                  <div>
+                                    <p>The user driver that Sparkle uses for user update interaction.</p>
+                                  </div>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>
+                                  <code>
+                                  <em>delegate</em>
+                                  </code>
+                                </td>
+                                <td>
+                                  <div>
+                                    <p>The delegate for <code>SPUUpdater</code>.</p>
+                                  </div>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </section>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <div>
+                      <code>
+                      <a name="/c:objc(cs)SPUUpdater(im)init"></a>
+                      <a name="//apple_ref/objc/Method/-init" class="dashAnchor"></a>
+                      <a class="token discouraged" href="#/c:objc(cs)SPUUpdater(im)init">-init</a>
+                      </code>
+                    </div>
+                    <div class="height-container">
+                      <div class="pointer-container"></div>
+                      <section class="section">
+                        <div class="pointer"></div>
+                        <div class="aside aside-unavailable">
+                          <p class="aside-title">Unavailable</p>
+                          
+                        </div>
+                        <div class="abstract">
+                          <p>Use <code><a href="../Classes/SPUUpdater.html#/c:objc(cs)SPUUpdater(im)initWithHostBundle:applicationBundle:userDriver:delegate:">-initWithHostBundle:applicationBundle:userDriver:delegate:</a></code> or <code><a href="../Classes/SPUStandardUpdaterController.html">SPUStandardUpdaterController</a></code> standard adapter instead.</p>
+
+<p>If you want to drop an updater into a nib, use <code><a href="../Classes/SPUStandardUpdaterController.html">SPUStandardUpdaterController</a></code>.</p>
+
+                        </div>
+                        <div class="declaration">
+                          <h4>Declaration</h4>
+                          <div class="language">
+                            <p class="aside-title">Objective-C</p>
+                            <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">nonnull</span> <span class="n">instancetype</span><span class="p">)</span><span class="n">init</span><span class="p">;</span></code></pre>
+
+                          </div>
+                        </div>
+                      </section>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <div>
+                      <code>
+                      <a name="/c:objc(cs)SPUUpdater(im)startUpdater:"></a>
+                      <a name="//apple_ref/objc/Method/-startUpdater:" class="dashAnchor"></a>
+                      <a class="token" href="#/c:objc(cs)SPUUpdater(im)startUpdater:">-startUpdater:<wbr></a>
+                      </code>
+                    </div>
+                    <div class="height-container">
+                      <div class="pointer-container"></div>
+                      <section class="section">
+                        <div class="pointer"></div>
+                        <div class="abstract">
+                          <p>Starts the updater.</p>
+
+<p>This method first checks if Sparkle is configured properly. A valid feed URL should be set before this method is invoked.</p>
+
+<p>If the configuration is valid, an update cycle is started in the next main runloop cycle.
+During this cycle, a permission prompt may be brought up (if needed) for checking if the user wants automatic update checking.
+Otherwise if automatic update checks are enabled, a scheduled update alert may be brought up if enough time has elapsed since the last check.
+See <code><a href="../Classes/SPUUpdater.html#/c:objc(cs)SPUUpdater(py)automaticallyChecksForUpdates">automaticallyChecksForUpdates</a></code> for more information.</p>
+
+<p>After starting the updater and before the next runloop cycle, one of <code><a href="../Classes/SPUUpdater.html#/c:objc(cs)SPUUpdater(im)checkForUpdates">-checkForUpdates</a></code>, <code><a href="../Classes/SPUUpdater.html#/c:objc(cs)SPUUpdater(im)checkForUpdatesInBackground">-checkForUpdatesInBackground</a></code>, or <code><a href="../Classes/SPUUpdater.html#/c:objc(cs)SPUUpdater(im)checkForUpdateInformation">-checkForUpdateInformation</a></code> can be invoked.
+This may be useful if you want to check for updates immediately or without showing a potential permission prompt.</p>
+
+<p>If the updater cannot be started (i.e, due to a configuration issue in the application), you may want to fall back appropriately.
+For example, the standard updater controller (<code><a href="../Classes/SPUStandardUpdaterController.html">SPUStandardUpdaterController</a></code>) alerts the user that the app is misconfigured and to contact the developer.</p>
+
+<p>This must be called on the main thread.</p>
+
+                        </div>
+                        <div class="declaration">
+                          <h4>Declaration</h4>
+                          <div class="language">
+                            <p class="aside-title">Objective-C</p>
+                            <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span><span class="nf">startUpdater</span><span class="p">:(</span><span class="n">NSError</span> <span class="o">*</span><span class="n">_Nullable</span> <span class="o">*</span><span class="n">_Nullable</span><span class="p">)</span><span class="nv">error</span><span class="p">;</span></code></pre>
+
+                          </div>
+                          <div class="language">
+                            <p class="aside-title">Swift</p>
+                            <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">start</span><span class="p">()</span> <span class="k">throws</span></code></pre>
+
+                          </div>
+                        </div>
+                        <div>
+                          <h4>Parameters</h4>
+                          <table class="graybox">
+                            <tbody>
+                              <tr>
+                                <td>
+                                  <code>
+                                  <em>error</em>
+                                  </code>
+                                </td>
+                                <td>
+                                  <div>
+                                    <p>The error that is populated if this method fails. Pass NULL if not interested in the error information.</p>
+                                  </div>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                        <div>
+                          <h4>Return Value</h4>
+                          <p>YES if the updater started otherwise NO with a populated error</p>
+                        </div>
+                      </section>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <div>
+                      <code>
+                      <a name="/c:objc(cs)SPUUpdater(im)checkForUpdates"></a>
+                      <a name="//apple_ref/objc/Method/-checkForUpdates" class="dashAnchor"></a>
+                      <a class="token" href="#/c:objc(cs)SPUUpdater(im)checkForUpdates">-checkForUpdates</a>
+                      </code>
+                    </div>
+                    <div class="height-container">
+                      <div class="pointer-container"></div>
+                      <section class="section">
+                        <div class="pointer"></div>
+                        <div class="abstract">
+                          <p>Checks for updates, and displays progress while doing so if needed.</p>
+
+<p>This is meant for users initiating a new update check or checking the current update progress.</p>
+
+<p>If an update hasn&rsquo;t started, the user may be shown that a new check for updates is occurring.
+If an update has already been downloaded or begun installing from a previous session, the user may be presented to install that update.
+If the user is already being presented with an update, that update will be shown to the user in active focus.</p>
+
+<p>This will find updates that the user has previously opted into skipping.</p>
+
+<p>See <code><a href="../Classes/SPUUpdater.html#/c:objc(cs)SPUUpdater(py)canCheckForUpdates">canCheckForUpdates</a></code> property which can determine when this method may be invoked.</p>
+
+                        </div>
+                        <div class="declaration">
+                          <h4>Declaration</h4>
+                          <div class="language">
+                            <p class="aside-title">Objective-C</p>
+                            <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">checkForUpdates</span><span class="p">;</span></code></pre>
+
+                          </div>
+                          <div class="language">
+                            <p class="aside-title">Swift</p>
+                            <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">checkForUpdates</span><span class="p">()</span></code></pre>
+
+                          </div>
+                        </div>
+                      </section>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <div>
+                      <code>
+                      <a name="/c:objc(cs)SPUUpdater(im)checkForUpdatesInBackground"></a>
+                      <a name="//apple_ref/objc/Method/-checkForUpdatesInBackground" class="dashAnchor"></a>
+                      <a class="token" href="#/c:objc(cs)SPUUpdater(im)checkForUpdatesInBackground">-checkForUpdatesInBackground</a>
+                      </code>
+                    </div>
+                    <div class="height-container">
+                      <div class="pointer-container"></div>
+                      <section class="section">
+                        <div class="pointer"></div>
+                        <div class="abstract">
+                          <p>Checks for updates, but does not display any UI unless an update is found.</p>
+
+<p>This is meant for programmatically initating a check for updates.
+That is, it will display no UI unless it finds an update, in which case it proceeds as usual.
+This will not find updates that the user has opted into skipping.</p>
+
+<p>Note if there is no resumable update found, and automated updating is turned on,
+the update will be downloaded in the background without disrupting the user.</p>
+
+<p>This method does not do anything if there is a <code><a href="../Classes/SPUUpdater.html#/c:objc(cs)SPUUpdater(py)sessionInProgress">sessionInProgress</a></code>.</p>
+
+                        </div>
+                        <div class="declaration">
+                          <h4>Declaration</h4>
+                          <div class="language">
+                            <p class="aside-title">Objective-C</p>
+                            <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">checkForUpdatesInBackground</span><span class="p">;</span></code></pre>
+
+                          </div>
+                          <div class="language">
+                            <p class="aside-title">Swift</p>
+                            <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">checkForUpdatesInBackground</span><span class="p">()</span></code></pre>
+
+                          </div>
+                        </div>
+                      </section>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <div>
+                      <code>
+                      <a name="/c:objc(cs)SPUUpdater(im)checkForUpdateInformation"></a>
+                      <a name="//apple_ref/objc/Method/-checkForUpdateInformation" class="dashAnchor"></a>
+                      <a class="token" href="#/c:objc(cs)SPUUpdater(im)checkForUpdateInformation">-checkForUpdateInformation</a>
+                      </code>
+                    </div>
+                    <div class="height-container">
+                      <div class="pointer-container"></div>
+                      <section class="section">
+                        <div class="pointer"></div>
+                        <div class="abstract">
+                          <p>Begins a &ldquo;probing&rdquo; check for updates which will not actually offer to
+update to that version.</p>
+
+<p>However, the delegate methods
+<code><a href="../Protocols/SPUUpdaterDelegate.html#/c:objc(pl)SPUUpdaterDelegate(im)updater:didFindValidUpdate:">-[SPUUpdaterDelegate updater:didFindValidUpdate:]</a></code> and
+<code><a href="../Protocols/SPUUpdaterDelegate.html#/c:objc(pl)SPUUpdaterDelegate(im)updaterDidNotFindUpdate:">-[SPUUpdaterDelegate updaterDidNotFindUpdate:]</a></code> will be called,
+so you can use that information in your UI.</p>
+
+<p><code><a href="../Protocols/SPUUpdaterDelegate.html#/c:objc(pl)SPUUpdaterDelegate(im)updater:didFinishUpdateCycleForUpdateCheck:error:">-[SPUUpdaterDelegate updater:didFinishUpdateCycleForUpdateCheck:error:]</a></code> will be called when
+this probing check is completed.</p>
+
+<p>Updates that have been skipped by the user will not be found.</p>
+
+<p>This method does not do anything if there is a <code><a href="../Classes/SPUUpdater.html#/c:objc(cs)SPUUpdater(py)sessionInProgress">sessionInProgress</a></code>.</p>
+
+                        </div>
+                        <div class="declaration">
+                          <h4>Declaration</h4>
+                          <div class="language">
+                            <p class="aside-title">Objective-C</p>
+                            <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">checkForUpdateInformation</span><span class="p">;</span></code></pre>
+
+                          </div>
+                          <div class="language">
+                            <p class="aside-title">Swift</p>
+                            <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">checkForUpdateInformation</span><span class="p">()</span></code></pre>
+
+                          </div>
+                        </div>
+                      </section>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <div>
+                      <code>
+                      <a name="/c:objc(cs)SPUUpdater(py)canCheckForUpdates"></a>
+                      <a name="//apple_ref/objc/Property/canCheckForUpdates" class="dashAnchor"></a>
+                      <a class="token" href="#/c:objc(cs)SPUUpdater(py)canCheckForUpdates">canCheckForUpdates</a>
+                      </code>
+                    </div>
+                    <div class="height-container">
+                      <div class="pointer-container"></div>
+                      <section class="section">
+                        <div class="pointer"></div>
+                        <div class="abstract">
+                          <p>A property indicating whether or not updates can be checked by the user.</p>
+
+<p>An update check can be made by the user when an update session isn&rsquo;t in progress, or when an update or its progress is being shown to the user.</p>
+
+<p>This property is suitable to use for menu item validation for seeing if <code><a href="../Classes/SPUUpdater.html#/c:objc(cs)SPUUpdater(im)checkForUpdates">-checkForUpdates</a></code> can be invoked.</p>
+
+<p>Note this property does not reflect whether or not an update session is in progress. Please see <code><a href="../Classes/SPUUpdater.html#/c:objc(cs)SPUUpdater(py)sessionInProgress">sessionInProgress</a></code> property instead.</p>
+
+                        </div>
+                        <div class="declaration">
+                          <h4>Declaration</h4>
+                          <div class="language">
+                            <p class="aside-title">Objective-C</p>
+                            <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">readonly</span><span class="p">)</span> <span class="n">BOOL</span> <span class="n">canCheckForUpdates</span><span class="p">;</span></code></pre>
+
+                          </div>
+                          <div class="language">
+                            <p class="aside-title">Swift</p>
+                            <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">canCheckForUpdates</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                          </div>
+                        </div>
+                      </section>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <div>
+                      <code>
+                      <a name="/c:objc(cs)SPUUpdater(py)sessionInProgress"></a>
+                      <a name="//apple_ref/objc/Property/sessionInProgress" class="dashAnchor"></a>
+                      <a class="token" href="#/c:objc(cs)SPUUpdater(py)sessionInProgress">sessionInProgress</a>
+                      </code>
+                    </div>
+                    <div class="height-container">
+                      <div class="pointer-container"></div>
+                      <section class="section">
+                        <div class="pointer"></div>
+                        <div class="abstract">
+                          <p>A property indicating whether or not an update session is in progress.</p>
+
+<p>An update session is in progress when the appcast is being downloaded, an update is being downloaded,
+an update is being shown, update permission is being requested, or the installer is being started.</p>
+
+<p>An active session is when Sparkle&rsquo;s fired scheduler is running.</p>
+
+<p>Note an update session may not be running even though Sparkle&rsquo;s installer (ran as a separate process) may be running,
+or even though the update has been downloaded but the installation has been deferred. In both of these cases, a new update session
+may be activated with the update resumed at a later point (automatically or manually).</p>
+
+<p>See also:</p>
+
+<ul>
+<li><code><a href="../Classes/SPUUpdater.html#/c:objc(cs)SPUUpdater(py)canCheckForUpdates">canCheckForUpdates</a></code> property which is more suited for menu item validation.</li>
+<li><code><a href="../Protocols/SPUUpdaterDelegate.html#/c:objc(pl)SPUUpdaterDelegate(im)updater:didFinishUpdateCycleForUpdateCheck:error:">-[SPUUpdaterDelegate updater:didFinishUpdateCycleForUpdateCheck:error:]</a></code> which lets the updater delegate know when an update cycle and session finishes.</li>
+</ul>
+
+                        </div>
+                        <div class="declaration">
+                          <h4>Declaration</h4>
+                          <div class="language">
+                            <p class="aside-title">Objective-C</p>
+                            <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">readonly</span><span class="p">)</span> <span class="n">BOOL</span> <span class="n">sessionInProgress</span><span class="p">;</span></code></pre>
+
+                          </div>
+                          <div class="language">
+                            <p class="aside-title">Swift</p>
+                            <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">sessionInProgress</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                          </div>
+                        </div>
+                      </section>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <div>
+                      <code>
+                      <a name="/c:objc(cs)SPUUpdater(py)automaticallyChecksForUpdates"></a>
+                      <a name="//apple_ref/objc/Property/automaticallyChecksForUpdates" class="dashAnchor"></a>
+                      <a class="token" href="#/c:objc(cs)SPUUpdater(py)automaticallyChecksForUpdates">automaticallyChecksForUpdates</a>
+                      </code>
+                    </div>
+                    <div class="height-container">
+                      <div class="pointer-container"></div>
+                      <section class="section">
+                        <div class="pointer"></div>
+                        <div class="abstract">
+                          <p>A property indicating whether or not to check for updates automatically.</p>
+
+<p>By default, Sparkle asks users on second launch for permission if they want automatic update checks enabled
+and sets this property based on their response. If SUEnableAutomaticChecks is set in the Info.plist,
+this permission request is not performed however.</p>
+
+<p>Setting this property will persist in the host bundle&rsquo;s user defaults.</p>
+
+<p>The update schedule cycle will be reset in a short delay after the property&rsquo;s new value is set.
+This is to allow reverting this property without kicking off a schedule change immediately</p>
+
+                        </div>
+                        <div class="declaration">
+                          <h4>Declaration</h4>
+                          <div class="language">
+                            <p class="aside-title">Objective-C</p>
+                            <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">)</span> <span class="n">BOOL</span> <span class="n">automaticallyChecksForUpdates</span><span class="p">;</span></code></pre>
+
+                          </div>
+                          <div class="language">
+                            <p class="aside-title">Swift</p>
+                            <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">automaticallyChecksForUpdates</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                          </div>
+                        </div>
+                      </section>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <div>
+                      <code>
+                      <a name="/c:objc(cs)SPUUpdater(py)updateCheckInterval"></a>
+                      <a name="//apple_ref/objc/Property/updateCheckInterval" class="dashAnchor"></a>
+                      <a class="token" href="#/c:objc(cs)SPUUpdater(py)updateCheckInterval">updateCheckInterval</a>
+                      </code>
+                    </div>
+                    <div class="height-container">
+                      <div class="pointer-container"></div>
+                      <section class="section">
+                        <div class="pointer"></div>
+                        <div class="abstract">
+                          <p>A property indicating the current automatic update check interval in seconds.</p>
+
+<p>Setting this property will persist in the host bundle&rsquo;s user defaults.
+For this reason, only set this property if you need dynamic behavior (eg user preferences).
+Otherwise prefer to set SUScheduledCheckInterval directly in your Info.plist.</p>
+
+<p>The update schedule cycle will be reset in a short delay after the property&rsquo;s new value is set.
+This is to allow reverting this property without kicking off a schedule change immediately</p>
+
+                        </div>
+                        <div class="declaration">
+                          <h4>Declaration</h4>
+                          <div class="language">
+                            <p class="aside-title">Objective-C</p>
+                            <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">)</span> <span class="n">NSTimeInterval</span> <span class="n">updateCheckInterval</span><span class="p">;</span></code></pre>
+
+                          </div>
+                          <div class="language">
+                            <p class="aside-title">Swift</p>
+                            <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">updateCheckInterval</span><span class="p">:</span> <span class="kt">TimeInterval</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                          </div>
+                        </div>
+                      </section>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <div>
+                      <code>
+                      <a name="/c:objc(cs)SPUUpdater(py)automaticallyDownloadsUpdates"></a>
+                      <a name="//apple_ref/objc/Property/automaticallyDownloadsUpdates" class="dashAnchor"></a>
+                      <a class="token" href="#/c:objc(cs)SPUUpdater(py)automaticallyDownloadsUpdates">automaticallyDownloadsUpdates</a>
+                      </code>
+                    </div>
+                    <div class="height-container">
+                      <div class="pointer-container"></div>
+                      <section class="section">
+                        <div class="pointer"></div>
+                        <div class="abstract">
+                          <p>A property indicating whether or not updates can be automatically downloaded in the background.</p>
+
+<p>By default, updates are not automatically downloaded.</p>
+
+<p>Note that the developer can disallow automatic downloading of updates from being enabled.
+In this case, this property will return NO regardless of how this property is set.</p>
+
+<p>Setting this property will persist in the host bundle&rsquo;s user defaults.
+For this reason, only set this property if you need dynamic behavior (eg user preferences).
+Otherwise prefer to set SUAutomaticallyUpdate directly in your Info.plist.</p>
+
+                        </div>
+                        <div class="declaration">
+                          <h4>Declaration</h4>
+                          <div class="language">
+                            <p class="aside-title">Objective-C</p>
+                            <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">)</span> <span class="n">BOOL</span> <span class="n">automaticallyDownloadsUpdates</span><span class="p">;</span></code></pre>
+
+                          </div>
+                          <div class="language">
+                            <p class="aside-title">Swift</p>
+                            <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">automaticallyDownloadsUpdates</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                          </div>
+                        </div>
+                      </section>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <div>
+                      <code>
+                      <a name="/c:objc(cs)SPUUpdater(py)feedURL"></a>
+                      <a name="//apple_ref/objc/Property/feedURL" class="dashAnchor"></a>
+                      <a class="token" href="#/c:objc(cs)SPUUpdater(py)feedURL">feedURL</a>
+                      </code>
+                    </div>
+                    <div class="height-container">
+                      <div class="pointer-container"></div>
+                      <section class="section">
+                        <div class="pointer"></div>
+                        <div class="abstract">
+                          <p>The URL of the appcast used to download update information.</p>
+
+<p>If the updater&rsquo;s delegate implements <code><a href="../Protocols/SPUUpdaterDelegate.html#/c:objc(pl)SPUUpdaterDelegate(im)feedURLStringForUpdater:">-[SPUUpdaterDelegate feedURLStringForUpdater:]</a></code>, this will return that feed URL.
+Otherwise if the feed URL has been set before, the feed URL returned will be retrieved from the host bundle&rsquo;s user defaults.
+Otherwise the feed URL in the host bundle&rsquo;s Info.plist will be returned.
+If no feed URL can be retrieved, returns nil.</p>
+
+<p>This property must be called on the main thread; calls from background threads will return nil.</p>
+
+                        </div>
+                        <div class="declaration">
+                          <h4>Declaration</h4>
+                          <div class="language">
+                            <p class="aside-title">Objective-C</p>
+                            <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">readonly</span><span class="p">,</span> <span class="n">nullable</span><span class="p">)</span> <span class="n">NSURL</span> <span class="o">*</span><span class="n">feedURL</span><span class="p">;</span></code></pre>
+
+                          </div>
+                          <div class="language">
+                            <p class="aside-title">Swift</p>
+                            <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">feedURL</span><span class="p">:</span> <span class="kt">URL</span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                          </div>
+                        </div>
+                      </section>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <div>
+                      <code>
+                      <a name="/c:objc(cs)SPUUpdater(py)hostBundle"></a>
+                      <a name="//apple_ref/objc/Property/hostBundle" class="dashAnchor"></a>
+                      <a class="token" href="#/c:objc(cs)SPUUpdater(py)hostBundle">hostBundle</a>
+                      </code>
+                    </div>
+                    <div class="height-container">
+                      <div class="pointer-container"></div>
+                      <section class="section">
+                        <div class="pointer"></div>
+                        <div class="abstract">
+                          <p>The host bundle that is being updated.</p>
+
+                        </div>
+                        <div class="declaration">
+                          <h4>Declaration</h4>
+                          <div class="language">
+                            <p class="aside-title">Objective-C</p>
+                            <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">readonly</span><span class="p">)</span> <span class="n">NSBundle</span> <span class="o">*</span><span class="n">_Nonnull</span> <span class="n">hostBundle</span><span class="p">;</span></code></pre>
+
+                          </div>
+                          <div class="language">
+                            <p class="aside-title">Swift</p>
+                            <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">hostBundle</span><span class="p">:</span> <span class="kt">Bundle</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                          </div>
+                        </div>
+                      </section>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <div>
+                      <code>
+                      <a name="/c:objc(cs)SPUUpdater(py)userAgentString"></a>
+                      <a name="//apple_ref/objc/Property/userAgentString" class="dashAnchor"></a>
+                      <a class="token" href="#/c:objc(cs)SPUUpdater(py)userAgentString">userAgentString</a>
+                      </code>
+                    </div>
+                    <div class="height-container">
+                      <div class="pointer-container"></div>
+                      <section class="section">
+                        <div class="pointer"></div>
+                        <div class="abstract">
+                          <p>The user agent used when checking for updates.</p>
+
+<p>By default the user agent string returned is in the format:
+$(BundleDisplayName)/$(BundleDisplayVersion) Sparkle/$(SparkleDisplayVersion)</p>
+
+<p>BundleDisplayVersion is derived from the application Info.plist&rsquo;s CFBundleShortVersionString.</p>
+
+<p>This default implementation can be overrided.</p>
+
+                        </div>
+                        <div class="declaration">
+                          <h4>Declaration</h4>
+                          <div class="language">
+                            <p class="aside-title">Objective-C</p>
+                            <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">copy</span><span class="p">)</span> <span class="n">NSString</span> <span class="o">*</span><span class="n">_Nonnull</span> <span class="n">userAgentString</span><span class="p">;</span></code></pre>
+
+                          </div>
+                          <div class="language">
+                            <p class="aside-title">Swift</p>
+                            <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">userAgentString</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                          </div>
+                        </div>
+                      </section>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <div>
+                      <code>
+                      <a name="/c:objc(cs)SPUUpdater(py)httpHeaders"></a>
+                      <a name="//apple_ref/objc/Property/httpHeaders" class="dashAnchor"></a>
+                      <a class="token" href="#/c:objc(cs)SPUUpdater(py)httpHeaders">httpHeaders</a>
+                      </code>
+                    </div>
+                    <div class="height-container">
+                      <div class="pointer-container"></div>
+                      <section class="section">
+                        <div class="pointer"></div>
+                        <div class="abstract">
+                          <p>The HTTP headers used when checking for updates, downloading release notes, and downloading updates.</p>
+
+<p>The keys of this dictionary are HTTP header fields and values are corresponding values.</p>
+
+                        </div>
+                        <div class="declaration">
+                          <h4>Declaration</h4>
+                          <div class="language">
+                            <p class="aside-title">Objective-C</p>
+                            <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">copy</span><span class="p">,</span> <span class="n">nullable</span><span class="p">)</span> <span class="n">NSDictionary</span><span class="o">&lt;</span><span class="n">NSString</span> <span class="o">*</span><span class="p">,</span> <span class="n">NSString</span> <span class="o">*&gt;</span> <span class="o">*</span><span class="n">httpHeaders</span><span class="p">;</span></code></pre>
+
+                          </div>
+                          <div class="language">
+                            <p class="aside-title">Swift</p>
+                            <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">httpHeaders</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span> <span class="p">:</span> <span class="kt">String</span><span class="p">]?</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                          </div>
+                        </div>
+                      </section>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <div>
+                      <code>
+                      <a name="/c:objc(cs)SPUUpdater(py)sendsSystemProfile"></a>
+                      <a name="//apple_ref/objc/Property/sendsSystemProfile" class="dashAnchor"></a>
+                      <a class="token" href="#/c:objc(cs)SPUUpdater(py)sendsSystemProfile">sendsSystemProfile</a>
+                      </code>
+                    </div>
+                    <div class="height-container">
+                      <div class="pointer-container"></div>
+                      <section class="section">
+                        <div class="pointer"></div>
+                        <div class="abstract">
+                          <p>A property indicating whether or not the user&rsquo;s system profile information is sent when checking for updates.</p>
+
+<p>Setting this property will persist in the host bundle&rsquo;s user defaults.</p>
+
+                        </div>
+                        <div class="declaration">
+                          <h4>Declaration</h4>
+                          <div class="language">
+                            <p class="aside-title">Objective-C</p>
+                            <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">)</span> <span class="n">BOOL</span> <span class="n">sendsSystemProfile</span><span class="p">;</span></code></pre>
+
+                          </div>
+                          <div class="language">
+                            <p class="aside-title">Swift</p>
+                            <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">sendsSystemProfile</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                          </div>
+                        </div>
+                      </section>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <div>
+                      <code>
+                      <a name="/c:objc(cs)SPUUpdater(py)lastUpdateCheckDate"></a>
+                      <a name="//apple_ref/objc/Property/lastUpdateCheckDate" class="dashAnchor"></a>
+                      <a class="token" href="#/c:objc(cs)SPUUpdater(py)lastUpdateCheckDate">lastUpdateCheckDate</a>
+                      </code>
+                    </div>
+                    <div class="height-container">
+                      <div class="pointer-container"></div>
+                      <section class="section">
+                        <div class="pointer"></div>
+                        <div class="abstract">
+                          <p>The date of the last update check or nil if no check has been performed yet.</p>
+
+                        </div>
+                        <div class="declaration">
+                          <h4>Declaration</h4>
+                          <div class="language">
+                            <p class="aside-title">Objective-C</p>
+                            <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">copy</span><span class="p">,</span> <span class="n">readonly</span><span class="p">,</span> <span class="n">nullable</span><span class="p">)</span> <span class="n">NSDate</span> <span class="o">*</span><span class="n">lastUpdateCheckDate</span><span class="p">;</span></code></pre>
+
+                          </div>
+                          <div class="language">
+                            <p class="aside-title">Swift</p>
+                            <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">lastUpdateCheckDate</span><span class="p">:</span> <span class="kt">Date</span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                          </div>
+                        </div>
+                      </section>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <div>
+                      <code>
+                      <a name="/c:objc(cs)SPUUpdater(im)resetUpdateCycle"></a>
+                      <a name="//apple_ref/objc/Method/-resetUpdateCycle" class="dashAnchor"></a>
+                      <a class="token" href="#/c:objc(cs)SPUUpdater(im)resetUpdateCycle">-resetUpdateCycle</a>
+                      </code>
+                    </div>
+                    <div class="height-container">
+                      <div class="pointer-container"></div>
+                      <section class="section">
+                        <div class="pointer"></div>
+                        <div class="abstract">
+                          <p>Appropriately schedules or cancels the update checking timer according to the preferences for time interval and automatic checks.</p>
+
+<p>This call does not change the date of the next check, but only the internal timer.</p>
+
+                        </div>
+                        <div class="declaration">
+                          <h4>Declaration</h4>
+                          <div class="language">
+                            <p class="aside-title">Objective-C</p>
+                            <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">resetUpdateCycle</span><span class="p">;</span></code></pre>
+
+                          </div>
+                          <div class="language">
+                            <p class="aside-title">Swift</p>
+                            <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">resetUpdateCycle</span><span class="p">()</span></code></pre>
+
+                          </div>
+                        </div>
+                      </section>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <div>
+                      <code>
+                      <a name="/c:objc(cs)SPUUpdater(py)systemProfileArray"></a>
+                      <a name="//apple_ref/objc/Property/systemProfileArray" class="dashAnchor"></a>
+                      <a class="token" href="#/c:objc(cs)SPUUpdater(py)systemProfileArray">systemProfileArray</a>
+                      </code>
+                    </div>
+                    <div class="height-container">
+                      <div class="pointer-container"></div>
+                      <section class="section">
+                        <div class="pointer"></div>
+                        <div class="abstract">
+                          <p>The system profile information that is sent when checking for updates.</p>
+
+                        </div>
+                        <div class="declaration">
+                          <h4>Declaration</h4>
+                          <div class="language">
+                            <p class="aside-title">Objective-C</p>
+                            <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">copy</span><span class="p">,</span> <span class="n">readonly</span><span class="p">)</span> <span class="n">NSArray</span><span class="o">&lt;</span><span class="n">NSDictionary</span><span class="o">&lt;</span><span class="n">NSString</span> <span class="o">*</span><span class="p">,</span> <span class="n">NSString</span> <span class="o">*&gt;</span> <span class="o">*&gt;</span> <span class="o">*</span><span class="n">_Nonnull</span> <span class="n">systemProfileArray</span><span class="p">;</span></code></pre>
+
+                          </div>
+                          <div class="language">
+                            <p class="aside-title">Swift</p>
+                            <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">systemProfileArray</span><span class="p">:</span> <span class="p">[[</span><span class="kt">String</span> <span class="p">:</span> <span class="kt">String</span><span class="p">]]</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                          </div>
+                        </div>
+                      </section>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </section>
+          </section>
+        </article>
+      </div>
+      <div class="nav-wrapper">
+        <nav class="nav-bottom">
+          <ul class="nav-groups">
+            <li class="nav-group-name">
+              <a href="../Classes.html">Classes</a>
+              <ul class="nav-group-tasks">
+                <li class="nav-group-task">
+                  <a href="../Classes/SPUDownloadData.html">SPUDownloadData</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/SPUStandardUpdaterController.html">SPUStandardUpdaterController</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/SPUStandardUserDriver.html">SPUStandardUserDriver</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/SPUUpdatePermissionRequest.html">SPUUpdatePermissionRequest</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/SPUUpdater.html">SPUUpdater</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/SPUUpdaterSettings.html">SPUUpdaterSettings</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/SPUUserUpdateState.html">SPUUserUpdateState</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/SUAppcast.html">SUAppcast</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/SUAppcastItem.html">SUAppcastItem</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/SUStandardVersionComparator.html">SUStandardVersionComparator</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/SUUpdatePermissionResponse.html">SUUpdatePermissionResponse</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/SUUpdater.html">SUUpdater</a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-group-name">
+              <a href="../Constants.html">Constants</a>
+              <ul class="nav-group-tasks">
+                <li class="nav-group-task">
+                  <a href="../Constants.html#/c:@SPULatestAppcastItemFoundKey">SPULatestAppcastItemFoundKey</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Constants.html#/c:@SPUNoUpdateFoundReasonKey">SPUNoUpdateFoundReasonKey</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Constants.html#/c:@SPUNoUpdateFoundUserInitiatedKey">SPUNoUpdateFoundUserInitiatedKey</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Constants.html#/c:@SUSparkleErrorDomain">SUSparkleErrorDomain</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Constants.html#/c:@SUSystemProfilerApplicationNameKey">SUSystemProfilerApplicationNameKey</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Constants.html#/c:@SUSystemProfilerApplicationVersionKey">SUSystemProfilerApplicationVersionKey</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Constants.html#/c:@SUSystemProfilerCPU64bitKey">SUSystemProfilerCPU64bitKey</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Constants.html#/c:@SUSystemProfilerCPUCountKey">SUSystemProfilerCPUCountKey</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Constants.html#/c:@SUSystemProfilerCPUFrequencyKey">SUSystemProfilerCPUFrequencyKey</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Constants.html#/c:@SUSystemProfilerCPUSubtypeKey">SUSystemProfilerCPUSubtypeKey</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Constants.html#/c:@SUSystemProfilerCPUTypeKey">SUSystemProfilerCPUTypeKey</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Constants.html#/c:@SUSystemProfilerHardwareModelKey">SUSystemProfilerHardwareModelKey</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Constants.html#/c:@SUSystemProfilerMemoryKey">SUSystemProfilerMemoryKey</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Constants.html#/c:@SUSystemProfilerOperatingSystemVersionKey">SUSystemProfilerOperatingSystemVersionKey</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Constants.html#/c:@SUSystemProfilerPreferredLanguageKey">SUSystemProfilerPreferredLanguageKey</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Constants.html#/c:@SUUpdaterAppcastItemNotificationKey">SUUpdaterAppcastItemNotificationKey</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Constants.html#/c:@SUUpdaterAppcastNotificationKey">SUUpdaterAppcastNotificationKey</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Constants.html#/c:@SUUpdaterDidFindValidUpdateNotification">SUUpdaterDidFindValidUpdateNotification</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Constants.html#/c:@SUUpdaterDidFinishLoadingAppCastNotification">SUUpdaterDidFinishLoadingAppCastNotification</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Constants.html#/c:@SUUpdaterDidNotFindUpdateNotification">SUUpdaterDidNotFindUpdateNotification</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Constants.html#/c:@SUUpdaterWillRestartNotification">SUUpdaterWillRestartNotification</a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-group-name">
+              <a href="../Enums.html">Enumerations</a>
+              <ul class="nav-group-tasks">
+                <li class="nav-group-task">
+                  <a href="../Enums/SPUNoUpdateFoundReason.html">SPUNoUpdateFoundReason</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Enums/SPUUpdateCheck.html">SPUUpdateCheck</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Enums/SPUUserUpdateChoice.html">SPUUserUpdateChoice</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Enums/SPUUserUpdateStage.html">SPUUserUpdateStage</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Enums/SUError.html">SUError</a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-group-name">
+              <a href="../Protocols.html">Protocols</a>
+              <ul class="nav-group-tasks">
+                <li class="nav-group-task">
+                  <a href="../Protocols/SPUStandardUserDriverDelegate.html">SPUStandardUserDriverDelegate</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Protocols/SPUUpdaterDelegate.html">SPUUpdaterDelegate</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Protocols/SPUUserDriver.html">SPUUserDriver</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Protocols/SUUpdaterDelegate.html">SUUpdaterDelegate</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Protocols/SUVersionComparison.html">SUVersionComparison</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Protocols/SUVersionDisplay.html">SUVersionDisplay</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </nav>
+      </div>
+      <div class="footer-wrapper">
+        <section id="footer">
+          <p>&copy; 2021 <a class="link" href="https://sparkle-project.org" target="_blank" rel="external">Mayur Pawashe, Kornel Lesiński, Jake Petroules, C.W. Betts, and Andy Matuschak</a>. All rights reserved. (Last updated: 2021-09-03)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.7</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </div>
+    </div>
+  </body>
+</div>
+</html>

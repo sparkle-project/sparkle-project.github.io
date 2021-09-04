@@ -1,0 +1,1406 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>SUAppcastItem Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+	<meta name="viewport" content="width=device-width, viewport-fit=cover, initial-scale=1.0" />
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/objc/Class/SUAppcastItem" class="dashAnchor"></a>
+    <a title="SUAppcastItem Class Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p>
+          <a href="../index.html">Sparkle 2.0.0-beta.1 Docs</a>
+          <span class="no-mobile"> (58% documented)</span>
+        </p>
+    
+    
+      </div>
+    </header>
+    <div id="breadcrumbs-container">
+      <div class="content-wrapper">
+        <p id="breadcrumbs">
+          <span class="no-mobile">
+            <a href="../index.html">Sparkle Reference</a>
+            <img id="carat" src="../img/carat.png" />
+          </span>
+          SUAppcastItem Class Reference
+        </p>
+      </div>
+    </div>
+    <div class="wrapper">
+      <div class="article-wrapper">
+        <article class="main-content">
+          <section>
+            <section class="section">
+              <h1>SUAppcastItem</h1>
+                <div class="declaration">
+                  <div class="language">
+                    <p class="aside-title">Objective-C</p>
+                    <pre class="highlight objective_c"><code><span class="k">@interface</span> <span class="nc">SUAppcastItem</span> <span class="p">:</span> <span class="nc">NSObject</span> <span class="o">&lt;</span><span class="n">NSSecureCoding</span><span class="o">&gt;</span></code></pre>
+
+                  </div>
+                  <div class="language">
+                    <p class="aside-title">Swift</p>
+                    <pre class="highlight swift"><code><span class="kd">class</span> <span class="kt">SUAppcastItem</span> <span class="p">:</span> <span class="kt">NSObject</span><span class="p">,</span> <span class="kt">NSSecureCoding</span></code></pre>
+
+                  </div>
+                </div>
+              <p>The appcast item describing an update in the application&rsquo;s appcast feed.</p>
+
+<p>An appcast item represents a single update item in the <code><a href="../Classes/SUAppcast.html">SUAppcast</a></code>  contained within the <code>&lt;item&gt;</code> element.</p>
+
+<p>Every appcast item must have a <code>versionString</code>, and either a <code>fileURL</code> or an <code>infoURL</code>.
+All the remaining properties describing an update to the application are optional.</p>
+
+<p>Extended documentation and examples on using appcast item features are available at:
+<a href="https://sparkle-project.org/documentation/publishing/">https://sparkle-project.org/documentation/publishing/</a></p>
+
+            </section>
+            <section class="section task-group-section">
+              <div class="task-group">
+                <ul>
+                  <li class="item">
+                    <div>
+                      <code>
+                      <a name="/c:objc(cs)SUAppcastItem(py)versionString"></a>
+                      <a name="//apple_ref/objc/Property/versionString" class="dashAnchor"></a>
+                      <a class="token" href="#/c:objc(cs)SUAppcastItem(py)versionString">versionString</a>
+                      </code>
+                    </div>
+                    <div class="height-container">
+                      <div class="pointer-container"></div>
+                      <section class="section">
+                        <div class="pointer"></div>
+                        <div class="abstract">
+                          <p>The version of the update item.</p>
+
+<p>Sparkle uses this property to compare update items and determine the best available update item in the <code><a href="../Classes/SUAppcast.html">SUAppcast</a></code>.</p>
+
+<p>This corresponds to the application update&rsquo;s <code>CFBundleVersion</code></p>
+
+<p>This is extracted from the <code>&lt;sparkle:version&gt;</code> element, or the <code>sparkle:version</code> attribute from the <code>&lt;enclosure&gt;</code> element.</p>
+
+                        </div>
+                        <div class="declaration">
+                          <h4>Declaration</h4>
+                          <div class="language">
+                            <p class="aside-title">Objective-C</p>
+                            <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">copy</span><span class="p">,</span> <span class="n">readonly</span><span class="p">)</span> <span class="n">NSString</span> <span class="o">*</span><span class="n">_Nonnull</span> <span class="n">versionString</span><span class="p">;</span></code></pre>
+
+                          </div>
+                          <div class="language">
+                            <p class="aside-title">Swift</p>
+                            <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">versionString</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                          </div>
+                        </div>
+                      </section>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <div>
+                      <code>
+                      <a name="/c:objc(cs)SUAppcastItem(py)displayVersionString"></a>
+                      <a name="//apple_ref/objc/Property/displayVersionString" class="dashAnchor"></a>
+                      <a class="token" href="#/c:objc(cs)SUAppcastItem(py)displayVersionString">displayVersionString</a>
+                      </code>
+                    </div>
+                    <div class="height-container">
+                      <div class="pointer-container"></div>
+                      <section class="section">
+                        <div class="pointer"></div>
+                        <div class="abstract">
+                          <p>The human-readable display version of the update item if provided.</p>
+
+<p>This is the version string shown to the user when they are notified of a new update.</p>
+
+<p>This corresponds to the application update&rsquo;s <code>CFBundleShortVersionString</code></p>
+
+<p>This is extracted from the <code>&lt;sparkle:shortVersionString&gt;</code> element,  or the <code>sparkle:shortVersionString</code> attribute from the <code>&lt;enclosure&gt;</code> element.</p>
+
+                        </div>
+                        <div class="declaration">
+                          <h4>Declaration</h4>
+                          <div class="language">
+                            <p class="aside-title">Objective-C</p>
+                            <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">copy</span><span class="p">,</span> <span class="n">readonly</span><span class="p">,</span> <span class="n">nullable</span><span class="p">)</span> <span class="n">NSString</span> <span class="o">*</span><span class="n">displayVersionString</span><span class="p">;</span></code></pre>
+
+                          </div>
+                          <div class="language">
+                            <p class="aside-title">Swift</p>
+                            <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">displayVersionString</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                          </div>
+                        </div>
+                      </section>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <div>
+                      <code>
+                      <a name="/c:objc(cs)SUAppcastItem(py)fileURL"></a>
+                      <a name="//apple_ref/objc/Property/fileURL" class="dashAnchor"></a>
+                      <a class="token" href="#/c:objc(cs)SUAppcastItem(py)fileURL">fileURL</a>
+                      </code>
+                    </div>
+                    <div class="height-container">
+                      <div class="pointer-container"></div>
+                      <section class="section">
+                        <div class="pointer"></div>
+                        <div class="abstract">
+                          <p>The file URL to the update item if provided.</p>
+
+<p>This download contains the actual update Sparkle will attempt to install.
+In cases where a download cannot be provided, an <code><a href="../Classes/SUAppcastItem.html#/c:objc(cs)SUAppcastItem(py)infoURL">infoURL</a></code> must be provided instead.</p>
+
+<p>A file URL should have an accompanying <code><a href="../Classes/SUAppcastItem.html#/c:objc(cs)SUAppcastItem(py)contentLength">contentLength</a></code> provided.</p>
+
+<p>This is extracted from the <code>url</code> attribute in the <code>&lt;enclosure&gt;</code> element.</p>
+
+                        </div>
+                        <div class="declaration">
+                          <h4>Declaration</h4>
+                          <div class="language">
+                            <p class="aside-title">Objective-C</p>
+                            <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">readonly</span><span class="p">,</span> <span class="n">nullable</span><span class="p">)</span> <span class="n">NSURL</span> <span class="o">*</span><span class="n">fileURL</span><span class="p">;</span></code></pre>
+
+                          </div>
+                          <div class="language">
+                            <p class="aside-title">Swift</p>
+                            <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">fileURL</span><span class="p">:</span> <span class="kt">URL</span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                          </div>
+                        </div>
+                      </section>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <div>
+                      <code>
+                      <a name="/c:objc(cs)SUAppcastItem(py)contentLength"></a>
+                      <a name="//apple_ref/objc/Property/contentLength" class="dashAnchor"></a>
+                      <a class="token" href="#/c:objc(cs)SUAppcastItem(py)contentLength">contentLength</a>
+                      </code>
+                    </div>
+                    <div class="height-container">
+                      <div class="pointer-container"></div>
+                      <section class="section">
+                        <div class="pointer"></div>
+                        <div class="abstract">
+                          <p>The content length of the download in bytes.</p>
+
+<p>This property is used as a fallback when the server doesn&rsquo;t report the content length of the download.
+In that case, it is used to report progress of the downloading update to the user.</p>
+
+<p>A warning is outputted if this property is not equal the server&rsquo;s expected content length (if provided).</p>
+
+<p>This is extracted from the <code>length</code> attribute in the <code>&lt;enclosure&gt;</code> element.
+It should be specified if a <code><a href="../Classes/SUAppcastItem.html#/c:objc(cs)SUAppcastItem(py)fileURL">fileURL</a></code> is provided.</p>
+
+                        </div>
+                        <div class="declaration">
+                          <h4>Declaration</h4>
+                          <div class="language">
+                            <p class="aside-title">Objective-C</p>
+                            <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">readonly</span><span class="p">)</span> <span class="kt">uint64_t</span> <span class="n">contentLength</span><span class="p">;</span></code></pre>
+
+                          </div>
+                          <div class="language">
+                            <p class="aside-title">Swift</p>
+                            <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">contentLength</span><span class="p">:</span> <span class="kt">UInt64</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                          </div>
+                        </div>
+                      </section>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <div>
+                      <code>
+                      <a name="/c:objc(cs)SUAppcastItem(py)infoURL"></a>
+                      <a name="//apple_ref/objc/Property/infoURL" class="dashAnchor"></a>
+                      <a class="token" href="#/c:objc(cs)SUAppcastItem(py)infoURL">infoURL</a>
+                      </code>
+                    </div>
+                    <div class="height-container">
+                      <div class="pointer-container"></div>
+                      <section class="section">
+                        <div class="pointer"></div>
+                        <div class="abstract">
+                          <p>The info URL to the update item if provided.</p>
+
+<p>This informational link is used to direct the user to learn more about an update they cannot download/install directly from within the application.
+The link should point to the product&rsquo;s web page.</p>
+
+<p>The informational link will be used if <code><a href="../Classes/SUAppcastItem.html#/c:objc(cs)SUAppcastItem(py)informationOnlyUpdate">informationOnlyUpdate</a></code> is <code>YES</code></p>
+
+<p>This is extracted from the <code>&lt;link&gt;</code> element.</p>
+
+                        </div>
+                        <div class="declaration">
+                          <h4>Declaration</h4>
+                          <div class="language">
+                            <p class="aside-title">Objective-C</p>
+                            <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">readonly</span><span class="p">,</span> <span class="n">nullable</span><span class="p">)</span> <span class="n">NSURL</span> <span class="o">*</span><span class="n">infoURL</span><span class="p">;</span></code></pre>
+
+                          </div>
+                          <div class="language">
+                            <p class="aside-title">Swift</p>
+                            <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">infoURL</span><span class="p">:</span> <span class="kt">URL</span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                          </div>
+                        </div>
+                      </section>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <div>
+                      <code>
+                      <a name="/c:objc(cs)SUAppcastItem(py)informationOnlyUpdate"></a>
+                      <a name="//apple_ref/objc/Property/informationOnlyUpdate" class="dashAnchor"></a>
+                      <a class="token" href="#/c:objc(cs)SUAppcastItem(py)informationOnlyUpdate">informationOnlyUpdate</a>
+                      </code>
+                    </div>
+                    <div class="height-container">
+                      <div class="pointer-container"></div>
+                      <section class="section">
+                        <div class="pointer"></div>
+                        <div class="abstract">
+                          <p>Indicates whether or not the update item is only informational and has no download.</p>
+
+<p>If <code><a href="../Classes/SUAppcastItem.html#/c:objc(cs)SUAppcastItem(py)infoURL">infoURL</a></code> is not present, this is <code>NO</code></p>
+
+<p>If <code><a href="../Classes/SUAppcastItem.html#/c:objc(cs)SUAppcastItem(py)fileURL">fileURL</a></code> is not present, this is <code>YES</code></p>
+
+<p>Otherwise this is determined based on the contents extracted from the <code>&lt;sparkle:informationalUpdate&gt;</code> element.</p>
+
+                        </div>
+                        <div class="declaration">
+                          <h4>Declaration</h4>
+                          <div class="language">
+                            <p class="aside-title">Objective-C</p>
+                            <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">readonly</span><span class="p">,</span> <span class="n">getter</span><span class="o">=</span><span class="n">isInformationOnlyUpdate</span><span class="p">)</span> <span class="n">BOOL</span> <span class="n">informationOnlyUpdate</span><span class="p">;</span></code></pre>
+
+                          </div>
+                          <div class="language">
+                            <p class="aside-title">Swift</p>
+                            <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">isInformationOnlyUpdate</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                          </div>
+                        </div>
+                      </section>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <div>
+                      <code>
+                      <a name="/c:objc(cs)SUAppcastItem(py)title"></a>
+                      <a name="//apple_ref/objc/Property/title" class="dashAnchor"></a>
+                      <a class="token" href="#/c:objc(cs)SUAppcastItem(py)title">title</a>
+                      </code>
+                    </div>
+                    <div class="height-container">
+                      <div class="pointer-container"></div>
+                      <section class="section">
+                        <div class="pointer"></div>
+                        <div class="abstract">
+                          <p>The title of the appcast item if provided.</p>
+
+<p>This is extracted from the <code>&lt;title&gt;</code> element.</p>
+
+                        </div>
+                        <div class="declaration">
+                          <h4>Declaration</h4>
+                          <div class="language">
+                            <p class="aside-title">Objective-C</p>
+                            <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">copy</span><span class="p">,</span> <span class="n">readonly</span><span class="p">,</span> <span class="n">nullable</span><span class="p">)</span> <span class="n">NSString</span> <span class="o">*</span><span class="n">title</span><span class="p">;</span></code></pre>
+
+                          </div>
+                          <div class="language">
+                            <p class="aside-title">Swift</p>
+                            <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">title</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                          </div>
+                        </div>
+                      </section>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <div>
+                      <code>
+                      <a name="/c:objc(cs)SUAppcastItem(py)dateString"></a>
+                      <a name="//apple_ref/objc/Property/dateString" class="dashAnchor"></a>
+                      <a class="token" href="#/c:objc(cs)SUAppcastItem(py)dateString">dateString</a>
+                      </code>
+                    </div>
+                    <div class="height-container">
+                      <div class="pointer-container"></div>
+                      <section class="section">
+                        <div class="pointer"></div>
+                        <div class="abstract">
+                          <p>The date string of the appcast item if provided.</p>
+
+<p>The <code><a href="../Classes/SUAppcastItem.html#/c:objc(cs)SUAppcastItem(py)date">date</a></code> property is constructed from this property and expects this string to comply with the following date format:
+<code>E, dd MMM yyyy HH:mm:ss Z</code></p>
+
+<p>This is extracted from the <code>&lt;pubDate&gt;</code> element.</p>
+
+                        </div>
+                        <div class="declaration">
+                          <h4>Declaration</h4>
+                          <div class="language">
+                            <p class="aside-title">Objective-C</p>
+                            <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">copy</span><span class="p">,</span> <span class="n">readonly</span><span class="p">,</span> <span class="n">nullable</span><span class="p">)</span> <span class="n">NSString</span> <span class="o">*</span><span class="n">dateString</span><span class="p">;</span></code></pre>
+
+                          </div>
+                          <div class="language">
+                            <p class="aside-title">Swift</p>
+                            <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">dateString</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                          </div>
+                        </div>
+                      </section>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <div>
+                      <code>
+                      <a name="/c:objc(cs)SUAppcastItem(py)date"></a>
+                      <a name="//apple_ref/objc/Property/date" class="dashAnchor"></a>
+                      <a class="token" href="#/c:objc(cs)SUAppcastItem(py)date">date</a>
+                      </code>
+                    </div>
+                    <div class="height-container">
+                      <div class="pointer-container"></div>
+                      <section class="section">
+                        <div class="pointer"></div>
+                        <div class="abstract">
+                          <p>The date constructed from the <code><a href="../Classes/SUAppcastItem.html#/c:objc(cs)SUAppcastItem(py)dateString">dateString</a></code> property if provided.</p>
+
+<p>Sparkle by itself only uses this property for phased group rollouts specified via <code><a href="../Classes/SUAppcastItem.html#/c:objc(cs)SUAppcastItem(py)phasedRolloutInterval">phasedRolloutInterval</a></code>, but clients may query this property too.</p>
+
+<p>This date is constructed using the  <code>en_US</code> locale.</p>
+
+                        </div>
+                        <div class="declaration">
+                          <h4>Declaration</h4>
+                          <div class="language">
+                            <p class="aside-title">Objective-C</p>
+                            <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">copy</span><span class="p">,</span> <span class="n">readonly</span><span class="p">,</span> <span class="n">nullable</span><span class="p">)</span> <span class="n">NSDate</span> <span class="o">*</span><span class="n">date</span><span class="p">;</span></code></pre>
+
+                          </div>
+                          <div class="language">
+                            <p class="aside-title">Swift</p>
+                            <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">date</span><span class="p">:</span> <span class="kt">Date</span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                          </div>
+                        </div>
+                      </section>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <div>
+                      <code>
+                      <a name="/c:objc(cs)SUAppcastItem(py)releaseNotesURL"></a>
+                      <a name="//apple_ref/objc/Property/releaseNotesURL" class="dashAnchor"></a>
+                      <a class="token" href="#/c:objc(cs)SUAppcastItem(py)releaseNotesURL">releaseNotesURL</a>
+                      </code>
+                    </div>
+                    <div class="height-container">
+                      <div class="pointer-container"></div>
+                      <section class="section">
+                        <div class="pointer"></div>
+                        <div class="abstract">
+                          <p>The release notes URL of the appcast item if provided.</p>
+
+<p>This external link points to an HTML file that Sparkle downloads and renders to show the user a new or old update item&rsquo;s changelog.</p>
+
+<p>An alternative to using an external release notes link is providing an embedded <code><a href="../Classes/SUAppcastItem.html#/c:objc(cs)SUAppcastItem(py)itemDescription">itemDescription</a></code>.</p>
+
+<p>This is extracted from the <code>&lt;sparkle:releaseNotesLink&gt;</code> element.</p>
+
+                        </div>
+                        <div class="declaration">
+                          <h4>Declaration</h4>
+                          <div class="language">
+                            <p class="aside-title">Objective-C</p>
+                            <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">readonly</span><span class="p">,</span> <span class="n">nullable</span><span class="p">)</span> <span class="n">NSURL</span> <span class="o">*</span><span class="n">releaseNotesURL</span><span class="p">;</span></code></pre>
+
+                          </div>
+                          <div class="language">
+                            <p class="aside-title">Swift</p>
+                            <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">releaseNotesURL</span><span class="p">:</span> <span class="kt">URL</span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                          </div>
+                        </div>
+                      </section>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <div>
+                      <code>
+                      <a name="/c:objc(cs)SUAppcastItem(py)itemDescription"></a>
+                      <a name="//apple_ref/objc/Property/itemDescription" class="dashAnchor"></a>
+                      <a class="token" href="#/c:objc(cs)SUAppcastItem(py)itemDescription">itemDescription</a>
+                      </code>
+                    </div>
+                    <div class="height-container">
+                      <div class="pointer-container"></div>
+                      <section class="section">
+                        <div class="pointer"></div>
+                        <div class="abstract">
+                          <p>The description of the appcast item if provided.</p>
+
+<p>A description may be provided for inline/embedded release notes for new updates using <code>&lt;![CDATA[...]]&gt;</code>
+This is an alternative to providing a <code><a href="../Classes/SUAppcastItem.html#/c:objc(cs)SUAppcastItem(py)releaseNotesURL">releaseNotesURL</a></code>.</p>
+
+<p>This is extracted from the <code>&lt;description&gt;</code> element.</p>
+
+                        </div>
+                        <div class="declaration">
+                          <h4>Declaration</h4>
+                          <div class="language">
+                            <p class="aside-title">Objective-C</p>
+                            <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">copy</span><span class="p">,</span> <span class="n">readonly</span><span class="p">,</span> <span class="n">nullable</span><span class="p">)</span> <span class="n">NSString</span> <span class="o">*</span><span class="n">itemDescription</span><span class="p">;</span></code></pre>
+
+                          </div>
+                          <div class="language">
+                            <p class="aside-title">Swift</p>
+                            <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">itemDescription</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                          </div>
+                        </div>
+                      </section>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <div>
+                      <code>
+                      <a name="/c:objc(cs)SUAppcastItem(py)minimumSystemVersion"></a>
+                      <a name="//apple_ref/objc/Property/minimumSystemVersion" class="dashAnchor"></a>
+                      <a class="token" href="#/c:objc(cs)SUAppcastItem(py)minimumSystemVersion">minimumSystemVersion</a>
+                      </code>
+                    </div>
+                    <div class="height-container">
+                      <div class="pointer-container"></div>
+                      <section class="section">
+                        <div class="pointer"></div>
+                        <div class="abstract">
+                          <p>The required minimum system operating version string for this update if provided.</p>
+
+<p>This version string should contain three period-separated components.</p>
+
+<p>Example: <code>10.12.0</code></p>
+
+<p>Use <code><a href="../Classes/SUAppcastItem.html#/c:objc(cs)SUAppcastItem(py)minimumOperatingSystemVersionIsOK">minimumOperatingSystemVersionIsOK</a></code> property to test if the current running system passes this requirement.</p>
+
+<p>This is extracted from the <code>&lt;sparkle:minimumSystemVersion&gt;</code> element.</p>
+
+                        </div>
+                        <div class="declaration">
+                          <h4>Declaration</h4>
+                          <div class="language">
+                            <p class="aside-title">Objective-C</p>
+                            <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">copy</span><span class="p">,</span> <span class="n">readonly</span><span class="p">,</span> <span class="n">nullable</span><span class="p">)</span> <span class="n">NSString</span> <span class="o">*</span><span class="n">minimumSystemVersion</span><span class="p">;</span></code></pre>
+
+                          </div>
+                          <div class="language">
+                            <p class="aside-title">Swift</p>
+                            <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">minimumSystemVersion</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                          </div>
+                        </div>
+                      </section>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <div>
+                      <code>
+                      <a name="/c:objc(cs)SUAppcastItem(py)minimumOperatingSystemVersionIsOK"></a>
+                      <a name="//apple_ref/objc/Property/minimumOperatingSystemVersionIsOK" class="dashAnchor"></a>
+                      <a class="token" href="#/c:objc(cs)SUAppcastItem(py)minimumOperatingSystemVersionIsOK">minimumOperatingSystemVersionIsOK</a>
+                      </code>
+                    </div>
+                    <div class="height-container">
+                      <div class="pointer-container"></div>
+                      <section class="section">
+                        <div class="pointer"></div>
+                        <div class="abstract">
+                          <p>Indicates whether or not the current running system passes the <code><a href="../Classes/SUAppcastItem.html#/c:objc(cs)SUAppcastItem(py)minimumSystemVersion">minimumSystemVersion</a></code> requirement.</p>
+
+                        </div>
+                        <div class="declaration">
+                          <h4>Declaration</h4>
+                          <div class="language">
+                            <p class="aside-title">Objective-C</p>
+                            <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">readonly</span><span class="p">)</span> <span class="n">BOOL</span> <span class="n">minimumOperatingSystemVersionIsOK</span><span class="p">;</span></code></pre>
+
+                          </div>
+                          <div class="language">
+                            <p class="aside-title">Swift</p>
+                            <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">minimumOperatingSystemVersionIsOK</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                          </div>
+                        </div>
+                      </section>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <div>
+                      <code>
+                      <a name="/c:objc(cs)SUAppcastItem(py)maximumSystemVersion"></a>
+                      <a name="//apple_ref/objc/Property/maximumSystemVersion" class="dashAnchor"></a>
+                      <a class="token" href="#/c:objc(cs)SUAppcastItem(py)maximumSystemVersion">maximumSystemVersion</a>
+                      </code>
+                    </div>
+                    <div class="height-container">
+                      <div class="pointer-container"></div>
+                      <section class="section">
+                        <div class="pointer"></div>
+                        <div class="abstract">
+                          <p>The required maximum system operating version string for this update if provided.</p>
+
+<p>A maximum system operating version requirement should only be made in unusual scenarios.</p>
+
+<p>This version string should contain three period-separated components.</p>
+
+<p>Example: <code>10.13.0</code></p>
+
+<p>Use <code><a href="../Classes/SUAppcastItem.html#/c:objc(cs)SUAppcastItem(py)maximumOperatingSystemVersionIsOK">maximumOperatingSystemVersionIsOK</a></code> property  to test if the current running system passes this requirement.</p>
+
+<p>This is extracted from the <code>&lt;sparkle:maximumSystemVersion&gt;</code> element.</p>
+
+                        </div>
+                        <div class="declaration">
+                          <h4>Declaration</h4>
+                          <div class="language">
+                            <p class="aside-title">Objective-C</p>
+                            <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">copy</span><span class="p">,</span> <span class="n">readonly</span><span class="p">,</span> <span class="n">nullable</span><span class="p">)</span> <span class="n">NSString</span> <span class="o">*</span><span class="n">maximumSystemVersion</span><span class="p">;</span></code></pre>
+
+                          </div>
+                          <div class="language">
+                            <p class="aside-title">Swift</p>
+                            <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">maximumSystemVersion</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                          </div>
+                        </div>
+                      </section>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <div>
+                      <code>
+                      <a name="/c:objc(cs)SUAppcastItem(py)maximumOperatingSystemVersionIsOK"></a>
+                      <a name="//apple_ref/objc/Property/maximumOperatingSystemVersionIsOK" class="dashAnchor"></a>
+                      <a class="token" href="#/c:objc(cs)SUAppcastItem(py)maximumOperatingSystemVersionIsOK">maximumOperatingSystemVersionIsOK</a>
+                      </code>
+                    </div>
+                    <div class="height-container">
+                      <div class="pointer-container"></div>
+                      <section class="section">
+                        <div class="pointer"></div>
+                        <div class="abstract">
+                          <p>Indicates whether or not the current running system passes the <code><a href="../Classes/SUAppcastItem.html#/c:objc(cs)SUAppcastItem(py)maximumSystemVersion">maximumSystemVersion</a></code> requirement.</p>
+
+                        </div>
+                        <div class="declaration">
+                          <h4>Declaration</h4>
+                          <div class="language">
+                            <p class="aside-title">Objective-C</p>
+                            <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">readonly</span><span class="p">)</span> <span class="n">BOOL</span> <span class="n">maximumOperatingSystemVersionIsOK</span><span class="p">;</span></code></pre>
+
+                          </div>
+                          <div class="language">
+                            <p class="aside-title">Swift</p>
+                            <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">maximumOperatingSystemVersionIsOK</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                          </div>
+                        </div>
+                      </section>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <div>
+                      <code>
+                      <a name="/c:objc(cs)SUAppcastItem(py)channel"></a>
+                      <a name="//apple_ref/objc/Property/channel" class="dashAnchor"></a>
+                      <a class="token" href="#/c:objc(cs)SUAppcastItem(py)channel">channel</a>
+                      </code>
+                    </div>
+                    <div class="height-container">
+                      <div class="pointer-container"></div>
+                      <section class="section">
+                        <div class="pointer"></div>
+                        <div class="abstract">
+                          <p>The channel the update item is on if provided.</p>
+
+<p>An update item may specify a custom channel name (such as <code>beta)</code> that can only be found by updaters that filter for that channel.
+If no channel is provided, the update item is assumed to be on the default channel.</p>
+
+<p>This is extracted from the <code>&lt;sparkle:channel&gt;</code> element.
+Old applications must be using Sparkle 2 or later to interpret the channel element and to ignore unmatched channels.</p>
+
+                        </div>
+                        <div class="declaration">
+                          <h4>Declaration</h4>
+                          <div class="language">
+                            <p class="aside-title">Objective-C</p>
+                            <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">readonly</span><span class="p">,</span> <span class="n">nullable</span><span class="p">)</span> <span class="n">NSString</span> <span class="o">*</span><span class="n">channel</span><span class="p">;</span></code></pre>
+
+                          </div>
+                          <div class="language">
+                            <p class="aside-title">Swift</p>
+                            <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">channel</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                          </div>
+                        </div>
+                      </section>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <div>
+                      <code>
+                      <a name="/c:objc(cs)SUAppcastItem(py)installationType"></a>
+                      <a name="//apple_ref/objc/Property/installationType" class="dashAnchor"></a>
+                      <a class="token" href="#/c:objc(cs)SUAppcastItem(py)installationType">installationType</a>
+                      </code>
+                    </div>
+                    <div class="height-container">
+                      <div class="pointer-container"></div>
+                      <section class="section">
+                        <div class="pointer"></div>
+                        <div class="abstract">
+                          <p>The installation type of the update at <code><a href="../Classes/SUAppcastItem.html#/c:objc(cs)SUAppcastItem(py)fileURL">fileURL</a></code></p>
+
+<p>This may be:</p>
+
+<ul>
+<li><code>application</code> - indicates this is a regular application update.</li>
+<li><code>package</code> - indicates this is a guided package installer update.</li>
+<li><code>interactive-package</code> - indicates this is an interactive package installer update (deprecated; use &ldquo;package&rdquo; instead)</li>
+</ul>
+
+<p>This is extracted from the <code>sparkle:installationType</code> attribute in the <code>&lt;enclosure&gt;</code> element.</p>
+
+<p>If no installation type is provided in the enclosure, the installation type is inferred from the <code><a href="../Classes/SUAppcastItem.html#/c:objc(cs)SUAppcastItem(py)fileURL">fileURL</a></code> file extension instead.</p>
+
+<p>If the file extension is <code>pkg</code> or <code>mpkg,</code> the installation type is <code>package</code> otherwise it is <code>application</code></p>
+
+<p>Hence, the installation type in the enclosure element only needs to be specified for package based updates distributed inside of a <code>zip</code> or other archive format.</p>
+
+<p>Old applications must be using Sparkle 1.26 or later to support downloading bare package updates (<code>pkg</code> or <code>mpkg</code>) that are not additionally archived inside of a <code>zip</code> or other archive format.</p>
+
+                        </div>
+                        <div class="declaration">
+                          <h4>Declaration</h4>
+                          <div class="language">
+                            <p class="aside-title">Objective-C</p>
+                            <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">copy</span><span class="p">,</span> <span class="n">readonly</span><span class="p">)</span> <span class="n">NSString</span> <span class="o">*</span><span class="n">_Nonnull</span> <span class="n">installationType</span><span class="p">;</span></code></pre>
+
+                          </div>
+                          <div class="language">
+                            <p class="aside-title">Swift</p>
+                            <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">installationType</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                          </div>
+                        </div>
+                      </section>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <div>
+                      <code>
+                      <a name="/c:objc(cs)SUAppcastItem(py)phasedRolloutInterval"></a>
+                      <a name="//apple_ref/objc/Property/phasedRolloutInterval" class="dashAnchor"></a>
+                      <a class="token" href="#/c:objc(cs)SUAppcastItem(py)phasedRolloutInterval">phasedRolloutInterval</a>
+                      </code>
+                    </div>
+                    <div class="height-container">
+                      <div class="pointer-container"></div>
+                      <section class="section">
+                        <div class="pointer"></div>
+                        <div class="abstract">
+                          <p>The phased rollout interval of the update item in seconds if provided.</p>
+
+<p>This is the interval between when different groups of users are notified of a new update.</p>
+
+<p>For this property to be used by Sparkle, the published <code><a href="../Classes/SUAppcastItem.html#/c:objc(cs)SUAppcastItem(py)date">date</a></code> on the update item must be present as well.</p>
+
+<p>After each interval after the update item&rsquo;s <code><a href="../Classes/SUAppcastItem.html#/c:objc(cs)SUAppcastItem(py)date">date</a></code>, a new group of users become eligible for being notified of the new update.</p>
+
+<p>This is extracted from the <code>&lt;sparkle:phasedRolloutInterval&gt;</code> element.</p>
+
+<p>Old applications must be using Sparkle 1.25 or later to support phased rollout intervals, otherwise they may assume updates are immediately available.</p>
+
+                        </div>
+                        <div class="declaration">
+                          <h4>Declaration</h4>
+                          <div class="language">
+                            <p class="aside-title">Objective-C</p>
+                            <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">copy</span><span class="p">,</span> <span class="n">readonly</span><span class="p">,</span> <span class="n">nullable</span><span class="p">)</span> <span class="n">NSNumber</span> <span class="o">*</span><span class="n">phasedRolloutInterval</span><span class="p">;</span></code></pre>
+
+                          </div>
+                          <div class="language">
+                            <p class="aside-title">Swift</p>
+                            <pre class="highlight swift"><code><span class="kd">@NSCopying</span> <span class="k">var</span> <span class="nv">phasedRolloutInterval</span><span class="p">:</span> <span class="kt">NSNumber</span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                          </div>
+                        </div>
+                      </section>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <div>
+                      <code>
+                      <a name="/c:objc(cs)SUAppcastItem(py)minimumAutoupdateVersion"></a>
+                      <a name="//apple_ref/objc/Property/minimumAutoupdateVersion" class="dashAnchor"></a>
+                      <a class="token" href="#/c:objc(cs)SUAppcastItem(py)minimumAutoupdateVersion">minimumAutoupdateVersion</a>
+                      </code>
+                    </div>
+                    <div class="height-container">
+                      <div class="pointer-container"></div>
+                      <section class="section">
+                        <div class="pointer"></div>
+                        <div class="abstract">
+                          <p>The minimum bundle version string this update requires for automatically downloading and installing updates if provided.</p>
+
+<p>If an application&rsquo;s bundle version meets this version requirement, it can install the new update item in the background automatically.</p>
+
+<p>Otherwise if the requirement is not met, the user is always  prompted to install the update. In this case, the update is assumed to be a <code><a href="../Classes/SUAppcastItem.html#/c:objc(cs)SUAppcastItem(py)majorUpgrade">majorUpgrade</a></code>.</p>
+
+<p>If the update is a <code><a href="../Classes/SUAppcastItem.html#/c:objc(cs)SUAppcastItem(py)majorUpgrade">majorUpgrade</a></code> and the update is skipped by the user, other future update alerts with the same <code>minimumAutoupdateVersion</code> will also be skipped.</p>
+
+<p>This version string corresponds to the application&rsquo;s <code>CFBundleVersion</code></p>
+
+                        </div>
+                        <div class="declaration">
+                          <h4>Declaration</h4>
+                          <div class="language">
+                            <p class="aside-title">Objective-C</p>
+                            <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">copy</span><span class="p">,</span> <span class="n">readonly</span><span class="p">,</span> <span class="n">nullable</span><span class="p">)</span> <span class="n">NSString</span> <span class="o">*</span><span class="n">minimumAutoupdateVersion</span><span class="p">;</span></code></pre>
+
+                          </div>
+                          <div class="language">
+                            <p class="aside-title">Swift</p>
+                            <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">minimumAutoupdateVersion</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                          </div>
+                        </div>
+                      </section>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <div>
+                      <code>
+                      <a name="/c:objc(cs)SUAppcastItem(py)majorUpgrade"></a>
+                      <a name="//apple_ref/objc/Property/majorUpgrade" class="dashAnchor"></a>
+                      <a class="token" href="#/c:objc(cs)SUAppcastItem(py)majorUpgrade">majorUpgrade</a>
+                      </code>
+                    </div>
+                    <div class="height-container">
+                      <div class="pointer-container"></div>
+                      <section class="section">
+                        <div class="pointer"></div>
+                        <div class="abstract">
+                          <p>Indicates whether or not the update item is a major upgrade.</p>
+
+<p>An update is a major upgrade if the application&rsquo;s bundle version doesn&rsquo;t meet the <code><a href="../Classes/SUAppcastItem.html#/c:objc(cs)SUAppcastItem(py)minimumAutoupdateVersion">minimumAutoupdateVersion</a></code> requirement.</p>
+
+                        </div>
+                        <div class="declaration">
+                          <h4>Declaration</h4>
+                          <div class="language">
+                            <p class="aside-title">Objective-C</p>
+                            <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">readonly</span><span class="p">,</span> <span class="n">getter</span><span class="o">=</span><span class="n">isMajorUpgrade</span><span class="p">)</span> <span class="n">BOOL</span> <span class="n">majorUpgrade</span><span class="p">;</span></code></pre>
+
+                          </div>
+                          <div class="language">
+                            <p class="aside-title">Swift</p>
+                            <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">isMajorUpgrade</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                          </div>
+                        </div>
+                      </section>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <div>
+                      <code>
+                      <a name="/c:objc(cs)SUAppcastItem(py)criticalUpdate"></a>
+                      <a name="//apple_ref/objc/Property/criticalUpdate" class="dashAnchor"></a>
+                      <a class="token" href="#/c:objc(cs)SUAppcastItem(py)criticalUpdate">criticalUpdate</a>
+                      </code>
+                    </div>
+                    <div class="height-container">
+                      <div class="pointer-container"></div>
+                      <section class="section">
+                        <div class="pointer"></div>
+                        <div class="abstract">
+                          <p>Indicates whether or not the update item is critical.</p>
+
+<p>Critical updates are shown to the user more promptly. Sparkle&rsquo;s standard user interface also does not allow them to be skipped.</p>
+
+<p>This is determined and extracted from a top-level <code>&lt;sparkle:criticalUpdate&gt;</code> element or a <code>sparkle:criticalUpdate</code> element inside of a <code>sparkle:tags</code> element.</p>
+
+<p>Old applications must be using Sparkle 2 or later to support the top-level <code>&lt;sparkle:criticalUpdate&gt;</code> element.</p>
+
+                        </div>
+                        <div class="declaration">
+                          <h4>Declaration</h4>
+                          <div class="language">
+                            <p class="aside-title">Objective-C</p>
+                            <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">readonly</span><span class="p">,</span> <span class="n">getter</span><span class="o">=</span><span class="n">isCriticalUpdate</span><span class="p">)</span> <span class="n">BOOL</span> <span class="n">criticalUpdate</span><span class="p">;</span></code></pre>
+
+                          </div>
+                          <div class="language">
+                            <p class="aside-title">Swift</p>
+                            <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">isCriticalUpdate</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                          </div>
+                        </div>
+                      </section>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <div>
+                      <code>
+                      <a name="/c:objc(cs)SUAppcastItem(py)osString"></a>
+                      <a name="//apple_ref/objc/Property/osString" class="dashAnchor"></a>
+                      <a class="token" href="#/c:objc(cs)SUAppcastItem(py)osString">osString</a>
+                      </code>
+                    </div>
+                    <div class="height-container">
+                      <div class="pointer-container"></div>
+                      <section class="section">
+                        <div class="pointer"></div>
+                        <div class="abstract">
+                          <p>Specifies the operating system the download update is available for if provided.</p>
+
+<p>If this property is not provided, then the supported operating system is assumed to be macOS.</p>
+
+<p>Known potential values for this string are <code>macos</code> and <code>windows</code></p>
+
+<p>Sparkle on Mac ignores update items that are for other operating systems.
+This is only useful for sharing appcasts between Sparkle on Mac and Sparkle on other operating systems.</p>
+
+<p>Use <code><a href="../Classes/SUAppcastItem.html#/c:objc(cs)SUAppcastItem(py)macOsUpdate">macOsUpdate</a></code> property to test if this update item is for macOS.</p>
+
+<p>This is extracted from the <code>sparkle:os</code> attribute in the <code>&lt;enclosure&gt;</code> element.</p>
+
+                        </div>
+                        <div class="declaration">
+                          <h4>Declaration</h4>
+                          <div class="language">
+                            <p class="aside-title">Objective-C</p>
+                            <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">copy</span><span class="p">,</span> <span class="n">readonly</span><span class="p">,</span> <span class="n">nullable</span><span class="p">)</span> <span class="n">NSString</span> <span class="o">*</span><span class="n">osString</span><span class="p">;</span></code></pre>
+
+                          </div>
+                          <div class="language">
+                            <p class="aside-title">Swift</p>
+                            <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">osString</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                          </div>
+                        </div>
+                      </section>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <div>
+                      <code>
+                      <a name="/c:objc(cs)SUAppcastItem(py)macOsUpdate"></a>
+                      <a name="//apple_ref/objc/Property/macOsUpdate" class="dashAnchor"></a>
+                      <a class="token" href="#/c:objc(cs)SUAppcastItem(py)macOsUpdate">macOsUpdate</a>
+                      </code>
+                    </div>
+                    <div class="height-container">
+                      <div class="pointer-container"></div>
+                      <section class="section">
+                        <div class="pointer"></div>
+                        <div class="abstract">
+                          <p>Indicates whether or not this update item is for macOS.</p>
+
+<p>This is determined from the <code><a href="../Classes/SUAppcastItem.html#/c:objc(cs)SUAppcastItem(py)osString">osString</a></code> property.</p>
+
+                        </div>
+                        <div class="declaration">
+                          <h4>Declaration</h4>
+                          <div class="language">
+                            <p class="aside-title">Objective-C</p>
+                            <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">readonly</span><span class="p">,</span> <span class="n">getter</span><span class="o">=</span><span class="n">isMacOsUpdate</span><span class="p">)</span> <span class="n">BOOL</span> <span class="n">macOsUpdate</span><span class="p">;</span></code></pre>
+
+                          </div>
+                          <div class="language">
+                            <p class="aside-title">Swift</p>
+                            <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">isMacOsUpdate</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                          </div>
+                        </div>
+                      </section>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <div>
+                      <code>
+                      <a name="/c:objc(cs)SUAppcastItem(py)deltaUpdates"></a>
+                      <a name="//apple_ref/objc/Property/deltaUpdates" class="dashAnchor"></a>
+                      <a class="token" href="#/c:objc(cs)SUAppcastItem(py)deltaUpdates">deltaUpdates</a>
+                      </code>
+                    </div>
+                    <div class="height-container">
+                      <div class="pointer-container"></div>
+                      <section class="section">
+                        <div class="pointer"></div>
+                        <div class="abstract">
+                          <p>The delta updates for this update item.</p>
+
+<p>Sparkle uses these to download and apply a smaller update based on the version the user is updating from.</p>
+
+<p>The key is based on the <code>sparkle:version</code> of the update.
+The value is an update item that will have <code><a href="../Classes/SUAppcastItem.html#/c:objc(cs)SUAppcastItem(py)deltaUpdate">deltaUpdate</a></code> be <code>YES</code></p>
+
+<p>Clients typically should not need to examine the contents of the delta updates.</p>
+
+<p>This is extracted from the <code>&lt;sparkle:deltas&gt;</code> element.</p>
+
+                        </div>
+                        <div class="declaration">
+                          <h4>Declaration</h4>
+                          <div class="language">
+                            <p class="aside-title">Objective-C</p>
+                            <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">copy</span><span class="p">,</span> <span class="n">readonly</span><span class="p">,</span> <span class="n">nullable</span><span class="p">)</span> <span class="n">NSDictionary</span><span class="o">&lt;</span><span class="n">NSString</span> <span class="o">*</span><span class="p">,</span> <span class="n">SUAppcastItem</span> <span class="o">*&gt;</span> <span class="o">*</span><span class="n">deltaUpdates</span><span class="p">;</span></code></pre>
+
+                          </div>
+                          <div class="language">
+                            <p class="aside-title">Swift</p>
+                            <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">deltaUpdates</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span> <span class="p">:</span> <span class="kt">SUAppcastItem</span><span class="p">]?</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                          </div>
+                        </div>
+                      </section>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <div>
+                      <code>
+                      <a name="/c:objc(cs)SUAppcastItem(py)deltaUpdate"></a>
+                      <a name="//apple_ref/objc/Property/deltaUpdate" class="dashAnchor"></a>
+                      <a class="token" href="#/c:objc(cs)SUAppcastItem(py)deltaUpdate">deltaUpdate</a>
+                      </code>
+                    </div>
+                    <div class="height-container">
+                      <div class="pointer-container"></div>
+                      <section class="section">
+                        <div class="pointer"></div>
+                        <div class="abstract">
+                          <p>Indicates whether or not the update item is a delta update.</p>
+
+<p>An update item is a delta update if it is in the <code><a href="../Classes/SUAppcastItem.html#/c:objc(cs)SUAppcastItem(py)deltaUpdates">deltaUpdates</a></code> of another update item.</p>
+
+                        </div>
+                        <div class="declaration">
+                          <h4>Declaration</h4>
+                          <div class="language">
+                            <p class="aside-title">Objective-C</p>
+                            <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">readonly</span><span class="p">,</span> <span class="n">getter</span><span class="o">=</span><span class="n">isDeltaUpdate</span><span class="p">)</span> <span class="n">BOOL</span> <span class="n">deltaUpdate</span><span class="p">;</span></code></pre>
+
+                          </div>
+                          <div class="language">
+                            <p class="aside-title">Swift</p>
+                            <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">isDeltaUpdate</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                          </div>
+                        </div>
+                      </section>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <div>
+                      <code>
+                      <a name="/c:objc(cs)SUAppcastItem(py)propertiesDictionary"></a>
+                      <a name="//apple_ref/objc/Property/propertiesDictionary" class="dashAnchor"></a>
+                      <a class="token" href="#/c:objc(cs)SUAppcastItem(py)propertiesDictionary">propertiesDictionary</a>
+                      </code>
+                    </div>
+                    <div class="height-container">
+                      <div class="pointer-container"></div>
+                      <section class="section">
+                        <div class="pointer"></div>
+                        <div class="abstract">
+                          <p>The dictionary representing the entire appcast item.</p>
+
+<p>This is useful for querying custom extensions or elements from the appcast item.</p>
+
+                        </div>
+                        <div class="declaration">
+                          <h4>Declaration</h4>
+                          <div class="language">
+                            <p class="aside-title">Objective-C</p>
+                            <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">copy</span><span class="p">,</span> <span class="n">readonly</span><span class="p">)</span> <span class="n">NSDictionary</span> <span class="o">*</span><span class="n">_Nonnull</span> <span class="n">propertiesDictionary</span><span class="p">;</span></code></pre>
+
+                          </div>
+                          <div class="language">
+                            <p class="aside-title">Swift</p>
+                            <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">propertiesDictionary</span><span class="p">:</span> <span class="p">[</span><span class="kt">AnyHashable</span> <span class="p">:</span> <span class="kt">Any</span><span class="p">]</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                          </div>
+                        </div>
+                      </section>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <div>
+                      <code>
+                      <a name="/c:objc(cs)SUAppcastItem(im)init"></a>
+                      <a name="//apple_ref/objc/Method/-init" class="dashAnchor"></a>
+                      <a class="token discouraged" href="#/c:objc(cs)SUAppcastItem(im)init">-init</a>
+                      </code>
+                    </div>
+                    <div class="height-container">
+                      <div class="pointer-container"></div>
+                      <section class="section">
+                        <div class="pointer"></div>
+                        <div class="aside aside-unavailable">
+                          <p class="aside-title">Unavailable</p>
+                          
+                        </div>
+                        <div class="abstract">
+                          <p>Undocumented</p>
+
+                        </div>
+                        <div class="declaration">
+                          <h4>Declaration</h4>
+                          <div class="language">
+                            <p class="aside-title">Objective-C</p>
+                            <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">instancetype</span><span class="p">)</span><span class="n">init</span> <span class="n">NS_UNAVAILABLE</span><span class="p">;</span></code></pre>
+
+                          </div>
+                        </div>
+                      </section>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <div>
+                      <code>
+                      <a name="/c:objc(cs)SUAppcastItem(cm)emptyAppcastItem"></a>
+                      <a name="//apple_ref/objc/Method/+emptyAppcastItem" class="dashAnchor"></a>
+                      <a class="token" href="#/c:objc(cs)SUAppcastItem(cm)emptyAppcastItem">+emptyAppcastItem</a>
+                      </code>
+                    </div>
+                    <div class="height-container">
+                      <div class="pointer-container"></div>
+                      <section class="section">
+                        <div class="pointer"></div>
+                        <div class="abstract">
+                          <p>An empty appcast item.</p>
+
+<p>This may be used as a potential return value in <code><a href="../Protocols/SPUUpdaterDelegate.html#/c:objc(pl)SPUUpdaterDelegate(im)bestValidUpdateInAppcast:forUpdater:">-[SPUUpdaterDelegate bestValidUpdateInAppcast:forUpdater:]</a></code></p>
+
+                        </div>
+                        <div class="declaration">
+                          <h4>Declaration</h4>
+                          <div class="language">
+                            <p class="aside-title">Objective-C</p>
+                            <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n">nonnull</span> <span class="n">instancetype</span><span class="p">)</span><span class="n">emptyAppcastItem</span><span class="p">;</span></code></pre>
+
+                          </div>
+                          <div class="language">
+                            <p class="aside-title">Swift</p>
+                            <pre class="highlight swift"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">empty</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
+
+                          </div>
+                        </div>
+                      </section>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <div>
+                      <code>
+                      <a name="/c:objc(cs)SUAppcastItem(im)initWithDictionary:"></a>
+                      <a name="//apple_ref/objc/Method/-initWithDictionary:" class="dashAnchor"></a>
+                      <a class="token discouraged" href="#/c:objc(cs)SUAppcastItem(im)initWithDictionary:">-initWithDictionary:<wbr></a>
+                      </code>
+                    </div>
+                    <div class="height-container">
+                      <div class="pointer-container"></div>
+                      <section class="section">
+                        <div class="pointer"></div>
+                        <div class="aside aside-deprecated">
+                          <p class="aside-title">Deprecated</p>
+                          <p>Properties that depend on the system or application version are not supported when used with this initializer. The designated initializer is available in SUAppcastItem+Private.h. Please first explore other APIs or contact us to describe your use case.</p>
+
+                        </div>
+                        <div class="abstract">
+                          <p>Undocumented</p>
+
+                        </div>
+                        <div class="declaration">
+                          <h4>Declaration</h4>
+                          <div class="language">
+                            <p class="aside-title">Objective-C</p>
+                            <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">nullable</span> <span class="n">instancetype</span><span class="p">)</span><span class="nf">initWithDictionary</span><span class="p">:(</span><span class="n">NSDictionary</span> <span class="o">*</span><span class="p">)</span><span class="nv">dict</span> <span class="n">__deprecated_msg</span><span class="p">(</span><span class="s">"Properties that depend on the system or application version are not supported when used with this initializer. The designated initializer is available in SUAppcastItem+Private.h. Please first explore other APIs or contact us to describe your use case."</span><span class="p">);</span></code></pre>
+
+                          </div>
+                          <div class="language">
+                            <p class="aside-title">Swift</p>
+                            <pre class="highlight swift"><code><span class="nf">init</span><span class="p">?(</span><span class="n">dictionary</span> <span class="nv">dict</span><span class="p">:</span> <span class="p">[</span><span class="kt">AnyHashable</span> <span class="p">:</span> <span class="kt">Any</span><span class="p">])</span></code></pre>
+
+                          </div>
+                        </div>
+                      </section>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <div>
+                      <code>
+                      <a name="/c:objc(cs)SUAppcastItem(im)initWithDictionary:failureReason:"></a>
+                      <a name="//apple_ref/objc/Method/-initWithDictionary:failureReason:" class="dashAnchor"></a>
+                      <a class="token discouraged" href="#/c:objc(cs)SUAppcastItem(im)initWithDictionary:failureReason:">-initWithDictionary:<wbr>failureReason:<wbr></a>
+                      </code>
+                    </div>
+                    <div class="height-container">
+                      <div class="pointer-container"></div>
+                      <section class="section">
+                        <div class="pointer"></div>
+                        <div class="aside aside-deprecated">
+                          <p class="aside-title">Deprecated</p>
+                          <p>Properties that depend on the system or application version are not supported when used with this initializer. The designated initializer is available in SUAppcastItem+Private.h. Please first explore other APIs or contact us to describe your use case.</p>
+
+                        </div>
+                        <div class="abstract">
+                          <p>Undocumented</p>
+
+                        </div>
+                        <div class="declaration">
+                          <h4>Declaration</h4>
+                          <div class="language">
+                            <p class="aside-title">Objective-C</p>
+                            <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">nullable</span> <span class="n">instancetype</span><span class="p">)</span><span class="nf">initWithDictionary</span><span class="p">:(</span><span class="n">NSDictionary</span> <span class="o">*</span><span class="p">)</span><span class="nv">dict</span> <span class="nf">failureReason</span><span class="p">:(</span><span class="n">NSString</span> <span class="o">*</span> <span class="n">_Nullable</span> <span class="n">__autoreleasing</span> <span class="o">*</span><span class="n">_Nullable</span><span class="p">)</span><span class="nv">error</span> <span class="n">__deprecated_msg</span><span class="p">(</span><span class="s">"Properties that depend on the system or application version are not supported when used with this initializer. The designated initializer is available in SUAppcastItem+Private.h. Please first explore other APIs or contact us to describe your use case."</span><span class="p">);</span></code></pre>
+
+                          </div>
+                          <div class="language">
+                            <p class="aside-title">Swift</p>
+                            <pre class="highlight swift"><code><span class="nf">init</span><span class="p">?(</span><span class="n">dictionary</span> <span class="nv">dict</span><span class="p">:</span> <span class="p">[</span><span class="kt">AnyHashable</span> <span class="p">:</span> <span class="kt">Any</span><span class="p">],</span> <span class="n">failureReason</span> <span class="nv">error</span><span class="p">:</span> <span class="kt">AutoreleasingUnsafeMutablePointer</span><span class="o">&lt;</span><span class="kt">NSString</span><span class="p">?</span><span class="o">&gt;</span><span class="p">?)</span></code></pre>
+
+                          </div>
+                        </div>
+                      </section>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <div>
+                      <code>
+                      <a name="/c:objc(cs)SUAppcastItem(im)initWithDictionary:relativeToURL:failureReason:"></a>
+                      <a name="//apple_ref/objc/Method/-initWithDictionary:relativeToURL:failureReason:" class="dashAnchor"></a>
+                      <a class="token discouraged" href="#/c:objc(cs)SUAppcastItem(im)initWithDictionary:relativeToURL:failureReason:">-initWithDictionary:<wbr>relativeToURL:<wbr>failureReason:<wbr></a>
+                      </code>
+                    </div>
+                    <div class="height-container">
+                      <div class="pointer-container"></div>
+                      <section class="section">
+                        <div class="pointer"></div>
+                        <div class="aside aside-deprecated">
+                          <p class="aside-title">Deprecated</p>
+                          <p>Properties that depend on the system or application version are not supported when used with this initializer. The designated initializer is available in SUAppcastItem+Private.h. Please first explore other APIs or contact us to describe your use case.</p>
+
+                        </div>
+                        <div class="abstract">
+                          <p>Undocumented</p>
+
+                        </div>
+                        <div class="declaration">
+                          <h4>Declaration</h4>
+                          <div class="language">
+                            <p class="aside-title">Objective-C</p>
+                            <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">nullable</span> <span class="n">instancetype</span><span class="p">)</span><span class="nf">initWithDictionary</span><span class="p">:(</span><span class="n">NSDictionary</span> <span class="o">*</span><span class="p">)</span><span class="nv">dict</span> <span class="nf">relativeToURL</span><span class="p">:(</span><span class="n">NSURL</span> <span class="o">*</span> <span class="n">_Nullable</span><span class="p">)</span><span class="nv">appcastURL</span> <span class="nf">failureReason</span><span class="p">:(</span><span class="n">NSString</span> <span class="o">*</span> <span class="n">_Nullable</span> <span class="n">__autoreleasing</span> <span class="o">*</span><span class="n">_Nullable</span><span class="p">)</span><span class="nv">error</span> <span class="n">__deprecated_msg</span><span class="p">(</span><span class="s">"Properties that depend on the system or application version are not supported when used with this initializer. The designated initializer is available in SUAppcastItem+Private.h. Please first explore other APIs or contact us to describe your use case."</span><span class="p">);</span></code></pre>
+
+                          </div>
+                          <div class="language">
+                            <p class="aside-title">Swift</p>
+                            <pre class="highlight swift"><code><span class="nf">init</span><span class="p">?(</span><span class="n">dictionary</span> <span class="nv">dict</span><span class="p">:</span> <span class="p">[</span><span class="kt">AnyHashable</span> <span class="p">:</span> <span class="kt">Any</span><span class="p">],</span> <span class="n">relativeTo</span> <span class="nv">appcastURL</span><span class="p">:</span> <span class="kt">URL</span><span class="p">?,</span> <span class="n">failureReason</span> <span class="nv">error</span><span class="p">:</span> <span class="kt">AutoreleasingUnsafeMutablePointer</span><span class="o">&lt;</span><span class="kt">NSString</span><span class="p">?</span><span class="o">&gt;</span><span class="p">?)</span></code></pre>
+
+                          </div>
+                        </div>
+                      </section>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </section>
+          </section>
+        </article>
+      </div>
+      <div class="nav-wrapper">
+        <nav class="nav-bottom">
+          <ul class="nav-groups">
+            <li class="nav-group-name">
+              <a href="../Classes.html">Classes</a>
+              <ul class="nav-group-tasks">
+                <li class="nav-group-task">
+                  <a href="../Classes/SPUDownloadData.html">SPUDownloadData</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/SPUStandardUpdaterController.html">SPUStandardUpdaterController</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/SPUStandardUserDriver.html">SPUStandardUserDriver</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/SPUUpdatePermissionRequest.html">SPUUpdatePermissionRequest</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/SPUUpdater.html">SPUUpdater</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/SPUUpdaterSettings.html">SPUUpdaterSettings</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/SPUUserUpdateState.html">SPUUserUpdateState</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/SUAppcast.html">SUAppcast</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/SUAppcastItem.html">SUAppcastItem</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/SUStandardVersionComparator.html">SUStandardVersionComparator</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/SUUpdatePermissionResponse.html">SUUpdatePermissionResponse</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/SUUpdater.html">SUUpdater</a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-group-name">
+              <a href="../Constants.html">Constants</a>
+              <ul class="nav-group-tasks">
+                <li class="nav-group-task">
+                  <a href="../Constants.html#/c:@SPULatestAppcastItemFoundKey">SPULatestAppcastItemFoundKey</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Constants.html#/c:@SPUNoUpdateFoundReasonKey">SPUNoUpdateFoundReasonKey</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Constants.html#/c:@SPUNoUpdateFoundUserInitiatedKey">SPUNoUpdateFoundUserInitiatedKey</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Constants.html#/c:@SUSparkleErrorDomain">SUSparkleErrorDomain</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Constants.html#/c:@SUSystemProfilerApplicationNameKey">SUSystemProfilerApplicationNameKey</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Constants.html#/c:@SUSystemProfilerApplicationVersionKey">SUSystemProfilerApplicationVersionKey</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Constants.html#/c:@SUSystemProfilerCPU64bitKey">SUSystemProfilerCPU64bitKey</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Constants.html#/c:@SUSystemProfilerCPUCountKey">SUSystemProfilerCPUCountKey</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Constants.html#/c:@SUSystemProfilerCPUFrequencyKey">SUSystemProfilerCPUFrequencyKey</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Constants.html#/c:@SUSystemProfilerCPUSubtypeKey">SUSystemProfilerCPUSubtypeKey</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Constants.html#/c:@SUSystemProfilerCPUTypeKey">SUSystemProfilerCPUTypeKey</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Constants.html#/c:@SUSystemProfilerHardwareModelKey">SUSystemProfilerHardwareModelKey</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Constants.html#/c:@SUSystemProfilerMemoryKey">SUSystemProfilerMemoryKey</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Constants.html#/c:@SUSystemProfilerOperatingSystemVersionKey">SUSystemProfilerOperatingSystemVersionKey</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Constants.html#/c:@SUSystemProfilerPreferredLanguageKey">SUSystemProfilerPreferredLanguageKey</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Constants.html#/c:@SUUpdaterAppcastItemNotificationKey">SUUpdaterAppcastItemNotificationKey</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Constants.html#/c:@SUUpdaterAppcastNotificationKey">SUUpdaterAppcastNotificationKey</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Constants.html#/c:@SUUpdaterDidFindValidUpdateNotification">SUUpdaterDidFindValidUpdateNotification</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Constants.html#/c:@SUUpdaterDidFinishLoadingAppCastNotification">SUUpdaterDidFinishLoadingAppCastNotification</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Constants.html#/c:@SUUpdaterDidNotFindUpdateNotification">SUUpdaterDidNotFindUpdateNotification</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Constants.html#/c:@SUUpdaterWillRestartNotification">SUUpdaterWillRestartNotification</a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-group-name">
+              <a href="../Enums.html">Enumerations</a>
+              <ul class="nav-group-tasks">
+                <li class="nav-group-task">
+                  <a href="../Enums/SPUNoUpdateFoundReason.html">SPUNoUpdateFoundReason</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Enums/SPUUpdateCheck.html">SPUUpdateCheck</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Enums/SPUUserUpdateChoice.html">SPUUserUpdateChoice</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Enums/SPUUserUpdateStage.html">SPUUserUpdateStage</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Enums/SUError.html">SUError</a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-group-name">
+              <a href="../Protocols.html">Protocols</a>
+              <ul class="nav-group-tasks">
+                <li class="nav-group-task">
+                  <a href="../Protocols/SPUStandardUserDriverDelegate.html">SPUStandardUserDriverDelegate</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Protocols/SPUUpdaterDelegate.html">SPUUpdaterDelegate</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Protocols/SPUUserDriver.html">SPUUserDriver</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Protocols/SUUpdaterDelegate.html">SUUpdaterDelegate</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Protocols/SUVersionComparison.html">SUVersionComparison</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Protocols/SUVersionDisplay.html">SUVersionDisplay</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </nav>
+      </div>
+      <div class="footer-wrapper">
+        <section id="footer">
+          <p>&copy; 2021 <a class="link" href="https://sparkle-project.org" target="_blank" rel="external">Mayur Pawashe, Kornel Lesiński, Jake Petroules, C.W. Betts, and Andy Matuschak</a>. All rights reserved. (Last updated: 2021-09-03)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.7</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </div>
+    </div>
+  </body>
+</div>
+</html>
