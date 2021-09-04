@@ -11,7 +11,7 @@ Package installation allows Sparkle to update your application by downloading an
 
 An automatic archived installation occurs when Sparkle finds a `*.pkg` or `*.mpkg` file in the root of the download archive. [Older versions](/documentation/upgrading/) of Sparkle required the filename to be `*.sparkle_guided.pkg` to perform an automatic installation, so you may want to keep that name until majority of your users update to your application with Sparkle 1.16 or later.
 
-**Note**: For Sparkle 2.0 (Beta), you must add `sparkle:installationType="package"` to your appcast item for updating automatic packages that are archived.
+**Note**: For Sparkle 2, you must add `sparkle:installationType="package"` to your appcast item for updating automatic packages that are archived.
 
 ### Automatic Bare Installation
 
@@ -23,4 +23,4 @@ An interactive installation occurs when Sparkle finds a `*.sparkle_interactive.p
 
 The package will be installed using macOS's built-in GUI installer. The installation will require user to manually click through the steps, so we don't recommend this type of installation. You must also archive your package update to get this behavior. This type of installation is deprecated in Sparkle 2 and may be removed one day.
 
-**Note**: For Sparkle 2.0 (Beta), you must add `sparkle:installationType="interactive-package"` to your appcast item for updating interactive packages.
+**Note**: For Sparkle 2, you must add `sparkle:installationType="interactive-package"` to your appcast item for updating interactive packages.

@@ -15,9 +15,9 @@ Sparkle 2 now requires macOS 10.11 (El Capitan) or later.
 The `SUUpdater` class has been deprecated and split up in Sparkle 2, but it is still functional for transitional purposes.
 
 Sparkle 2 includes three new classes / protocols:
-* **SPUUpdater** - The main API in Sparkle for controlling the update mechanism.
-* **SPUUserDriver** - The API in Sparkle for controlling the user interface & interaction (`SPUStandardUserDriver` is the standard one).
-* **SPUStandardUpdaterController** - A convenient controller class that instantiates a `SPUUpdater` targeting the main application bundle and uses Sparkle's standard user interface (`SPUStandardUserDriver`). This class can also be instantiated in a nib and allows [binding UI](/documentation/preferences-ui#sparkle-2x-beta) to it.
+* **[SPUUpdater](/documentation/api-reference/Classes/SPUUpdater.html)** - The main API in Sparkle for controlling the update mechanism.
+* **[SPUUserDriver](/documentation/api-reference/Protocols/SPUUserDriver.html)** - The API in Sparkle for controlling the user interface & interaction (`SPUStandardUserDriver` is the standard one).
+* **[SPUStandardUpdaterController](/documentation/api-reference/Classes/SPUStandardUpdaterController.html)** - A convenient controller class that instantiates a `SPUUpdater` targeting the main application bundle and uses Sparkle's standard user interface (`SPUStandardUserDriver`). This class can also be instantiated in a nib and allows [binding UI](/documentation/preferences-ui#sparkle-2) to it.
 
 If you were previously instantiating a `SUUpdater` in a nib, you will want to adopt `SPUStandardUpdaterController` as shown in the [basic setup](/documentation#2-set-up-a-sparkle-updater-object).
 
@@ -29,7 +29,7 @@ If you create a `SPUUpdater` instance directly, you can now create an updater th
 
 `SPUUpdater` and its delegate `SPUUpdaterDelegate` (unlike `SUUpdater`) do not contain any user-interface or AppKit logic. The UI bits were separated into classes implementing `SPUUserDriver` and its delegates. A developer writing their own updater user interface may choose to build Sparkle with `SPARKLE_BUILD_UI_BITS=0` which strips out the standard UI bits that Sparkle provides out of the box.
 
-`SPUUpdater` does not maintain singleton or global instances (unlike `SUUpdater`). Plug-ins that share the same process as their host should prefer to use an external tool like [sparkle-cli](/documentation/sparkle-cli) instead, rather than sharing or injecting a Sparkle.framework in its host. A bit more details about updating bundles [here](/documentation/bundles#sparkle-2x-beta).
+`SPUUpdater` does not maintain singleton or global instances (unlike `SUUpdater`). Plug-ins that share the same process as their host should prefer to use an external tool like [sparkle-cli](/documentation/sparkle-cli) instead, rather than sharing or injecting a Sparkle.framework in its host. A bit more details about updating bundles [here](/documentation/bundles#sparkle-2).
 
 Downgrades were poorly supported in Sparkle 1 (via `SPARKLE_AUTOMATED_DOWNGRADES`) and are now unavailable in Sparkle 2.
 
@@ -60,7 +60,7 @@ If you use package (pkg) based updates, please see [Package Updates](/documentat
 
 Sparkle 2 enhances support for [major upgrades](/documentation/publishing#Major-upgrades).
 
-See [Sparkle 2's APIs](/documentation/customization#sparkle-2x-apis-beta) for more information.
+See [Sparkle 2's APIs](/documentation/api-reference) for more information.
 
 ## Upgrading from Sparkle 1.25 and older
 

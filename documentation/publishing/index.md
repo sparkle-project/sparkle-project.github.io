@@ -249,7 +249,7 @@ Updates are posted on the default channel unless specified otherwise. This examp
 </item>
 ```
 
-Only updaters that are allowed to look in the beta channel can find this update. An updater may use `-[SPUUpdaterDelegate allowedChannelsForUpdater:]` to find this update in addition to updates that are on the default channel:
+Only updaters that are allowed to look in the beta channel can find this update. An updater may use [-[SPUUpdaterDelegate allowedChannelsForUpdater:]](/documentation/api-reference/Protocols/SPUUpdaterDelegate.html#/c:objc(pl)SPUUpdaterDelegate(im)allowedChannelsForUpdater:) to find this update in addition to updates that are on the default channel:
 
 ```swift
 func allowedChannels(for updater: SPUUpdater) -> Set<String> {
@@ -268,7 +268,7 @@ The appcast feed URL can be changed programmatically at runtime. If the feed URL
 
 If you want to set the feed programmatically to provide beta/nightly updates, please try to adopt [channels](#channels) in the future instead. If you are supporting older Sparkle versions, continue reading on.
 
-The recommended way to change the feed URL programmatically is using `-[SUUpdaterDelegate feedURLStringForUpdater:]` (or `-[SPUUpdaterDelegate feedURLStringForUpdater:]` in Sparkle 2).
+The recommended way to change the feed URL programmatically is using `-[SUUpdaterDelegate feedURLStringForUpdater:]` or [-[SPUUpdaterDelegate feedURLStringForUpdater:]](/documentation/api-reference/Protocols/SPUUpdaterDelegate.html#/c:objc(pl)SPUUpdaterDelegate(im)feedURLStringForUpdater:) in Sparkle 2.
 
 Here is an example:
 
@@ -338,7 +338,7 @@ You can define your own top level elements in the appcast item using your own cu
 </rss>
 ```
 
-In Sparkle 2, one place to parse this custom property is in `-[SPUUpdaterDelegate updaterDidNotFindUpdate:error:]`. Here's an example:
+In Sparkle 2, one place to parse this custom property is in [-[SPUUpdaterDelegate updaterDidNotFindUpdate:error:]](/documentation/api-reference/Protocols/SPUUpdaterDelegate.html#/c:objc(pl)SPUUpdaterDelegate(im)updaterDidNotFindUpdate:error:). Here's an example:
 
 ```swift
 func updaterDidNotFindUpdate(_ updater: SPUUpdater, error: Error) {

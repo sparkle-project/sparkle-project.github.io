@@ -38,13 +38,13 @@ The subclass only needs to implement the following two methods:
 }
 ```
 
-### Sparkle 2 (Beta)
+### Sparkle 2
 
 #### Bundles
 
 The story with updating bundles between Sparkle 1 and 2 is a bit different.
 
-First, Sparkle 2 supports updating any Sparkle-based bundle, which is not just limited to your own application or process. The updater distinguishes the `hostBundle` from the `applicationBundle`. The `hostBundle` is the bundle that Sparkle updates and the `applicationBundle` is the bundle that can be terminated and re-launched (if applicable). See [Sparkle 2's APIs](/documentation/customization#sparkle-2x-apis-beta) for more information on instantiating your own updater. Some kinds of plug-ins in particular may want to use `SURelaunchHostBundle` key there for re-launching the host bundle.
+First, Sparkle 2 supports updating any Sparkle-based bundle, which is not just limited to your own application or process. The updater distinguishes the `hostBundle` from the `applicationBundle`. The `hostBundle` is the bundle that Sparkle updates and the `applicationBundle` is the bundle that can be terminated and re-launched (if applicable). See the [SPUUpdater API Reference](/documentation/api-reference/Classes/SPUUpdater.html) for more information on instantiating your own updater. Some kinds of plug-ins may also want to use `SURelaunchHostBundle` key in [Customizing Sparkle](/documentation/customization) for re-launching the host bundle.
 
 Second, Sparkle 2 doesn't keep track of shared updater instances and doesn't try to prohibit multiple updater instances from existing  -- either inside the same process or multiple updaters updating the same bundle from different processes. In fact, it is even possible for one updater to start an update (say a silent deferred one), and for a second updater (say sparkle-cli) to resume that same update for the same bundle.
 

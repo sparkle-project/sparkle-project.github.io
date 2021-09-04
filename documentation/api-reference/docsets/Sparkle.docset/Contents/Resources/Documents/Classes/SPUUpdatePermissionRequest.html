@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>SPUUpdatePermissionRequest Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+	<meta name="viewport" content="width=device-width, viewport-fit=cover, initial-scale=1.0" />
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/objc/Class/SPUUpdatePermissionRequest" class="dashAnchor"></a>
+    <a title="SPUUpdatePermissionRequest Class Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p>
+          <a href="../index.html">Sparkle 2.0.0-beta.1 Docs</a>
+          <span class="no-mobile"> (58% documented)</span>
+        </p>
+    
+    
+      </div>
+    </header>
+    <div id="breadcrumbs-container">
+      <div class="content-wrapper">
+        <p id="breadcrumbs">
+          <span class="no-mobile">
+            <a href="../index.html">Sparkle Reference</a>
+            <img id="carat" src="../img/carat.png" />
+          </span>
+          SPUUpdatePermissionRequest Class Reference
+        </p>
+      </div>
+    </div>
+    <div class="wrapper">
+      <div class="article-wrapper">
+        <article class="main-content">
+          <section>
+            <section class="section">
+              <h1>SPUUpdatePermissionRequest</h1>
+                <div class="declaration">
+                  <div class="language">
+                    <p class="aside-title">Objective-C</p>
+                    <pre class="highlight objective_c"><code><span class="k">@interface</span> <span class="nc">SPUUpdatePermissionRequest</span> <span class="p">:</span> <span class="nc">NSObject</span> <span class="o">&lt;</span><span class="n">NSSecureCoding</span><span class="o">&gt;</span></code></pre>
+
+                  </div>
+                  <div class="language">
+                    <p class="aside-title">Swift</p>
+                    <pre class="highlight swift"><code><span class="kd">class</span> <span class="kt">SPUUpdatePermissionRequest</span> <span class="p">:</span> <span class="kt">NSObject</span><span class="p">,</span> <span class="kt">NSSecureCoding</span></code></pre>
+
+                  </div>
+                </div>
+              <p>This class represents information needed to make a permission request for checking updates.</p>
+
+            </section>
+            <section class="section task-group-section">
+              <div class="task-group">
+                <ul>
+                  <li class="item">
+                    <div>
+                      <code>
+                      <a name="/c:objc(cs)SPUUpdatePermissionRequest(im)initWithSystemProfile:"></a>
+                      <a name="//apple_ref/objc/Method/-initWithSystemProfile:" class="dashAnchor"></a>
+                      <a class="token" href="#/c:objc(cs)SPUUpdatePermissionRequest(im)initWithSystemProfile:">-initWithSystemProfile:<wbr></a>
+                      </code>
+                    </div>
+                    <div class="height-container">
+                      <div class="pointer-container"></div>
+                      <section class="section">
+                        <div class="pointer"></div>
+                        <div class="abstract">
+                          <p>Initializes a new update permission request instance.</p>
+
+                        </div>
+                        <div class="declaration">
+                          <h4>Declaration</h4>
+                          <div class="language">
+                            <p class="aside-title">Objective-C</p>
+                            <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">nonnull</span> <span class="n">instancetype</span><span class="p">)</span><span class="nf">initWithSystemProfile</span><span class="p">:</span>
+    <span class="p">(</span><span class="n">nonnull</span> <span class="n">NSArray</span><span class="o">&lt;</span><span class="n">NSDictionary</span><span class="o">&lt;</span><span class="n">NSString</span> <span class="o">*</span><span class="p">,</span> <span class="n">NSString</span> <span class="o">*&gt;</span> <span class="o">*&gt;</span> <span class="o">*</span><span class="p">)</span><span class="nv">systemProfile</span><span class="p">;</span></code></pre>
+
+                          </div>
+                          <div class="language">
+                            <p class="aside-title">Swift</p>
+                            <pre class="highlight swift"><code><span class="nf">init</span><span class="p">(</span><span class="nv">systemProfile</span><span class="p">:</span> <span class="p">[[</span><span class="kt">String</span> <span class="p">:</span> <span class="kt">String</span><span class="p">]])</span></code></pre>
+
+                          </div>
+                        </div>
+                        <div>
+                          <h4>Parameters</h4>
+                          <table class="graybox">
+                            <tbody>
+                              <tr>
+                                <td>
+                                  <code>
+                                  <em>systemProfile</em>
+                                  </code>
+                                </td>
+                                <td>
+                                  <div>
+                                    <p>The system profile information.</p>
+                                  </div>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </section>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <div>
+                      <code>
+                      <a name="/c:objc(cs)SPUUpdatePermissionRequest(py)systemProfile"></a>
+                      <a name="//apple_ref/objc/Property/systemProfile" class="dashAnchor"></a>
+                      <a class="token" href="#/c:objc(cs)SPUUpdatePermissionRequest(py)systemProfile">systemProfile</a>
+                      </code>
+                    </div>
+                    <div class="height-container">
+                      <div class="pointer-container"></div>
+                      <section class="section">
+                        <div class="pointer"></div>
+                        <div class="abstract">
+                          <p>A read-only property for the user&rsquo;s system profile.</p>
+
+                        </div>
+                        <div class="declaration">
+                          <h4>Declaration</h4>
+                          <div class="language">
+                            <p class="aside-title">Objective-C</p>
+                            <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">readonly</span><span class="p">)</span> <span class="n">NSArray</span><span class="o">&lt;</span><span class="n">NSDictionary</span><span class="o">&lt;</span><span class="n">NSString</span> <span class="o">*</span><span class="p">,</span> <span class="n">NSString</span> <span class="o">*&gt;</span> <span class="o">*&gt;</span> <span class="o">*</span><span class="n">_Nonnull</span> <span class="n">systemProfile</span><span class="p">;</span></code></pre>
+
+                          </div>
+                          <div class="language">
+                            <p class="aside-title">Swift</p>
+                            <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">systemProfile</span><span class="p">:</span> <span class="p">[[</span><span class="kt">String</span> <span class="p">:</span> <span class="kt">String</span><span class="p">]]</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                          </div>
+                        </div>
+                      </section>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </section>
+          </section>
+        </article>
+      </div>
+      <div class="nav-wrapper">
+        <nav class="nav-bottom">
+          <ul class="nav-groups">
+            <li class="nav-group-name">
+              <a href="../Classes.html">Classes</a>
+              <ul class="nav-group-tasks">
+                <li class="nav-group-task">
+                  <a href="../Classes/SPUDownloadData.html">SPUDownloadData</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/SPUStandardUpdaterController.html">SPUStandardUpdaterController</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/SPUStandardUserDriver.html">SPUStandardUserDriver</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/SPUUpdatePermissionRequest.html">SPUUpdatePermissionRequest</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/SPUUpdater.html">SPUUpdater</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/SPUUpdaterSettings.html">SPUUpdaterSettings</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/SPUUserUpdateState.html">SPUUserUpdateState</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/SUAppcast.html">SUAppcast</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/SUAppcastItem.html">SUAppcastItem</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/SUStandardVersionComparator.html">SUStandardVersionComparator</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/SUUpdatePermissionResponse.html">SUUpdatePermissionResponse</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/SUUpdater.html">SUUpdater</a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-group-name">
+              <a href="../Constants.html">Constants</a>
+              <ul class="nav-group-tasks">
+                <li class="nav-group-task">
+                  <a href="../Constants.html#/c:@SPULatestAppcastItemFoundKey">SPULatestAppcastItemFoundKey</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Constants.html#/c:@SPUNoUpdateFoundReasonKey">SPUNoUpdateFoundReasonKey</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Constants.html#/c:@SPUNoUpdateFoundUserInitiatedKey">SPUNoUpdateFoundUserInitiatedKey</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Constants.html#/c:@SUSparkleErrorDomain">SUSparkleErrorDomain</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Constants.html#/c:@SUSystemProfilerApplicationNameKey">SUSystemProfilerApplicationNameKey</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Constants.html#/c:@SUSystemProfilerApplicationVersionKey">SUSystemProfilerApplicationVersionKey</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Constants.html#/c:@SUSystemProfilerCPU64bitKey">SUSystemProfilerCPU64bitKey</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Constants.html#/c:@SUSystemProfilerCPUCountKey">SUSystemProfilerCPUCountKey</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Constants.html#/c:@SUSystemProfilerCPUFrequencyKey">SUSystemProfilerCPUFrequencyKey</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Constants.html#/c:@SUSystemProfilerCPUSubtypeKey">SUSystemProfilerCPUSubtypeKey</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Constants.html#/c:@SUSystemProfilerCPUTypeKey">SUSystemProfilerCPUTypeKey</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Constants.html#/c:@SUSystemProfilerHardwareModelKey">SUSystemProfilerHardwareModelKey</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Constants.html#/c:@SUSystemProfilerMemoryKey">SUSystemProfilerMemoryKey</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Constants.html#/c:@SUSystemProfilerOperatingSystemVersionKey">SUSystemProfilerOperatingSystemVersionKey</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Constants.html#/c:@SUSystemProfilerPreferredLanguageKey">SUSystemProfilerPreferredLanguageKey</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Constants.html#/c:@SUUpdaterAppcastItemNotificationKey">SUUpdaterAppcastItemNotificationKey</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Constants.html#/c:@SUUpdaterAppcastNotificationKey">SUUpdaterAppcastNotificationKey</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Constants.html#/c:@SUUpdaterDidFindValidUpdateNotification">SUUpdaterDidFindValidUpdateNotification</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Constants.html#/c:@SUUpdaterDidFinishLoadingAppCastNotification">SUUpdaterDidFinishLoadingAppCastNotification</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Constants.html#/c:@SUUpdaterDidNotFindUpdateNotification">SUUpdaterDidNotFindUpdateNotification</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Constants.html#/c:@SUUpdaterWillRestartNotification">SUUpdaterWillRestartNotification</a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-group-name">
+              <a href="../Enums.html">Enumerations</a>
+              <ul class="nav-group-tasks">
+                <li class="nav-group-task">
+                  <a href="../Enums/SPUNoUpdateFoundReason.html">SPUNoUpdateFoundReason</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Enums/SPUUpdateCheck.html">SPUUpdateCheck</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Enums/SPUUserUpdateChoice.html">SPUUserUpdateChoice</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Enums/SPUUserUpdateStage.html">SPUUserUpdateStage</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Enums/SUError.html">SUError</a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-group-name">
+              <a href="../Protocols.html">Protocols</a>
+              <ul class="nav-group-tasks">
+                <li class="nav-group-task">
+                  <a href="../Protocols/SPUStandardUserDriverDelegate.html">SPUStandardUserDriverDelegate</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Protocols/SPUUpdaterDelegate.html">SPUUpdaterDelegate</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Protocols/SPUUserDriver.html">SPUUserDriver</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Protocols/SUUpdaterDelegate.html">SUUpdaterDelegate</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Protocols/SUVersionComparison.html">SUVersionComparison</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Protocols/SUVersionDisplay.html">SUVersionDisplay</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </nav>
+      </div>
+      <div class="footer-wrapper">
+        <section id="footer">
+          <p>&copy; 2021 <a class="link" href="https://sparkle-project.org" target="_blank" rel="external">Mayur Pawashe, Kornel Lesiński, Jake Petroules, C.W. Betts, and Andy Matuschak</a>. All rights reserved. (Last updated: 2021-09-03)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.7</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </div>
+    </div>
+  </body>
+</div>
+</html>
