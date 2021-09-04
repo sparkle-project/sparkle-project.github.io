@@ -28,18 +28,16 @@ import Sparkle
 }
 ```
 
-In Sparkle 2 you can also choose to instantiate and use `SPUUpdater` directly instead of the `SPUStandardUpdaterController` wrapper if you need more control over your user interface or what bundle to update.
+In Sparkle 2 you can also choose to instantiate and use [SPUUpdater](/documentation/api-reference/Classes/SPUUpdater.html) directly instead of the [SPUStandardUpdaterController](/documentation/api-reference/Classes/SPUStandardUpdaterController.html) wrapper if you need more control over your user interface or what bundle to update.
 
 If you use another UI toolkit, these are the relevant APIs in Sparkle 2 for checking for updates and handling menu item validation:
 
-* `-[SPUStandardUpdaterController startUpdater]` or `-[SPUUpdater startUpdater:]` for starting the updater (unless it is specified to be automatically started)
-* `-[SPUStandardUpdaterController checkForUpdates:]` or `-[SPUUpdater checkForUpdates]` for checking for updates
-* `-[SPUUpdater canCheckForUpdates]` for menu item validation
+* [-[SPUStandardUpdaterController startUpdater]](/documentation/api-reference/Classes/SPUStandardUpdaterController.html#/c:objc(cs)SPUStandardUpdaterController(im)startUpdater) or [-[SPUUpdater startUpdater:]](/documentation/api-reference/Classes/SPUUpdater.html#/c:objc(cs)SPUUpdater(im)startUpdater:) for starting the updater (unless it is specified to be automatically started)
+* [-[SPUStandardUpdaterController checkForUpdates:]](/documentation/api-reference/Classes/SPUStandardUpdaterController.html#/c:objc(cs)SPUStandardUpdaterController(im)checkForUpdates:) or [-[SPUUpdater checkForUpdates]](/documentation/api-reference/Classes/SPUUpdater.html#/c:objc(cs)SPUUpdater(im)checkForUpdates) for checking for updates
+* [-[SPUUpdater canCheckForUpdates]](/documentation/api-reference/Classes/SPUUpdater.html#/c:objc(cs)SPUUpdater(py)canCheckForUpdates) for menu item validation
 
 If you are using Sparkle 1, you will need to use these APIs:
 
 * `+[SUUpdater sharedUpdater]` for creating and starting the updater automatically
 * `-[SUUpdater checkForUpdates:]` for checking for updates
 * `-[SUUpdater validateMenuItem:]` for menu item validation
-
-Check [Sparkle's APIs](/documentation/customization) for more information.

@@ -47,7 +47,7 @@ Then just bind the controls to the File's Owner, and start the Model Key Path wi
 
 ---
 
-### Sparkle 2 (Beta)
+### Sparkle 2
 
 #### Add the updater to your preferences
 
