@@ -372,3 +372,7 @@ To keep the appcast file compatible with the standard Sparkle implementation, a 
 ```
 
 Replace _os_name_ with either "windows" or "linux", respectively (mind the lower case!). Feel free to add other OS names as needed.
+
+## API Specification
+
+A more formal specification of Sparkle's appcast item properties can be found in the [SUAppcastItem API Reference](/documentation/api-reference/Classes/SUAppcastItem.html).

@@ -167,7 +167,8 @@ Update process will be logged to `Console.app`. If anything goes wrong, you shou
 That's it! You're done! You don't have to do any more. But you might want to:
 
 * [Read more on publishing an update](/documentation/publishing/#publishing-an-update)
-* [Adjust Sparkle's settings and behavior](/documentation/customization/) for your product.
+* [Customize Sparkle's settings and behavior](/documentation/customization/) for your product.
+* [Review Sparkle 2's API Reference](/documentation/api-reference)
 * [Add update settings](/documentation/preferences-ui/) to your preferences panel.
 * [Add binary delta updates](/documentation/delta-updates/) to your application.
 * Learn about [gathering anonymous statistics about your users' systems](/documentation/system-profiling/).
