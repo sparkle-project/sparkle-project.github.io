@@ -17,6 +17,8 @@ If you use [Swift Package Manager](https://swift.org/package-manager/):
   * Enter `https://github.com/sparkle-project/Sparkle` as the package repository URL
   * Choose the Package Options. The default options will let Xcode automatically update versions of Sparkle 1.
 
+  From Xcode's project navigator, if you right click and show the `Sparkle` package in Finder, you will find Sparkle's tools and Sparkle 2's XPC Services in `../artifacts/Sparkle/`
+
 If you use [CocoaPods](//cocoapods.org):
 
   * Add `pod 'Sparkle'` to your Podfile.
@@ -24,7 +26,7 @@ If you use [CocoaPods](//cocoapods.org):
 
 If you want to add Sparkle manually:
 
-* Get the [latest version](//github.com/{{ site.github_username }}/Sparkle/releases) of Sparkle.
+* Get the [latest version](//github.com/{{ site.github_username }}/Sparkle/releases/latest) of Sparkle.
 * Link the Sparkle framework to your app target:
   * Drag `Sparkle.framework` into the <samp>Frameworks</samp> folder of your Xcode project.
   * Be sure to check the "Copy items into the destination group's folder" box in the sheet that appears.
@@ -37,7 +39,11 @@ If you want to add Sparkle manually:
 * In <samp>Build Settings</samp> tab set "<samp>Runpath Search Paths</samp>" to `@loader_path/../Frameworks` (for non-Xcode projects add the flags `-Wl,-rpath,@loader_path/../Frameworks`). This is not a necessary step in recent versions of Xcode.
 * If you have your own process for copying/packaging your app make sure it preserves symlinks!
 
-Package management and official binaries for Sparkle 2 aren't currently available. A nightly distribution can be downloaded from our [GitHub Actions page](https://github.com/sparkle-project/Sparkle/actions?query=event%3Apush+is%3Asuccess+branch%3A2.x) by selecting a recent workflow commit and downloading the `Sparkle-distribution*.tar.xz` artifact. Alternatively, you may checkout the [2.x](https://github.com/sparkle-project/Sparkle/tree/2.x) branch, clone Sparkle's repository with all its submodules, run `make release`, and extract the binaries in the resulting `Sparkle-2.0.0.tar.xz` (or `.bz2`) archive. Sandboxed applications using Sparkle 2 require [additional setup](/documentation/sandboxing).
+[Sparkle 2 beta pre-releases](//github.com/{{ site.github_username }}/Sparkle/releases) are also available on GitHub. They are available in Swift Package Manager and CocoaPods too by specifying the pre-release version in your project's manifest.
+
+A more nightly build from our repository can be downloaded from our [GitHub Actions page](https://github.com/sparkle-project/Sparkle/actions?query=event%3Apush+is%3Asuccess+branch%3A2.x) by selecting a recent workflow commit and downloading the `Sparkle-distribution*.tar.xz` artifact. Alternatively, you may clone Sparkle's repository with all its submodules, run `make release`, and extract the binaries in the resulting `Sparkle-*.tar.xz` (or `.bz2`) archive.
+
+Sandboxed applications using Sparkle 2 require [additional setup](/documentation/sandboxing).
 
 ### 2. Set up a Sparkle updater object
 
