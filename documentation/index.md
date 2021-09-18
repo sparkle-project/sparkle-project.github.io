@@ -97,7 +97,7 @@ updates. It should appear like this:
     <string>pfIShU4dEXqPd5ObYNfDBiQWcXozk7estwzTnF9BamQ=</string>
 ```
 
-You can use the `-x private-key-file` and `-f private-key-file` options to export and import the keys respectively when transferring keys to a new Mac. Otherwise we recommend keeping the keys inside your Mac's keychain.
+You can use the `-x private-key-file` and `-f private-key-file` options to export and import the keys respectively when transferring keys to another Mac. Otherwise we recommend keeping the keys inside your Mac's keychain. Be sure to keep them safe and not lose them (they will be erased if your keychain or system is erased).
 
 Please visit [Migrating to EdDSA from DSA](eddsa-migration) if you are still providing DSA signatures so you can learn how to stop supporting them.
 
