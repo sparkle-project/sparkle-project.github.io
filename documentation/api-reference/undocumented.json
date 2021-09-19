@@ -135,21 +135,21 @@
     },
     {
       "file": "/Users/msp/Documents/Programming/Sparkle/Sparkle/SPUUserDriver.h",
-      "line": 278,
+      "line": 283,
       "symbol": "SPUUserDriver.-showUpdateNotFoundWithAcknowledgement:",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/msp/Documents/Programming/Sparkle/Sparkle/SPUUserDriver.h",
-      "line": 280,
+      "line": 285,
       "symbol": "SPUUserDriver.-showUpdateInstallationDidFinishWithAcknowledgement:",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/msp/Documents/Programming/Sparkle/Sparkle/SPUUserDriver.h",
-      "line": 282,
+      "line": 287,
       "symbol": "SPUUserDriver.-dismissUserInitiatedUpdateCheck",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
       "warning": "undocumented"

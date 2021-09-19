@@ -16,7 +16,7 @@
     <header>
       <div class="content-wrapper">
         <p>
-          <a href="../index.html">Sparkle 2.0.0-beta.1 Docs</a>
+          <a href="../index.html">Sparkle 2.0.0-beta.2 Docs</a>
           <span class="no-mobile"> (58% documented)</span>
         </p>
     
@@ -204,15 +204,27 @@ an object that implements this protocol what actions to take and show to the use
 <p>Let the user know a new update is found and ask them what they want to do.
  Before this point, <code><a href="../Protocols/SPUUserDriver.html#/c:objc(pl)SPUUserDriver(im)showUserInitiatedUpdateCheckWithCancellation:">-showUserInitiatedUpdateCheckWithCancellation:</a></code> may be called.</p>
 
-<p>state.userInitiated indicates if the update was initiated by the user or if it was automatically scheduled in the background.</p>
+<p>The potential  <code>stage</code>s on the updater <code>state</code> are:</p>
 
-<p>Additionally, these properties on the appcastItem are of importance:</p>
+<p><code>SPUUpdateStateNotDownloaded</code> - Update has not been downloaded yet.</p>
+
+<p><code>SPUUpdateStateDownloaded</code> - Update has already been downloaded but not started installing yet.</p>
+
+<p><code>SPUUpdateStateInstalling</code> - Update has been downloaded and already started installing.</p>
+
+<p>The <code>userIntiated</code> property on the <code>state</code> indicates if the update was initiated by the user or if it was automatically scheduled in the background.</p>
+
+<p>Additionally, these properties on the <code>appcastItem</code> are of importance:</p>
 
 <p><code>appcastItem.informationOnlyUpdate</code> indicates if the update is only informational and should not be downloaded. You can direct the user to the infoURL property of the appcastItem in their web browser. Sometimes information only updates are used as a fallback in case a bad update is shipped, so you&rsquo;ll want to support this case.</p>
 
 <p><code>appcastItem.majorUpgrade</code> indicates if the update is a major or paid upgrade.</p>
 
 <p><code>appcastItem.criticalUpdate</code> indicates if the update is a critical update.</p>
+
+<p>A reply of <code>SPUUserUpdateChoiceInstall</code> begins or resumes downloading or installing the update.
+ If the state.stage is <code>SPUUserUpdateStateInstalling</code>, this may send a quit event to the application and relaunch it immediately (in this state, this behaves as a fast &ldquo;install and Relaunch&rdquo;).
+ Do not use this reply if <code>appcastItem.informationOnlyUpdate</code> is YES.</p>
 
 <p>A reply of <code>SPUUserUpdateChoiceDismiss</code> dismisses the update for the time being. The user may be reminded of the update at a later point.
  If the state.stage is <code>SPUUserUpdateStateDownloaded</code>, the downloaded update is kept after dismissing until the next time an update is shown to the user.
@@ -263,11 +275,7 @@ an object that implements this protocol what actions to take and show to the use
                                 </td>
                                 <td>
                                   <div>
-                                    <p>The current state of the user update.
-The state.stage values are:
-<code>SPUUpdateStateNotDownloaded</code> - Update has not been downloaded yet.
-<code>SPUUpdateStateDownloaded</code> - Update has already been downloaded but not started installing yet.
-<code>SPUUpdateStateInstalling</code> - Update has been downloaded and already started installing.</p>
+                                    <p>The current state of the user update. See above discussion for notable properties.</p>
                                   </div>
                                 </td>
                               </tr>
@@ -279,8 +287,7 @@ The state.stage values are:
                                 </td>
                                 <td>
                                   <div>
-                                    <p>A reply of <code>SPUUserUpdateChoiceInstall</code> begins or resumes downloading or installing the update.
-If the state.stage is <code>SPUUserUpdateStateInstalling</code>, this may send a quit event to the application and relaunch it immediately (in this state, this behaves as a fast &ldquo;install and Relaunch&rdquo;). Do not use this reply if <code>appcastItem.informationOnlyUpdate</code> is YES.</p>
+                                    <p>The reply which indicates if the update should be installed, dismissed, or skipped. See above discussion for more details.</p>
                                   </div>
                                 </td>
                               </tr>
@@ -420,12 +427,15 @@ If the state.stage is <code>SPUUserUpdateStateInstalling</code>, this may send a
 <p>Let the user know a new update was not found after they tried initiating an update check.
  Before this point, <code><a href="../Protocols/SPUUserDriver.html#/c:objc(pl)SPUUserDriver(im)showUserInitiatedUpdateCheckWithCancellation:">-showUserInitiatedUpdateCheckWithCancellation:</a></code> may be called.</p>
 
-<p>The userInfo dictionary is also populated with two keys:</p>
+<p>There are various reasons a new update is unavailable and can&rsquo;t be installed.
+ The <code>error</code> object is populated with recovery and suggestion strings suitable to be shown in an alert.</p>
+
+<p>The <code>userInfo</code> dictionary on the <code>error</code> is also populated with two keys:</p>
 
 <p><code><a href="../Constants.html#/c:@SPULatestAppcastItemFoundKey">SPULatestAppcastItemFoundKey</a></code>: if available, this may provide the latest SUAppcastItem that was found.</p>
 
 <p><code><a href="../Constants.html#/c:@SPUNoUpdateFoundReasonKey">SPUNoUpdateFoundReasonKey</a></code>: if available, this will provide the <code>SUNoUpdateFoundReason</code>. For example the reason could be because
-  the latest version in the feed requires a newer OS version or could be because the user is already on the latest version.</p>
+ the latest version in the feed requires a newer OS version or could be because the user is already on the latest version.</p>
 
                         </div>
                         <div class="declaration">
@@ -454,9 +464,7 @@ If the state.stage is <code>SPUUserUpdateStateInstalling</code>, this may send a
                                 </td>
                                 <td>
                                   <div>
-                                    <p>The error associated with why a new update was not found.
-There are various reasons a new update is unavailable and can&rsquo;t be installed.
-This error object is populated with recovery and suggestion strings suitable to be shown in an alert.</p>
+                                    <p>The error associated with why a new update was not found. See above discussion for more details.</p>
                                   </div>
                                 </td>
                               </tr>
@@ -854,6 +862,8 @@ Additionally, this method may be called more than once for the same download in 
 <p>Let the user know that the update is ready to install and relaunch, and ask them whether they want to proceed.
  Note if the target application has already terminated, this method may not be invoked.</p>
 
+<p>A reply of <code>SPUUserUpdateChoiceInstall</code> installs the update the new update immediately. The application is relaunched only if it is still running by the time this reply is invoked. If the application terminates on its own, Sparkle will attempt to automatically install the update.</p>
+
 <p>A reply of <code>SPUUserUpdateChoiceDismiss</code> dismisses the update installation for the time being. Note the update may still be installed automatically after the application terminates.</p>
 
 <p>A reply of <code>SPUUserUpdateChoiceSkip</code> cancels the current update that has begun installing and dismisses the update. In this circumstance, the update is canceled but this update version is not skipped in the future.</p>
@@ -887,7 +897,7 @@ Additionally, this method may be called more than once for the same download in 
                                 </td>
                                 <td>
                                   <div>
-                                    <p>A reply of <code>SPUUserUpdateChoiceInstall</code> installs the update the new update immediately. The application is relaunched only if it is still running by the time this reply is invoked. If the application terminates on its own, Sparkle will attempt to automatically install the update.</p>
+                                    <p>The reply which indicates if the update should be installed, dismissed, or skipped. See above discussion for more details.</p>
                                   </div>
                                 </td>
                               </tr>
@@ -1358,7 +1368,7 @@ Additionally, this method may be called more than once for the same download in 
       </div>
       <div class="footer-wrapper">
         <section id="footer">
-          <p>&copy; 2021 <a class="link" href="https://sparkle-project.org" target="_blank" rel="external">Mayur Pawashe, Kornel Lesiński, Jake Petroules, C.W. Betts, and Andy Matuschak</a>. All rights reserved. (Last updated: 2021-09-03)</p>
+          <p>&copy; 2021 <a class="link" href="https://sparkle-project.org" target="_blank" rel="external">Sparkle Project</a>. All rights reserved. (Last updated: 2021-09-19)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.7</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </div>
