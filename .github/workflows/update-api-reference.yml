@@ -8,8 +8,8 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  release:
-    name: "Publish binaries for release"
+  api-documentation:
+    name: "Update API Reference Documentation"
     runs-on: macos-11
 
     steps:
@@ -35,18 +35,19 @@ jobs:
         uses: actions/checkout@v2
         with:
           token: ${{ secrets.BOT_PERSONAL_ACCESS_TOKEN }}
+          fetch-depth: 0
           path: 'sparkle-website'
           
       - name: "Create Documentation Files"
         run: |
-            cd "{{ $GITHUB_WORKSPACE }}/sparkle-source"
+            cd "$GITHUB_WORKSPACE/sparkle-source"
             make docs
 
       - name: "Copy Documentation Files"
         run: |
-            cd "{{ $GITHUB_WORKSPACE }}/sparkle-website"
+            cd "$GITHUB_WORKSPACE/sparkle-website"
             rm -rf "documentation/api-reference"
-            cp -R "{{ $GITHUB_WORKSPACE }}/sparkle-source/html" "documentation/api-reference"
+            cp -R "$GITHUB_WORKSPACE/sparkle-source/Documentation/html" "documentation/api-reference"
 
       - name: "Commit and Push Changes"
         env:
@@ -54,6 +55,7 @@ jobs:
           GITHUB_REPOSITORY: ${{ github.repository }}
           GITHUB_TOKEN: ${{ secrets.BOT_PERSONAL_ACCESS_TOKEN }}
         run: |
+            cd "$GITHUB_WORKSPACE/sparkle-website"
             git config user.name Sparkle-Bot
             git config user.email sparkle.project.bot@gmail.com
             git add "documentation/api-reference"
