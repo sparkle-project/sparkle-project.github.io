@@ -8,8 +8,8 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  release:
-    name: "Publish binaries for release"
+  api-documentation:
+    name: "Update API Reference Documentation"
     runs-on: macos-11
 
     steps:
@@ -46,7 +46,7 @@ jobs:
         run: |
             cd "$GITHUB_WORKSPACE/sparkle-website"
             rm -rf "documentation/api-reference"
-            cp -R "$GITHUB_WORKSPACE/sparkle-source/html" "documentation/api-reference"
+            cp -R "$GITHUB_WORKSPACE/sparkle-source/Documentation/html" "documentation/api-reference"
 
       - name: "Commit and Push Changes"
         env:
