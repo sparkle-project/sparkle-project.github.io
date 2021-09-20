@@ -1,0 +1,61 @@
+name: "Update API Reference"
+
+on:
+  workflow_dispatch
+
+concurrency: 
+  group: update-api-reference-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  release:
+    name: "Publish binaries for release"
+    runs-on: macos-11
+
+    steps:
+      - name: "Set up Ruby"
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.7.4
+
+      - name: "Set up jazzy"
+        run: |
+          gem install jazzy
+
+      - name: "Checkout Sparkle Sources"
+        uses: actions/checkout@v2
+        with:
+          repository: 'sparkle-project/Sparkle'
+          token: ${{ secrets.BOT_PERSONAL_ACCESS_TOKEN }}
+          submodules: true
+          fetch-depth: 0
+          path: 'sparkle-source'
+
+      - name: "Checkout Website Sources"
+        uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.BOT_PERSONAL_ACCESS_TOKEN }}
+          path: 'sparkle-website'
+          
+      - name: "Create Documentation Files"
+        run: |
+            cd "{{ $GITHUB_WORKSPACE }}/sparkle-source"
+            make docs
+
+      - name: "Copy Documentation Files"
+        run: |
+            cd "{{ $GITHUB_WORKSPACE }}/sparkle-website"
+            rm -rf "documentation/api-reference"
+            cp -R "{{ $GITHUB_WORKSPACE }}/sparkle-source/html" "documentation/api-reference"
+
+      - name: "Commit and Push Changes"
+        env:
+          GITHUB_ACTOR: ${{ github.actor }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          GITHUB_TOKEN: ${{ secrets.BOT_PERSONAL_ACCESS_TOKEN }}
+        run: |
+            git config user.name Sparkle-Bot
+            git config user.email sparkle.project.bot@gmail.com
+            git add "documentation/api-reference"
+            git commit -m "Update API reference documentation"
+            git push
