@@ -16,7 +16,7 @@
     <header>
       <div class="content-wrapper">
         <p>
-          <a href="../index.html">Sparkle 2.0.0-beta.2 Docs</a>
+          <a href="../index.html">Sparkle 2.0.0-beta.3 Docs</a>
           <span class="no-mobile"> (58% documented)</span>
         </p>
     
@@ -94,7 +94,7 @@ an object that implements this protocol what actions to take and show to the use
                           </div>
                           <div class="language">
                             <p class="aside-title">Swift</p>
-                            <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">show</span><span class="p">(</span><span class="n">_</span> <span class="nv">request</span><span class="p">:</span> <span class="kt"><a href="../Classes/SPUUpdatePermissionRequest.html">SPUUpdatePermissionRequest</a></span><span class="p">)</span> <span class="n">async</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/SUUpdatePermissionResponse.html">SUUpdatePermissionResponse</a></span></code></pre>
+                            <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">show</span><span class="p">(</span><span class="n">_</span> <span class="nv">request</span><span class="p">:</span> <span class="kt"><a href="../Classes/SPUUpdatePermissionRequest.html">SPUUpdatePermissionRequest</a></span><span class="p">,</span> <span class="nv">reply</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt"><a href="../Classes/SUUpdatePermissionResponse.html">SUUpdatePermissionResponse</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
 
                           </div>
                         </div>
@@ -247,7 +247,7 @@ an object that implements this protocol what actions to take and show to the use
                           </div>
                           <div class="language">
                             <p class="aside-title">Swift</p>
-                            <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">showUpdateFound</span><span class="p">(</span><span class="n">with</span> <span class="nv">appcastItem</span><span class="p">:</span> <span class="kt"><a href="../Classes/SUAppcastItem.html">SUAppcastItem</a></span><span class="p">,</span> <span class="nv">state</span><span class="p">:</span> <span class="kt"><a href="../Classes/SPUUserUpdateState.html">SPUUserUpdateState</a></span><span class="p">)</span> <span class="n">async</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Enums/SPUUserUpdateChoice.html">SPUUserUpdateChoice</a></span></code></pre>
+                            <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">showUpdateFound</span><span class="p">(</span><span class="n">with</span> <span class="nv">appcastItem</span><span class="p">:</span> <span class="kt"><a href="../Classes/SUAppcastItem.html">SUAppcastItem</a></span><span class="p">,</span> <span class="nv">state</span><span class="p">:</span> <span class="kt"><a href="../Classes/SPUUserUpdateState.html">SPUUserUpdateState</a></span><span class="p">,</span> <span class="nv">reply</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt"><a href="../Enums/SPUUserUpdateChoice.html">SPUUserUpdateChoice</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
 
                           </div>
                         </div>
@@ -881,7 +881,7 @@ Additionally, this method may be called more than once for the same download in 
                           </div>
                           <div class="language">
                             <p class="aside-title">Swift</p>
-                            <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">showReadyToInstallAndRelaunch</span><span class="p">()</span> <span class="n">async</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Enums/SPUUserUpdateChoice.html">SPUUserUpdateChoice</a></span></code></pre>
+                            <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">showReady</span><span class="p">(</span><span class="n">toInstallAndRelaunch</span> <span class="nv">reply</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt"><a href="../Enums/SPUUserUpdateChoice.html">SPUUserUpdateChoice</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
 
                           </div>
                         </div>
@@ -1368,8 +1368,8 @@ Additionally, this method may be called more than once for the same download in 
       </div>
       <div class="footer-wrapper">
         <section id="footer">
-          <p>&copy; 2021 <a class="link" href="https://sparkle-project.org" target="_blank" rel="external">Sparkle Project</a>. All rights reserved. (Last updated: 2021-09-19)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.7</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2021 <a class="link" href="https://sparkle-project.org" target="_blank" rel="noopener" rel="external">Sparkle Project</a>. All rights reserved. (Last updated: 2021-09-20)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="noopener" rel="external">jazzy ♪♫ v0.14.0</a>, a <a class="link" href="https://realm.io" target="_blank" rel="noopener" rel="external">Realm</a> project.</p>
         </section>
       </div>
     </div>
