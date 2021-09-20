@@ -39,14 +39,14 @@ jobs:
           
       - name: "Create Documentation Files"
         run: |
-            cd "${{ GITHUB_WORKSPACE }}/sparkle-source"
+            cd "$GITHUB_WORKSPACE/sparkle-source"
             make docs
 
       - name: "Copy Documentation Files"
         run: |
-            cd "${{ GITHUB_WORKSPACE }}/sparkle-website"
+            cd "$GITHUB_WORKSPACE/sparkle-website"
             rm -rf "documentation/api-reference"
-            cp -R "${{ GITHUB_WORKSPACE }}/sparkle-source/html" "documentation/api-reference"
+            cp -R "$GITHUB_WORKSPACE/sparkle-source/html" "documentation/api-reference"
 
       - name: "Commit and Push Changes"
         env:
