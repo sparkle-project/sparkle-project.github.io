@@ -25,6 +25,18 @@ Here are the main routes by which you can bend Sparkle's behavior to your will:
 | `SUEnableJavaScript` | Boolean | Default: `NO`. Set this to `YES` if you want to allow JavaScript in your release notes. |
 | `SURelaunchHostBundle` | Boolean | Default: `NO`. For plug-ins in Sparkle 2, set this to `YES` to re-launch the host targetted bundle instead of the application bundle. For example, this can be used to re-open a System Preferences prefpane after an update has been installed.
 
+### Sandboxing Settings
+
+Here are the Info.plist settings relevant to use for Sandboxed applications using Sparkle 2. Applications that are not sandboxed should not customize any of these settings. Please visit the [Sandboxing guide](/documentation/sandboxing) for more detailed information.
+
+{:.table .table-bordered}
+| Key | Type | Value |
+| --- | ---- | ----- | ------- |
+| `SUEnableInstallerLauncherService` | Boolean | Default: `NO`. Set this to `YES` to enable using the Installer Launcher XPC Service. This is required for all Sandboxed applications. |
+| `SUEnableDownloaderService` | Boolean | Default: `NO`. Set this to `YES` to enable using the Downloader XPC Service. This is required for Sandboxed applications that do not request the `com.apple.security.network.client` entitlement. Do not enable this XPC Service if your application already requests this entitlement. |
+| `SUEnableInstallerConnectionService` | Boolean | Default: `NO`. Set this to `YES` to enable using the Installer Connection Service. This service is usually not needed due to being able to [add a mach name lookup exception entitlement](/documentation/sandboxing#installer-connection--status-services) instead. This service is not included in Sparkle's framework distribution by default. |
+| `SUEnableInstallerStatusService` | Boolean | Default: `NO`. Set this to `YES` to enable using the Installer Status Service. This service is usually not needed due to being able to [add a mach name lookup exception entitlement](/documentation/sandboxing#installer-connection--status-services) instead. This service is not included in Sparkle's framework distribution by default. |
+
 ### Sparkle 2 APIs
 
 Please visit the [Sparkle 2 API Reference](/documentation/api-reference).

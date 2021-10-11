@@ -17,7 +17,7 @@ If you use [Swift Package Manager](https://swift.org/package-manager/):
   * Enter `https://github.com/sparkle-project/Sparkle` as the package repository URL
   * Choose the Package Options. The default options will let Xcode automatically update versions of Sparkle 1.
 
-  From Xcode's project navigator, if you right click and show the `Sparkle` package in Finder, you will find Sparkle's tools and Sparkle 2's XPC Services in `../artifacts/Sparkle/`
+  From Xcode's project navigator, if you right click and show the `Sparkle` package in Finder, you will find Sparkle's tools to generate and sign updates in `../artifacts/Sparkle/`
 
 If you use [CocoaPods](//cocoapods.org):
 
