@@ -14,17 +14,21 @@ import Sparkle
 
 @NSApplicationMain
 @objc class AppDelegate: NSObject, NSApplicationDelegate {
-    // Hook up menu item outlet in Interface Builder
+    // Hook up this menu item outlet in Interface Builder. The menu item's title is typically "Check for Updates…"
     @IBOutlet var checkForUpdatesMenuItem: NSMenuItem!
     
     let updaterController: SPUStandardUpdaterController
     
     override init() {
         // If you want to start the updater manually, pass false to startingUpdater and call .startUpdater() later
+        // This is where you can also pass an updater delegate if you need one
         updaterController = SPUStandardUpdaterController(startingUpdater: true, updaterDelegate: nil, userDriverDelegate: nil)
     }
     
     func applicationDidFinishLaunching(_ notification: Notification) {
+        // Hooking up the menu item's target/action to the standard updater controller does two things:
+        // 1. The menu item's action is set to perform a user-initiated check for new updates
+        // 2. The menu item is enabled and disabled by the updater controller depending on -[SPUUpdater canCheckForUpdates]
         checkForUpdatesMenuItem.target = updaterController
         checkForUpdatesMenuItem.action = #selector(SPUStandardUpdaterController.checkForUpdates(_:))
     }
