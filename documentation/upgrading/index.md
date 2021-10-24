@@ -42,19 +42,15 @@ The behavior for the `-bestValidUpdateInAppcast:forUpdater:` delegate method on 
 
 If you have scripts that reference Sparkle.framework's helper tools, here are the new paths (note Autoupdate is now a command line tool and the UI bits moved to Updater.app):
 ```
-Sparkle.framework/Autoupdate (symbolic link to Sparkle.framework/Versions/A/Autoupdate)
-Sparkle.framework/Updater.app (symbolic link to Sparkle.framework/Versions/A/Updater.app)
+Sparkle.framework/Autoupdate (symbolic link to Sparkle.framework/Versions/B/Autoupdate)
+Sparkle.framework/Updater.app (symbolic link to Sparkle.framework/Versions/B/Updater.app)
 ```
 
-Additionally, if you use the `InstallerLauncher` XPC Service, these helpers are in:
-```
-org.sparkle-project.InstallerLauncher.xpc/Contents/MacOS/Autoupdate
-org.sparkle-project.InstallerLauncher.xpc/Contents/MacOS/Updater.app/
-```
+Note that the Sparkle 2 framework now also uses `Versions/B/` instead of `Versions/A`.
 
 Sparkle 2 supports [sandboxed applications](/documentation/sandboxing) via integration of XPC Services. Note using the XPC Services are only required for sandboxed applications, which Sparkle 1 didn't support.
 
-If you are migrating from earlier alpha versions of Sparkle 2, you may find that some of the XPC Services are now optional and re-signing the services may not be necessary. Please read the updated [sandboxing guide](/documentation/sandboxing) for more information.
+If you are migrating from earlier alpha versions of Sparkle 2, you may find that some of the XPC Services are now optional and re-signing the services may not be necessary. More recent versions of Sparkle 2 beta now also include the XPC Services inside the framework bundle. Please read the updated [sandboxing guide](/documentation/sandboxing) for more information.
 
 If you use package (pkg) based updates, please see [Package Updates](/documentation/package-updates) for migration notes. In particular, your appcast items may need to include an appropriate installation type to help Sparkle decide if authorization is needed before starting the installer. This is not needed for bare package updates.
 
