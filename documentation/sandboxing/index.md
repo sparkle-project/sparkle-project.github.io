@@ -41,7 +41,7 @@ The Downloader XPC Service is optional for Sandboxed applications. Sparkle by de
 Use this service only if your sandboxed application does not request the `com.apple.security.network.client` entitlement. The downloader service allows using Sparkle without forcing the network client entitlement on your entire application. There are a couple caveats with using the downloader service though:
 
 * It may not work well if your release notes reference external content that would require making additional network requests.
-* We fall back to using the legacy WebKit WebView for release notes due to a [known WKWebView defect](https://github.com/feedback-assistant/reports/issues/1). Please file a feedback report to Apple duping to FB6993802 if you want Sparkle's downloader XPC Service to use WKWebView without the `com.apple.security.network.client` entitlement.
+* We fall back to using the legacy WebKit WebView for release notes due to a [known WKWebView defect](https://github.com/feedback-assistant/reports/issues/1). Please file a feedback report to Apple duping to FB6993802 if you want Sparkle to use WKWebView without enforcing the `com.apple.security.network.client` entitlement on your sandboxed application.
 
 To enable the service, you must set [SUEnableDownloaderService](/documentation/customization#sandboxing-settings) boolean to `YES` in your application's Info.plist.
 
