@@ -103,7 +103,7 @@ import Sparkle
     let updaterController: SPUStandardUpdaterController
     
     required override init() {
-        // We should start the updater later
+        // We may want to defer starting the updater later, so we will pass false to startingUpdater
         // This is where you can also pass an updater delegate if you need one
         updaterController = SPUStandardUpdaterController(startingUpdater: false, updaterDelegate: nil, userDriverDelegate: nil)
     }
