@@ -90,6 +90,36 @@ struct MyApp: App {
 }
 ```
 
+## Create an Updater in Mac Catalyst
+
+This is an example for creating an updater in Sparkle 2 (beta) with Mac Catalyst. The code illustrated below is inside an AppKit bundle plug-in that is loaded by the Catalyst application using a shared `PlugIn` protocol. This snippet is missing plenty of details including adding a menu item and inter-opt between the host application and plug-in.
+
+```swift
+import AppKit
+import Foundation
+import Sparkle
+
+@objc class AppKitPlugin: NSObject, PlugIn {
+    let updaterController: SPUStandardUpdaterController
+    
+    required override init() {
+        // We may want to defer starting the updater later, so we will pass false to startingUpdater
+        // This is where you can also pass an updater delegate if you need one
+        updaterController = SPUStandardUpdaterController(startingUpdater: false, updaterDelegate: nil, userDriverDelegate: nil)
+    }
+    
+    // Called from the Catalyst app
+    func startUpdater() {
+        updaterController.startUpdater()
+    }
+}
+
+```
+
+Note Sparkle's standard user interface cannot display release notes because macOS WebKit views cannot be used inside a Catalyst application. A simple approach to work around this is to disable showing release notes via setting [SUShowReleaseNotes](/documentation/customization) to `NO`. A more advanced approach using Sparkle 2 is instantiating [SPUUpdater](/documentation/api-reference/Classes/SPUUpdater.html) with your own [SPUUserDriver](/documentation/api-reference/Protocols/SPUUserDriver.html) and custom user interface, which may use an iOS WebKit view from the Catalyst side.
+
+If you run into issues with loading the Sparkle framework, you may need to disable library validation just for Debug environments. This is tied to how Sparkle distributions have the framework code signed with an ad-hoc signature which Catalyst may not like.
+
 ## Additional APIs
 
 In Sparkle 2 you can also choose to instantiate and use [SPUUpdater](/documentation/api-reference/Classes/SPUUpdater.html) directly instead of the [SPUStandardUpdaterController](/documentation/api-reference/Classes/SPUStandardUpdaterController.html) wrapper if you need more control over your user interface or what bundle to update.
