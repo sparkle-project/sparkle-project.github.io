@@ -47,7 +47,7 @@ Sandboxed applications using Sparkle 2 require [additional setup](/documentation
 
 ### 2. Set up a Sparkle updater object
 
-These instructions are for regular .app bundles. If you want to update a non-app bundle, such as a Preference Pane or a plug-in, follow [step 2 for non-app bundles](/documentation/bundles/).
+These instructions are for regular .app bundles in Cocoa. If you want to use Sparkle from other UI toolkits or want to instantiate the updater yourself, please see [our programmatic setup](/documentation/programmatic-setup). If you want to update a non-app bundle, such as a Preference Pane or a plug-in, follow [step 2 for non-app bundles](/documentation/bundles/).
 
 * Open up your MainMenu.xib.
 * Choose <samp>View › Utilities › Object Library...</samp>
@@ -58,8 +58,6 @@ These instructions are for regular .app bundles. If you want to update a non-app
 * If you'd like, make a "<samp>Check for Updates...</samp>" menu item in the application menu; set its target to the `SUUpdater` instance and its action to `checkForUpdates:`.
 
 If you are using Sparkle 2, `SUUpdater` is a deprecated stub. While it is still functional for transitional purposes, new applications will want to use `SPUStandardUpdaterController` in the above steps instead.
-
-Sparkle can also be instantiated and [set up programmatically](/documentation/programmatic-setup).
 
 ### 3. Segue for security concerns
 
