@@ -280,6 +280,8 @@ func feedURLString(for updater: SPUUpdater) -> String? {
 
 Sparkle also has `-setFeedURL:` or `feedURL` property on the updater which we do not recommend using due to race conditions and user defaults permanence. If you wish to migrate away from this API, you should set the feed URL to nil using this API to clear out any custom feed you have previously set in the bundle's user defaults, so Sparkle doesn't automatically read it.
 
+Web servers can also potentially customize the feed sent back to the client on a per request basis. The [userAgentString](/documentation/api-reference/Classes/SPUUpdater.html#/c:objc(cs)SPUUpdater(py)userAgentString) and [httpHeaders](/documentation/api-reference/Classes/SPUUpdater.html#/c:objc(cs)SPUUpdater(py)httpHeaders) properties from the client may be useful for this.
+
 ## Upgrading to newer features
 
 To make use of Sparkle's newest features (such as channels or dropping DSA signatures), you may not be able to adopt these features unless all your users are using a recent version of Sparkle.
