@@ -69,7 +69,7 @@ However, if you need to code sign Sparkle with a specific certificate for develo
 
 By default, Sparkle distributions include XPC Services and helper tools that are signed with an ad-hoc signature, Hardened Runtime enabled, and a `com.apple.security.get-task-allow` entitlement to allow debugging. This combination works for common development workflows, but is not ideal for distribution.
 
-If you `Code Sign on Copy` Sparkle.framework, Xcode will re-sign Sparkle with your project's certificate but will not re-sign the XPC Services and other helpers inside the framework. Xcode does re-sign these services and helpers, preserves the Hardened Runtime, and strips the `com.apple.security.get-task-allow` entitlements when you Archive and Export an application for notarization and thus suffices works sufficiently well there however.
+If you `Code Sign on Copy` Sparkle.framework, Xcode will re-sign Sparkle with your project's certificate but will not re-sign the XPC Services and other helpers inside the framework. Xcode does re-sign these services and helpers, preserves the Hardened Runtime, and strips the `com.apple.security.get-task-allow` entitlements when you Archive and Export an application for notarization and thus works sufficiently well there however.
 
 You may re-sign Sparkle for distribution manually if needed like so:
 
