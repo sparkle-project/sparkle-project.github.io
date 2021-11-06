@@ -19,7 +19,9 @@ Sparkle supports optionally sending anonymous information about the user's syste
 * Application name (as indicated by CFBundleName)
 * Application version (as indicated by CFBundleVersion)
 * User's preferred language
-* Anything else you'd like to send along (via a delegate method; see [Customizing Sparkle](/documentation/customization/))
+* Anything else you'd like to send along via [-[SPUUpdaterDelegate feedParametersForUpdater:sendingSystemProfile:]](/documentation/api-reference/Protocols/SPUUpdaterDelegate.html#/c:objc(pl)SPUUpdaterDelegate(im)feedParametersForUpdater:sendingSystemProfile:)
+
+In Sparkle 2, the collected data that is sent can be further limited via [-[SPUUpdaterDelegate allowedSystemProfileKeysForUpdater:]](/documentation/api-reference/Protocols/SPUUpdaterDelegate.html#/c:objc(pl)SPUUpdaterDelegate(im)allowedSystemProfileKeysForUpdater:).
 
 This information will be provided via GET, so if your feed URL is `https://example.org/app.xml`, the request will be made to `https://example.org/app.xml?cpusubtype=4&ncpu=2&appName=App.app&cpuFreqMHz=1830[...]`.
 
