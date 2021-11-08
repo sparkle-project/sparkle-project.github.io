@@ -290,6 +290,20 @@ One approach is just waiting until the majority of your users are running a rece
 
 A second approach is migrating to a new `SUFeedURL` in your new application's `Info.plist`. This ensures that the application versions using your newer appcast have access to newer features.
 
+## Full release notes
+
+In Sparkle 2, the `<sparkle:fullReleaseNotesLink>` element may be used to specify the full release notes, or version history, link to your product. When the user checks for updates and no new updates are available, Sparkle may let the user open this link in their web browser. If this element is not specified, Sparkle will default to using the `<sparkle:releaseNotesLink>` element instead, which may be version specific.
+
+```xml
+<item>
+    <title>Version 2.0 (2 bugs fixed; 3 new features)</title>
+    <link>https://myproductwebsite.com</link>
+    <sparkle:version>2.0</sparkle:version>
+    <sparkle:releaseNotesLink>https://myproductwebsite.com/app/2.0.html</sparkle:releaseNotesLink>
+    <sparkle:fullReleaseNotesLink>https://myproductwebsite.com/app/full-history/</sparkle:fullReleaseNotesLink>
+</item>
+```
+
 ## Embedded release notes
 
 Instead of linking external release notes using the `<sparkle:releaseNotesLink>` element, you can also embed the release notes directly in the appcast item, inside a `<description>` element. If you wrap it in `<![CDATA[ ... ]]>`, you can use unescaped HTML.

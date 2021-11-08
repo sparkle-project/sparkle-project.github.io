@@ -54,6 +54,8 @@ If you are migrating from earlier alpha versions of Sparkle 2, you may find that
 
 If you use package (pkg) based updates, please see [Package Updates](/documentation/package-updates) for migration notes. In particular, your appcast items may need to include an appropriate installation type to help Sparkle decide if authorization is needed before starting the installer. This is not needed for bare package updates.
 
+Sparkle 2 lets users view your application's [full release notes](/documentation/publishing#Full-release-notes) when they check for updates and no new updates are available.
+
 Sparkle 2 enhances support for [major upgrades](/documentation/publishing#Major-upgrades).
 
 See [Sparkle 2's APIs](/documentation/api-reference) for more information.
