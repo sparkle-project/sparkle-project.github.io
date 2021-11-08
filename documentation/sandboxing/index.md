@@ -63,22 +63,27 @@ If you cannot add entitlements (eg: your process inherits another application's 
 
 ### Code Signing
 
-If you follow standard workflows and use Xcode's Archive Organizer to [Distribute your App](/documentation#4-distributing-your-app), which we recommend, you do not need to especially do anything for signing Sparkle's XPC Services and may skip this section.
+If you follow standard workflows and use Xcode's Archive Organizer to [Distribute your App](/documentation#4-distributing-your-app), which we recommend, you do not need to especially do anything for signing Sparkle or its XPC Services and may skip this section.
 
-However, if you need to code sign Sparkle's XPC Services with a specific certificate for development or use an alternative workflow for distributing your application outside of Xcode's Archive Organizer, you will need to manually re-sign Sparkle's XPC Services with your own certificate.
+However, if you need to code sign Sparkle with a specific certificate for development or use an alternative workflow for distributing your application outside of Xcode's Archive Organizer, you will need to manually re-sign Sparkle and its XPC Services with your own certificate.
 
-By default, Sparkle distributions include XPC Services that are signed with an ad-hoc signature and Hardened Runtime enabled. This combination works for common development workflows.
+By default, Sparkle distributions include XPC Services and helper tools that are signed with an ad-hoc signature, Hardened Runtime enabled, and a `com.apple.security.get-task-allow` entitlement to allow debugging. This combination works for common development workflows, but is not ideal for distribution.
 
-If you `Code Sign on Copy` Sparkle.framework, Xcode will re-sign Sparkle with your project's certificate but will not re-sign the XPC Services inside the framework. Xcode does re-sign these services and preserves the Hardened Runtime when you Archive an application for distribution and thus suffices there however.
+If you `Code Sign on Copy` Sparkle.framework, Xcode will re-sign Sparkle with your project's certificate but will not re-sign the XPC Services and other helpers inside the framework. Xcode does re-sign these services and helpers, preserves the Hardened Runtime, and strips the `com.apple.security.get-task-allow` entitlements when you Archive and Export an application for notarization and thus works sufficiently well there however.
 
-You may re-sign Sparkle's XPC Services manually if needed like so:
+You may re-sign Sparkle for distribution manually if needed like so:
 
 ```sh
 codesign -f -s "$CODE_SIGN_IDENTITY" -o runtime Sparkle.framework/Versions/B/XPCServices/org.sparkle-project.InstallerLauncher.xpc
-codesign -f -s "$CODE_SIGN_IDENTITY" -o runtime --preserve-metadata=entitlements Sparkle.framework/Versions/B/XPCServices/org.sparkle-project.Downloader.xpc
+codesign -f -s "$CODE_SIGN_IDENTITY" -o runtime --entitlements Entitlements/org.sparkle-project.Downloader.entitlements Sparkle.framework/Versions/B/XPCServices/org.sparkle-project.Downloader.xpc
+
+codesign -f -s "$CODE_SIGN_IDENTITY" -o runtime Sparkle.framework/Versions/B/Autoupdate
+codesign -f -s "$CODE_SIGN_IDENTITY" -o runtime Sparkle.framework/Versions/B/Updater.app
+
+codesign -f -s "$CODE_SIGN_IDENTITY" -o runtime Sparkle.framework
 ```
 
-Adjust the paths and code sign identity accordingly.
+Adjust the paths and code sign identity accordingly. The `--preserve-metadata=entitlements` is not used because we don't want to preserve the existing `com.apple.security.get-task-allow` entitlements for distribution. Also the `--deep` option is not used here because the Downloader XPC Service needs to be signed with a specific entitlement that aren't applicable to the other binaries.
 
 ### Removing XPC Services
 
