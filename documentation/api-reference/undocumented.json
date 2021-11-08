@@ -170,28 +170,28 @@
     },
     {
       "file": "/Users/runner/work/sparkle-project.github.io/sparkle-project.github.io/sparkle-source/Sparkle/SUAppcastItem.h",
-      "line": 332,
+      "line": 343,
       "symbol": "SUAppcastItem.-init",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/runner/work/sparkle-project.github.io/sparkle-project.github.io/sparkle-source/Sparkle/SUAppcastItem.h",
-      "line": 342,
+      "line": 353,
       "symbol": "SUAppcastItem.-initWithDictionary:",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/runner/work/sparkle-project.github.io/sparkle-project.github.io/sparkle-source/Sparkle/SUAppcastItem.h",
-      "line": 343,
+      "line": 354,
       "symbol": "SUAppcastItem.-initWithDictionary:failureReason:",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/runner/work/sparkle-project.github.io/sparkle-project.github.io/sparkle-source/Sparkle/SUAppcastItem.h",
-      "line": 344,
+      "line": 355,
       "symbol": "SUAppcastItem.-initWithDictionary:relativeToURL:failureReason:",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
       "warning": "undocumented"

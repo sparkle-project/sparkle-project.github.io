@@ -16,7 +16,7 @@
     <header>
       <div class="content-wrapper">
         <p>
-          <a href="../index.html">Sparkle 2.0.0-beta.4 Docs</a>
+          <a href="../index.html">Sparkle 2.0.0-beta.5 Docs</a>
           <span class="no-mobile"> (58% documented)</span>
         </p>
     
@@ -150,6 +150,67 @@ If you don&rsquo;t implement this method or return <code>nil,</code> the standar
                             <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">id</span><span class="o">&lt;</span><span class="n"><a href="../Protocols/SUVersionDisplay.html">SUVersionDisplay</a></span><span class="o">&gt;</span> <span class="n">_Nullable</span><span class="p">)</span><span class="n">standardUserDriverRequestsVersionDisplayer</span><span class="p">;</span></code></pre>
 
                           </div>
+                        </div>
+                      </section>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <div>
+                      <code>
+                      <a name="/c:objc(pl)SPUStandardUserDriverDelegate(im)standardUserDriverShowVersionHistoryForAppcastItem:"></a>
+                      <a name="//apple_ref/objc/Method/-standardUserDriverShowVersionHistoryForAppcastItem:" class="dashAnchor"></a>
+                      <a class="token" href="#/c:objc(pl)SPUStandardUserDriverDelegate(im)standardUserDriverShowVersionHistoryForAppcastItem:">-standardUserDriverShowVersionHistoryForAppcastItem:<wbr></a>
+                      </code>
+                    </div>
+                    <div class="height-container">
+                      <div class="pointer-container"></div>
+                      <section class="section">
+                        <div class="pointer"></div>
+                        <div class="abstract">
+                          <p>Handles showing the full release notes to the user.</p>
+
+<p>When a user checks for new updates and no new update is found, Sparkle will offer to show the application&rsquo;s version history to the user
+by providing a &ldquo;Version History&rdquo; button in the no new update available alert.</p>
+
+<p>If this delegate method is not implemented, Sparkle will instead offer to open the
+<code>fullReleaseNotesLink</code> (or <code>releaseNotesLink</code> if the former is unavailable) from the appcast&rsquo;s latest <code>item</code> in the user&rsquo;s web browser.</p>
+
+<p>If this delegate method is implemented, Sparkle will instead ask the delegate to show the full release notes to the user.
+A delegate may want to implement this method if they want to show in-app or offline release notes.</p>
+
+                        </div>
+                        <div class="declaration">
+                          <h4>Declaration</h4>
+                          <div class="language">
+                            <p class="aside-title">Objective-C</p>
+                            <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">standardUserDriverShowVersionHistoryForAppcastItem</span><span class="p">:</span>
+    <span class="p">(</span><span class="n"><a href="../Classes/SUAppcastItem.html">SUAppcastItem</a></span> <span class="o">*</span><span class="n">_Nonnull</span><span class="p">)</span><span class="nv">item</span><span class="p">;</span></code></pre>
+
+                          </div>
+                          <div class="language">
+                            <p class="aside-title">Swift</p>
+                            <pre class="highlight swift"><code><span class="kd">optional</span> <span class="kd">func</span> <span class="nf">standardUserDriverShowVersionHistory</span><span class="p">(</span><span class="n">forAppcastItem</span> <span class="nv">item</span><span class="p">:</span> <span class="kt">Any</span><span class="o">!</span><span class="p">)</span></code></pre>
+
+                          </div>
+                        </div>
+                        <div>
+                          <h4>Parameters</h4>
+                          <table class="graybox">
+                            <tbody>
+                              <tr>
+                                <td>
+                                  <code>
+                                  <em>item</em>
+                                  </code>
+                                </td>
+                                <td>
+                                  <div>
+                                    <p>The appcast item corresponding to the latest version available.</p>
+                                  </div>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
                         </div>
                       </section>
                     </div>
@@ -320,7 +381,7 @@ If you don&rsquo;t implement this method or return <code>nil,</code> the standar
       </div>
       <div class="footer-wrapper">
         <section id="footer">
-          <p>&copy; 2021 <a class="link" href="https://sparkle-project.org" target="_blank" rel="external noopener">Sparkle Project</a>. All rights reserved. (Last updated: 2021-10-24)</p>
+          <p>&copy; 2021 <a class="link" href="https://sparkle-project.org" target="_blank" rel="external noopener">Sparkle Project</a>. All rights reserved. (Last updated: 2021-11-08)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.14.1</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
         </section>
       </div>
