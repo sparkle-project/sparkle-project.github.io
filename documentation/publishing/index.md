@@ -107,6 +107,8 @@ Note that Sparkle only works with macOS 10.9 or later (macOS 10.11 or later for 
 
 Sparkle also supports a `sparkle:maximumSystemVersion` element that can limit the maximum system version similarly.
 
+Please note that if your application is built using the macOS 10.15 SDK or earlier, the system may report its operating system as 10.16.0 for [compatibility reasons](https://eclecticlight.co/2020/07/21/big-sur-is-both-10-16-and-11-0-its-official/). To minimize issues, we recommend building your application with an up to date Xcode and SDK.
+
 Additionally in Sparkle 2, if the user checks for new updates manually and the cannot update because of an operating system requirement, the standard updater alert will inform the user their operating system is incompatible and provide them an option to visit your website specified by the `<link>` element.
 
 ## Major upgrades
@@ -290,20 +292,6 @@ One approach is just waiting until the majority of your users are running a rece
 
 A second approach is migrating to a new `SUFeedURL` in your new application's `Info.plist`. This ensures that the application versions using your newer appcast have access to newer features.
 
-## Full release notes
-
-In Sparkle 2, the `<sparkle:fullReleaseNotesLink>` element may be used to specify the full release notes, or version history, link to your product. When the user checks for updates and no new updates are available, Sparkle may let the user open this link in their web browser. If this element is not specified, Sparkle will default to using the `<sparkle:releaseNotesLink>` element instead, which may be version specific.
-
-```xml
-<item>
-    <title>Version 2.0 (2 bugs fixed; 3 new features)</title>
-    <link>https://myproductwebsite.com</link>
-    <sparkle:version>2.0</sparkle:version>
-    <sparkle:releaseNotesLink>https://myproductwebsite.com/app/2.0.html</sparkle:releaseNotesLink>
-    <sparkle:fullReleaseNotesLink>https://myproductwebsite.com/app/full-history/</sparkle:fullReleaseNotesLink>
-</item>
-```
-
 ## Embedded release notes
 
 Instead of linking external release notes using the `<sparkle:releaseNotesLink>` element, you can also embed the release notes directly in the appcast item, inside a `<description>` element. If you wrap it in `<![CDATA[ ... ]]>`, you can use unescaped HTML.
@@ -323,6 +311,22 @@ Instead of linking external release notes using the `<sparkle:releaseNotesLink>`
 ```
 
 You can embed just marked up text (it'll be displayed using standard system font), or a full document with `<!DOCTYPE html><style>`, etc.
+
+## Full release notes
+
+In Sparkle 2, the `<sparkle:fullReleaseNotesLink>` element may be used to specify the full release notes, or version history, link to your product. When the user checks for updates and no new updates are available, Sparkle may let the user open this link in their web browser. If this element is not specified, Sparkle will default to using the `<sparkle:releaseNotesLink>` element instead if present, which may be version specific. Full release notes can also be used if your application uses embedded release notes.
+
+```xml
+<item>
+    <title>Version 2.0 (2 bugs fixed; 3 new features)</title>
+    <link>https://myproductwebsite.com</link>
+    <sparkle:version>2.0</sparkle:version>
+    <sparkle:releaseNotesLink>https://myproductwebsite.com/app/2.0.html</sparkle:releaseNotesLink>
+    <sparkle:fullReleaseNotesLink>https://myproductwebsite.com/app/full-history/</sparkle:fullReleaseNotesLink>
+</item>
+```
+
+Alternatively, an application that uses Sparkle's standard user interface may implement [-[SPUStandardUserDriverDelegate standardUserDriverShowVersionHistoryForAppcastItem:]](/documentation/api-reference/Protocols/SPUStandardUserDriverDelegate.html#/c:objc(pl)SPUStandardUserDriverDelegate(im)standardUserDriverShowVersionHistoryForAppcastItem:) to show full offline or in-app release notes to the user.
 
 ## Localization
 

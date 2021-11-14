@@ -11,6 +11,8 @@ For each new version you release, you can provide a list of `.delta` files in ad
 
 If the user is running a version of the app for which you haven't provided a `.delta`, or if the patch doesn't apply cleanly, they'll use the non-delta "full" update.
 
+New delta patches must be created using tools from Sparkle 1.27.0 or later. Note that newly generated patches are still compatible and can be patched from applications using versions of Sparkle older than 1.27.0.
+
 ### Automated generation
 
 The `./bin/generate_appcast` tool that comes with Sparkle [automatically generates and signs delta updates](/documentation/#publish-your-appcast).
@@ -28,12 +30,6 @@ To verify that your generated patch applies correctly:
 ```sh
 BinaryDelta apply path/to/old/MyApp.app path/to/patched/MyApp.app patch.delta
 ```
-
-Version 2 patches created by BinaryDelta are not backwards compatible with Sparkle 1.9 or earlier. Pass `--version=1` when creating patches only if you want old versions to apply them.
-
-<div class="alert alert-warning" role="alert">
-<strong>Note:</strong> We don't recommend creating delta patches from an application that uses Sparkle 1.10, due to a potential crash in the updater for applying the updates.
-</div>
 
 [Sign each `.delta` file](/documentation/#segue-for-security-concerns) and add an enclosure to your appcast's `<item>` in `<sparkle:deltas>` for each `.delta` file:
 
