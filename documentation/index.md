@@ -123,7 +123,7 @@ If you distribute your app as a ZIP or a tar archive (due to [app translocation]
 
 If your app is running from a read-only mount, you can encourage (if you so desire) your user to move the app into /Applications. Some frameworks, although not officially sanctioned here, exist for this purpose. Note Sparkle will not by default automatically disturb your user if an update cannot be performed.
 
-Sparkle supports updating from ZIP archives, tarballs, disk images (DMGs), and installer packages. While you can reuse the same archive for distribution of your app on your website, we recommend serving ZIPs or tarballs for updates because they are the fastest and most reliable formats for Sparkle. Disk images (DMGs) can be up to 20x slower to extract and installer packages should rarely be used.
+Sparkle supports updating from ZIP archives, tarballs, disk images (DMGs), and installer packages. While you can reuse the same archive for distribution of your app on your website, we recommend serving ZIPs or tarballs for updates because they are the fastest and most reliable formats for Sparkle. Disk images (DMGs) can be significantly slower to extract and HFS+ formatted disk images are even slower than APFS formatted images (which require macOS 10.13 or later). Installer packages should rarely be used for distribution.
 
 ### 5. Publish your appcast
 
