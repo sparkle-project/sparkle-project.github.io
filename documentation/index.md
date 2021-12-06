@@ -130,7 +130,7 @@ Sparkle supports updating from ZIP archives, tarballs, disk images (DMGs), and i
 Sparkle uses appcasts to get information about software updates. An appcast is an RSS feed with some extra information for Sparkle's purposes.
 
   * Add a [`SUFeedURL`](/documentation/customization/) property to your `Info.plist`; set its value to a URL where your appcast will be hosted, e.g. `https://yourcompany.example.com/appcast.xml`. We [strongly encourage you to use HTTPS](/documentation/app-transport-security/) URLs for the appcast.
-  * Note that your app bundle must have a [properly formatted `CFBundleVersion`](https://developer.apple.com/documentation/bundleresources/information_property_list/cfbundleversion) key in your `Info.plist`.
+  * Note that your app bundle must have an incrementing and [properly formatted `CFBundleVersion`](https://developer.apple.com/documentation/bundleresources/information_property_list/cfbundleversion) key in your `Info.plist`. Sparkle uses this to compare and determine the latest version of your bundle.
 
 If you update regular app bundles and you have set up EdDSA signatures, you can use a tool to generate appcasts automatically:
 
