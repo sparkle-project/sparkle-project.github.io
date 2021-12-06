@@ -121,7 +121,7 @@
     },
     {
       "file": "/Users/runner/work/sparkle-project.github.io/sparkle-project.github.io/sparkle-source/Sparkle/SPUUpdaterDelegate.h",
-      "line": 447,
+      "line": 454,
       "symbol": "SPUUpdaterDelegate.-updaterMayCheckForUpdates:",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
       "warning": "undocumented"
