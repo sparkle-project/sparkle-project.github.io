@@ -91,4 +91,4 @@ If you do not sandbox your application, we do not recommend using Sparkle's XPC 
 
 ### Testing
 
-If Xcode has issues running your application using Sparkle and its XPC Services (such as being unable to attach to the process), try editing your project's Scheme and disable *Debug XPC services used by app* or test your application detached from Xcode to see if it works there. This is an issue because the XPC Services are currently being built with the Hardened Runtime enabled which normally disallows a debugger to attach to them.
+If Xcode has issues running your application using Sparkle and its XPC Services (such as being unable to attach to the process), try editing your project's Scheme and disable *Debug XPC services used by app* or test your application detached from Xcode to see if it works there. This shouldn't be an issue in a development environment if you follow the standard workflow we suggest, but this may be needed if the XPC Service is signed with the Hardened Runtime and not with the `com.apple.security.get-task-allow` entitlement.
