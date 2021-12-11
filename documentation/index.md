@@ -24,11 +24,25 @@ If you use [CocoaPods](//cocoapods.org):
   * Add `pod 'Sparkle'` to your Podfile.
   * Add or uncomment `use_frameworks!` in your Podfile.
 
+If you use [Carthage](https://github.com/Carthage/Carthage):
+  * Add `binary "https://sparkle-project.org/Carthage/Sparkle.json"` to your Cartfile.
+  * Run `carthage update`
+  * Link the Sparkle framework to your app target:
+    * Drag the built `Carthage/Build/Mac/Sparkle.framework` into your Xcode project.
+    * Make sure the box is checked for your app's target in the sheet's <samp>Add to targets</samp> list.
+  * Make sure the framework is copied into your app bundle:
+    * Click on your project in the Project Navigator.
+    * Click your target in the project editor.
+    * Click on the <samp>General</samp> tab.
+    * In <samp>Frameworks, Libraries, and Embedded Content</samp> section, change Sparkle.framework to <samp>Embed & Sign</samp>.
+
+  Sparkle only supports using a `binary` origin with Carthage because Carthage strips necessary code signing information when building the project from source.
+
 If you want to add Sparkle manually:
 
 * Get the [latest version](//github.com/{{ site.github_username }}/Sparkle/releases/latest) of Sparkle.
 * Link the Sparkle framework to your app target:
-  * Drag `Sparkle.framework` into the <samp>Frameworks</samp> folder of your Xcode project.
+  * Drag `Sparkle.framework` into your Xcode project.
   * Be sure to check the "Copy items into the destination group's folder" box in the sheet that appears.
   * Make sure the box is checked for your app's target in the sheet's <samp>Add to targets</samp> list.
 * Make sure the framework is copied into your app bundle:
