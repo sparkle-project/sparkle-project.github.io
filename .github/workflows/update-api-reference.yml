@@ -48,6 +48,7 @@ jobs:
             cd "$GITHUB_WORKSPACE/sparkle-website"
             rm -rf "documentation/api-reference"
             cp -R "$GITHUB_WORKSPACE/sparkle-source/Documentation/html" "documentation/api-reference"
+            cp "$GITHUB_WORKSPACE/sparkle-source/Carthage-dev.json" "Carthage/Sparkle.json"
 
       - name: "Commit and Push Changes"
         env:
