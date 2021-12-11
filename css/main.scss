@@ -83,14 +83,14 @@ samp {
       margin: 2em 0 1em 0;
     }
 
-    a.btn-cocoapods,
-    a.btn-cocoapods:hover,
-    a.btn-cocoapods:active,
-    a.btn-cocoapods:visited {
+    a.btn-setup,
+    a.btn-setup:hover,
+    a.btn-setup:active,
+    a.btn-setup:visited {
       text-decoration: none;
     }
 
-    a.btn-cocoapods {
+    a.btn-setup {
       font-size: 0.7em;
       font-weight: normal;
       letter-spacing: 1.2px;
@@ -104,7 +104,7 @@ samp {
              box-shadow: 0 14px 26px rgba(0,0,0,0.15);
     }
 
-    a.btn-cocoapods:hover {
+    a.btn-setup:hover {
       -webkit-transition: all .5s;
      -webkit-box-shadow: 0 7px 13px rgba(0,0,0,0.10);
              box-shadow: 0 7px 13px rgba(0,0,0,0.10);
