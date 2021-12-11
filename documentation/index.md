@@ -53,7 +53,7 @@ If you want to add Sparkle manually:
 * In <samp>Build Settings</samp> tab set "<samp>Runpath Search Paths</samp>" to `@loader_path/../Frameworks` (for non-Xcode projects add the flags `-Wl,-rpath,@loader_path/../Frameworks`). This is not a necessary step in recent versions of Xcode.
 * If you have your own process for copying/packaging your app make sure it preserves symlinks!
 
-[Sparkle 2 beta pre-releases](//github.com/{{ site.github_username }}/Sparkle/releases) are also available on GitHub. They are available in Swift Package Manager and CocoaPods too by specifying the pre-release version in your project's manifest.
+[Sparkle 2 beta pre-releases](//github.com/{{ site.github_username }}/Sparkle/releases) are also available on GitHub. They are available in Swift Package Manager, CocoaPods, and Carthage too by specifying the pre-release version in your project's manifest.
 
 A more nightly build from our repository can be downloaded from our [GitHub Actions page](https://github.com/sparkle-project/Sparkle/actions?query=event%3Apush+is%3Asuccess+branch%3A2.x) by selecting a recent workflow commit and downloading the `Sparkle-distribution*.tar.xz` artifact. Alternatively, you may clone Sparkle's repository with all its submodules, run `make release`, and extract the binaries in the resulting `Sparkle-*.tar.xz` (or `.bz2`) archive.
 
