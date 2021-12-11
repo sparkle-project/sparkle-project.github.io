@@ -60,5 +60,6 @@ jobs:
             git config user.name Sparkle-Bot
             git config user.email sparkle.project.bot@gmail.com
             git add "documentation/api-reference"
-            git commit -m "Update API reference documentation"
+            git add "Carthage/Sparkle.json"
+            git commit -m "Update API documentation and Carthage spec"
             git push
