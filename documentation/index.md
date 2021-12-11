@@ -36,6 +36,8 @@ If you use [Carthage](https://github.com/Carthage/Carthage):
     * Click on the <samp>General</samp> tab.
     * In <samp>Frameworks, Libraries, and Embedded Content</samp> section, change Sparkle.framework to <samp>Embed & Sign</samp>.
 
+  Sparkle's tools to generate and sign updates are not included and need to be grabbed from [our releases](//github.com/{{ site.github_username }}/Sparkle/releases/latest).
+
   Sparkle only supports using a `binary` origin with Carthage because Carthage strips necessary code signing information when building the project from source.
 
 If you want to add Sparkle manually:
