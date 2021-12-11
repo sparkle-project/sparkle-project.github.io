@@ -48,6 +48,7 @@ jobs:
             cd "$GITHUB_WORKSPACE/sparkle-website"
             rm -rf "documentation/api-reference"
             cp -R "$GITHUB_WORKSPACE/sparkle-source/Documentation/html" "documentation/api-reference"
+            cp "$GITHUB_WORKSPACE/sparkle-source/Carthage-dev.json" "Carthage/Sparkle.json"
 
       - name: "Commit and Push Changes"
         env:
@@ -59,5 +60,6 @@ jobs:
             git config user.name Sparkle-Bot
             git config user.email sparkle.project.bot@gmail.com
             git add "documentation/api-reference"
-            git commit -m "Update API reference documentation"
+            git add "Carthage/Sparkle.json"
+            git commit -m "Update API documentation and Carthage spec"
             git push

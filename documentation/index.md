@@ -24,11 +24,25 @@ If you use [CocoaPods](//cocoapods.org):
   * Add `pod 'Sparkle'` to your Podfile.
   * Add or uncomment `use_frameworks!` in your Podfile.
 
+If you use [Carthage](https://github.com/Carthage/Carthage):
+  * Add `binary "https://sparkle-project.org/Carthage/Sparkle.json"` to your Cartfile.
+  * Run `carthage update`
+  * Link the Sparkle framework to your app target:
+    * Drag the built `Carthage/Build/Mac/Sparkle.framework` into your Xcode project.
+    * Make sure the box is checked for your app's target in the sheet's <samp>Add to targets</samp> list.
+  * Make sure the framework is copied into your app bundle:
+    * Click on your project in the Project Navigator.
+    * Click your target in the project editor.
+    * Click on the <samp>General</samp> tab.
+    * In <samp>Frameworks, Libraries, and Embedded Content</samp> section, change Sparkle.framework to <samp>Embed & Sign</samp>.
+
+  Sparkle only supports using a `binary` origin with Carthage because Carthage strips necessary code signing information when building the project from source.
+
 If you want to add Sparkle manually:
 
 * Get the [latest version](//github.com/{{ site.github_username }}/Sparkle/releases/latest) of Sparkle.
 * Link the Sparkle framework to your app target:
-  * Drag `Sparkle.framework` into the <samp>Frameworks</samp> folder of your Xcode project.
+  * Drag `Sparkle.framework` into your Xcode project.
   * Be sure to check the "Copy items into the destination group's folder" box in the sheet that appears.
   * Make sure the box is checked for your app's target in the sheet's <samp>Add to targets</samp> list.
 * Make sure the framework is copied into your app bundle:
@@ -39,7 +53,7 @@ If you want to add Sparkle manually:
 * In <samp>Build Settings</samp> tab set "<samp>Runpath Search Paths</samp>" to `@loader_path/../Frameworks` (for non-Xcode projects add the flags `-Wl,-rpath,@loader_path/../Frameworks`). This is not a necessary step in recent versions of Xcode.
 * If you have your own process for copying/packaging your app make sure it preserves symlinks!
 
-[Sparkle 2 beta pre-releases](//github.com/{{ site.github_username }}/Sparkle/releases) are also available on GitHub. They are available in Swift Package Manager and CocoaPods too by specifying the pre-release version in your project's manifest.
+[Sparkle 2 beta pre-releases](//github.com/{{ site.github_username }}/Sparkle/releases) are also available on GitHub. They are available in Swift Package Manager, CocoaPods, and Carthage too by specifying the pre-release version in your project's manifest.
 
 A more nightly build from our repository can be downloaded from our [GitHub Actions page](https://github.com/sparkle-project/Sparkle/actions?query=event%3Apush+is%3Asuccess+branch%3A2.x) by selecting a recent workflow commit and downloading the `Sparkle-distribution*.tar.xz` artifact. Alternatively, you may clone Sparkle's repository with all its submodules, run `make release`, and extract the binaries in the resulting `Sparkle-*.tar.xz` (or `.bz2`) archive.
 
