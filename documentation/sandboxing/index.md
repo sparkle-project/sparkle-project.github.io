@@ -4,9 +4,9 @@ id: documentation
 title: Sandboxing with Sparkle
 ---
 
-Using Sparkle in a sandboxed application is only supported in Sparkle 2.0, which is currently in beta. If you do not sandbox your application, you may skip this page.
+Using Sparkle in a sandboxed application is only supported in Sparkle 2. If you do not sandbox your application, you may skip this page unless you are interested in [Removing the XPC Services](#removing-xpc-services).
 
-If you are migrating from an older version of Sparkle 2 beta, the XPC Services have been moved into Sparkle's framework bundle. You will need to stop bundling the XPC Services directly inside your application and add Info.plist keys to enable the services now. This is described in the sections below.
+If you are migrating from an older beta version of Sparkle 2, the XPC Services have been moved into Sparkle's framework bundle. You will need to stop bundling the XPC Services directly inside your application and add Info.plist keys to enable the services now. This is described in the sections below.
 
 ## Sandboxing
 

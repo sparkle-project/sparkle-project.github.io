@@ -103,7 +103,7 @@ Add a `sparkle:minimumSystemVersion` child to the `<item>` in question specifyin
 </item>
 ```
 
-Note that Sparkle only works with macOS 10.9 or later (macOS 10.11 or later for Sparkle 2), so that's the lowest minimum version you can use.
+Note that Sparkle 2 only works with macOS 10.11 or later (macOS 10.9 or later for Sparkle 1), so that's the lowest minimum version you can use.
 
 Sparkle also supports a `sparkle:maximumSystemVersion` element that can limit the maximum system version similarly.
 
@@ -261,7 +261,7 @@ func allowedChannels(for updater: SPUUpdater) -> Set<String> {
 
 Note that an updater cannot exclude itself from the default channel. Channels are intended to be a way to branch off updates to your application until newer updates are ready to come back to the default channel.
 
-Channels can only be used when all of your users downloading your appcast are running a version of Sparkle that supports them. Sparkle 2 beta added them as of [June 27, 2021](https://github.com/sparkle-project/Sparkle/pull/1879). You can expedite this process by [switching to a new appcast](#upgrading-to-newer-features). Otherwise older versions of Sparkle may need to set the feed url programmatically below.
+Channels can only be used when all of your users downloading your appcast are running a version of Sparkle that supports them. Sparkle 2 added them as of [June 27, 2021](https://github.com/sparkle-project/Sparkle/pull/1879). You can expedite this process by [switching to a new appcast](#upgrading-to-newer-features). Otherwise older versions of Sparkle may need to set the feed url programmatically below.
 
 
 ## Setting the feed programmatically

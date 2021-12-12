@@ -6,9 +6,7 @@ title: Upgrading from previous versions of Sparkle
 
 We strongly recommend upgrading Sparkle to the [latest production release](//github.com/{{ site.github_username }}/Sparkle/releases), as there have been important fixes in reliability and [security](/documentation/security) of updates. Very old versions of Sparkle also suffer some incompatibilities with the latest macOS versions.
 
-## Upgrading from Sparkle 1.x to 2.0 (Beta)
-
-**Note**: Sparkle 2.0 is in a pre-release / beta state and not production ready yet.
+## Upgrading from Sparkle 1.x to 2.0
 
 Sparkle 2 now requires macOS 10.11 (El Capitan) or later.
 
@@ -25,20 +23,24 @@ If you were previously instantiating a `SUUpdater` in code, please refer to the 
 
 The deprecated `SUUpdater` in Sparkle 2 is now a stub that uses both a `SPUUpdater` and `SPUStandardUserDriver`.
 
-If you create a `SPUUpdater` instance directly, you can now create an updater that can update other Sparkle-based bundles and/or an updater that can use your own user interface (`SPUUserDriver`). [sparkle-cli](/documentation/sparkle-cli) makes use of both features as an example.
+`SPUUpdater` when used directly can:
+* Update other Sparkle-based bundles
+* Use your own custom user interface (`SPUUserDriver`)
+
+[sparkle-cli](/documentation/sparkle-cli) makes use of both these features as an example.
 
 `SPUUpdater` and its delegate `SPUUpdaterDelegate` (unlike `SUUpdater`) do not contain any user-interface or AppKit logic. The UI bits were separated into classes implementing `SPUUserDriver` and its delegates. A developer writing their own updater user interface may choose to build Sparkle with `SPARKLE_BUILD_UI_BITS=0` which strips out the standard UI bits that Sparkle provides out of the box.
 
-`SPUUpdater` does not maintain singleton or global instances (unlike `SUUpdater`). Plug-ins that share the same process as their host should prefer to use an external tool like [sparkle-cli](/documentation/sparkle-cli) instead, rather than sharing or injecting a Sparkle.framework in its host. A bit more details about updating bundles [here](/documentation/bundles#sparkle-2).
+`SPUUpdater` does not maintain singleton or global instances (unlike `SUUpdater`). Plug-ins that share the same process as their host should prefer to use an external tool such as [sparkle-cli](/documentation/sparkle-cli) instead, rather than sharing or injecting a Sparkle.framework in its host. A bit more details about updating bundles [here](/documentation/bundles#sparkle-2).
 
-Downgrades were poorly supported in Sparkle 1 (via `SPARKLE_AUTOMATED_DOWNGRADES`) and are now unavailable in Sparkle 2.
+Downgrade support was poorly supported in Sparkle 1 (via `SPARKLE_AUTOMATED_DOWNGRADES`) and now removed in Sparkle 2.
 
 The behavior for the `-bestValidUpdateInAppcast:forUpdater:` delegate method on `SPUUpdaterDelegate` has changed. Please review its header documentation for more information. In short:
 * Delta updates cannot be returned. A top level item must be returned.
 * Using this method when [channels](/documentation/publishing#channels) or [other features](/documentation/publishing) can be used instead is discouraged.
-* An empty update can now be returned (via `SUAppcastItem.emptyAppcastItem`)
-* An update whose version is below the current application's version should not be returned if the current application's version is available in the appcast
-* Sparkle filters update items for minimum/maximum OS version requirements before calling this method now
+* An empty update can now be returned (via `SUAppcastItem.emptyAppcastItem`).
+* An update whose version is below the current application's version should not be returned if the current application's version is available in the appcast.
+* Sparkle filters update items for minimum/maximum OS version requirements before calling this method now.
 
 If you have scripts that reference Sparkle.framework's helper tools, here are the new paths (note Autoupdate is now a command line tool and the UI bits moved to Updater.app):
 ```
@@ -48,9 +50,9 @@ Sparkle.framework/Updater.app (symbolic link to Sparkle.framework/Versions/B/Upd
 
 Note that the Sparkle 2 framework now also uses `Versions/B/` instead of `Versions/A`.
 
-Sparkle 2 supports [sandboxed applications](/documentation/sandboxing) via integration of XPC Services. Note using the XPC Services are only required for sandboxed applications, which Sparkle 1 didn't support.
+Sparkle 2 supports [sandboxed applications](/documentation/sandboxing) via integration of XPC Services. Note only sandboxed applications require using and bundling the XPC Services.
 
-If you are migrating from earlier alpha versions of Sparkle 2, you may find that some of the XPC Services are now optional and re-signing the services may not be necessary. More recent versions of Sparkle 2 beta now also include the XPC Services inside the framework bundle. Please read the updated [sandboxing guide](/documentation/sandboxing) for more information.
+If you are migrating from earlier beta versions of Sparkle 2, you may find that some of the XPC Services are now optional and re-signing the services may not be necessary. More recent versions of Sparkle 2 now also include the XPC Services inside the framework bundle. Please read the updated [sandboxing guide](/documentation/sandboxing) for more information.
 
 If you use package (pkg) based updates, please see [Package Updates](/documentation/package-updates) for migration notes. In particular, your appcast items may need to include an appropriate installation type to help Sparkle decide if authorization is needed before starting the installer. This is not needed for bare package updates.
 

@@ -6,7 +6,7 @@ title: Setting up Sparkle programmatically
 
 ## Create an Updater in Cocoa programmatically
 
-This is an example of creating an updater in Sparkle 2 (beta) with Cocoa programmatically. It hooks up a menu item's target/action for checking for updates.
+This is an example of creating an updater in Sparkle 2 with Cocoa programmatically. It hooks up a menu item's target/action for checking for updates.
 
 ```swift
 import Cocoa
@@ -37,7 +37,7 @@ import Sparkle
 
 ## Create an Updater in SwiftUI
 
-This is an example of creating an updater in Sparkle 2 (beta) with SwiftUI. It creates a new menu item allowing users to check for new updates and ensures its disabled state is updated.
+This is an example of creating an updater in Sparkle 2 with SwiftUI. It creates a new menu item allowing users to check for new updates and ensures its disabled state is updated.
 
 ```swift
 import SwiftUI
@@ -92,7 +92,7 @@ struct MyApp: App {
 
 ## Create an Updater in Mac Catalyst
 
-This is an example for creating an updater in Sparkle 2 (beta) with Mac Catalyst. The code illustrated below is inside an AppKit bundle plug-in that is loaded by the Catalyst application using a shared `PlugIn` protocol. This snippet is missing plenty of details including adding a menu item and inter-opt between the host application and plug-in.
+This is an example for creating an updater in Sparkle 2 with Mac Catalyst. The code illustrated below is inside an AppKit bundle plug-in that is loaded by the Catalyst application using a shared `PlugIn` protocol. This snippet is missing plenty of details including adding a menu item and inter-opt between the host application and plug-in.
 
 ```swift
 import AppKit
