@@ -111,7 +111,7 @@ updates. It should appear like this:
     <string>pfIShU4dEXqPd5ObYNfDBiQWcXozk7estwzTnF9BamQ=</string>
 ```
 
-You can use the `-x private-key-file` and `-f private-key-file` options to export and import the keys respectively when transferring keys to another Mac. Otherwise we recommend keeping the keys inside your Mac's keychain. Be sure to keep them safe and not lose them (they will be erased if your keychain or system is erased).
+You can use the `-x private-key-file` and `-f private-key-file` options to export and import the keys respectively when transferring keys to another Mac. Otherwise we recommend keeping the keys inside your Mac's keychain. Be sure to keep them safe and not lose them (they will be erased if your keychain or system is erased). If your keys are lost, you may be able to generate new ones through [key rotation](#rotating-signing-keys).
 
 Please visit [Migrating to EdDSA from DSA](eddsa-migration) if you are still providing DSA signatures so you can learn how to stop supporting them.
 
@@ -121,7 +121,9 @@ If you are code-signing your application via Apple's Developer ID program, Spark
   * Note that embedding the `Sparkle.framework` into the bundle of a Developer ID application requires that you code-sign the framework and its helper tools with your Developer ID keys. Xcode should do this automatically if you create an archive via <samp>Product › Archive</samp> and <samp>Distribute App</samp> choosing <samp>Developer ID</samp> method of distribution.
   * You can diagnose code signing problems with `codesign --deep -vvv --verify <path-to-app>` for code signing validity, `spctl -a -t exec -vv <path-to-app>` for Gatekeeper validity, and by checking logs in the Console.app. See Apple's [Code Signing in Depth](https://developer.apple.com/library/archive/technotes/tn2206/_index.html) for more code signing details.
 
-If you both code-sign your application and include a public EdDSA key for signing your update archive, Sparkle allows issuing a new update that changes either your code signing certificate or your EdDSA keys. Note however this is a last resort and should *only* be done if necessary (like if you lose access to one of them or need to change keys).
+#### Rotating signing keys
+
+For regular application updates, if you both code-sign your application and include a public EdDSA key for signing your update archive, Sparkle allows rotating keys by issuing a new update that changes either your code signing certificate or your EdDSA keys. We recommend rotating keys only when necessary though, like if you lose access to one of them or need to change keys due to [EdDSA migration](eddsa-migration).
 
 ### 4. Distributing your App
 
