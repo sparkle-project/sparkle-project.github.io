@@ -13,7 +13,7 @@ Sparkle 2.0 includes a command line utility that can update Sparkle-based applic
 ```
 ./sparkle.app/Contents/MacOS/sparkle
 
-Usage: /Users/msp/Library/Developer/Xcode/DerivedData/Sparkle-gmdyaoexyoairhejmazbzihoxkuw/Build/Products/Debug/sparkle.app/Contents/MacOS/sparkle bundle [--application app-path] [--check-immediately] [--probe] [--channels chan1,chan2,…] [--feed-url feed-url] [--user-agent-name display-name] [--grant-automatic-checks] [--send-profile] [--defer-install] [--interactive] [--allow-major-upgrades] [--verbose]
+Usage: ./sparkle.app/Contents/MacOS/sparkle bundle [--application app-path] [--check-immediately] [--probe] [--channels chan1,chan2,…] [--feed-url feed-url] [--user-agent-name display-name] [--grant-automatic-checks] [--send-profile] [--defer-install] [--interactive] [--allow-major-upgrades] [--verbose]
 Description:
   Check if any new updates for a Sparkle supported bundle need to be installed.
 
