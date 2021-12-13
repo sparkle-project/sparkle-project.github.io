@@ -12,7 +12,7 @@ We strongly recommend upgrading Sparkle to the [latest production release](//git
 
 Sparkle 2 now requires macOS 10.11 (El Capitan) or later.
 
-Like Sparkle 1, Sparkle 2 supports Swift Package Manager, CocoaPods, and Carthage package managers. Steps for [integrating Carthage](/documentation) have recently changed though.
+Like Sparkle 1, Sparkle 2 supports Swift Package Manager, CocoaPods, and Carthage package managers. Steps for [integrating with Carthage](/documentation) have been updated however.
 
 The `SUUpdater` class has been deprecated and split up in Sparkle 2, but it is still functional for transitional purposes.
 
