@@ -48,7 +48,7 @@ Sparkle.framework/Autoupdate (symbolic link to Sparkle.framework/Versions/B/Auto
 Sparkle.framework/Updater.app (symbolic link to Sparkle.framework/Versions/B/Updater.app)
 ```
 
-Please try to avoid using code-signing scripts that reference these tools, the XPC Services, or the framework though. Most of the time this is not needed if you use Xcode’s Archive Organizer for distribution and notarization. See our [code signing section in our Sandboxing guide](/documentation/sandboxing/#code-signing) for more details. Note that the Sparkle 2 framework now also uses `Versions/B/` instead of `Versions/A`.
+Please try to avoid using code-signing scripts that reference these tools, the XPC Services, or the framework though. Most of the time this is not needed if you use archive and export your application for distribution and notarization. See our [code signing section in our Sandboxing guide](/documentation/sandboxing/#code-signing) and [Distributing your app](/documentation/#4-distributing-your-app) for more details. Note that the Sparkle 2 framework now also uses `Versions/B/` instead of `Versions/A`.
 
 Sparkle 2 supports [sandboxed applications](/documentation/sandboxing) via integration of XPC Services. Note using the XPC Services are only required for sandboxed applications, which Sparkle 1 didn't support.
 
