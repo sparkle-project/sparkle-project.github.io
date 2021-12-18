@@ -63,7 +63,7 @@ If you cannot add entitlements (eg: your process inherits another application's 
 
 ### Code Signing
 
-If you follow standard workflows and use Xcode's Archive Organizer to [Distribute your App](/documentation#4-distributing-your-app), which we recommend, you do not need to especially do anything for signing Sparkle or its XPC Services and may skip this section.
+If you follow standard workflows and archive & export your application to [Distribute your App](/documentation#4-distributing-your-app), which we recommend, you do not need to especially do anything for signing Sparkle or its XPC Services and may skip this section.
 
 However, if you need to code sign Sparkle with a specific certificate for development or use an alternative workflow for distributing your application outside of Xcode's Archive Organizer, you will need to manually re-sign Sparkle and its XPC Services with your own certificate.
 
