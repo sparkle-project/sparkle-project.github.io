@@ -127,7 +127,7 @@ If you are code-signing your application via Apple's Developer ID program, Spark
 
 For regular application updates, if you both code-sign your application with Apple's Developer ID program and include a public EdDSA key for signing your update archive, Sparkle allows rotating keys by issuing a new update that changes either your Apple code signing certificate or your EdDSA keys.
 
-We recommend rotating keys only when necessary like if you need to change your Developer ID certificate, lose access to your EdDSA private key, or need to change EdDSA keys due to [migrating away from DSA](eddsa-migration).
+We recommend rotating keys only when necessary like if you need to change your Developer ID certificate, lose access to your EdDSA private key, or need to change (Ed)DSA keys due to [migrating away from DSA](eddsa-migration).
 
 ### 4. Distributing your App
 
