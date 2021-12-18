@@ -17,7 +17,7 @@ Make sure symlinks are preserved when you create the archive. macOS frameworks u
 ditto -c -k --sequesterRsrc --keepParent <src_path_to_app> <zip_dest>
 ```
 
-If you can't use regular app bundles, you can also create an Installer .pkg with the same name as your app and put that .pkg in one of the aforementioned archive formats. By default Sparkle launches Installer without a GUI. If instead of .pkg extension you use .sparkle_interactive.pkg, then installation will run with a GUI and ask user to confirm every step.
+Please see [notes for Installer packages](/documentation/package-updates) if you are not updating a regular bundle.
 
 ### Secure your update
 
