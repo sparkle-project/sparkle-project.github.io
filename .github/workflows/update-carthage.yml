@@ -1,4 +1,4 @@
-name: "Update API Reference"
+name: "Update Carthage Package"
 
 on:
   workflow_dispatch
