@@ -9,19 +9,10 @@ concurrency:
 
 jobs:
   api-documentation:
-    name: "Update API Reference Documentation"
+    name: "Update Carthage Package"
     runs-on: macos-11
 
     steps:
-      - name: "Set up Ruby"
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: 2.7.4
-
-      - name: "Set up jazzy"
-        run: |
-          gem install jazzy
-
       - name: "Checkout Sparkle Sources"
         uses: actions/checkout@v2
         with:
@@ -37,17 +28,11 @@ jobs:
           token: ${{ secrets.BOT_PERSONAL_ACCESS_TOKEN }}
           fetch-depth: 0
           path: 'sparkle-website'
-          
-      - name: "Create Documentation Files"
-        run: |
-            cd "$GITHUB_WORKSPACE/sparkle-source"
-            make docs
 
-      - name: "Copy Documentation Files"
+      - name: "Copy Carthage json"
         run: |
             cd "$GITHUB_WORKSPACE/sparkle-website"
-            rm -rf "documentation/api-reference"
-            cp -R "$GITHUB_WORKSPACE/sparkle-source/Documentation/html" "documentation/api-reference"
+            cp "$GITHUB_WORKSPACE/sparkle-source/Carthage-dev.json" "Carthage/Sparkle.json"
 
       - name: "Commit and Push Changes"
         env:
@@ -58,6 +43,6 @@ jobs:
             cd "$GITHUB_WORKSPACE/sparkle-website"
             git config user.name Sparkle-Bot
             git config user.email sparkle.project.bot@gmail.com
-            git add "documentation/api-reference"
-            git commit -m "Update API documentation"
+            git add "Carthage/Sparkle.json"
+            git commit -m "Update Carthage spec"
             git push
