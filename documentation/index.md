@@ -131,19 +131,19 @@ We recommend rotating keys only when necessary like if you need to change your D
 
 We recommend distributing your app in Xcode by creating a <samp>Product › Archive</samp> and <samp>Distribute App</samp> choosing <samp>Developer ID</samp> method of distribution. Using Xcode's Archive Organizer will ensure Sparkle's helper tools are code signed properly for distribution. In automated environments, this can instead be done using `xcodebuild archive` and `xcodebuild -exportArchive`.
 
-If you distribute your app as a [Apple-certificate-signed disk image](https://developer.apple.com/library/content/technotes/tn2206/_index.html#//apple_ref/doc/uid/DTS40007919-CH1-TNTAG17) (DMG):
+If you distribute your app on your website as a [Apple-certificate-signed disk image](https://developer.apple.com/library/content/technotes/tn2206/_index.html#//apple_ref/doc/uid/DTS40007919-CH1-TNTAG17) (DMG):
 
   * Add an `/Applications` symlink in your DMG, to encourage the user to copy the app out of it.
   * Make sure the DMG is signed with a Developer ID and use macOS 10.11.5 or later to sign it (an older OS may not sign correctly). Signed DMG archives are backwards compatible.
 
-If you distribute your app as a ZIP or a tar archive (due to [app translocation](https://lapcatsoftware.com/articles/app-translocation.html)):
+If you distribute your app on your website as a ZIP or a tar archive (due to [app translocation](https://lapcatsoftware.com/articles/app-translocation.html)):
 
   * Avoid placing your app inside another folder in your archive, because copying of the folder as a whole doesn't remove the quarantine.
   * Avoid putting more than just the single app in the archive.
 
 If your app is running from a read-only mount, you can encourage (if you want) your user to move the app into /Applications. Some frameworks, although not officially sanctioned here, exist for this purpose. Note Sparkle will not by default automatically disturb your user if an update cannot be performed.
 
-Sparkle supports updating from ZIP archives, tarballs, disk images (DMGs), and installer packages. While you can reuse the same archive for distribution of your app on your website, we recommend serving ZIPs or tarballs (e.g. tar.bz2) for updates because they are the fastest and most reliable formats for Sparkle. Disk images (DMGs) can be significantly slower to extract programmatically and sometimes be less reliable to attach/detach. Installer packages should rarely be used for distribution or updates (e.g. only for kexts, but not for [installing daemons](https://developer.apple.com/documentation/servicemanagement/1431078-smjobbless) or [installing system extensions](https://developer.apple.com/documentation/systemextensions/installing_system_extensions_and_drivers)).
+Sparkle supports updating from ZIP archives, tarballs, disk images (DMGs), and installer packages. While you can reuse the same archive for distribution of your app on your website, we recommend serving ZIPs or tarballs (e.g. tar.bz2) for updates because they are the fastest and most reliable formats for Sparkle. Disk images (DMGs) can be significantly slower to extract programmatically and sometimes be less reliable to attach/detach. Installer packages should rarely be used for distribution or updates (i.e. only for kexts, but not for [installing daemons](https://developer.apple.com/documentation/servicemanagement/1431078-smjobbless) or [installing system extensions](https://developer.apple.com/documentation/systemextensions/installing_system_extensions_and_drivers)).
 
 ### 5. Publish your appcast
 
