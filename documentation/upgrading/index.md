@@ -10,6 +10,8 @@ We strongly recommend upgrading Sparkle to the [latest production release](//git
 
 Sparkle 2 now requires macOS 10.11 (El Capitan) or later.
 
+Like Sparkle 1, Sparkle 2 supports Swift Package Manager, CocoaPods, and Carthage package managers. Steps for [integrating with Carthage](/documentation) have been updated however.
+
 The `SUUpdater` class has been deprecated and split up in Sparkle 2, but it is still functional for transitional purposes.
 
 Sparkle 2 includes three new classes / protocols:
@@ -42,13 +44,13 @@ The behavior for the `-bestValidUpdateInAppcast:forUpdater:` delegate method on 
 * An update whose version is below the current application's version should not be returned if the current application's version is available in the appcast.
 * Sparkle filters update items for minimum/maximum OS version requirements before calling this method now.
 
-If you have scripts that reference Sparkle.framework's helper tools, here are the new paths (note Autoupdate is now a command line tool and the UI bits moved to Updater.app):
+Here are the new paths to Sparkle's helper tools (note Autoupdate is now a command line tool and the UI bits moved to Updater.app):
 ```
 Sparkle.framework/Autoupdate (symbolic link to Sparkle.framework/Versions/B/Autoupdate)
 Sparkle.framework/Updater.app (symbolic link to Sparkle.framework/Versions/B/Updater.app)
 ```
 
-Note that the Sparkle 2 framework now also uses `Versions/B/` instead of `Versions/A`.
+Please try to avoid using code-signing scripts that reference these tools, the XPC Services, or the framework though. Most of the time this is not needed if you use archive and export your application for distribution and notarization. See our [code signing section in our Sandboxing guide](/documentation/sandboxing/#code-signing) and [Distributing your app](/documentation/#4-distributing-your-app) for more details. Note that the Sparkle 2 framework now also uses `Versions/B/` instead of `Versions/A`.
 
 Sparkle 2 supports [sandboxed applications](/documentation/sandboxing) via integration of XPC Services. Note only sandboxed applications require using and bundling the XPC Services.
 
@@ -56,9 +58,9 @@ If you are migrating from earlier beta versions of Sparkle 2, you may find that 
 
 If you use package (pkg) based updates, please see [Package Updates](/documentation/package-updates) for migration notes. In particular, your appcast items may need to include an appropriate installation type to help Sparkle decide if authorization is needed before starting the installer. This is not needed for bare package updates.
 
-Sparkle 2 lets users view your application's [full release notes](/documentation/publishing#Full-release-notes) when they check for updates and no new updates are available.
+Sparkle 2 lets users view your application's [full release notes](/documentation/publishing#full-release-notes) when they check for updates and no new updates are available.
 
-Sparkle 2 enhances support for [major upgrades](/documentation/publishing#Major-upgrades).
+Sparkle 2 enhances support for [major upgrades](/documentation/publishing#major-upgrades).
 
 See [Sparkle 2's APIs](/documentation/api-reference) for more information.
 

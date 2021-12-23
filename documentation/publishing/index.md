@@ -17,13 +17,13 @@ Make sure symlinks are preserved when you create the archive. macOS frameworks u
 ditto -c -k --sequesterRsrc --keepParent <src_path_to_app> <zip_dest>
 ```
 
-If you can't use regular app bundles, you can also create an Installer .pkg with the same name as your app and put that .pkg in one of the aforementioned archive formats. By default Sparkle launches Installer without a GUI. If instead of .pkg extension you use .sparkle_interactive.pkg, then installation will run with a GUI and ask user to confirm every step.
+Please see [notes for Installer packages](/documentation/package-updates) if you are not updating a regular bundle.
 
 ### Secure your update
 
 In order to prevent corruption and man-in-the-middle attacks against your users, you must cryptographically sign your updates.
 
-Signatures are automatically generated when you make an appcast using `generate_appcast` tool. This is a recommended method.
+Signatures are automatically generated when you make an appcast using `generate_appcast` tool. This is the recommended method.
 
 To manually generate signatures for your updates, Sparkle includes a tool to help you make a EdDSA signature of the archive. From the Sparkle distribution:
 
@@ -31,7 +31,13 @@ To manually generate signatures for your updates, Sparkle includes a tool to hel
 ./bin/sign_update path_to_your_update.zip
 ```
 
-The output will be an XML fragment with your update's EdDSA signature and (optional) file size; you'll add this attribute to your enclosure in the next step.
+The output will be an XML fragment with your update's EdDSA signature and (optional) file size like so:
+
+```xml
+sparkle:edSignature="7cLALFUHSwvEJWSkV8aMreoBe4fhRa4FncC5NoThKxwThL6FDR7hTiPJh1fo2uagnPogisnQsgFgq6mGkt2RBw==" length="1623481"
+```
+
+You'll add these attributes to your enclosure in the next step.
 
 Since 10.11, macOS has [App Transport Security](//developer.apple.com/library/prerelease/mac/technotes/App-Transport-Security-Technote/) policy which blocks apps from using insecure HTTP connections. This restriction applies to Sparkle as well, so you will need to serve your appcast and the update files over HTTPS.
 

@@ -13,7 +13,7 @@ Sparkle 2.0 includes a command line utility that can update Sparkle-based applic
 ```
 ./sparkle.app/Contents/MacOS/sparkle
 
-Usage: ./sparkle.app/Contents/MacOS/sparkle bundle [--application app-path] [--check-immediately] [--probe] [--channels chan1,chan2,…] [--feed-url feed-url] [--grant-automatic-checks] [--send-profile] [--defer-install] [--interactive] [--allow-major-upgrades] [--verbose]
+Usage: ./sparkle.app/Contents/MacOS/sparkle bundle [--application app-path] [--check-immediately] [--probe] [--channels chan1,chan2,…] [--feed-url feed-url] [--user-agent-name display-name] [--grant-automatic-checks] [--send-profile] [--defer-install] [--interactive] [--allow-major-upgrades] [--verbose]
 Description:
   Check if any new updates for a Sparkle supported bundle need to be installed.
 
@@ -34,6 +34,8 @@ Description:
 
   If --defer-install is specified, this tool will exit leaving a spawned process
   for finishing the installation after the target application terminates.
+
+  Please specify --user-agent-name if you intend to use this tool in an automated way.
 Options:
  --application
     Path to the application to watch for termination and to relaunch.
@@ -53,16 +55,23 @@ Options:
  --feed-url
     URL for appcast feed. This URL will be used for the feed instead of the one
     in the bundle's Info.plist or in the bundle's user defaults.
+ --user-agent-name
+    Display name that will be included as a part of the User-Agent string.
+    We encourage setting this so developers know what is querying their feed.
+    Otherwise, this value may be set and inferred automatically.
  --interactive
     Allows prompting the user for an authorization dialog prompt if the
     installer needs elevated privileges, or allows performing an interactive
-    installer package.
+    installer package. Without passing this, an exit status of 3 is returned
+    if an update requires user interaction. An exit status of 5 is returned
+    if the user cancels the authorization prompt.
  --grant-automatic-checks
     If update permission is requested, this enables automatic update checks.
     Note that this behavior may overwrite the user's defaults for the bundle.
     This option has no effect if --check-immediately is passed, or if the
     user has replied to this request already, or if the developer configured
-    to skip it.
+    to skip it. Without passing this, an exit status of 6 is returned
+    if permission is needed.
  --send-profile
     Choose to send system profile information if update permission is requested.
     This option can only take effect if --grant-automatic-checks is passed.

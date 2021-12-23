@@ -34,7 +34,7 @@ If you use [Carthage](https://github.com/Carthage/Carthage):
     * Click on the <samp>General</samp> tab.
     * In <samp>Frameworks, Libraries, and Embedded Content</samp> section, change Sparkle.framework to <samp>Embed & Sign</samp>.
 
-  Sparkle's tools to generate and sign updates are not included and need to be grabbed from [our releases](//github.com/{{ site.github_username }}/Sparkle/releases/latest).
+  Sparkle's tools to generate and sign updates are not included and need to be grabbed from [our latest release](//github.com/{{ site.github_username }}/Sparkle/releases/latest).
 
   Sparkle only supports using a `binary` origin with Carthage because Carthage strips necessary code signing information when building the project from source.
 
@@ -93,7 +93,7 @@ To prepare signing with EdDSA signatures:
 
 Run `./bin/generate_keys` tool (from the Sparkle distribution root). This needs to be done only once. This tool will do two things:
 
-  * It will generate a private key and save it in your login Keychain on your Mac. You don't need to do anything with it, but don't lose access to your Mac's Keychain. If you lose it, you may not be able to issue any new updates!
+  * It will generate a private key and save it in your login Keychain on your Mac. You don't need to do anything with it, but do keep it safe. See further notes below if you happen to lose your private key.
   * It will print your public key to embed into applications. Copy that key (it's a base64-encoded string). You can run `./bin/generate_keys` again to see your public key at any time.
 
 Then add your public key to your app's `Info.plist` as a [`SUPublicEDKey`](/documentation/customization/) property.
@@ -109,7 +109,9 @@ updates. It should appear like this:
     <string>pfIShU4dEXqPd5ObYNfDBiQWcXozk7estwzTnF9BamQ=</string>
 ```
 
-You can use the `-x private-key-file` and `-f private-key-file` options to export and import the keys respectively when transferring keys to another Mac. Otherwise we recommend keeping the keys inside your Mac's keychain. Be sure to keep them safe and not lose them (they will be erased if your keychain or system is erased). If your keys are lost, you may be able to generate new ones through [key rotation](#rotating-signing-keys).
+You can use the `-x private-key-file` and `-f private-key-file` options to export and import the keys respectively when transferring keys to another Mac. Otherwise we recommend keeping the keys inside your Mac's keychain. Be sure to keep them safe and not lose them (they will be erased if your keychain or system is erased).
+
+If your keys are lost however, you can still sign new updates for Developer ID signed applications through [key rotation](#rotating-signing-keys). Note this will not work for Installer package based updates or for applications that are not code signed. In those cases you may lose the ability to sign new updates.
 
 Please visit [Migrating to EdDSA from DSA](eddsa-migration) if you are still providing DSA signatures so you can learn how to stop supporting them.
 
@@ -121,11 +123,13 @@ If you are code-signing your application via Apple's Developer ID program, Spark
 
 #### Rotating signing keys
 
-For regular application updates, if you both code-sign your application and include a public EdDSA key for signing your update archive, Sparkle allows rotating keys by issuing a new update that changes either your code signing certificate or your EdDSA keys. We recommend rotating keys only when necessary though, like if you lose access to one of them or need to change keys due to [EdDSA migration](eddsa-migration).
+For regular application updates, if you both code-sign your application with Apple's Developer ID program and include a public EdDSA key for signing your update archive, Sparkle allows rotating keys by issuing a new update that changes either your Apple code signing certificate or your EdDSA keys.
+
+We recommend rotating keys only when necessary like if you need to change your Developer ID certificate, lose access to your EdDSA private key, or need to change (Ed)DSA keys due to [migrating away from DSA](eddsa-migration).
 
 ### 4. Distributing your App
 
-We recommend distributing your app in Xcode by creating a <samp>Product › Archive</samp> and <samp>Distribute App</samp> choosing <samp>Developer ID</samp> method of distribution. Using Xcode's Archive Organizer will ensure Sparkle's helper tools are code signed properly for distribution.
+We recommend distributing your app in Xcode by creating a <samp>Product › Archive</samp> and <samp>Distribute App</samp> choosing <samp>Developer ID</samp> method of distribution. Using Xcode's Archive Organizer will ensure Sparkle's helper tools are code signed properly for distribution. In automated environments, this can instead be done using `xcodebuild archive` and `xcodebuild -exportArchive`.
 
 If you distribute your app as a [Apple-certificate-signed disk image](https://developer.apple.com/library/content/technotes/tn2206/_index.html#//apple_ref/doc/uid/DTS40007919-CH1-TNTAG17) (DMG):
 
@@ -137,9 +141,9 @@ If you distribute your app as a ZIP or a tar archive (due to [app translocation]
   * Avoid placing your app inside another folder in your archive, because copying of the folder as a whole doesn't remove the quarantine.
   * Avoid putting more than just the single app in the archive.
 
-If your app is running from a read-only mount, you can encourage (if you so desire) your user to move the app into /Applications. Some frameworks, although not officially sanctioned here, exist for this purpose. Note Sparkle will not by default automatically disturb your user if an update cannot be performed.
+If your app is running from a read-only mount, you can encourage (if you want) your user to move the app into /Applications. Some frameworks, although not officially sanctioned here, exist for this purpose. Note Sparkle will not by default automatically disturb your user if an update cannot be performed.
 
-Sparkle supports updating from ZIP archives, tarballs, disk images (DMGs), and installer packages. While you can reuse the same archive for distribution of your app on your website, we recommend serving ZIPs or tarballs (e.g. tar.bz2) for updates because they are the fastest and most reliable formats for Sparkle. Disk images (DMGs) can be significantly slower to extract programmatically and HFS+ formatted disk images are even slower than APFS formatted images (which require macOS 10.13 or later). Installer packages should rarely be used for distribution.
+Sparkle supports updating from ZIP archives, tarballs, disk images (DMGs), and installer packages. While you can reuse the same archive for distribution of your app on your website, we recommend serving ZIPs or tarballs (e.g. tar.bz2) for updates because they are the fastest and most reliable formats for Sparkle. Disk images (DMGs) can be significantly slower to extract programmatically and sometimes be less reliable to attach/detach. Installer packages should rarely be used for distribution or updates (e.g. only for kexts, but not for [installing daemons](https://developer.apple.com/documentation/servicemanagement/1431078-smjobbless) or [installing system extensions](https://developer.apple.com/documentation/systemextensions/installing_system_extensions_and_drivers)).
 
 ### 5. Publish your appcast
 
@@ -157,7 +161,7 @@ If you update regular app bundles and you have set up EdDSA signatures, you can 
 
   3. The tool will generate the appcast file (using filename from [`SUFeedURL`](/documentation/customization/)) and also [`*.delta` update](/documentation/delta-updates/) files for faster incremental updates. Upload your archives, the delta updates, and the appcast to your server.
 
-When generating the appcast, if an `.html` file exists with the same name as the archive, then it will added as the `releaseNotesLink`.
+When generating the appcast, if an `.html` file exists with the same name as the archive, then it will added as the `releaseNotesLink`. Run `generate_appcast -h` for a full overview and list of supported options.
 
 You can also create the appcast file manually (not recommended):
 

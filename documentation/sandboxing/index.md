@@ -24,7 +24,7 @@ There are two other XPC Services, not bundled by default, for communicating to S
 * org.sparkle-project.InstallerConnection.xpc
 * org.sparkle-project.InstallerStatus.xpc
 
-In order for Sparkle to work in a sandboxed application, the application must call out to XPC Services to perform the updating and installation. Only the InstallerLauncher XPC Service is strictly required. The other serices are optional depending on your use case.
+In order for Sparkle to work in a sandboxed application, the application must call out to XPC Services to perform the updating and installation. Only the InstallerLauncher XPC Service is strictly required. The other services are optional depending on your use case.
 
 If you build Sparkle yourself, you can optionally choose to change `XPC_SERVICE_BUNDLE_ID_PREFIX` in `ConfigCommon.xcconfig` from `org.sparkle-project` to your own prefix. In this configuration file, you can also choose which services Sparkle should bundle (by setting `SPARKLE_EMBED_*_XPC_SERVICE` variables). Please see notes below on integrating each of these services.
 
@@ -47,7 +47,7 @@ To enable the service, you must set [SUEnableDownloaderService](/documentation/c
 
 #### Installer Connection & Status Services
 
-The Installer Connection & Status Services are optional (as of changes integrated on [April 4, 2021](https://github.com/sparkle-project/Sparkle/pull/1812)) and are not bundled in the Sparkle framework by default. Instead of using these services, we recommend adding the following entitlement to your sandboxed application:
+The Installer Connection & Status Services are optional (as of changes integrated on [April 4, 2021](https://github.com/sparkle-project/Sparkle/pull/1812)) and are not bundled in the Sparkle framework by default. Instead of using these services, you will need to add the following entitlement to your sandboxed application:
 
 ```xml
 <key>com.apple.security.temporary-exception.mach-lookup.global-name</key>
@@ -63,7 +63,7 @@ If you cannot add entitlements (eg: your process inherits another application's 
 
 ### Code Signing
 
-If you follow standard workflows and use Xcode's Archive Organizer to [Distribute your App](/documentation#4-distributing-your-app), which we recommend, you do not need to especially do anything for signing Sparkle or its XPC Services and may skip this section.
+If you follow standard workflows and archive & export your application to [Distribute your App](/documentation#4-distributing-your-app), which we recommend, you do not need to especially do anything for signing Sparkle or its XPC Services and may skip this section.
 
 However, if you need to code sign Sparkle with a specific certificate for development or use an alternative workflow for distributing your application outside of Xcode's Archive Organizer, you will need to manually re-sign Sparkle and its XPC Services with your own certificate.
 
