@@ -9,7 +9,7 @@ Package installation allows Sparkle to update your application by downloading an
 
 ### Automatic Bare Installation
 
-Sparkle supports serving and signing flat `*.pkg` or `*.mpkg` packages directly without having to zip or archive them. This requires users from old versions of your application to be using [Sparkle 1.26 or later](/documentation/upgrading/).
+Sparkle supports serving and signing flat `*.pkg` or `*.mpkg` packages directly without having to zip or archive them. This requires users from old versions of your application to be using [Sparkle 1.26 or later](/documentation/upgrading/). If you have users running older versions of Sparkle, you can expedite migration by [switching to a new appcast](/documentation/publishing/#upgrading-to-newer-features).
 
 ### Automatic Archived Installation
 
