@@ -4,9 +4,9 @@ id: documentation
 title: Sandboxing with Sparkle
 ---
 
-Using Sparkle in a sandboxed application is only supported in Sparkle 2.0, which is currently in beta. If you do not sandbox your application, you may skip this page.
+Using Sparkle in a sandboxed application is only supported in Sparkle 2. If you do not sandbox your application, you may skip this page unless you are interested in [Removing the XPC Services](#removing-xpc-services).
 
-If you are migrating from an older version of Sparkle 2 beta, the XPC Services have been moved into Sparkle's framework bundle. You will need to stop bundling the XPC Services directly inside your application and add Info.plist keys to enable the services now. This is described in the sections below.
+If you are migrating from an older beta version of Sparkle 2, the XPC Services have been moved into Sparkle's framework bundle. You will need to stop bundling the XPC Services directly inside your application and add Info.plist keys to enable the services now. This is described in the sections below.
 
 ## Sandboxing
 
@@ -65,7 +65,7 @@ If you cannot add entitlements (eg: your process inherits another application's 
 
 If you follow standard workflows and archive & export your application to [Distribute your App](/documentation#4-distributing-your-app), which we recommend, you do not need to especially do anything for signing Sparkle or its XPC Services and may skip this section.
 
-However, if you need to code sign Sparkle with a specific certificate for development or use an alternative workflow for distributing your application outside of Xcode's Archive Organizer, you will need to manually re-sign Sparkle and its XPC Services with your own certificate.
+However, if you need to code sign Sparkle with a specific certificate for development or use an alternative workflow for distributing your application outside of Xcode's archive and export workflow, then you will need to manually re-sign Sparkle and its XPC Services with your own certificate.
 
 By default, Sparkle distributions include XPC Services and helper tools that are signed with an ad-hoc signature, Hardened Runtime enabled, and a `com.apple.security.get-task-allow` entitlement to allow debugging. This combination works for common development workflows, but is not ideal for distribution.
 

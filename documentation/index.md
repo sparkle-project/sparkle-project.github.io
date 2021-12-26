@@ -5,9 +5,7 @@ title: Documentation
 ---
 ## Basic Setup
 
-If your app already has an older version of Sparkle or you wish to migrate to Sparkle 2.0 beta, see [upgrading from previous versions](/documentation/upgrading/).
-
-Note [sandboxed applications](/documentation/sandboxing) are only supported in Sparkle 2.
+If your app already has an older version of Sparkle or you wish to migrate to Sparkle 2, see [upgrading from previous versions](/documentation/upgrading/). [Sandboxed applications](/documentation/sandboxing) are only supported in Sparkle 2.
 
 ### 1. Add the Sparkle framework to your project
 
@@ -55,25 +53,25 @@ If you want to add Sparkle manually:
 * In <samp>Build Settings</samp> tab set "<samp>Runpath Search Paths</samp>" to `@loader_path/../Frameworks` (for non-Xcode projects add the flags `-Wl,-rpath,@loader_path/../Frameworks`). This is not a necessary step in recent versions of Xcode.
 * If you have your own process for copying/packaging your app make sure it preserves symlinks!
 
-[Sparkle 2 beta pre-releases](//github.com/{{ site.github_username }}/Sparkle/releases) are also available on GitHub. They are available in Swift Package Manager, CocoaPods, and Carthage too by specifying the pre-release version in your project's manifest.
+Sandboxed applications using Sparkle 2 require [additional setup](/documentation/sandboxing).
+
+[Pre-releases](//github.com/{{ site.github_username }}/Sparkle/releases) when available are published on GitHub. They are also available in Swift Package Manager, CocoaPods, and Carthage too by specifying the pre-release version in your project's manifest.
 
 A more nightly build from our repository can be downloaded from our [GitHub Actions page](https://github.com/sparkle-project/Sparkle/actions?query=event%3Apush+is%3Asuccess+branch%3A2.x) by selecting a recent workflow commit and downloading the `Sparkle-distribution*.tar.xz` artifact. Alternatively, you may clone Sparkle's repository with all its submodules, run `make release`, and extract the binaries in the resulting `Sparkle-*.tar.xz` (or `.bz2`) archive.
 
-Sandboxed applications using Sparkle 2 require [additional setup](/documentation/sandboxing).
-
 ### 2. Set up a Sparkle updater object
 
-These instructions are for regular .app bundles in Cocoa. If you want to use Sparkle from other UI toolkits or want to instantiate the updater yourself, please see [our programmatic setup](/documentation/programmatic-setup). If you want to update a non-app bundle, such as a Preference Pane or a plug-in, follow [step 2 for non-app bundles](/documentation/bundles/).
+These instructions are for regular .app bundles in Cocoa. If you want to use Sparkle from other UI toolkits such as SwiftUI or want to instantiate the updater yourself, please visit [our programmatic setup](/documentation/programmatic-setup). If you want to update a non-app bundle, such as a Preference Pane or a plug-in, follow [step 2 for non-app bundles](/documentation/bundles/).
 
 * Open up your MainMenu.xib.
 * Choose <samp>View › Utilities › Object Library...</samp>
 * Type "Object" in the search field under the object library (at the bottom of the right sidebar) and drag an Object into the left sidebar of the document editor.
 * Select the Object that was just added.
 * Choose <samp>View › Utilities › Identity Inspector</samp>.
-* Type `SUUpdater` in the <samp>Class</samp> box of the <samp>Custom Class</samp> section in the inspector.
-* If you'd like, make a "<samp>Check for Updates...</samp>" menu item in the application menu; set its target to the `SUUpdater` instance and its action to `checkForUpdates:`.
+* Type `SPUStandardUpdaterController` in the <samp>Class</samp> box of the <samp>Custom Class</samp> section in the inspector.
+* If you'd like, make a "<samp>Check for Updates...</samp>" menu item in the application menu; set its target to the `SPUStandardUpdaterController` instance and its action to `checkForUpdates:`.
 
-If you are using Sparkle 2, `SUUpdater` is a deprecated stub. While it is still functional for transitional purposes, new applications will want to use `SPUStandardUpdaterController` in the above steps instead.
+If you are using Sparkle 1, you will need to use `SUUpdater` instead of `SPUStandardUpdaterController` in the above steps. In Sparkle 2, `SUUpdater` is a deprecated stub. While it is still functional for transitional purposes, new applications will want to migrate to `SPUStandardUpdaterController`.
 
 ### 3. Segue for security concerns
 
@@ -133,19 +131,19 @@ We recommend rotating keys only when necessary like if you need to change your D
 
 We recommend distributing your app in Xcode by creating a <samp>Product › Archive</samp> and <samp>Distribute App</samp> choosing <samp>Developer ID</samp> method of distribution. Using Xcode's Archive Organizer will ensure Sparkle's helper tools are code signed properly for distribution. In automated environments, this can instead be done using `xcodebuild archive` and `xcodebuild -exportArchive`.
 
-If you distribute your app as a [Apple-certificate-signed disk image](https://developer.apple.com/library/content/technotes/tn2206/_index.html#//apple_ref/doc/uid/DTS40007919-CH1-TNTAG17) (DMG):
+If you distribute your app on your website as a [Apple-certificate-signed disk image](https://developer.apple.com/library/content/technotes/tn2206/_index.html#//apple_ref/doc/uid/DTS40007919-CH1-TNTAG17) (DMG):
 
   * Add an `/Applications` symlink in your DMG, to encourage the user to copy the app out of it.
   * Make sure the DMG is signed with a Developer ID and use macOS 10.11.5 or later to sign it (an older OS may not sign correctly). Signed DMG archives are backwards compatible.
 
-If you distribute your app as a ZIP or a tar archive (due to [app translocation](https://lapcatsoftware.com/articles/app-translocation.html)):
+If you distribute your app on your website as a ZIP or a tar archive (due to [app translocation](https://lapcatsoftware.com/articles/app-translocation.html)):
 
   * Avoid placing your app inside another folder in your archive, because copying of the folder as a whole doesn't remove the quarantine.
   * Avoid putting more than just the single app in the archive.
 
 If your app is running from a read-only mount, you can encourage (if you want) your user to move the app into /Applications. Some frameworks, although not officially sanctioned here, exist for this purpose. Note Sparkle will not by default automatically disturb your user if an update cannot be performed.
 
-Sparkle supports updating from ZIP archives, tarballs, disk images (DMGs), and installer packages. While you can reuse the same archive for distribution of your app on your website, we recommend serving ZIPs or tarballs (e.g. tar.bz2) for updates because they are the fastest and most reliable formats for Sparkle. Disk images (DMGs) can be significantly slower to extract programmatically and sometimes be less reliable to attach/detach. Installer packages should rarely be used for distribution or updates (e.g. only for kexts, but not for [installing daemons](https://developer.apple.com/documentation/servicemanagement/1431078-smjobbless) or [installing system extensions](https://developer.apple.com/documentation/systemextensions/installing_system_extensions_and_drivers)).
+Sparkle supports updating from ZIP archives, tarballs, disk images (DMGs), and installer packages. While you can reuse the same archive for distribution of your app on your website, we recommend serving ZIPs or tarballs (e.g. tar.bz2) for updates because they are the fastest and most reliable formats for Sparkle. Disk images (DMGs) can be significantly slower to extract programmatically and sometimes be less reliable to attach/detach. Installer packages should rarely be used for distribution or updates (i.e. only for kexts, but not for [installing daemons](https://developer.apple.com/documentation/servicemanagement/1431078-smjobbless) or [installing system extensions](https://developer.apple.com/documentation/systemextensions/installing_system_extensions_and_drivers)).
 
 ### 5. Publish your appcast
 
