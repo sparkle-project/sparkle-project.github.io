@@ -34,7 +34,7 @@ If you use [Carthage](https://github.com/Carthage/Carthage):
     * Click on the <samp>General</samp> tab.
     * In <samp>Frameworks, Libraries, and Embedded Content</samp> section, change Sparkle.framework to <samp>Embed & Sign</samp>.
 
-  Sparkle's tools to generate and sign updates are not included and need to be grabbed from [our latest release](//github.com/{{ site.github_username }}/Sparkle/releases/latest).
+  Sparkle's tools to generate and sign updates are not included from Carthage and need to be grabbed from [our latest release](//github.com/{{ site.github_username }}/Sparkle/releases/latest).
 
   Sparkle only supports using a `binary` origin with Carthage because Carthage strips necessary code signing information when building the project from source.
 
@@ -64,12 +64,12 @@ A more nightly build from our repository can be downloaded from our [GitHub Acti
 These instructions are for regular .app bundles in Cocoa. If you want to use Sparkle from other UI toolkits such as SwiftUI or want to instantiate the updater yourself, please visit [our programmatic setup](/documentation/programmatic-setup). If you want to update a non-app bundle, such as a Preference Pane or a plug-in, follow [step 2 for non-app bundles](/documentation/bundles/).
 
 * Open up your MainMenu.xib.
-* Choose <samp>View › Utilities › Object Library...</samp>
-* Type "Object" in the search field under the object library (at the bottom of the right sidebar) and drag an Object into the left sidebar of the document editor.
+* Choose <samp>View › Show Library…</samp>
+* Type "Object" in the search field under the object library and drag an Object into the left sidebar of the document editor.
 * Select the Object that was just added.
-* Choose <samp>View › Utilities › Identity Inspector</samp>.
+* Choose <samp>View › Inspectors › Identity</samp>.
 * Type `SPUStandardUpdaterController` in the <samp>Class</samp> box of the <samp>Custom Class</samp> section in the inspector.
-* If you'd like, make a "<samp>Check for Updates...</samp>" menu item in the application menu; set its target to the `SPUStandardUpdaterController` instance and its action to `checkForUpdates:`.
+* If you'd like, make a "<samp>Check for Updates…</samp>" menu item in the application menu; set its target to the `SPUStandardUpdaterController` instance and its action to `checkForUpdates:`.
 
 If you are using Sparkle 1, you will need to use `SUUpdater` instead of `SPUStandardUpdaterController` in the above steps. In Sparkle 2, `SUUpdater` is a deprecated stub. While it is still functional for transitional purposes, new applications will want to migrate to `SPUStandardUpdaterController`.
 
@@ -96,7 +96,7 @@ Run `./bin/generate_keys` tool (from the Sparkle distribution root). This needs 
   * It will generate a private key and save it in your login Keychain on your Mac. You don't need to do anything with it, but do keep it safe. See further notes below if you happen to lose your private key.
   * It will print your public key to embed into applications. Copy that key (it's a base64-encoded string). You can run `./bin/generate_keys` again to see your public key at any time.
 
-Then add your public key to your app's `Info.plist` as a [`SUPublicEDKey`](/documentation/customization/) property.
+Then add your public key to your app's `Info.plist` as a [`SUPublicEDKey`](/documentation/customization/) property. Note that for new projects created with Xcode 12 or later, this file may be in the <samp>Info</samp> tab under your target settings.
 
 Here is an example run of `./bin/generate_keys`:
 
