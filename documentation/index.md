@@ -11,9 +11,9 @@ If your app already has an older version of Sparkle or you wish to migrate to Sp
 
 If you use [Swift Package Manager](https://swift.org/package-manager/):
 
-  * In your Xcode project: <samp>File</samp> › <samp>Swift Packages</samp> › <samp>Add Package Dependencies</samp>
+  * In your Xcode project: <samp>File</samp> › <samp>Add Packages</samp>
   * Enter `https://github.com/sparkle-project/Sparkle` as the package repository URL
-  * Choose the Package Options. The default options will let Xcode automatically update versions of Sparkle 1.
+  * Choose the Package Options. The default options will let Xcode automatically update versions of Sparkle 2.
 
   From Xcode's project navigator, if you right click and show the `Sparkle` package in Finder, you will find Sparkle's tools to generate and sign updates in `../artifacts/Sparkle/`
 
