@@ -65,17 +65,17 @@ BinaryDelta apply path/to/old/MyApp.app path/to/patched/MyApp.app patch.delta
 
 ### Compatibility
 
-When you create a binary delta between two versions of your application, you must ensure you are using a delta format version that your older application knows how to patch. Below is a table describing the requirements for each binary delta version.
+When you create a delta update between two versions of your application, you must ensure you are using a delta format version that your older application knows how to patch. Below is a table describing the requirements for each binary delta version.
 
-| Delta Version | Requirements                  | Major changes                                                                                        |
+| Delta Version | Requirements                  | Major Changes                                                                                        |
 | -----------   | ----------------------------- | ---------------------------------------------------------------------------------------------------- |
 | 3             | Sparkle 2.1 (in development)  | More efficient custom delta container format, lzma compression + other compression options, file rename heuristic tracking. |
 | 2             | Sparkle 1.10                  | Improved and changed hash function for reducing collisions.                                          |
 | 1             | Sparkle 1.5 (now unsupported) | Added initial binary delta format using libxar and bzip2 compression. Tracking of insertions, deletions, and binary file diffs using bsdiff. |
 
-Note if you are using `generate_appcast`, this is automatically handled. If you are using `BinaryDelta` you will need to pass the appropriate delta version via `--version` argument.
+Note if you are using `generate_appcast`, this is automatically handled. If you are using `BinaryDelta` you will need to pass the appropriate delta version via the `--version` argument.
 
-Older delta format versions will eventually be phased out. Please do not create new patches using an older version than necessary. Always use the latest tools when creating delta patches as they may contain minor bug fixes that won't require a major format change.
+Older delta format versions will eventually be phased out. Please do not create new patches using an older version than necessary. Always use the latest tools when creating delta patches because they may contain minor bug fixes that don't require a major format change.
 
 ### Tips for Improving Download Size & Performance
 
