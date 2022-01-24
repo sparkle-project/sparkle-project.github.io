@@ -73,7 +73,7 @@ When you create a delta update between two versions of your application, you mus
 | 2             | Sparkle 1.10                  | Improved and changed hash function for reducing collisions.                                          |
 | 1             | Sparkle 1.5 (now unsupported) | Added initial binary delta format using libxar and bzip2 compression. Tracking of insertions, deletions, and binary file diffs using bsdiff. |
 
-Note if you are using `generate_appcast`, this is automatically handled. If you are using `BinaryDelta` you will need to pass the appropriate delta version via the `--version` argument.
+Note if you are using `generate_appcast`, picking the delta version to use is automatically handled. If you are using `BinaryDelta` though, you will need to pass the appropriate delta version via the `--version` argument.
 
 Older delta format versions will eventually be phased out. Please do not create new patches using an older version than necessary. Always use the latest tools when creating delta patches because they may contain minor bug fixes that don't require a major format change.
 
