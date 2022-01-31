@@ -9,12 +9,20 @@ So you're ready to release a new version of your app. How do you go about doing 
 
 ### Archive your app
 
-Put a copy of your .app (with the same name as the version it's replacing) in a .zip, .tar.gz, or .tar.bz2. If you distribute your .app in a .dmg, do _not_ zip up the .dmg.
+Put a copy of your .app (with the same name as the version it's replacing) in a .zip, .tar.xz, or .tar.gz. If you distribute your .app in a .dmg, do _not_ zip up the .dmg.
 
-Make sure symlinks are preserved when you create the archive. macOS frameworks use symlinks, and their code signature will be broken if your archival tool follows symlinks instead of archiving them. For creating zip archives, `ditto` can be used (behaves the same as Finder's Compress option):
+Make sure symlinks are preserved when you create the archive. macOS frameworks use symlinks, and their code signature will be broken if your archival tool follows symlinks instead of archiving them.
+
+For creating zip archives, `ditto` can be used (behaves similar to Finder's Compress option):
 
 ```sh
-ditto -c -k --sequesterRsrc --keepParent <src_path_to_app> <zip_dest>
+ditto -c -k --sequesterRsrc --keepParent MyApp.app MyApp.zip
+```
+
+For creating a LZMA compressed archive with optimal file compression, `tar` can be used:
+
+```sh
+tar cfJ MyApp.tar.xz MyApp.app
 ```
 
 Please see [notes for Installer packages](/documentation/package-updates) if you are not updating a regular bundle.
@@ -28,7 +36,7 @@ Signatures are automatically generated when you make an appcast using `generate_
 To manually generate signatures for your updates, Sparkle includes a tool to help you make a EdDSA signature of the archive. From the Sparkle distribution:
 
 ```sh
-./bin/sign_update path_to_your_update.zip
+./bin/sign_update path_to_your_update.(zip|dmg|tar.*)
 ```
 
 The output will be an XML fragment with your update's EdDSA signature and (optional) file size like so:
@@ -136,7 +144,41 @@ If this value is set, it indicates the lowest version that can automatically upd
 
 Additionally in Sparkle 2:
 * A developer can publish a new minor patch release preceding the major release and Sparkle will prefer to install the latest minor release available. For example, if 2.0 is marked as a major release (with `sparkle:minimumAutoupdateVersion` set to 2.0), but 1.9.4 is available then 1.9.4 will be offered first.
-* A user can choose to skip out of future update alerts to a major upgrade. For example, if 2.0 is a major release offered and the user is on 1.9.4, they can choose to skip 2.0. Sparkle will confirm with the user if they want to skip automatic alerts for 2.0 and future updates beyond it (eg 2.1). The user can later undo this if they check for updates manually.
+* A user can choose to skip out of future update alerts to a major upgrade. For example, if 2.0 is a major release offered and the user is on 1.9.4, they can choose to skip 2.0 and its future minor updates (eg 2.1). The user can later undo this if they check for updates manually.
+
+New to Sparkle 2.1 (in beta), a developer can publish a new update specifying `sparkle:ignoreSkippedUpgradesBelowVersion` to ignore skipped upgrades below a specific version. For example, if a user skips a major upgrade for version 2.0, this may also skip version 2.1 in the future. However version 2.2 may be a special release that may contain new noteworthy features, so a developer may want to re-notify users that have skipped 2.0 through 2.1 like so (read from bottom to top):
+
+```xml
+<!-- If the user skips 2.0 or 2.1, alerts for this update will not be skipped. However if the user skips 2.2, alerts for this 2.2.1 update will be skipped -->
+<item>
+    <title>Version 2.2.1</title>
+    <link>https://myproductwebsite.com</link>
+    <sparkle:version>2.2.1</sparkle:version>
+    <sparkle:minimumAutoupdateVersion>2.0</sparkle:minimumAutoupdateVersion>
+    <sparkle:ignoreSkippedUpgradesBelowVersion>2.2</sparkle:ignoreSkippedUpgradesBelowVersion>
+</item>
+<!-- If the user skipped 2.0 or 2.1, alerts for 2.2 will not be skipped due to sparkle:ignoreSkippedUpgradesBelowVersion requirement -->
+<item>
+    <title>Version 2.2</title>
+    <link>https://myproductwebsite.com</link>
+    <sparkle:version>2.2</sparkle:version>
+    <sparkle:minimumAutoupdateVersion>2.0</sparkle:minimumAutoupdateVersion>
+    <sparkle:ignoreSkippedUpgradesBelowVersion>2.2</sparkle:ignoreSkippedUpgradesBelowVersion>
+</item>
+<item>
+    <title>Version 2.1</title>
+    <link>https://myproductwebsite.com</link>
+    <sparkle:version>2.1</sparkle:version>
+    <sparkle:minimumAutoupdateVersion>2.0</sparkle:minimumAutoupdateVersion>
+</item>
+<!-- Skipping this upgrade will also skip alerts for 2.1 above because it has the same sparkle:minimumAutoupdateVersion -->
+<item>
+    <title>Version 2.0</title>
+    <link>https://myproductwebsite.com</link>
+    <sparkle:version>2.0</sparkle:version>
+    <sparkle:minimumAutoupdateVersion>2.0</sparkle:minimumAutoupdateVersion>
+</item>
+```
 
 ## Downloading from a web site
 
@@ -159,7 +201,7 @@ Apps that use Sparkle 2 can use the new `<sparkle:informationalUpdate>` tag inst
     <title>Version 1.2.4</title>
     <sparkle:version>1.2.4</sparkle:version>
     <sparkle:informationalUpdate>
-    <sparkle:version>1.2.3</sparkle:version>
+        <sparkle:version>1.2.3</sparkle:version>
     </sparkle:informationalUpdate>
     <sparkle:releaseNotesLink>https://example.com/release_notes_test.html</sparkle:releaseNotesLink>
     <pubDate>Mon, 28 Jan 2013 14:30:00 +0500</pubDate>
@@ -172,6 +214,14 @@ Apps that use Sparkle 2 can use the new `<sparkle:informationalUpdate>` tag inst
 ```
 
 In this example, because `<sparkle:version>1.2.3</sparkle:version>` is specified in `<sparkle:informationalUpdate>`, only version `1.2.3` will see this update as an informational one with a download link. Other versions of the application will see this as an update they can install from inside the application. You can add more children to specify, for example, that version 1.2.2 should also see the update as informational. If you do not specify any children to `<sparkle:informationalUpdate>`, then the update is informational to all versions.
+
+In Sparkle 2.1 (beta), a new `<sparkle:belowVersion>` element will be added to specify that versions below a specific version should see the update as an informational one. For example, the below snippet says that all versions below 1.0 should treat this update as informational:
+
+```xml
+<sparkle:informationalUpdate>
+    <sparkle:belowVersion>1.0</sparkle:belowVersion>
+</sparkle:informationalUpdate>
+```
 
 ## Critical updates
 

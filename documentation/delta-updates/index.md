@@ -12,7 +12,7 @@ For each new version you release, you can provide a list of `.delta` files in ad
 If the user is running a version of the app for which you haven't provided a `.delta`, or if the patch doesn't apply cleanly, they'll use the non-delta "full" update.
 
 <div class="alert alert-warning" role="alert">
-<strong>Note:</strong> Due to a macOS change, new delta patches must be created using generate_appcast or BinaryDelta from a Sparkle 1.27.0 or later distribution. Note that newly generated patches are still compatible and can be patched from applications using versions of Sparkle framework older than 1.27.0.
+<strong>Note:</strong> Due to a macOS change, new delta patches must be created using generate_appcast or BinaryDelta from a Sparkle 1.27.0 or later distribution. Note that newly generated patches are still backwards compatible and can be patched from applications using versions of Sparkle framework older than 1.27.0.
 </div>
 
 ### Automated generation
@@ -27,7 +27,7 @@ To generate a `.delta`, you use the `BinaryDelta` tool included with Sparkle lik
 BinaryDelta create --version=$FORMAT_VERSION path/to/old/MyApp.app path/to/new/MyApp.app patch.delta
 ```
 
-Please see [Compatibility](#Compatibility) section below on what `FORMAT_VERSION` to use.
+Please see the [compatibility section](#compatibility) below on what `$FORMAT_VERSION` to use.
 
 To verify that your generated patch applies correctly:
 
@@ -77,6 +77,8 @@ Note if you are using `generate_appcast`, picking the delta version to use is au
 
 Older delta format versions will eventually be phased out. Please do not create new patches using an older version than necessary. Always use the latest tools when creating delta patches because they may contain minor bug fixes that don't require a major format change.
 
+In any case where a binary delta update fails to install, Sparkle falls back to downloading and installing the regular full update.
+
 ### Tips for Improving Download Size & Performance
 
 We recommend reading Apple's article on [reducing the download size for iOS app updates](https://developer.apple.com/library/content/qa/qa1779/_index.html), which is applicable here too. To reword:
@@ -84,3 +86,24 @@ We recommend reading Apple's article on [reducing the download size for iOS app 
 * Do not make unnecessary modifications to files. Compare the contents of the prior and new versions of your app and verify that you've only changed what you expect within your app bundle. Running `BinaryDelta --verbose` will show a diff of what has changed.
 * Content that you expect to change in an update should be stored in separate files from content that you don't expect to change. This reduces the size of the delta update and increases its install speed.
 * Avoid renaming files or folders. Our version 3 delta format has heuristics for tracking when files are moved around in some cases however.
+
+### Metadata Specification
+
+Binary delta updates do not support and will reject the following metadata:
+
+* Access control lists (ACLs) in either the old or new application.
+* Extended attributes containing code signing information in either the old or new application. This can be resolved by properly structuring your application such that data and code are placed in the correct directories per [Code Signing in Depth guide](https://developer.apple.com/library/archive/technotes/tn2206/_index.html#//apple_ref/doc/uid/DTS40007919-CH1-TNTAG201). Only mach-o binaries should embed code signing information.
+* Applying diffs on file systems (like FAT) that do not support file permissions and have every file marked as `0777` are not supported.
+
+Binary delta updates will pass but ignore or warn about the following metadata:
+
+* Extended attributes changes on files are not preserved and are just ignored.
+* File permissions on symbolic links that are not `0755` are ignored, and `0755` will always be used instead. A warning will be issued. Some filesystems, eg Linux ones, do not support file permissions on symbolic links.
+* Irregular file permissions on files that are not `0755` or `0644` will be respected, but a warning may be issued (from Sparkle 2.1 onwards).
+
+Binary delta updates do support the following meta changes:
+
+* File permission changes.
+* File type (regular, symbolic link, directory) changes.
+* File case (from `foo` -> `FOO`) changes.
+* HFS+ or file system level compression in the version 3 format. If files from the old bundle are detected to be using this type of compression, then we apply HFS+ compression onto the new app in its entirety via `ditto --hfsCompression` (i.e, we don't track this compression on a per file basis).

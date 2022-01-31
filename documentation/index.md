@@ -143,7 +143,7 @@ If you distribute your app on your website as a ZIP or a tar archive (due to [ap
 
 If your app is running from a read-only mount, you can encourage (if you want) your user to move the app into /Applications. Some frameworks, although not officially sanctioned here, exist for this purpose. Note Sparkle will not by default automatically disturb your user if an update cannot be performed.
 
-Sparkle supports updating from ZIP archives, tarballs, disk images (DMGs), and installer packages. While you can reuse the same archive for distribution of your app on your website, we recommend serving ZIPs or tarballs (e.g. tar.bz2) for updates because they are the fastest and most reliable formats for Sparkle. Disk images (DMGs) can be significantly slower to extract programmatically and sometimes be less reliable to attach/detach. Installer packages should rarely be used for distribution or updates (i.e. only for kexts, but not for [installing daemons](https://developer.apple.com/documentation/servicemanagement/1431078-smjobbless) or [installing system extensions](https://developer.apple.com/documentation/systemextensions/installing_system_extensions_and_drivers)).
+Sparkle supports updating from ZIP archives, tarballs, disk images (DMGs), and installer packages. While you can reuse the same archive for distribution of your app on your website, we recommend serving ZIPs or tarballs (e.g. tar.xz) for updates because they are the fastest and most reliable formats for Sparkle. Disk images (DMGs) can be significantly slower to extract programmatically and sometimes be less reliable to attach/detach. Installer packages should rarely be used for distribution or updates (i.e. only for kexts, but not for [installing daemons](https://developer.apple.com/documentation/servicemanagement/1431078-smjobbless) or [installing system extensions](https://developer.apple.com/documentation/systemextensions/installing_system_extensions_and_drivers)).
 
 ### 5. Publish your appcast
 
@@ -154,7 +154,7 @@ Sparkle uses appcasts to get information about software updates. An appcast is a
 
 If you update regular app bundles and you have set up EdDSA signatures, you can use a tool to generate appcasts automatically:
 
-  1. Build your app and compress it (e.g. in a ZIP/tar.bz2/DMG archive), and put the archive in a new folder. This folder will be used to store all your future updates.
+  1. Build your app and compress it (e.g. in a ZIP/tar.xz/DMG archive), and put the archive in a new folder. This folder will be used to store all your future updates.
   2. Run `generate_appcast` tool from Sparkle's distribution archive specifying the path to the folder with update archives. Allow it to access the Keychain if it asks for it (it's needed to generate signatueres in the appcast).
 
         ./bin/generate_appcast /path/to/your/updates_folder/
