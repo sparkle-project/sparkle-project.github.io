@@ -9,7 +9,7 @@ So you're ready to release a new version of your app. How do you go about doing 
 
 ### Archive your app
 
-Put a copy of your .app (with the same name as the version it's replacing) in a .zip, .tar.xz, or .tar.gz. If you distribute your .app in a .dmg, do _not_ zip up the .dmg.
+Put a copy of your .app (with the same name as the version it's replacing) in a .zip, .tar.xz, or .dmg.
 
 Make sure symlinks are preserved when you create the archive. macOS frameworks use symlinks, and their code signature will be broken if your archival tool follows symlinks instead of archiving them.
 
@@ -19,11 +19,19 @@ For creating zip archives, `ditto` can be used (behaves similar to Finder's Comp
 ditto -c -k --sequesterRsrc --keepParent MyApp.app MyApp.zip
 ```
 
-For creating a LZMA compressed archive with optimal file compression, `tar` can be used:
+For creating a LZMA compressed archive with optimal compression (supported on macOS 10.11 and later), `tar` can be used:
 
 ```sh
 tar cfJ MyApp.tar.xz MyApp.app
 ```
+
+macOS file systems (HFS+ and APFS) also support individual file compression transparently. Applications installed from the Mac App Store for example apply this compression. Developers can opt their own applications into using it by copying their original application using `ditto --hfsCompression`:
+
+```sh
+ditto --hfsCompression noncompressed/MyApp.app compressed/MyApp.app
+```
+
+The compressed application will take up less space on disk (as verified in Finder: <samp>File › Get Info)</samp>. The application can then be archived in a `.tar.*` or `.dmg` (but not `.zip`). These formats preserve file system compression by re-applying per file compression when decompressing the archive. Sparkle 2.1 and later will additionally preserve this compression when applying [delta updates](/documentation/delta-updates/) (older versions will not re-apply compression).
 
 Please see [notes for Installer packages](/documentation/package-updates) if you are not updating a regular bundle.
 
