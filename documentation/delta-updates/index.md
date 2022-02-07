@@ -77,7 +77,7 @@ Note if you are using `generate_appcast`, picking the delta version to use is au
 
 Older delta format versions will eventually be phased out. Please do not create new patches using an older version than necessary. Always use the latest tools when creating delta patches because they may contain minor bug fixes that don't require a major format change.
 
-In any case where a binary delta update fails to install, Sparkle falls back to downloading and installing the regular full update.
+In any case where a binary delta update fails to install, Sparkle falls back to downloading and installing the regular full update. Sparkle verifies a checksum to ensure the resulting application has been patched successfully.
 
 ### Tips for Improving Download Size & Performance
 
