@@ -31,7 +31,7 @@ macOS file systems (HFS+ and APFS) also support individual file compression tran
 ditto --hfsCompression noncompressed/MyApp.app compressed/MyApp.app
 ```
 
-The compressed application will take up less space on disk (as verified in Finder: <samp>File › Get Info)</samp>. The application can then be archived in a `.tar.*` or `.dmg` (but not `.zip`). These formats preserve file system compression by re-applying per file compression when decompressing the archive. Sparkle 2.1 and later will additionally preserve this compression when applying [delta updates](/documentation/delta-updates/) (older versions will not re-apply compression).
+The compressed application will take up less space on disk (as verified in Finder: <samp>File › Get Info)</samp>. The application can then be archived in a `.tar.*` or `.dmg` (but not `.zip`). These formats preserve file system compression by re-applying per file compression when decompressing the archive. Sparkle 2.1 and later will additionally preserve this compression when applying [delta updates](/documentation/delta-updates/) (older versions will just skip applying compression).
 
 Please see [notes for Installer packages](/documentation/package-updates) if you are not updating a regular bundle.
 
@@ -154,7 +154,7 @@ Additionally in Sparkle 2:
 * A developer can publish a new minor patch release preceding the major release and Sparkle will prefer to install the latest minor release available. For example, if 2.0 is marked as a major release (with `sparkle:minimumAutoupdateVersion` set to 2.0), but 1.9.4 is available then 1.9.4 will be offered first.
 * A user can choose to skip out of future update alerts to a major upgrade. For example, if 2.0 is a major release offered and the user is on 1.9.4, they can choose to skip 2.0 and its future minor updates (eg 2.1). The user can later undo this if they check for updates manually.
 
-New to Sparkle 2.1 (in beta), a developer can publish a new update specifying `sparkle:ignoreSkippedUpgradesBelowVersion` to ignore skipped upgrades below a specific version. For example, if a user skips a major upgrade for version 2.0, this may also skip version 2.1 in the future. However version 2.2 may be a special release that may contain new noteworthy features, so a developer may want to re-notify users that have skipped 2.0 through 2.1 like so (read from bottom to top):
+From Sparkle 2.1 onwards, a developer can publish a new update specifying `sparkle:ignoreSkippedUpgradesBelowVersion` to ignore skipped major upgrades below a specific version. For example, if a user skips a major upgrade for version 2.0, this may also skip version 2.1 in the future. However version 2.2 may be a special release that may contain new noteworthy features, so a developer may want to re-notify users that have skipped 2.0 through 2.1 like so (read from bottom to top):
 
 ```xml
 <!-- If the user skips 2.0 or 2.1, alerts for this update will not be skipped. However if the user skips 2.2, alerts for this 2.2.1 update will be skipped -->
@@ -223,7 +223,7 @@ Apps that use Sparkle 2 can use the new `<sparkle:informationalUpdate>` tag inst
 
 In this example, because `<sparkle:version>1.2.3</sparkle:version>` is specified in `<sparkle:informationalUpdate>`, only version `1.2.3` will see this update as an informational one with a download link. Other versions of the application will see this as an update they can install from inside the application. You can add more children to specify, for example, that version 1.2.2 should also see the update as informational. If you do not specify any children to `<sparkle:informationalUpdate>`, then the update is informational to all versions.
 
-In Sparkle 2.1 (beta), a new `<sparkle:belowVersion>` element will be added to specify that versions below a specific version should see the update as an informational one. For example, the below snippet says that all versions below 1.0 should treat this update as informational:
+In Sparkle 2.1 onwards, `<sparkle:belowVersion>` can be used to specify that versions below a specific version should see the update as an informational one. For example, the below snippet says that all versions below 1.0 should treat this update as informational:
 
 ```xml
 <sparkle:informationalUpdate>

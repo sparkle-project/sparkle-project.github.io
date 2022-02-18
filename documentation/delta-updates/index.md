@@ -67,13 +67,13 @@ BinaryDelta apply path/to/old/MyApp.app path/to/patched/MyApp.app patch.delta
 
 When you create a delta update between two versions of your application, you must ensure you are using a delta format version that your older application knows how to patch. Below is a table describing the requirements for each binary delta version.
 
-| Delta Version | Requirements                  | Major Changes                                                                                        |
-| -----------   | ----------------------------- | ---------------------------------------------------------------------------------------------------- |
-| 3             | Sparkle 2.1 (in development)  | More efficient custom delta container format, lzma compression + other compression options, file rename heuristic tracking. |
-| 2             | Sparkle 1.10                  | Improved and changed hash function for reducing collisions.                                          |
-| 1             | Sparkle 1.5 (now unsupported) | Added initial binary delta format using libxar and bzip2 compression. Tracking of insertions, deletions, and binary file diffs using bsdiff. |
+| Delta Version   | Requirements                  | Major Changes                                                                                        |
+| --------------- | ----------------------------- | ---------------------------------------------------------------------------------------------------- |
+| 3               | Sparkle 2.1                   | More efficient custom delta container format, lzma compression + other compression options, file rename heuristic tracking. |
+| 2               | Sparkle 1.10                  | Improved and changed hash function for reducing collisions.                                          |
+| 1 (unsupported) | Sparkle 1.5                   | Added initial binary delta format using libxar and bzip2 compression. Tracking of insertions, deletions, and binary file diffs using bsdiff. |
 
-Note if you are using `generate_appcast`, picking the delta version to use is automatically handled. If you are using `BinaryDelta` though, you will need to pass the appropriate delta version via the `--version` argument.
+Note if you are using `generate_appcast`, picking the delta version to use is automatically handled. If you are using `BinaryDelta create` though, you will need to pass the appropriate delta version via the `--version` argument.
 
 Older delta format versions will eventually be phased out. Please do not create new patches using an older version than necessary. Always use the latest tools when creating delta patches because they may contain minor bug fixes that don't require a major format change.
 
