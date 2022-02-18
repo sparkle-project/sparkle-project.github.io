@@ -16,7 +16,7 @@
     <header>
       <div class="content-wrapper">
         <p>
-          <a href="../index.html">Sparkle 2.0.0 Docs</a>
+          <a href="../index.html">Sparkle 2.1.0 Docs</a>
           <span class="no-mobile"> (58% documented)</span>
         </p>
     
@@ -813,9 +813,11 @@ Old applications must be using Sparkle 2 or later to interpret the channel eleme
 
 <p>Otherwise if the requirement is not met, the user is always  prompted to install the update. In this case, the update is assumed to be a <code><a href="../Classes/SUAppcastItem.html#/c:objc(cs)SUAppcastItem(py)majorUpgrade">majorUpgrade</a></code>.</p>
 
-<p>If the update is a <code><a href="../Classes/SUAppcastItem.html#/c:objc(cs)SUAppcastItem(py)majorUpgrade">majorUpgrade</a></code> and the update is skipped by the user, other future update alerts with the same <code>minimumAutoupdateVersion</code> will also be skipped.</p>
+<p>If the update is a <code><a href="../Classes/SUAppcastItem.html#/c:objc(cs)SUAppcastItem(py)majorUpgrade">majorUpgrade</a></code> and the update is skipped by the user, other future update alerts with the same <code>minimumAutoupdateVersion</code> will also be skipped automatically unless an update specifies <code><a href="../Classes/SUAppcastItem.html#/c:objc(cs)SUAppcastItem(py)ignoreSkippedUpgradesBelowVersion">ignoreSkippedUpgradesBelowVersion</a></code>.</p>
 
 <p>This version string corresponds to the application&rsquo;s <code>CFBundleVersion</code></p>
+
+<p>This is extracted from the <code>&lt;sparkle:minimumAutoupdateVersion&gt;</code> element.</p>
 
                         </div>
                         <div class="declaration">
@@ -862,6 +864,46 @@ Old applications must be using Sparkle 2 or later to interpret the channel eleme
                           <div class="language">
                             <p class="aside-title">Swift</p>
                             <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">isMajorUpgrade</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                          </div>
+                        </div>
+                      </section>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <div>
+                      <code>
+                      <a name="/c:objc(cs)SUAppcastItem(py)ignoreSkippedUpgradesBelowVersion"></a>
+                      <a name="//apple_ref/objc/Property/ignoreSkippedUpgradesBelowVersion" class="dashAnchor"></a>
+                      <a class="token" href="#/c:objc(cs)SUAppcastItem(py)ignoreSkippedUpgradesBelowVersion">ignoreSkippedUpgradesBelowVersion</a>
+                      </code>
+                    </div>
+                    <div class="height-container">
+                      <div class="pointer-container"></div>
+                      <section class="section">
+                        <div class="pointer"></div>
+                        <div class="abstract">
+                          <p>Previously skipped upgrades by the user will be ignored if they skipped an update whose version precedes this version.</p>
+
+<p>This can only be applied if the update is a <code><a href="../Classes/SUAppcastItem.html#/c:objc(cs)SUAppcastItem(py)majorUpgrade">majorUpgrade</a></code>.</p>
+
+<p>This version string corresponds to the application&rsquo;s <code>CFBundleVersion</code></p>
+
+<p>This is extracted from the <code>&lt;sparkle:ignoreSkippedUpgradesBelowVersion&gt;</code> element.</p>
+
+<p>Old applications must be using Sparkle 2.1 or later, otherwise this property will be ignored.</p>
+
+                        </div>
+                        <div class="declaration">
+                          <h4>Declaration</h4>
+                          <div class="language">
+                            <p class="aside-title">Objective-C</p>
+                            <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">readonly</span><span class="p">,</span> <span class="n">nullable</span><span class="p">)</span> <span class="n">NSString</span> <span class="o">*</span><span class="n">ignoreSkippedUpgradesBelowVersion</span><span class="p">;</span></code></pre>
+
+                          </div>
+                          <div class="language">
+                            <p class="aside-title">Swift</p>
+                            <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">ignoreSkippedUpgradesBelowVersion</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
 
                           </div>
                         </div>
@@ -1434,7 +1476,7 @@ The value is an update item that will have <code><a href="../Classes/SUAppcastIt
       </div>
       <div class="footer-wrapper">
         <section id="footer">
-          <p>&copy; 2021 <a class="link" href="https://sparkle-project.org" target="_blank" rel="external noopener">Sparkle Project</a>. All rights reserved. (Last updated: 2021-12-26)</p>
+          <p>&copy; 2022 <a class="link" href="https://sparkle-project.org" target="_blank" rel="external noopener">Sparkle Project</a>. All rights reserved. (Last updated: 2022-02-18)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.14.1</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
         </section>
       </div>

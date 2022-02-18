@@ -135,22 +135,36 @@
     },
     {
       "file": "/Users/runner/work/sparkle-project.github.io/sparkle-project.github.io/sparkle-source/Sparkle/SPUUserDriver.h",
-      "line": 283,
+      "line": 275,
       "symbol": "SPUUserDriver.-showUpdateNotFoundWithAcknowledgement:",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/runner/work/sparkle-project.github.io/sparkle-project.github.io/sparkle-source/Sparkle/SPUUserDriver.h",
-      "line": 285,
+      "line": 277,
       "symbol": "SPUUserDriver.-showUpdateInstallationDidFinishWithAcknowledgement:",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/runner/work/sparkle-project.github.io/sparkle-project.github.io/sparkle-source/Sparkle/SPUUserDriver.h",
-      "line": 287,
+      "line": 279,
       "symbol": "SPUUserDriver.-dismissUserInitiatedUpdateCheck",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/sparkle-project.github.io/sparkle-project.github.io/sparkle-source/Sparkle/SPUUserDriver.h",
+      "line": 281,
+      "symbol": "SPUUserDriver.-showInstallingUpdate",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/sparkle-project.github.io/sparkle-project.github.io/sparkle-source/Sparkle/SPUUserDriver.h",
+      "line": 283,
+      "symbol": "SPUUserDriver.-showSendingTerminationSignal",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
       "warning": "undocumented"
     },
@@ -170,28 +184,28 @@
     },
     {
       "file": "/Users/runner/work/sparkle-project.github.io/sparkle-project.github.io/sparkle-source/Sparkle/SUAppcastItem.h",
-      "line": 343,
+      "line": 358,
       "symbol": "SUAppcastItem.-init",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/runner/work/sparkle-project.github.io/sparkle-project.github.io/sparkle-source/Sparkle/SUAppcastItem.h",
-      "line": 353,
+      "line": 368,
       "symbol": "SUAppcastItem.-initWithDictionary:",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/runner/work/sparkle-project.github.io/sparkle-project.github.io/sparkle-source/Sparkle/SUAppcastItem.h",
-      "line": 354,
+      "line": 369,
       "symbol": "SUAppcastItem.-initWithDictionary:failureReason:",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/runner/work/sparkle-project.github.io/sparkle-project.github.io/sparkle-source/Sparkle/SUAppcastItem.h",
-      "line": 355,
+      "line": 370,
       "symbol": "SUAppcastItem.-initWithDictionary:relativeToURL:failureReason:",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
       "warning": "undocumented"
