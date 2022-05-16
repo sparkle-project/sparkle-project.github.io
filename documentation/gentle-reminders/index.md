@@ -8,7 +8,7 @@ title: Gentle Update Reminders
 
 ### Scheduled Update Checks
 
-By default, when your application launches for the first time Sparkle is not granted permission to make any update checks. On the second launch of your application, Sparkle prompts the user asking if it is allowed to check for new updates automatically. This is defined by the [`SUEnableAutomaticChecks`](/documentation/customization)) setting.
+By default, when your application launches for the first time Sparkle is not granted permission to make any update checks. On the second launch of your application, Sparkle prompts the user asking if it is allowed to check for new updates automatically. This is defined by the [`SUEnableAutomaticChecks`](/documentation/customization) setting.
 
 Once Sparkle is granted permission, it is programmed to schedule update checks on a regular basis defined by the [`SUScheduledCheckInterval`](/documentation/customization/) setting.
 
@@ -27,28 +27,28 @@ Note even for updates downloaded automatically and silently in the background, S
 
 For backgrounded applications (apps that do not appear in the Dock), Sparkle 2.2 onwards will not let a scheduled update alert steal focus from another application that may be active (with the exception of your application having just been launched). As a consequence, users may have a difficult time noticing update alerts scheduled to occur some time after your application has been launched. Some backgrounded applications using prior versions of Sparkle may have disabled automatic update checks and only scheduled checking for new updates on launch. But now, Sparkle 2.2 provides an alternative solution.
 
-If you want your application to deliver scheduled alerts in a more gentle manner or if you want your scheduled alerts to stand out more (e.g. for backgrounded apps), you may opt into Sparkle's Gentle Reminders APIs. These are a part of [SPUStandardUserDriverDelegate](/documentation/api-reference/Protocols/SPUStandardUserDriverDelegate.html), which is a part of Sparkle's standard user interface.
+If you want your application to deliver scheduled alerts in a more subtle manner or if you want your scheduled alerts to stand out more (e.g. for backgrounded apps), you may opt into Sparkle's Gentle Reminders APIs. These are a part of [SPUStandardUserDriverDelegate](/documentation/api-reference/Protocols/SPUStandardUserDriverDelegate.html), which is a part of Sparkle's standard user interface.
 
 ### Gentle Reminders APIs
 
 These APIs can be used to implement gentle reminders for your app:
 
-* -[SPUStandardUserDriverDelegate supportsGentleScheduledUpdateReminders] declares support for implementing gentle reminders
-* -[SPUStandardUserDriverDelegate standardUserDriverShouldShowUpdateAlertForScheduledUpdate:inFocusNow:] is the method to implement to add additional reminders and override Sparkle's handling of showing a new scheduled update alert if desired
-* -[SPUStandardUserDriverDelegate standardUserDriverWillCloseUpdateAlertForUpdate:] lets your app know when the user will close the update alert
-* -[SPUStandardUserDriverDelegate standardUserDriverDidMakeUpdateAlertWindowKeyForUpdate:] lets your app know when the update alert window has become the key or active window
+* `-[SPUStandardUserDriverDelegate supportsGentleScheduledUpdateReminders]` declares support for implementing gentle reminders
+* `-[SPUStandardUserDriverDelegate standardUserDriverShouldShowUpdateAlertForScheduledUpdate:inFocusNow:]` is the method to implement to add additional reminders and override Sparkle's handling of showing a new scheduled update alert if desired
+* `-[SPUStandardUserDriverDelegate standardUserDriverWillCloseUpdateAlertForUpdate:]` lets your app know when the user will close the update alert
+* `-[SPUStandardUserDriverDelegate standardUserDriverDidMakeUpdateAlertWindowKeyForUpdate:]` lets your app know when the update alert window has become the key or active window
 
 ### Gentle Reminders Example
 
-This is an example of implementing gentle reminders using Sparkle 2.2 ownards. It demonstrates creating two UI gentle reminders when a new update alert is available:
-* (Primary) Attaches an "Update Available" button to the application's main window's titlebar
-* (Secondary) Posts a notification to Notification Center when the app is in the background
+This is an example of implementing gentle reminders using Sparkle 2.2 ownards. It demonstrates creating two UI gentle reminders when a new update alert is available by:
+* Attaching an "Update Available" button to the application's main window's titlebar (Primary)
+* Posting a notification to Notification Center when the app is in the background (Secondary)
 
-Note that posting a notification to Notification Center is an auxiliary but not definitive way of notifying users of updates. There is no guarantee the notification will be delivered and that the user will see the notification. For example, it is common for a user to not approve your app from delivering notifications. This is why user notifications are considered a "secondary" reminder.
+Note that posting a notification to Notification Center is an auxiliary but not definitive way of notifying users of updates. There is no guarantee the notification will be delivered and that the user will see the notification. For example, it is common for a user to not approve your app from delivering notifications. This is why user notifications are considered a more "secondary" reminder.
 
-This example lets Sparkle handle showing update alerts when Sparkle thinks it's a good time to show the update in utmost focus. Otherwise, this example overrides showing the new update alert and creates the additional UI reminders. This is handled in `-[SPUStandardUserDriverDelegate standardUserDriverShouldShowUpdateAlertForScheduledUpdate:inFocusNow:]`.
+This example lets Sparkle handle showing update alerts when Sparkle thinks it's a good time to show the update in utmost focus. Otherwise, this example overrides showing new update alerts and creates additional UI reminders. This is handled in `-[SPUStandardUserDriverDelegate standardUserDriverShouldShowUpdateAlertForScheduledUpdate:inFocusNow:]`.
 
-This example also includes a bit of test / debugging code for testing gentle reminders by performing a scheduled update check in the background 10 seconds after the app launched. Within this time period, you can test the gentle update reminders when the app is active or inactive. Do not use test code like this in production.
+This example also includes a bit of test / debugging code for testing gentle reminders by performing a scheduled update check in the background 10 seconds after the app launched. Within this time period, you can test the gentle update reminders when the app is active or inactive. Do not use test code like this in production. Let Sparkle handle scheduling update checks automatically instead.
 
 ```swift
 let UPDATE_NOTIFICATION_IDENTIFIER = "UpdateCheck"
