@@ -17,7 +17,7 @@ This method is the recommended way of serving package based updates because it a
 
 A package installation occurs when Sparkle finds a `*.pkg` or `*.mpkg` file in the root of the download archive (e.g, from within a `.zip`).
 
-**Note**: For Sparkle 2, you must add `sparkle:installationType="package"` to your appcast item for updating archived packages.
+**Note**: For Sparkle 2, you must also add `sparkle:installationType="package"` to your appcast item's `enclosure` for updating archived packages.
 
 ### Interactive Archived UI Installation
 
@@ -27,4 +27,4 @@ An interactive installation occurs when Sparkle finds a `*.sparkle_interactive.p
 
 The package will be installed using macOS's built-in GUI installer. The installation will require user to manually click through the steps, so we don't recommend this type of installation. You must also archive your package update (e.g, in a `.zip`) to get this behavior.
 
-**Note**: For Sparkle 2, you must add `sparkle:installationType="interactive-package"` to your appcast item for updating interactive packages.
+**Note**: For Sparkle 2, you must also add `sparkle:installationType="interactive-package"` to your appcast item's `enclosure` for updating interactive packages.
