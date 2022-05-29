@@ -34,7 +34,8 @@ If you want your application to deliver scheduled alerts in a more subtle manner
 These APIs can be used to implement gentle reminders for your app:
 
 * `-[SPUStandardUserDriverDelegate supportsGentleScheduledUpdateReminders]` declares support for implementing gentle reminders
-* `-[SPUStandardUserDriverDelegate standardUserDriverShouldShowUpdateAlertForScheduledUpdate:inFocusNow:]` is the method to implement to add additional reminders and override Sparkle's handling of showing a new scheduled update alert if desired
+* `-[SPUStandardUserDriverDelegate standardUserDriverShouldHandleShowingScheduledUpdate:andInImmediateFocus:]` is the method to implement to override Sparkle's handling of showing a new scheduled update if desired
+* `-[SPUStandardUserDriverDelegate standardUserDriverWillHandleShowingUpdate:forUpdate:state:]` is the method to implement to add additional update reminders.
 * `-[SPUStandardUserDriverDelegate standardUserDriverDidReceiveUserAttentionForUpdate:]` lets your app know when the user has given attention to a new update alert
 * `-[SPUStandardUserDriverDelegate standardUserDriverWillFinishUpdateSession]` lets your app know when the user session for handling a new update will finish
 
@@ -52,15 +53,16 @@ The first example demonstrates creating two UI gentle reminders when a new updat
 
 Note that posting a notification to Notification Center is an auxiliary but not definitive way of notifying users of updates. There is no guarantee the notification will be delivered and that the user will see the notification. For example, it is common for a user to not approve your app from delivering notifications. This is why user notifications are considered a more "secondary" reminder.
 
-This example lets Sparkle handle showing update alerts when Sparkle thinks it's a good time to show the update in utmost focus. Otherwise, this example overrides showing new update alerts and creates additional UI reminders. This is handled in `-[SPUStandardUserDriverDelegate standardUserDriverShouldShowUpdateAlertForScheduledUpdate:inFocusNow:]`.
+This example lets Sparkle handle showing update alerts when Sparkle thinks it's a good time to show the update in immediate and utmost focus. Otherwise, this example overrides showing new update alerts and creates additional UI reminders.
 
 ```swift
+let UPDATE_NOTIFICATION_IDENTIFIER = "UpdateCheck"
 
 @NSApplicationMain
 @objc class AppDelegate: NSObject, NSApplicationDelegate, SPUUpdaterDelegate, SPUStandardUserDriverDelegate, UNUserNotificationCenterDelegate {
     // This controller's updaterDelegate and userDriverDelegate outlets are connected to this instance as well
     @IBOutlet var updaterController: SPUStandardUpdaterController!
-    // Using a window outlet for demonstating purposes. A real app may manage a window controller.
+    // Using a window outlet for demonstrating purposes. A real app may manage a window controller.
     @IBOutlet var window: NSWindow!
     // A view controller we attach to our window's titlebar when updates are available
     var titlebarAccessoryViewController: NSTitlebarAccessoryViewController? = nil
@@ -93,12 +95,18 @@ This example lets Sparkle handle showing update alerts when Sparkle thinks it's 
         return true
     }
     
-    func standardUserDriverShouldShowUpdateAlert(forScheduledUpdate update: SUAppcastItem, inFocusNow: Bool) -> Bool {
-        // If the update will be shown in active focus (e.g. near app launch),
-        // then let Sparkle take care of handling the update alert.
-        // We will choose not to provide additional reminders in this case
-        if inFocusNow {
-            return true
+    func standardUserDriverShouldHandleShowingScheduledUpdate(_ update: SUAppcastItem, andInImmediateFocus immediateFocus: Bool) -> Bool {
+        // If the standard user driver will show the update in immediate focus (e.g. near app launch),
+        // then let Sparkle take care of showing the update.
+        // Otherwise we will handle showing any other scheduled updates
+        return immediateFocus
+    }
+    
+    func standardUserDriverWillHandleShowingUpdate(_ handleShowingUpdate: Bool, forUpdate update: SUAppcastItem, state: SPUUserUpdateState) {
+        // We will ignore updates that the user driver will handle showing
+        // This includes user initiated updates
+        guard !handleShowingUpdate else {
+            return
         }
         
         // Attach a gentle UI indicator on our window
@@ -118,7 +126,7 @@ This example lets Sparkle handle showing update alerts when Sparkle thinks it's 
             titlebarAccessoryViewController = accessoryViewController
         }
         
-        // Post a user notification which will only trigger when app is not active
+        // Post a user notification (this may not trigger for Banner style alerts if the app is active)
         do {
             let versionString = update.displayVersionString ?? update.versionString
 
@@ -130,9 +138,6 @@ This example lets Sparkle handle showing update alerts when Sparkle thinks it's 
             
             UNUserNotificationCenter.current().add(request)
         }
-        
-        // We will take over showing the update alert
-        return false
     }
     
     func standardUserDriverDidReceiveUserAttention(forUpdate update: SUAppcastItem) {
@@ -149,8 +154,9 @@ This example lets Sparkle handle showing update alerts when Sparkle thinks it's 
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         if response.actionIdentifier == UNNotificationDefaultActionIdentifier {
             // If the notificaton is clicked on, make sure we bring the update in focus
-            // If the app is terminated while the notification is delivered,
-            // this will launch the application and perform a new update check
+            // If the app is terminated while the notification is clicked on,
+            // this will launch the application and perform a new update check.
+            // This can be more likely to occur if the notification alert style is Alert rather than Banner
             updaterController.checkForUpdates(nil)
         }
         
@@ -174,8 +180,28 @@ The approach in this example is to bring the app into the Dock, along with a bad
 @objc class AppDelegate: NSObject, NSApplicationDelegate, SPUStandardUserDriverDelegate {
     // This controller's updaterDelegate and userDriverDelegate outlets are connected to this instance as well
     @IBOutlet var updaterController: SPUStandardUpdaterController!
+    // Menu bar item for our background application
+    var statusBarItem: NSStatusItem?
     
     func applicationDidFinishLaunching(_ notification: Notification) {
+        // Add a status bar item in the menu bar for our app
+        do {
+            let statusBarItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
+            statusBarItem.button?.title = "🌯"
+            
+            let statusBarMenu = NSMenu()
+            statusBarItem.menu = statusBarMenu
+            
+            let menuItem = NSMenuItem()
+            menuItem.title = "Check for Updates…"
+            menuItem.target = updaterController
+            menuItem.action = #selector(SPUStandardUpdaterController.checkForUpdates(_:))
+            
+            statusBarMenu.addItem(menuItem)
+            
+            self.statusBarItem = statusBarItem
+        }
+        
         // Make the app run in the background
         NSApp.setActivationPolicy(.accessory)
         
@@ -193,14 +219,15 @@ The approach in this example is to bring the app into the Dock, along with a bad
         return true
     }
     
-    func standardUserDriverShouldShowUpdateAlert(forScheduledUpdate update: SUAppcastItem, inFocusNow: Bool) -> Bool {
-        // When an update alert is presented, place the app in the foreground
+    func standardUserDriverWillHandleShowingUpdate(_ handleShowingUpdate: Bool, forUpdate update: SUAppcastItem, state: SPUUserUpdateState) {
+        // When an update alert will be presented, place the app in the foreground
+        // We will do this for updates the user initiated themselves too for consistency
         NSApp.setActivationPolicy(.regular)
-        // And add a badge to the app's dock icon indicating one alert occurred
-        NSApp.dockTile.badgeLabel = "1"
         
-        // Allow Sparkle to handle showing the update alert
-        return true
+        if !state.userInitiated {
+            // And add a badge to the app's dock icon indicating one alert occurred
+            NSApp.dockTile.badgeLabel = "1"
+        }
     }
     
     func standardUserDriverDidReceiveUserAttention(forUpdate update: SUAppcastItem) {
@@ -209,7 +236,7 @@ The approach in this example is to bring the app into the Dock, along with a bad
     }
     
     func standardUserDriverWillFinishUpdateSession() {
-        // Put app back in background when the user session for update finished
+        // Put app back in background when the user session for the update finished
         // This assumes there's no other windows for the app to show
         NSApp.setActivationPolicy(.accessory)
     }
