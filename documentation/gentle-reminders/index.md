@@ -20,14 +20,14 @@ Keeping your users up to date is important, however users do not want to have th
 
 As of Sparkle 2.2, Sparkle prioritizes showing scheduled update alerts for regular (non-backgrounded) applications at opportune times when:
 * The user just launched your app or just granted your app permission to check for updates automatically
-* The user's system has been idle for some time while your app is active
+* The user's system has been idle for some time and no assertion has been made by your app to prevent sleep while your app is active
 * The user comes back to your application from another application (preferred over showing an alert when a user is actively using your app)
 
 Note even for updates downloaded automatically and silently in the background, Sparkle may show an update alert to the user if the application hasn't quit for 1 week or if the user needs to authorize to install the update (due to lack of write permission).
 
 For backgrounded applications (apps that do not appear in the Dock), Sparkle 2.2 onwards will not let a scheduled update alert steal focus from another application that may be active (with the exception of your application having just been launched). Update alerts will show up in the background behind other windows, even when the app is currently active.
 
-If you want your application to deliver scheduled alerts in a subtle manner, you may opt into Sparkle's Gentle Reminders APIs. These are a part of [SPUStandardUserDriverDelegate](/documentation/api-reference/Protocols/SPUStandardUserDriverDelegate.html), which is a part of Sparkle's standard user interface.
+If you want your application to deliver scheduled alerts in a gentle manner, you may opt into Sparkle's Gentle Reminders APIs. These are a part of [SPUStandardUserDriverDelegate](/documentation/api-reference/Protocols/SPUStandardUserDriverDelegate.html), which is a part of Sparkle's standard user interface.
 
 ## Gentle Reminders APIs
 
@@ -51,7 +51,7 @@ The first example demonstrates creating a gentle reminder when a new update aler
 
 This example lets Sparkle handle showing update alerts when Sparkle wants to show the update in immediate and utmost focus. Otherwise, this example overrides showing new update alerts and creates an additional UI reminder.
 
-The application can override Sparkle's default behavior in cases where the application believes it can provide reminders in a more gentle manner. 
+The application can override Sparkle's default behavior in cases where the application believes it can provide reminders in a more gentle manner.
 
 ```swift
 @NSApplicationMain
@@ -252,6 +252,6 @@ let UPDATE_NOTIFICATION_IDENTIFIER = "UpdateCheck"
 }
 ```
 
-## Alternative User Interfaces
+## Custom User Interfaces
 
 The APIs for gentle reminders discussed here are a part of Sparkle's standard user interface and are great if you want to leverage Sparkle's standard UI. If you need even greater customization, you can implement your own custom user interface by writing your your own [SPUUserDriver](/documentation/api-reference/Protocols/SPUUserDriver.html) and passing it when you instantiate a [`SPUUpdater`](/documentation/api-reference/Classes/SPUUpdater.html). 
