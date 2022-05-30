@@ -134,7 +134,7 @@ This example also posts a user notification that a new update is available. Note
 
 Prior versons of Sparkle could steal focus from other running applications when new scheduled updates became available. This example instead provides gentle reminders using the Dock and Notification Center without overriding when Sparkle shows the update alert.
 
-```
+```swift
 let UPDATE_NOTIFICATION_IDENTIFIER = "UpdateCheck"
 
 @NSApplicationMain
