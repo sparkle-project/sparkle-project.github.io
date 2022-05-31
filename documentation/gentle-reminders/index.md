@@ -14,20 +14,20 @@ Once Sparkle is granted permission, it is programmed to schedule update checks o
 
 Letting Sparkle handle checking for updates automatically provides a couple benefits:
 * It ensures your server is not polled too often (for when an app is re-launched frequently)
-* It ensures update checks trigger often enough (for when your app has not quit for a long time)
+* It ensures update checks trigger often enough (for when your app has not quit or computer hasn't been rebooted for a long time)
 
 Keeping your users up to date is important, however users do not want to have their focus stolen from new update alerts at inopportune times.
 
 As of Sparkle 2.2, Sparkle prioritizes showing scheduled update alerts for regular (non-backgrounded) applications at opportune times when:
 * The user just launched your app or just granted your app permission to check for updates automatically
-* The user's system has been idle for some time and no assertion has been made by your app to prevent sleep while your app is active
-* The user comes back to your application from another application (preferred over showing an alert when a user is actively using your app)
+* The user's system has been idle for some time and no assertion has been made by your app to prevent display sleep while your app is active
+* The user comes back to your application from another application (instead of showing an alert when a user is actively using your app)
 
-Note even for updates downloaded automatically and silently in the background, Sparkle may show an update alert to the user if the application hasn't quit for 1 week or if the user needs to authorize to install the update (due to lack of write permission).
+For backgrounded applications (apps that do not appear in the Dock), Sparkle 2.2 onwards will not let a scheduled update alert steal focus from another application that may be active (with the exception of your application having just been launched). Update alerts will show up in the background behind other apps, and behind other windows of your app when your app is currently active.
 
-For backgrounded applications (apps that do not appear in the Dock), Sparkle 2.2 onwards will not let a scheduled update alert steal focus from another application that may be active (with the exception of your application having just been launched). Update alerts will show up in the background behind other windows, even when the app is currently active.
+Note even for updates downloaded automatically and silently in the background, Sparkle may show an update alert to the user if the application hasn't quit for 1 week or if the user needs to authorize to install the update (due to lack of sufficient write permissions).
 
-If you want your application to deliver scheduled alerts in a gentle manner, you may opt into Sparkle's Gentle Reminders APIs. These are a part of [SPUStandardUserDriverDelegate](/documentation/api-reference/Protocols/SPUStandardUserDriverDelegate.html), which is a part of Sparkle's standard user interface.
+If you want your application to deliver scheduled alerts in a gentle yet noticeable manner, you may opt into Sparkle's Gentle Reminders APIs. These are a part of [SPUStandardUserDriverDelegate](/documentation/api-reference/Protocols/SPUStandardUserDriverDelegate.html), which is a part of Sparkle's standard user interface.
 
 ## Gentle Reminders APIs
 
@@ -43,7 +43,7 @@ These APIs can be used to implement gentle reminders for your app:
 
 These examples show how to implement gentle reminders using Sparkle 2.2 or later.
 
-They also include a bit of test / debugging code for testing gentle reminders by performing a scheduled update check in the background 10 seconds after the app launched. Within this time period, you can test the gentle update reminders when the app is active or inactive. Do not use test code like this in production. Let Sparkle handle scheduling update checks automatically instead.
+They also include a bit of test / debugging code for testing gentle reminders by performing a scheduled update check in the background 10 seconds after the app launched. Within this time period, you can test the gentle update reminders when the app is currently active or inactive. Do not use test code like this in production. Let Sparkle handle scheduling update checks automatically instead.
 
 ### Window Title Accessory Example
 
@@ -121,7 +121,7 @@ The application can override Sparkle's default behavior in cases where the appli
 
 This example can be altered to suit an application's policy. For example, a particular application may for want to also override handling showing scheduled update alerts even when Sparkle wants to show them in immediate focus, or still add an additional UI indicator when the user initiated an update check.
 
-### Background App and Dock Badge Example
+### Background App, Dock, and Notification Example
 
 This second example demonstrates a background running, or dockless, app creating a gentle update reminder by:
 * Bringing the app back in the Dock as a regular foreground application
@@ -132,7 +132,7 @@ The approach in this example is to bring the app into the Dock, along with a bad
 
 This example also posts a user notification that a new update is available. Note posting a notification to Notification Center is an auxiliary but not definitive way of notifying users of updates. There is no guarantee the notification will be delivered and that the user will see the notification. It is also common for a user to not approve your app from delivering notifications.
 
-Prior versons of Sparkle could steal focus from other running applications when new scheduled updates became available. This example instead provides gentle reminders using the Dock and Notification Center without overriding when Sparkle shows the update alert.
+Prior versons of Sparkle could steal focus from other running applications when new scheduled updates became available. This example instead adds gentle reminders using the Dock and Notification Center without overriding when Sparkle shows the update alert.
 
 ```swift
 let UPDATE_NOTIFICATION_IDENTIFIER = "UpdateCheck"
