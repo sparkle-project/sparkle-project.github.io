@@ -16,14 +16,12 @@ Letting Sparkle handle checking for updates automatically provides a couple bene
 * It ensures your server is not polled too often (for when an app is re-launched frequently)
 * It ensures update checks trigger often enough (for when your app has not quit or computer hasn't been rebooted for a long time)
 
-Keeping your users up to date is important, however users do not want to have their focus stolen from new update alerts at inopportune times.
-
 As of Sparkle 2.2, Sparkle prioritizes showing scheduled update alerts for regular (non-backgrounded) applications at opportune times when:
 * The user just launched your app or just granted your app permission to check for updates automatically
 * The user's system has been idle for some time and no assertion has been made by your app to prevent display sleep while your app is active
 * The user comes back to your application from another application (instead of showing an alert when a user is actively using your app)
 
-For backgrounded applications (apps that do not appear in the Dock), Sparkle 2.2 onwards will not let a scheduled update alert steal focus from another application that may be active (with the exception of your application having just been launched). Update alerts will show up in the background behind other apps, and behind other windows of your app when your app is currently active.
+For backgrounded applications (apps that do not appear in the Dock), Sparkle 2.2 onwards will not let a scheduled update alert steal focus from another application that may be active (with the exception of your application having just been launched by the user). Update alerts will show up in the background behind other apps, and behind other windows of your app when your app is currently active.
 
 Note even for updates downloaded automatically and silently in the background, Sparkle may show an update alert to the user if the application hasn't quit for 1 week or if the user needs to authorize to install the update (due to lack of sufficient write permissions).
 
@@ -49,9 +47,9 @@ They also include a bit of test / debugging code for testing gentle reminders by
 
 The first example demonstrates creating a gentle reminder when a new update alert is available by attaching an "Update Available" button to the application's main window's titlebar.
 
-This example lets Sparkle handle showing update alerts when Sparkle wants to show the update in immediate and utmost focus. Otherwise, this example overrides showing new update alerts and creates an additional UI reminder.
+This example lets Sparkle handle showing update alerts when Sparkle wants to show a new update in immediate and utmost focus. Otherwise, this example overrides showing new update alerts and creates a gentle UI reminder.
 
-The application can override Sparkle's default behavior in cases where the application believes it can provide reminders in a more gentle manner.
+The application overrides Sparkle's default behavior in cases where it believes reminders can be provided in a more gentle manner.
 
 ```swift
 @NSApplicationMain
@@ -119,7 +117,7 @@ The application can override Sparkle's default behavior in cases where the appli
 }
 ```
 
-This example can be altered to suit an application's policy. For example, a particular application may for want to also override handling showing scheduled update alerts even when Sparkle wants to show them in immediate focus, or still add an additional UI indicator when the user initiated an update check.
+This example can be altered to suit an application's policy. For example, a particular application may for want to also override handling showing scheduled update alerts even when Sparkle wants to show them in immediate focus, or still add an additional UI indicator when the user initiated an update check (`state.userInitiated`).
 
 ### Background App, Dock, and Notification Example
 
@@ -132,7 +130,9 @@ The approach in this example is to bring the app into the Dock, along with a bad
 
 This example also posts a user notification that a new update is available. Note posting a notification to Notification Center is an auxiliary but not definitive way of notifying users of updates. There is no guarantee the notification will be delivered and that the user will see the notification. It is also common for a user to not approve your app from delivering notifications.
 
-Prior versons of Sparkle could steal focus from other running applications when new scheduled updates became available. This example instead adds gentle reminders using the Dock and Notification Center without overriding when Sparkle shows the update alert.
+Prior versons of Sparkle could steal focus from other running applications when new scheduled updates became available for a background running application. This example instead adds gentle reminders using the Dock and Notification Center without overriding when Sparkle shows the update alert.
+
+Note that regular non-background applications (i.e, apps that show up in the Dock) should not post reminders and notifications like in this example. They should instead wait until the user re-activates the application and only post reminders contained inside the app. This example is most suited for background applications that are in use but may never be re-activated by the user.
 
 ```swift
 let UPDATE_NOTIFICATION_IDENTIFIER = "UpdateCheck"
