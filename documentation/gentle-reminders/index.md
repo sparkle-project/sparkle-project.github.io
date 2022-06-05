@@ -94,7 +94,7 @@ The application overrides Sparkle's default behavior in cases where it believes 
         // Attach a gentle UI indicator on our window
         do {
             let updateButton = NSButton(frame: NSMakeRect(0, 0, 120, 100))
-            updateButton.title = "Update Available"
+            updateButton.title = "v\(update.displayVersionString) Available"
             updateButton.bezelStyle = .recessed
             updateButton.target = updaterController
             updateButton.action = #selector(updaterController.checkForUpdates(_:))
@@ -210,11 +210,9 @@ let UPDATE_NOTIFICATION_IDENTIFIER = "UpdateCheck"
             // For banner style notification alerts, this may only trigger when the app is currently inactive.
             // For alert style notification alerts, this will trigger when the app is active or inactive.
             do {
-                let versionString = update.displayVersionString ?? update.versionString
-
                 let content = UNMutableNotificationContent()
                 content.title = "A new update is available"
-                content.body = "Version \(versionString) is now available"
+                content.body = "Version \(update.displayVersionString) is now available"
                 
                 let request = UNNotificationRequest(identifier: UPDATE_NOTIFICATION_IDENTIFIER, content: content, trigger: nil)
                 
