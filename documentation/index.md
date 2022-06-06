@@ -53,6 +53,8 @@ If you want to add Sparkle manually:
 * In <samp>Build Settings</samp> tab set "<samp>Runpath Search Paths</samp>" to `@loader_path/../Frameworks` (for non-Xcode projects add the flags `-Wl,-rpath,@loader_path/../Frameworks`). This is not a necessary step in recent versions of Xcode.
 * If you have your own process for copying/packaging your app make sure it preserves symlinks!
 
+If you enable Library Validation, which is part of the Hardened Runtime and required for notarization, you will also need to either sign your application with an `Apple Development` certificate for development (requires being in Apple's developer program), or disable library validation for Debug configurations only. Otherwise, the system may not let your application load Sparkle if you attempt to sign to run locally via an ad-hoc signature. This is not an issue for distribution when you sign your application with a Developer ID certificate.
+
 Sandboxed applications using Sparkle 2 require [additional setup](/documentation/sandboxing).
 
 [Pre-releases](//github.com/{{ site.github_username }}/Sparkle/releases) when available are published on GitHub. They are also available in Swift Package Manager, CocoaPods, and Carthage too by specifying the pre-release version in your project's manifest.

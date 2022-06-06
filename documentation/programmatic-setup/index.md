@@ -118,7 +118,7 @@ import Sparkle
 
 Note Sparkle's standard user interface cannot display release notes because macOS WebKit views cannot be used inside a Catalyst application. A simple approach to work around this is to disable showing release notes via setting [SUShowReleaseNotes](/documentation/customization) to `NO`. A more advanced approach using Sparkle 2 is instantiating [SPUUpdater](/documentation/api-reference/Classes/SPUUpdater.html) with your own [SPUUserDriver](/documentation/api-reference/Protocols/SPUUserDriver.html) and custom user interface, which may use an iOS WebKit view from the Catalyst side.
 
-If you run into issues with loading the Sparkle framework, you may need to disable library validation just for Debug environments. This is tied to how Sparkle distributions have the framework code signed with an ad-hoc signature which Catalyst may not like.
+If you run into issues with loading the Sparkle framework from your plug-in at runtime, please refer to [Add the Sparkle framework to your project](/documentation/#1-add-the-sparkle-framework-to-your-project) where the setup guide talks about having the <samp>Runpath Search Paths</samp> set to `@loader_path/../Frameworks` and using an `Apple Development` certificate for development to satisfy Library Validation. This applies to the setup for the plug-in target as well.
 
 ## Additional APIs
 
