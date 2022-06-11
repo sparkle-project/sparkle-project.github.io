@@ -16,13 +16,13 @@ In order for Sparkle to work in a sandboxed application, the framework must call
 
 Sparkle by default bundles two XPC Services inside the framework for sandboxing:
 
-* org.sparkle-project.InstallerLauncher.xpc
-* org.sparkle-project.Downloader.xpc
+* org.sparkle-project.InstallerLauncher.xpc (Installer.xpc in Sparkle 2.2 beta)
+* org.sparkle-project.Downloader.xpc (Downloader.xpc in Sparkle 2.2 beta)
 
 There are two other XPC Services, not bundled by default, for communicating to Sparkle's installer helpers:
 
-* org.sparkle-project.InstallerConnection.xpc
-* org.sparkle-project.InstallerStatus.xpc
+* org.sparkle-project.InstallerConnection.xpc (InstallerConnection.xpc in Sparkle 2.2 beta)
+* org.sparkle-project.InstallerStatus.xpc (InstallerStatus.xpc in Sparkle 2.2 beta)
 
 In order for Sparkle to work in a sandboxed application, the application must call out to XPC Services to perform the updating and installation. Only the InstallerLauncher XPC Service is strictly required. The other services are optional depending on your use case.
 
