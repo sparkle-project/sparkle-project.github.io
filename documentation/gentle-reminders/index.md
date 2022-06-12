@@ -136,7 +136,7 @@ Note that regular non-background applications (i.e, apps that show up in the Doc
 let UPDATE_NOTIFICATION_IDENTIFIER = "UpdateCheck"
 
 @NSApplicationMain
-@objc class AppDelegate: NSObject, NSApplicationDelegate, SPUStandardUserDriverDelegate, UNUserNotificationCenterDelegate {
+@objc class AppDelegate: NSObject, NSApplicationDelegate, SPUUpdaterDelegate, SPUStandardUserDriverDelegate, UNUserNotificationCenterDelegate {
     // This controller's updaterDelegate and userDriverDelegate outlets are connected to this instance as well
     @IBOutlet var updaterController: SPUStandardUpdaterController!
     // Menu bar item for our background application
