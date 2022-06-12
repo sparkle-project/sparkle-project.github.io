@@ -19,7 +19,7 @@ For creating zip archives, `ditto` can be used (behaves similar to Finder's Comp
 ditto -c -k --sequesterRsrc --keepParent MyApp.app MyApp.zip
 ```
 
-For creating a LZMA compressed archive with optimal compression (supported on macOS 10.11 and later), `tar` can be used for updates instead:
+For creating a LZMA compressed archive with optimal compression (supported on macOS 10.9 and later), `tar` can be used for updates instead:
 
 ```sh
 tar cfJ MyApp.tar.xz MyApp.app

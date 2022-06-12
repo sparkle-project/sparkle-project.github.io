@@ -67,11 +67,11 @@ BinaryDelta apply path/to/old/MyApp.app path/to/patched/MyApp.app patch.delta
 
 When you create a delta update between two versions of your application, you must ensure you are using a delta format version that your older application knows how to patch. Below is a table describing the requirements for each binary delta version.
 
-| Delta Version   | Requirements                  | Major Changes                                                                                        |
+| Delta Format   | Supports                      | Changes                                                                                        |
 | --------------- | ----------------------------- | ---------------------------------------------------------------------------------------------------- |
 | 3               | Sparkle 2.1                   | More efficient custom delta container format, lzma compression + other compression options, file rename heuristic tracking. |
 | 2               | Sparkle 1.10                  | Improved and changed hash function for reducing collisions.                                          |
-| 1 (unsupported) | Sparkle 1.5                   | Added initial binary delta format using libxar and bzip2 compression. Tracking of insertions, deletions, and binary file diffs using bsdiff. |
+| 1               | Sparkle 1.5                   | Added initial binary delta format using libxar and bzip2 compression. Tracking of insertions, deletions, and binary file diffs using bsdiff. |
 
 Note if you are using `generate_appcast`, picking the delta version to use is automatically handled. If you are using `BinaryDelta create` though, you will need to pass the appropriate delta version via the `--version` argument.
 
@@ -93,13 +93,14 @@ Binary delta updates do not support and will reject the following metadata:
 
 * Access control lists (ACLs) in either the old or new application.
 * Extended attributes containing code signing information in either the old or new application. This can be resolved by properly structuring your application such that data and code are placed in the correct directories per [Code Signing in Depth guide](https://developer.apple.com/library/archive/technotes/tn2206/_index.html#//apple_ref/doc/uid/DTS40007919-CH1-TNTAG201). Only mach-o binaries should embed code signing information.
-* Applying diffs on file systems (like FAT) that do not support file permissions and have every file marked as `0777` are not supported.
+* Creating or applying diffs on file systems which do not preserve regular permission modes like FAT are not supported. Sparkle 2.2 and later performs a permission validation test before downloading delta updates. Sparkle's executable must have file permissions `0755`.
 
 Binary delta updates will pass but ignore or warn about the following metadata:
 
 * Extended attributes changes on files are not preserved and are just ignored.
-* File permissions on symbolic links that are not `0755` are ignored, and `0755` will always be used instead. A warning will be issued. Some filesystems, eg Linux ones, do not support file permissions on symbolic links.
+* File permissions on symbolic links that are not `0755` are ignored, and `0755` will always be used instead. A warning will be issued. Some filesystems, e.g. Linux ones, do not support file permissions on symbolic links.
 * Irregular file permissions on files that are not `0755` or `0644` will be respected, but a warning may be issued (from Sparkle 2.1 onwards).
+* Custom icons users set using a resource fork (e.g. using Finder's `Get Info` window) are ignored/preserved when applying patches, but prohibited when creating patches (from Sparkle 2.2 onwards).
 
 Binary delta updates do support the following meta changes:
 

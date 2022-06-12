@@ -6,6 +6,14 @@ title: Upgrading from previous versions of Sparkle
 
 We strongly recommend upgrading Sparkle to the [latest production release](//github.com/{{ site.github_username }}/Sparkle/releases), as there have been important fixes in reliability and [security](/documentation/security) of updates. Very old versions of Sparkle also suffer some incompatibilities with the latest macOS versions.
 
+## Upgrading from Sparkle 2.1
+
+**Note**: Sparkle 2.2 is currently in beta.
+
+If you're upgrading from Sparkle 2.0 or 2.1 and sandbox your app, Sparkle 2.2 has renamed the XPC Services referenced in the [sandboxed applications](/documentation/sandboxing) guide. If you have scripts that reference these services you will need to update them.
+
+Sparkle 2.2 provides [gentle update reminders](/documentation/gentle-reminders) which background-running (dockless) applications that schedule update checks need to check out.
+
 ## Upgrading from Sparkle 1.x to 2.0
 
 Sparkle 2 now requires macOS 10.11 (El Capitan) or later.

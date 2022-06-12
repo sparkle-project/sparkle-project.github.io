@@ -82,6 +82,8 @@ Options:
     Enable verbose logging.
 ```
 
+Note Sparkle 2.2 (currently in beta) will allow running sparkle-cli as root without using `--interactive`. This page will be updated when Sparkle 2.2 is released.
+
 ### Example
 
 One example is I updated an application on my machine I knew was out of date by running:
