@@ -29,11 +29,11 @@ If you want your application to deliver scheduled alerts in a gentle yet noticea
 
 These APIs can be used to implement gentle reminders for your app:
 
-* `-[SPUStandardUserDriverDelegate supportsGentleScheduledUpdateReminders]` declares support for implementing gentle reminders
-* `-[SPUStandardUserDriverDelegate standardUserDriverShouldHandleShowingScheduledUpdate:andInImmediateFocus:]` is the method to implement to override Sparkle's handling of showing a new scheduled update with your own handling if desired
-* `-[SPUStandardUserDriverDelegate standardUserDriverWillHandleShowingUpdate:forUpdate:state:]` is the method to implement to add additional update reminders before the update will be shown by the standard user driver or by you.
-* `-[SPUStandardUserDriverDelegate standardUserDriverDidReceiveUserAttentionForUpdate:]` lets your app know when the user has given attention to a new update alert
-* `-[SPUStandardUserDriverDelegate standardUserDriverWillFinishUpdateSession]` lets your app know when the user session for handling a new update will finish
+* [`-[SPUStandardUserDriverDelegate supportsGentleScheduledUpdateReminders]`](/documentation/api-reference/Protocols/SPUStandardUserDriverDelegate.html#/c:objc(pl)SPUStandardUserDriverDelegate(py)supportsGentleScheduledUpdateReminders) declares support for implementing gentle reminders
+* [`-[SPUStandardUserDriverDelegate standardUserDriverShouldHandleShowingScheduledUpdate:andInImmediateFocus:]`](https://sparkle-project.github.io/documentation/api-reference/Protocols/SPUStandardUserDriverDelegate.html#/c:objc(pl)SPUStandardUserDriverDelegate(im)standardUserDriverShouldHandleShowingScheduledUpdate:andInImmediateFocus:) is the method to implement to override Sparkle's handling of showing a new scheduled update with your own handling if desired
+* [`-[SPUStandardUserDriverDelegate standardUserDriverWillHandleShowingUpdate:forUpdate:state:]`](https://sparkle-project.github.io/documentation/api-reference/Protocols/SPUStandardUserDriverDelegate.html#/c:objc(pl)SPUStandardUserDriverDelegate(im)standardUserDriverWillHandleShowingUpdate:forUpdate:state:) is the method to implement to add additional update reminders before the update will be shown by the standard user driver or by you.
+* [`-[SPUStandardUserDriverDelegate standardUserDriverDidReceiveUserAttentionForUpdate:]`](https://sparkle-project.github.io/documentation/api-reference/Protocols/SPUStandardUserDriverDelegate.html#/c:objc(pl)SPUStandardUserDriverDelegate(im)standardUserDriverDidReceiveUserAttentionForUpdate:) lets your app know when the user has given attention to a new update alert
+* [`-[SPUStandardUserDriverDelegate standardUserDriverWillFinishUpdateSession]`](/documentation/api-reference/Protocols/SPUStandardUserDriverDelegate.html#/c:objc(pl)SPUStandardUserDriverDelegate(im)standardUserDriverWillFinishUpdateSession) lets your app know when the user session for handling a new update will finish
 
 ### Gentle Reminders Examples
 
