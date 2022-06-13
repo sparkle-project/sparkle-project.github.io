@@ -16,7 +16,7 @@
     <header>
       <div class="content-wrapper">
         <p>
-          <a href="../index.html">Sparkle 2.1.0 Docs</a>
+          <a href="../index.html">Sparkle 2.2.0-beta.1 Docs</a>
           <span class="no-mobile"> (58% documented)</span>
         </p>
     
@@ -184,12 +184,12 @@ A delegate may want to implement this method if they want to show in-app or offl
                           <div class="language">
                             <p class="aside-title">Objective-C</p>
                             <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">standardUserDriverShowVersionHistoryForAppcastItem</span><span class="p">:</span>
-    <span class="p">(</span><span class="n"><a href="../Classes/SUAppcastItem.html">SUAppcastItem</a></span> <span class="o">*</span><span class="n">_Nonnull</span><span class="p">)</span><span class="nv">item</span><span class="p">;</span></code></pre>
+    <span class="p">(</span><span class="n">nonnull</span> <span class="n"><a href="../Classes/SUAppcastItem.html">SUAppcastItem</a></span> <span class="o">*</span><span class="p">)</span><span class="nv">item</span><span class="p">;</span></code></pre>
 
                           </div>
                           <div class="language">
                             <p class="aside-title">Swift</p>
-                            <pre class="highlight swift"><code><span class="kd">optional</span> <span class="kd">func</span> <span class="nf">standardUserDriverShowVersionHistory</span><span class="p">(</span><span class="n">forAppcastItem</span> <span class="nv">item</span><span class="p">:</span> <span class="kt">Any</span><span class="o">!</span><span class="p">)</span></code></pre>
+                            <pre class="highlight swift"><code><span class="kd">optional</span> <span class="kd">func</span> <span class="nf">standardUserDriverShowVersionHistory</span><span class="p">(</span><span class="k">for</span> <span class="nv">item</span><span class="p">:</span> <span class="kt"><a href="../Classes/SUAppcastItem.html">SUAppcastItem</a></span><span class="p">)</span></code></pre>
 
                           </div>
                         </div>
@@ -211,6 +211,377 @@ A delegate may want to implement this method if they want to show in-app or offl
                               </tr>
                             </tbody>
                           </table>
+                        </div>
+                      </section>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <div>
+                      <code>
+                      <a name="/c:objc(pl)SPUStandardUserDriverDelegate(im)standardUserDriverAllowsMinimizableStatusWindow"></a>
+                      <a name="//apple_ref/objc/Method/-standardUserDriverAllowsMinimizableStatusWindow" class="dashAnchor"></a>
+                      <a class="token" href="#/c:objc(pl)SPUStandardUserDriverDelegate(im)standardUserDriverAllowsMinimizableStatusWindow">-standardUserDriverAllowsMinimizableStatusWindow</a>
+                      </code>
+                    </div>
+                    <div class="height-container">
+                      <div class="pointer-container"></div>
+                      <section class="section">
+                        <div class="pointer"></div>
+                        <div class="abstract">
+                          <p>Specifies whether or not the download, extraction, and installing status windows allows to be minimized.</p>
+
+<p>By default, the status window showing the current status of the update (download, extraction, ready to install) is allowed to be minimized
+for regular application bundle updates.</p>
+
+                        </div>
+                        <div class="declaration">
+                          <h4>Declaration</h4>
+                          <div class="language">
+                            <p class="aside-title">Objective-C</p>
+                            <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span><span class="n">standardUserDriverAllowsMinimizableStatusWindow</span><span class="p">;</span></code></pre>
+
+                          </div>
+                          <div class="language">
+                            <p class="aside-title">Swift</p>
+                            <pre class="highlight swift"><code><span class="kd">optional</span> <span class="kd">func</span> <span class="nf">standardUserDriverAllowsMinimizableStatusWindow</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                          </div>
+                        </div>
+                        <div>
+                          <h4>Return Value</h4>
+                          <p><code>YES</code> if the status window is allowed to be minimized (default behavior), otherwise <code>NO.</code></p>
+                        </div>
+                      </section>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <div>
+                      <code>
+                      <a name="/c:objc(pl)SPUStandardUserDriverDelegate(py)supportsGentleScheduledUpdateReminders"></a>
+                      <a name="//apple_ref/objc/Property/supportsGentleScheduledUpdateReminders" class="dashAnchor"></a>
+                      <a class="token" href="#/c:objc(pl)SPUStandardUserDriverDelegate(py)supportsGentleScheduledUpdateReminders">supportsGentleScheduledUpdateReminders</a>
+                      </code>
+                    </div>
+                    <div class="height-container">
+                      <div class="pointer-container"></div>
+                      <section class="section">
+                        <div class="pointer"></div>
+                        <div class="abstract">
+                          <p>Declares whether or not gentle scheduled update reminders are supported.</p>
+
+<p>The delegate may implement scheduled update reminders that are presented in a gentle manner by implementing one or both of:
+<code>-standardUserDriverWillShowUpdate:state:</code> and <code>-standardUserDriverShouldHandleShowingUpdateAlertForScheduledUpdate:andInImmediateFocus:</code></p>
+
+<p>Visit <a href="https://sparkle-project.org/documentation/gentle-reminders">https://sparkle-project.org/documentation/gentle-reminders</a> for more information and examples.</p>
+
+                        </div>
+                        <div class="declaration">
+                          <h4>Declaration</h4>
+                          <div class="language">
+                            <p class="aside-title">Objective-C</p>
+                            <pre class="highlight objective_c"><code><span class="k">@optional</span>
+<span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">readonly</span><span class="p">)</span> <span class="n">BOOL</span> <span class="n">supportsGentleScheduledUpdateReminders</span><span class="p">;</span></code></pre>
+
+                          </div>
+                          <div class="language">
+                            <p class="aside-title">Swift</p>
+                            <pre class="highlight swift"><code><span class="kd">optional</span> <span class="k">var</span> <span class="nv">supportsGentleScheduledUpdateReminders</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                          </div>
+                        </div>
+                        <div>
+                          <h4>Return Value</h4>
+                          <p><code>YES</code> if gentle scheduled update reminders are implemented by standard user driver delegate, otherwise <code>NO</code> (default).</p>
+                        </div>
+                      </section>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <div>
+                      <code>
+                      <a name="/c:objc(pl)SPUStandardUserDriverDelegate(im)standardUserDriverShouldHandleShowingScheduledUpdate:andInImmediateFocus:"></a>
+                      <a name="//apple_ref/objc/Method/-standardUserDriverShouldHandleShowingScheduledUpdate:andInImmediateFocus:" class="dashAnchor"></a>
+                      <a class="token" href="#/c:objc(pl)SPUStandardUserDriverDelegate(im)standardUserDriverShouldHandleShowingScheduledUpdate:andInImmediateFocus:">-standardUserDriverShouldHandleShowingScheduledUpdate:<wbr>andInImmediateFocus:<wbr></a>
+                      </code>
+                    </div>
+                    <div class="height-container">
+                      <div class="pointer-container"></div>
+                      <section class="section">
+                        <div class="pointer"></div>
+                        <div class="abstract">
+                          <p>Specifies if the standard user driver should handle showing a new scheduled update, or if its delegate should handle showing the update instead.</p>
+
+<p>If you implement this method and return <code>NO</code> the delegate is then responsible for showing the update,
+which must be implemented and done in <code><a href="../Protocols/SPUStandardUserDriverDelegate.html#/c:objc(pl)SPUStandardUserDriverDelegate(im)standardUserDriverWillHandleShowingUpdate:forUpdate:state:">-standardUserDriverWillHandleShowingUpdate:forUpdate:state:</a></code>
+The motivation for the delegate being responsible for showing updates is to override Sparkle&rsquo;s default behavior
+and add gentle reminders for new updates.</p>
+
+<p>Returning <code>YES</code> is the default behavior and allows the standard user driver to handle showing the update.</p>
+
+<p>If the standard user driver handles showing the update, <code>immediateFocus</code> reflects whether or not it will show the update in immediate and utmost focus.
+The standard user driver may choose to show the update in immediate and utmost focus when the app was launched recently
+or the system has been idle for some time. If <code>immediateFocus</code> is <code>NO</code> the standard user driver may want to
+defer showing the update until the user comes back to the app.
+For background running applications, when <code>immediateFocus</code> is  <code>NO</code> the standard user driver will always want to show
+the update alert immediately, but behind other running applications or behind the app&rsquo;s own windows if it&rsquo;s currently active.</p>
+
+<p>There should be no side effects made when implementing this method so you should just return <code>YES</code> or <code>NO</code>
+You will also want to implement <code><a href="../Protocols/SPUStandardUserDriverDelegate.html#/c:objc(pl)SPUStandardUserDriverDelegate(im)standardUserDriverWillHandleShowingUpdate:forUpdate:state:">-standardUserDriverWillHandleShowingUpdate:forUpdate:state:</a></code> for adding additional update reminders.</p>
+
+<p>This method is not called for user-initiated update checks. The standard user driver always handles those.</p>
+
+<p>Visit <a href="https://sparkle-project.org/documentation/gentle-reminders">https://sparkle-project.org/documentation/gentle-reminders</a> for more information and examples.</p>
+
+                        </div>
+                        <div class="declaration">
+                          <h4>Declaration</h4>
+                          <div class="language">
+                            <p class="aside-title">Objective-C</p>
+                            <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span><span class="nf">standardUserDriverShouldHandleShowingScheduledUpdate</span><span class="p">:</span>
+            <span class="p">(</span><span class="n">nonnull</span> <span class="n"><a href="../Classes/SUAppcastItem.html">SUAppcastItem</a></span> <span class="o">*</span><span class="p">)</span><span class="nv">update</span>
+                                         <span class="nf">andInImmediateFocus</span><span class="p">:</span>
+                                             <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span><span class="nv">immediateFocus</span><span class="p">;</span></code></pre>
+
+                          </div>
+                          <div class="language">
+                            <p class="aside-title">Swift</p>
+                            <pre class="highlight swift"><code><span class="kd">optional</span> <span class="kd">func</span> <span class="nf">standardUserDriverShouldHandleShowingScheduledUpdate</span><span class="p">(</span><span class="n">_</span> <span class="nv">update</span><span class="p">:</span> <span class="kt"><a href="../Classes/SUAppcastItem.html">SUAppcastItem</a></span><span class="p">,</span> <span class="n">andInImmediateFocus</span> <span class="nv">immediateFocus</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                          </div>
+                        </div>
+                        <div>
+                          <h4>Parameters</h4>
+                          <table class="graybox">
+                            <tbody>
+                              <tr>
+                                <td>
+                                  <code>
+                                  <em>update</em>
+                                  </code>
+                                </td>
+                                <td>
+                                  <div>
+                                    <p>The update the standard user driver should show.</p>
+                                  </div>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>
+                                  <code>
+                                  <em>immediateFocus</em>
+                                  </code>
+                                </td>
+                                <td>
+                                  <div>
+                                    <p>If <code>immediateFocus</code> is <code>YES,</code> then the standard user driver proposes to show the update in immediate and utmost focus. See discussion for more details.</p>
+                                  </div>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                        <div>
+                          <h4>Return Value</h4>
+                          <p><code>YES</code> if the standard user should handle showing the scheduled update (default behavior), otherwise <code>NO</code> if the delegate handles showing it.</p>
+                        </div>
+                      </section>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <div>
+                      <code>
+                      <a name="/c:objc(pl)SPUStandardUserDriverDelegate(im)standardUserDriverWillHandleShowingUpdate:forUpdate:state:"></a>
+                      <a name="//apple_ref/objc/Method/-standardUserDriverWillHandleShowingUpdate:forUpdate:state:" class="dashAnchor"></a>
+                      <a class="token" href="#/c:objc(pl)SPUStandardUserDriverDelegate(im)standardUserDriverWillHandleShowingUpdate:forUpdate:state:">-standardUserDriverWillHandleShowingUpdate:<wbr>forUpdate:<wbr>state:<wbr></a>
+                      </code>
+                    </div>
+                    <div class="height-container">
+                      <div class="pointer-container"></div>
+                      <section class="section">
+                        <div class="pointer"></div>
+                        <div class="abstract">
+                          <p>Called before an update will be shown to the user.</p>
+
+<p>If the standard user driver handles showing the update, <code>handleShowingUpdate</code> will be <code>YES</code>
+In this case, if the update is not user initiated (<code>state.userInitiated</code> is <code>NO)</code> then the standard user driver may defer showing the update,
+and it may be shown when the user comes back to the app.
+For a background (dockless) running app, the update alert will always show up immediately but behind other running applications or behind
+its own windows if the app is currently active.</p>
+
+<p>If the delegate declared it handles showing the update by returning <code>NO</code> in <code><a href="../Protocols/SPUStandardUserDriverDelegate.html#/c:objc(pl)SPUStandardUserDriverDelegate(im)standardUserDriverShouldHandleShowingScheduledUpdate:andInImmediateFocus:">-standardUserDriverShouldHandleShowingScheduledUpdate:andInImmediateFocus:</a></code>
+then the delegate should handle showing update reminders in this method, or at some later point.
+In this case, <code>handleShowingUpdate</code> will be <code>NO.</code>
+To bring the update alert in focus, you may call <code>-[SPUStandardUpdateController checkForUpdates:]</code> or <code><a href="../Classes/SPUUpdater.html#/c:objc(cs)SPUUpdater(im)checkForUpdates">-[SPUUpdater checkForUpdates]</a></code>
+You may want to show additional UI indicators in your application that will show this update in focus
+and want to dismiss additional UI indicators in <code><a href="../Protocols/SPUStandardUserDriverDelegate.html#/c:objc(pl)SPUStandardUserDriverDelegate(im)standardUserDriverWillFinishUpdateSession">-standardUserDriverWillFinishUpdateSession</a></code> or <code><a href="../Protocols/SPUStandardUserDriverDelegate.html#/c:objc(pl)SPUStandardUserDriverDelegate(im)standardUserDriverDidReceiveUserAttentionForUpdate:">-standardUserDriverDidReceiveUserAttentionForUpdate:</a></code></p>
+
+<p>If <code>state.userInitiated</code> is <code>YES</code> then the standard user driver always handles showing the new update and <code>handleShowingUpdate</code> will be <code>YES.</code>
+In this case, it may still be useful for the delegate to intercept this method right before a new update will be shown.</p>
+
+<p>This method is not called when bringing an update that has already been presented back in focus.</p>
+
+<p>Visit <a href="https://sparkle-project.org/documentation/gentle-reminders">https://sparkle-project.org/documentation/gentle-reminders</a> for more information and examples.</p>
+
+                        </div>
+                        <div class="declaration">
+                          <h4>Declaration</h4>
+                          <div class="language">
+                            <p class="aside-title">Objective-C</p>
+                            <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+    <span class="nf">standardUserDriverWillHandleShowingUpdate</span><span class="p">:(</span><span class="n">BOOL</span><span class="p">)</span><span class="nv">handleShowingUpdate</span>
+                                    <span class="nf">forUpdate</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n"><a href="../Classes/SUAppcastItem.html">SUAppcastItem</a></span> <span class="o">*</span><span class="p">)</span><span class="nv">update</span>
+                                        <span class="nf">state</span><span class="p">:</span>
+                                            <span class="p">(</span><span class="n">nonnull</span> <span class="n"><a href="../Classes/SPUUserUpdateState.html">SPUUserUpdateState</a></span> <span class="o">*</span><span class="p">)</span><span class="nv">state</span><span class="p">;</span></code></pre>
+
+                          </div>
+                          <div class="language">
+                            <p class="aside-title">Swift</p>
+                            <pre class="highlight swift"><code><span class="kd">optional</span> <span class="kd">func</span> <span class="nf">standardUserDriverWillHandleShowingUpdate</span><span class="p">(</span><span class="n">_</span> <span class="nv">handleShowingUpdate</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">,</span> <span class="n">forUpdate</span> <span class="nv">update</span><span class="p">:</span> <span class="kt"><a href="../Classes/SUAppcastItem.html">SUAppcastItem</a></span><span class="p">,</span> <span class="nv">state</span><span class="p">:</span> <span class="kt"><a href="../Classes/SPUUserUpdateState.html">SPUUserUpdateState</a></span><span class="p">)</span></code></pre>
+
+                          </div>
+                        </div>
+                        <div>
+                          <h4>Parameters</h4>
+                          <table class="graybox">
+                            <tbody>
+                              <tr>
+                                <td>
+                                  <code>
+                                  <em>handleShowingUpdate</em>
+                                  </code>
+                                </td>
+                                <td>
+                                  <div>
+                                    <p><code>YES</code> if the standard user driver handles showing the update, otherwise <code>NO</code> if the delegate handles showing the update.</p>
+                                  </div>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>
+                                  <code>
+                                  <em>update</em>
+                                  </code>
+                                </td>
+                                <td>
+                                  <div>
+                                    <p>The update that will be shown.</p>
+                                  </div>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>
+                                  <code>
+                                  <em>state</em>
+                                  </code>
+                                </td>
+                                <td>
+                                  <div>
+                                    <p>The user state of the update which includes if the update check was initiated by the user.</p>
+                                  </div>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </section>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <div>
+                      <code>
+                      <a name="/c:objc(pl)SPUStandardUserDriverDelegate(im)standardUserDriverDidReceiveUserAttentionForUpdate:"></a>
+                      <a name="//apple_ref/objc/Method/-standardUserDriverDidReceiveUserAttentionForUpdate:" class="dashAnchor"></a>
+                      <a class="token" href="#/c:objc(pl)SPUStandardUserDriverDelegate(im)standardUserDriverDidReceiveUserAttentionForUpdate:">-standardUserDriverDidReceiveUserAttentionForUpdate:<wbr></a>
+                      </code>
+                    </div>
+                    <div class="height-container">
+                      <div class="pointer-container"></div>
+                      <section class="section">
+                        <div class="pointer"></div>
+                        <div class="abstract">
+                          <p>Called when a new update first receives attention from the user.</p>
+
+<p>This occurs either when the user first brings the update alert in utmost focus or when the user makes a choice to install an update or dismiss/skip it.</p>
+
+<p>This may be useful to intercept for dismissing custom attention-based UI indicators (e.g, user notifications) introduced when implementing
+<code><a href="../Protocols/SPUStandardUserDriverDelegate.html#/c:objc(pl)SPUStandardUserDriverDelegate(im)standardUserDriverShouldHandleShowingScheduledUpdate:andInImmediateFocus:">-standardUserDriverShouldHandleShowingScheduledUpdate:andInImmediateFocus:</a></code></p>
+
+<p>For custom UI indicators that need to still be on screen after the user has started to install an update, please see <code>standardUserDriverWillFinishUpdateSession</code>.</p>
+
+                        </div>
+                        <div class="declaration">
+                          <h4>Declaration</h4>
+                          <div class="language">
+                            <p class="aside-title">Objective-C</p>
+                            <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">standardUserDriverDidReceiveUserAttentionForUpdate</span><span class="p">:</span>
+    <span class="p">(</span><span class="n">nonnull</span> <span class="n"><a href="../Classes/SUAppcastItem.html">SUAppcastItem</a></span> <span class="o">*</span><span class="p">)</span><span class="nv">update</span><span class="p">;</span></code></pre>
+
+                          </div>
+                          <div class="language">
+                            <p class="aside-title">Swift</p>
+                            <pre class="highlight swift"><code><span class="kd">optional</span> <span class="kd">func</span> <span class="nf">standardUserDriverDidReceiveUserAttention</span><span class="p">(</span><span class="n">forUpdate</span> <span class="nv">update</span><span class="p">:</span> <span class="kt"><a href="../Classes/SUAppcastItem.html">SUAppcastItem</a></span><span class="p">)</span></code></pre>
+
+                          </div>
+                        </div>
+                        <div>
+                          <h4>Parameters</h4>
+                          <table class="graybox">
+                            <tbody>
+                              <tr>
+                                <td>
+                                  <code>
+                                  <em>update</em>
+                                  </code>
+                                </td>
+                                <td>
+                                  <div>
+                                    <p>The new update that the user gave attention to.</p>
+                                  </div>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </section>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <div>
+                      <code>
+                      <a name="/c:objc(pl)SPUStandardUserDriverDelegate(im)standardUserDriverWillFinishUpdateSession"></a>
+                      <a name="//apple_ref/objc/Method/-standardUserDriverWillFinishUpdateSession" class="dashAnchor"></a>
+                      <a class="token" href="#/c:objc(pl)SPUStandardUserDriverDelegate(im)standardUserDriverWillFinishUpdateSession">-standardUserDriverWillFinishUpdateSession</a>
+                      </code>
+                    </div>
+                    <div class="height-container">
+                      <div class="pointer-container"></div>
+                      <section class="section">
+                        <div class="pointer"></div>
+                        <div class="abstract">
+                          <p>Called before the standard user driver session will finish its current update session.</p>
+
+<p>This may occur after the user has dismissed / skipped a new update or after an update error has occurred.
+For updaters updating external/other bundles, this may also be called after an update has been successfully installed.</p>
+
+<p>This may be useful to intercept for dismissing custom UI indicators introduced when implementing
+<code><a href="../Protocols/SPUStandardUserDriverDelegate.html#/c:objc(pl)SPUStandardUserDriverDelegate(im)standardUserDriverShouldHandleShowingScheduledUpdate:andInImmediateFocus:">-standardUserDriverShouldHandleShowingScheduledUpdate:andInImmediateFocus:</a></code></p>
+
+<p>For UI indicators that need to be dismissed when the user has given attention to a new update alert,
+please see <code>standardUserDriverDidReceiveUserAttentionForUpdate:</code></p>
+
+                        </div>
+                        <div class="declaration">
+                          <h4>Declaration</h4>
+                          <div class="language">
+                            <p class="aside-title">Objective-C</p>
+                            <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">standardUserDriverWillFinishUpdateSession</span><span class="p">;</span></code></pre>
+
+                          </div>
+                          <div class="language">
+                            <p class="aside-title">Swift</p>
+                            <pre class="highlight swift"><code><span class="kd">optional</span> <span class="kd">func</span> <span class="nf">standardUserDriverWillFinishUpdateSession</span><span class="p">()</span></code></pre>
+
+                          </div>
                         </div>
                       </section>
                     </div>
@@ -381,8 +752,8 @@ A delegate may want to implement this method if they want to show in-app or offl
       </div>
       <div class="footer-wrapper">
         <section id="footer">
-          <p>&copy; 2022 <a class="link" href="https://sparkle-project.org" target="_blank" rel="external noopener">Sparkle Project</a>. All rights reserved. (Last updated: 2022-02-18)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.14.1</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
+          <p>&copy; 2022 <a class="link" href="https://sparkle-project.org" target="_blank" rel="external noopener">Sparkle Project</a>. All rights reserved. (Last updated: 2022-06-13)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.14.2</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
         </section>
       </div>
     </div>
