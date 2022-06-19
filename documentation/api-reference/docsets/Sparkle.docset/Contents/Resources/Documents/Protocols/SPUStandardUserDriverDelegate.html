@@ -270,7 +270,7 @@ for regular application bundle updates.</p>
                           <p>Declares whether or not gentle scheduled update reminders are supported.</p>
 
 <p>The delegate may implement scheduled update reminders that are presented in a gentle manner by implementing one or both of:
-<code>-standardUserDriverWillShowUpdate:state:</code> and <code>-standardUserDriverShouldHandleShowingUpdateAlertForScheduledUpdate:andInImmediateFocus:</code></p>
+<code><a href="../Protocols/SPUStandardUserDriverDelegate.html#/c:objc(pl)SPUStandardUserDriverDelegate(im)standardUserDriverWillHandleShowingUpdate:forUpdate:state:">-standardUserDriverWillHandleShowingUpdate:forUpdate:state:</a></code> and <code><a href="../Protocols/SPUStandardUserDriverDelegate.html#/c:objc(pl)SPUStandardUserDriverDelegate(im)standardUserDriverShouldHandleShowingScheduledUpdate:andInImmediateFocus:">-standardUserDriverShouldHandleShowingScheduledUpdate:andInImmediateFocus:</a></code></p>
 
 <p>Visit <a href="https://sparkle-project.org/documentation/gentle-reminders">https://sparkle-project.org/documentation/gentle-reminders</a> for more information and examples.</p>
 
@@ -320,8 +320,9 @@ and add gentle reminders for new updates.</p>
 
 <p>If the standard user driver handles showing the update, <code>immediateFocus</code> reflects whether or not it will show the update in immediate and utmost focus.
 The standard user driver may choose to show the update in immediate and utmost focus when the app was launched recently
-or the system has been idle for some time. If <code>immediateFocus</code> is <code>NO</code> the standard user driver may want to
-defer showing the update until the user comes back to the app.
+or the system has been idle for some time.</p>
+
+<p>If <code>immediateFocus</code> is <code>NO</code> the standard user driver may want to defer showing the update until the user comes back to the app.
 For background running applications, when <code>immediateFocus</code> is  <code>NO</code> the standard user driver will always want to show
 the update alert immediately, but behind other running applications or behind the app&rsquo;s own windows if it&rsquo;s currently active.</p>
 
@@ -402,16 +403,14 @@ You will also want to implement <code><a href="../Protocols/SPUStandardUserDrive
                         <div class="abstract">
                           <p>Called before an update will be shown to the user.</p>
 
-<p>If the standard user driver handles showing the update, <code>handleShowingUpdate</code> will be <code>YES</code>
-In this case, if the update is not user initiated (<code>state.userInitiated</code> is <code>NO)</code> then the standard user driver may defer showing the update,
-and it may be shown when the user comes back to the app.
-For a background (dockless) running app, the update alert will always show up immediately but behind other running applications or behind
-its own windows if the app is currently active.</p>
+<p>If the standard user driver handles showing the update, <code>handleShowingUpdate</code> will be <code>YES</code>.
+Please see <code><a href="../Protocols/SPUStandardUserDriverDelegate.html#/c:objc(pl)SPUStandardUserDriverDelegate(im)standardUserDriverShouldHandleShowingScheduledUpdate:andInImmediateFocus:">-standardUserDriverShouldHandleShowingScheduledUpdate:andInImmediateFocus:</a></code> for how the standard user driver
+may handle showing scheduled updates when <code>handleShowingUpdate</code> is <code>YES</code> and <code>state.userInitiated</code> is <code>NO</code>.</p>
 
 <p>If the delegate declared it handles showing the update by returning <code>NO</code> in <code><a href="../Protocols/SPUStandardUserDriverDelegate.html#/c:objc(pl)SPUStandardUserDriverDelegate(im)standardUserDriverShouldHandleShowingScheduledUpdate:andInImmediateFocus:">-standardUserDriverShouldHandleShowingScheduledUpdate:andInImmediateFocus:</a></code>
 then the delegate should handle showing update reminders in this method, or at some later point.
 In this case, <code>handleShowingUpdate</code> will be <code>NO.</code>
-To bring the update alert in focus, you may call <code>-[SPUStandardUpdateController checkForUpdates:]</code> or <code><a href="../Classes/SPUUpdater.html#/c:objc(cs)SPUUpdater(im)checkForUpdates">-[SPUUpdater checkForUpdates]</a></code>
+To bring the update alert in focus, you may call <code><a href="../Classes/SPUStandardUpdaterController.html#/c:objc(cs)SPUStandardUpdaterController(im)checkForUpdates:">-[SPUStandardUpdaterController checkForUpdates:]</a></code> or <code><a href="../Classes/SPUUpdater.html#/c:objc(cs)SPUUpdater(im)checkForUpdates">-[SPUUpdater checkForUpdates]</a></code>.
 You may want to show additional UI indicators in your application that will show this update in focus
 and want to dismiss additional UI indicators in <code><a href="../Protocols/SPUStandardUserDriverDelegate.html#/c:objc(pl)SPUStandardUserDriverDelegate(im)standardUserDriverWillFinishUpdateSession">-standardUserDriverWillFinishUpdateSession</a></code> or <code><a href="../Protocols/SPUStandardUserDriverDelegate.html#/c:objc(pl)SPUStandardUserDriverDelegate(im)standardUserDriverDidReceiveUserAttentionForUpdate:">-standardUserDriverDidReceiveUserAttentionForUpdate:</a></code></p>
 
@@ -567,7 +566,7 @@ For updaters updating external/other bundles, this may also be called after an u
 <code><a href="../Protocols/SPUStandardUserDriverDelegate.html#/c:objc(pl)SPUStandardUserDriverDelegate(im)standardUserDriverShouldHandleShowingScheduledUpdate:andInImmediateFocus:">-standardUserDriverShouldHandleShowingScheduledUpdate:andInImmediateFocus:</a></code></p>
 
 <p>For UI indicators that need to be dismissed when the user has given attention to a new update alert,
-please see <code>standardUserDriverDidReceiveUserAttentionForUpdate:</code></p>
+please see <code><a href="../Protocols/SPUStandardUserDriverDelegate.html#/c:objc(pl)SPUStandardUserDriverDelegate(im)standardUserDriverDidReceiveUserAttentionForUpdate:">-standardUserDriverDidReceiveUserAttentionForUpdate:</a></code></p>
 
                         </div>
                         <div class="declaration">
@@ -752,7 +751,7 @@ please see <code>standardUserDriverDidReceiveUserAttentionForUpdate:</code></p>
       </div>
       <div class="footer-wrapper">
         <section id="footer">
-          <p>&copy; 2022 <a class="link" href="https://sparkle-project.org" target="_blank" rel="external noopener">Sparkle Project</a>. All rights reserved. (Last updated: 2022-06-13)</p>
+          <p>&copy; 2022 <a class="link" href="https://sparkle-project.org" target="_blank" rel="external noopener">Sparkle Project</a>. All rights reserved. (Last updated: 2022-06-19)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.14.2</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
         </section>
       </div>
