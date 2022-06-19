@@ -21,7 +21,7 @@ As of Sparkle 2.2, Sparkle prioritizes showing scheduled update alerts for regul
 
 For backgrounded applications (apps that do not appear in the Dock), Sparkle 2.2 onwards will not let a scheduled update alert steal focus from another application or window that may be currently active -- with the one exception of when your application just launched. Scheduled update alerts that show up after launch will be presented behind other apps and windows.
 
-Note even for updates downloaded automatically and silently in the background, Sparkle may show an update alert to the user if the application hasn't quit for 1 week or if the user needs to authorize to install an update due to lack of sufficient write permissions. Sparkle does not operate in a UI-less mode in all cases even if updates are set to automatically download.
+Note even for updates downloaded silently in the background and installed after the app terminates, Sparkle may show an update alert to the user if the application hasn't quit for 1 week or if the user needs to authorize to install an update due to lack of sufficient write permissions. Sparkle does not operate in a UI-less mode in all cases even if updates are set to automatically download.
 
 If you want your application to deliver scheduled alerts in a gentle yet noticeable manner, you may opt into Sparkle's Gentle Reminders APIs. These are a part of [SPUStandardUserDriverDelegate](/documentation/api-reference/Protocols/SPUStandardUserDriverDelegate.html), which is a part of Sparkle's standard user interface.
 
@@ -29,11 +29,11 @@ If you want your application to deliver scheduled alerts in a gentle yet noticea
 
 These APIs can be used to implement gentle reminders for your app:
 
-* [`-[SPUStandardUserDriverDelegate supportsGentleScheduledUpdateReminders]`](/documentation/api-reference/Protocols/SPUStandardUserDriverDelegate.html#/c:objc(pl)SPUStandardUserDriverDelegate(py)supportsGentleScheduledUpdateReminders) declares support for implementing gentle reminders
-* [`-[SPUStandardUserDriverDelegate standardUserDriverShouldHandleShowingScheduledUpdate:andInImmediateFocus:]`](https://sparkle-project.github.io/documentation/api-reference/Protocols/SPUStandardUserDriverDelegate.html#/c:objc(pl)SPUStandardUserDriverDelegate(im)standardUserDriverShouldHandleShowingScheduledUpdate:andInImmediateFocus:) is the method to implement to override Sparkle's handling of showing a new scheduled update with your own handling if desired
-* [`-[SPUStandardUserDriverDelegate standardUserDriverWillHandleShowingUpdate:forUpdate:state:]`](https://sparkle-project.github.io/documentation/api-reference/Protocols/SPUStandardUserDriverDelegate.html#/c:objc(pl)SPUStandardUserDriverDelegate(im)standardUserDriverWillHandleShowingUpdate:forUpdate:state:) is the method to implement to add additional update reminders before the update will be shown by the standard user driver or by you.
-* [`-[SPUStandardUserDriverDelegate standardUserDriverDidReceiveUserAttentionForUpdate:]`](https://sparkle-project.github.io/documentation/api-reference/Protocols/SPUStandardUserDriverDelegate.html#/c:objc(pl)SPUStandardUserDriverDelegate(im)standardUserDriverDidReceiveUserAttentionForUpdate:) lets your app know when the user has given attention to a new update alert
-* [`-[SPUStandardUserDriverDelegate standardUserDriverWillFinishUpdateSession]`](/documentation/api-reference/Protocols/SPUStandardUserDriverDelegate.html#/c:objc(pl)SPUStandardUserDriverDelegate(im)standardUserDriverWillFinishUpdateSession) lets your app know when the user session for handling a new update will finish
+* [`-[SPUStandardUserDriverDelegate supportsGentleScheduledUpdateReminders]`](/documentation/api-reference/Protocols/SPUStandardUserDriverDelegate.html#/c:objc(pl)SPUStandardUserDriverDelegate(py)supportsGentleScheduledUpdateReminders) declares support for implementing gentle reminders.
+* [`-[SPUStandardUserDriverDelegate standardUserDriverShouldHandleShowingScheduledUpdate:andInImmediateFocus:]`](https://sparkle-project.github.io/documentation/api-reference/Protocols/SPUStandardUserDriverDelegate.html#/c:objc(pl)SPUStandardUserDriverDelegate(im)standardUserDriverShouldHandleShowingScheduledUpdate:andInImmediateFocus:) is the method to implement to override Sparkle's handling of showing a new scheduled update with your own handling if desired.
+* [`-[SPUStandardUserDriverDelegate standardUserDriverWillHandleShowingUpdate:forUpdate:state:]`](https://sparkle-project.github.io/documentation/api-reference/Protocols/SPUStandardUserDriverDelegate.html#/c:objc(pl)SPUStandardUserDriverDelegate(im)standardUserDriverWillHandleShowingUpdate:forUpdate:state:) is the method to implement to add additional update reminders before the update will be shown by the standard user driver or by its delegate.
+* [`-[SPUStandardUserDriverDelegate standardUserDriverDidReceiveUserAttentionForUpdate:]`](https://sparkle-project.github.io/documentation/api-reference/Protocols/SPUStandardUserDriverDelegate.html#/c:objc(pl)SPUStandardUserDriverDelegate(im)standardUserDriverDidReceiveUserAttentionForUpdate:) lets your app know when the user has given attention to a new update alert.
+* [`-[SPUStandardUserDriverDelegate standardUserDriverWillFinishUpdateSession]`](/documentation/api-reference/Protocols/SPUStandardUserDriverDelegate.html#/c:objc(pl)SPUStandardUserDriverDelegate(im)standardUserDriverWillFinishUpdateSession) lets your app know when the user session for handling a new update will finish.
 
 ### Gentle Reminders Examples
 
@@ -235,7 +235,7 @@ let UPDATE_NOTIFICATION_IDENTIFIER = "UpdateCheck"
     }
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
-        if response.actionIdentifier == UNNotificationDefaultActionIdentifier {
+        if response.notification.request.identifier == UPDATE_NOTIFICATION_IDENTIFIER && response.actionIdentifier == UNNotificationDefaultActionIdentifier { {
             // If the notificaton is clicked on, make sure we bring the update in focus
             // If the app is terminated while the notification is clicked on,
             // this will launch the application and perform a new update check.
