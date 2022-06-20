@@ -235,7 +235,7 @@ let UPDATE_NOTIFICATION_IDENTIFIER = "UpdateCheck"
     }
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
-        if response.notification.request.identifier == UPDATE_NOTIFICATION_IDENTIFIER && response.actionIdentifier == UNNotificationDefaultActionIdentifier { {
+        if response.notification.request.identifier == UPDATE_NOTIFICATION_IDENTIFIER && response.actionIdentifier == UNNotificationDefaultActionIdentifier {
             // If the notificaton is clicked on, make sure we bring the update in focus
             // If the app is terminated while the notification is clicked on,
             // this will launch the application and perform a new update check.
