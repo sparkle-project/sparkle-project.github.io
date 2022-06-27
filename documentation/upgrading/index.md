@@ -6,15 +6,17 @@ title: Upgrading from previous versions of Sparkle
 
 We strongly recommend upgrading Sparkle to the [latest production release](//github.com/{{ site.github_username }}/Sparkle/releases), as there have been important fixes in reliability and [security](/documentation/security) of updates. Very old versions of Sparkle also suffer some incompatibilities with the latest macOS versions.
 
-## Upgrading from Sparkle 2.1
+## Upgrading to Sparkle 2.2
 
 **Note**: Sparkle 2.2 is currently in beta.
 
 If you're upgrading from Sparkle 2.0 or 2.1 and sandbox your app, Sparkle 2.2 has renamed the XPC Services referenced in the [sandboxed applications](/documentation/sandboxing) guide. If you have scripts that reference these services you will need to update them.
 
-Sparkle 2.2 provides [gentle update reminders](/documentation/gentle-reminders) which background-running (dockless) applications that schedule update checks need to check out.
+Sparkle 2.2 provides [gentle update reminders](/documentation/gentle-reminders) which background-running (dockless) applications that schedule update checks at the least need to check out.
 
-## Upgrading from Sparkle 1.x to 2.0
+The `-s` flag to `generate_appcast` and `sign_update` for passing the private EdDSA key as a command line argument is now deprecated. Please run these tools with `-h` for more information if you were using this option.
+
+## Upgrading to Sparkle 2.0
 
 Sparkle 2 now requires macOS 10.11 (El Capitan) or later.
 
@@ -74,11 +76,11 @@ Sparkle 2 enhances support for [major upgrades](/documentation/publishing#major-
 
 See [Sparkle 2's APIs](/documentation/api-reference) for more information.
 
-## Upgrading from Sparkle 1.25 and older
+## Upgrading to Sparkle 1.26
 
 Support for serving bare, or non-archived, flat packages (`*.pkg` or `*.mpkg`) has been added in Sparkle 1.26, but you should still use archived packages until majority of your users update. Please see [Package Updates](/documentation/package-updates) for migration details.
 
-## Upgrading from Sparkle 1.20 and older
+## Upgrading to Sparkle 1.21
 
 Support for EdDSA (ed25519) signatures has been added. We recommend migrating to the new keys.
 
@@ -91,7 +93,7 @@ If you were using manual DSA signing with the `sign_update` script, the script h
 
 Please visit [Migrating to EdDSA from DSA](/documentation/eddsa-migration) for more information.
 
-## Upgrading from Sparkle 1.15 and older
+## Upgrading to Sparkle 1.16
 
 For updates that [use the `.pkg` format](https://sparkle-project.org/documentation/package-updates/), Sparkle no longer shows the full Installer GUI by default. Rename your `.pkg` file to `.sparkle_interactive.pkg` to keep the old behavior.
 
@@ -99,23 +101,23 @@ For updates that [use the `.pkg` format](https://sparkle-project.org/documentati
 
 Apps compiled with SDK 10.11 are required to use HTTPS only or configure exceptions to allow HTTP access. If you're not using HTTPS yet, please see [App Transport Security](/documentation/app-transport-security/) to ensure that users on macOS 10.11 will be able to get updates.
 
-## Upgrading from Sparkle 1.13 and older
+## Upgrading to Sparkle 1.14
 
 Sparkle doesn't try to "fix" incorrect URLs in the appcast. URLs with any un-encoded non-ASCII characters need to use URL-encoding, e.g. `<enclosure url="https://example.com/Zürich app.zip">` should be changed to `<enclosure url="https://example.com/Z%C3%BCrich%20app.zip">`.
 
 JavaScript is now disabled by default when showing release notes' HTML. It can be re-enabled by setting `SUEnableJavaScript` in the app's `Info.plist`.
 
-## Upgrading from Sparkle 1.12 and older
+## Upgrading to Sparkle 1.13
 
 To work around a bug in Sparkle versions up to 1.10 we've changed bundle ID of the framework (from `org.andymatuschak.Sparkle` to `org.sparkle-project.Sparkle`). It shouldn't affect normal usage of the framework, so you don't need to do anything unless you've built custom tools dependent on the bundle ID.
 
-## Upgrading from Sparkle 1.10 and older
+## Upgrading to Sparkle 1.11
 
 Sparkle now checks whether the updated version will be able to verify future updates as well. This prevents accidentally updating apps to a version that wouldn't be able to update itself any more.
 
 Updates now must either use DSA keys correctly, or not try to use them at all. Same goes for Apple Code Signing. Sparkle will print to the console verbose messages detailing problems found. Try updating and see Console.app if the updates are rejected.
 
-## Upgrading from Sparkle 1.6 and older
+## Upgrading to Sparkle 1.7
 
 Sparkle has kept the same API since the "classic" version 1.5. It should be a drop-in replacement apart from updated system requirements:
 
