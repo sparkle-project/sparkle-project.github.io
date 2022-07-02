@@ -51,6 +51,8 @@ defaults write my-app-bundle-id SULastCheckTime -date "$(date -v-1d -v+30S)"
 
 Note this sets the last update check time to one day prior plus 30 additional seconds. This assumes your app uses the default scheduled check interval time of 1 day, otherwise you may need to adjust this computed date accordingly.
 
+For testing these examples you may also want to disable automatic downloading of updates if you opted into it.
+
 #### Window Title Accessory Example
 
 The first example demonstrates creating a gentle reminder when a new update alert is available by attaching an "Update Available" button to the application's main window's titlebar.
