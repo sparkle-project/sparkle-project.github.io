@@ -37,7 +37,19 @@ These APIs can be used to implement gentle reminders for your app:
 
 These examples show how to implement gentle reminders using Sparkle 2.2 or later.
 
-They also include a bit of test / debugging code for testing gentle reminders by performing a scheduled update check in the background 10 seconds after the app launched. Within this time period, you can test the gentle update reminders when the app is currently active or inactive. Do not use test code like this in production. Let Sparkle handle scheduling update checks automatically instead.
+For testing when an update is ready to be checked right away (near app launch), reset the last update check time before launching your app:
+
+```sh
+defaults delete my-app-bundle-id SULastCheckTime
+```
+
+For testing when an update will be checked in the background around 30 seconds from now (not near app launch), set the last update check time right before launching your app:
+
+```sh
+defaults write my-app-bundle-id SULastCheckTime -date "$(date -v-1d -v+30S)"
+```
+
+Note this sets the last update check time to one day prior plus 30 additional seconds. This assumes your app uses the default scheduled check interval time of 1 day, otherwise you may need to adjust this computed date accordingly.
 
 #### Window Title Accessory Example
 
@@ -56,17 +68,6 @@ The application overrides Sparkle's default behavior in cases where it believes 
     @IBOutlet var window: NSWindow!
     // A view controller we attach to our window's titlebar when updates are available
     var titlebarAccessoryViewController: NSTitlebarAccessoryViewController? = nil
-    
-    func applicationDidFinishLaunching(_ notification: Notification) {
-        #if DEBUG // "-D DEBUG" is added for Debug in Other Swift Flags
-            // This snippet is only for testing gentle scheduled reminders
-            // Remove this in production to respect Sparkle's update scheduler
-            // You may also want to test with no delay for testing near app launch experience
-            DispatchQueue.main.asyncAfter(deadline: .now() + 10.0) {
-                self.updaterController.updater.checkForUpdatesInBackground()
-            }
-        #endif
-    }
     
     // Declares that we support gentle scheduled update reminders to Sparkle's standard user driver
     var supportsGentleScheduledUpdateReminders: Bool {
@@ -161,15 +162,6 @@ let UPDATE_NOTIFICATION_IDENTIFIER = "UpdateCheck"
         
         // Make the app run in the background
         NSApp.setActivationPolicy(.accessory)
-        
-        #if DEBUG // "-D DEBUG" is added for Debug in Other Swift Flags
-            // This snippet is only for testing gentle scheduled reminders
-            // Remove this in production to respect Sparkle's update scheduler
-            // You may also want to test with no delay for testing near app launch experience
-            DispatchQueue.main.asyncAfter(deadline: .now() + 10.0) {
-                self.updaterController.updater.checkForUpdatesInBackground()
-            }
-        #endif
         
         UNUserNotificationCenter.current().delegate = self
     }
