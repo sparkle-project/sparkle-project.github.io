@@ -16,7 +16,7 @@
     <header>
       <div class="content-wrapper">
         <p>
-          <a href="../index.html">Sparkle 2.2.0-beta.2 Docs</a>
+          <a href="../index.html">Sparkle 2.2.0 Docs</a>
           <span class="no-mobile"> (58% documented)</span>
         </p>
     
@@ -60,7 +60,7 @@
 
 <p>Prefer to set initial properties in your bundle&rsquo;s Info.plist as described in <a href="https://sparkle-project.org/documentation/customization/">Customizing Sparkle</a>.</p>
 
-<p>Otherwise only if you need dynamic behavior (eg. for user preferences) should you set properties on the updater such as:</p>
+<p>Otherwise only if you need dynamic behavior for user preferences should you set properties on the updater such as:</p>
 
 <ul>
 <li><code>automaticallyChecksForUpdates</code></li>
@@ -323,18 +323,23 @@ If the user is already being presented with an update, that update will be shown
                       <section class="section">
                         <div class="pointer"></div>
                         <div class="abstract">
-                          <p>Checks for updates, but does not display any UI unless an update is found.</p>
+                          <p>Checks for updates, but does not show any UI unless an update is found.</p>
 
 <p>You usually do not need to call this method directly. If <code><a href="../Classes/SPUUpdater.html#/c:objc(cs)SPUUpdater(py)automaticallyChecksForUpdates">automaticallyChecksForUpdates</a></code> is <code>YES,</code>
 Sparkle calls this method automatically according to its update schedule using the <code><a href="../Classes/SPUUpdater.html#/c:objc(cs)SPUUpdater(py)updateCheckInterval">updateCheckInterval</a></code>
-and the <code><a href="../Classes/SPUUpdater.html#/c:objc(cs)SPUUpdater(py)lastUpdateCheckDate">lastUpdateCheckDate</a></code>.</p>
+and the <code><a href="../Classes/SPUUpdater.html#/c:objc(cs)SPUUpdater(py)lastUpdateCheckDate">lastUpdateCheckDate</a></code>. Therefore, you should typically only consider calling this method directly if you
+opt out of automatic update checks.</p>
 
-<p>This is meant for programmatically initating a check for updates.
-That is, it will display no UI unless it finds an update, in which case it proceeds as usual.
-This will not find updates that the user has opted into skipping.</p>
+<p>This is meant for programmatically initating a check for updates in the background without the user initiating it.
+This check will not show UI if no new updates are found.</p>
 
-<p>Note if there is no resumable update found, and automated updating is turned on,
-the update will be downloaded in the background without disrupting the user.</p>
+<p>If a new update is found, the updater&rsquo;s user driver may handle showing it at an appropriate (but not necessarily immediate) time.
+If you want control over when and how a new update is shown, please see <a href="https://sparkle-project.org/documentation/gentle-reminders/">https://sparkle-project.org/documentation/gentle-reminders/</a></p>
+
+<p>Note if automated updating is turned on, either a new update may be downloaded in the background to be installed silently,
+or an already downloaded update may be shown.</p>
+
+<p>This will not find updates that the user has opted into skipping.</p>
 
 <p>This method does not do anything if there is a <code><a href="../Classes/SPUUpdater.html#/c:objc(cs)SPUUpdater(py)sessionInProgress">sessionInProgress</a></code>.</p>
 
@@ -509,7 +514,9 @@ and sets this property based on their response. If <code>SUEnableAutomaticChecks
 this permission request is not performed however.</p>
 
 <p>Setting this property will persist in the host bundle&rsquo;s user defaults.
-Only set this property if you need dynamic behavior (e.g. user preferences).</p>
+Only set this property if the user wants to change the default via a user preferences option.
+For testing environments, you can disable update checks by passing <code>-SUEnableAutomaticChecks NO</code>
+to your app&rsquo;s command line arguments instead of setting this property.</p>
 
 <p>The update schedule cycle will be reset in a short delay after the property&rsquo;s new value is set.
 This is to allow reverting this property without kicking off a schedule change immediately</p>
@@ -546,9 +553,10 @@ This is to allow reverting this property without kicking off a schedule change i
                         <div class="abstract">
                           <p>A property indicating the current automatic update check interval in seconds.</p>
 
+<p>Prefer to set SUScheduledCheckInterval directly in your Info.plist for setting the initial value.</p>
+
 <p>Setting this property will persist in the host bundle&rsquo;s user defaults.
-For this reason, only set this property if you need dynamic behavior (eg user preferences).
-Otherwise prefer to set SUScheduledCheckInterval directly in your Info.plist.</p>
+Only set this property if the user wants to change the default via a user preferences option.</p>
 
 <p>The update schedule cycle will be reset in a short delay after the property&rsquo;s new value is set.
 This is to allow reverting this property without kicking off a schedule change immediately</p>
@@ -591,7 +599,7 @@ This is to allow reverting this property without kicking off a schedule change i
 In this case, this property will return NO regardless of how this property is set.</p>
 
 <p>Setting this property will persist in the host bundle&rsquo;s user defaults.
-For this reason, only set this property if you need dynamic behavior (eg user preferences).
+For this reason, only set this property if the user wants to change the default via a user preferences option.
 Otherwise prefer to set SUAutomaticallyUpdate directly in your Info.plist.</p>
 
                         </div>
@@ -1062,7 +1070,7 @@ The update cycle is also started automatically after the updater is started. In 
       </div>
       <div class="footer-wrapper">
         <section id="footer">
-          <p>&copy; 2022 <a class="link" href="https://sparkle-project.org" target="_blank" rel="external noopener">Sparkle Project</a>. All rights reserved. (Last updated: 2022-06-20)</p>
+          <p>&copy; 2022 <a class="link" href="https://sparkle-project.org" target="_blank" rel="external noopener">Sparkle Project</a>. All rights reserved. (Last updated: 2022-07-02)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.14.2</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
         </section>
       </div>
