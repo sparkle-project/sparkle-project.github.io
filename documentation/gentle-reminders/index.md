@@ -13,13 +13,13 @@ While Sparkle's standard UI tries to provide update reminders to the user at opp
 Once Sparkle has permission to check for updates automatically, it is programmed to schedule update checks on a regular basis defined by the [`SUScheduledCheckInterval`](/documentation/customization/) setting. Sparkle handles this automatically without polling your server too often and by ensuring that users receive updates in a timely manner.
 
 As of Sparkle 2.2, Sparkle prioritizes showing scheduled update alerts for regular (non-backgrounded) applications at opportune times when:
-* The user just launched your app or just granted your app permission to check for updates automatically
-* The user's system has been idle for some time and no assertion has been made by your app to prevent display sleep while your app is active
+* The user just launched your app or interacted with the updater recently (for example, granting Sparkle permission to allow automatic update checks)
+* The user's system has been idle for some time and no power assertion has been made by your app to prevent display sleep while your app is active
 * The user comes back to your application from another application (instead of showing an alert when a user is actively using your app)
 
 For backgrounded applications (apps that do not appear in the Dock), Sparkle 2.2 onwards will not let a scheduled update alert steal focus from another application or window that may be currently active -- with the one exception of when your application just launched. Scheduled update alerts that show up after launch will be presented behind other apps and windows.
 
-Note even for updates downloaded silently in the background and installed after the app terminates, Sparkle may show an update alert to the user if the application hasn't quit for 1 week or if the user needs to authorize to install an update due to lack of sufficient write permissions. Sparkle does not operate in a UI-less mode in all cases even if updates are set to automatically download.
+Note even for updates downloaded silently in the background and installed after the app terminates, Sparkle may show an update alert to the user if the application hasn't quit for 1 week or if the user needs to authorize to install an update due to lack of sufficient write permissions. Other cases where an update is shown to the user is when an update is critical or informational only. Sparkle must be able to present updates to the user even if updates are set to automatically download.
 
 If you want your application to deliver scheduled alerts in a more gentle yet noticeable manner, you may opt into Sparkle's Gentle Reminders APIs. These are a part of [SPUStandardUserDriverDelegate](/documentation/api-reference/Protocols/SPUStandardUserDriverDelegate.html), which is a part of Sparkle's standard user interface.
 
