@@ -16,21 +16,21 @@ In order for Sparkle to work in a sandboxed application, the framework must call
 
 Sparkle by default bundles two XPC Services inside the framework for sandboxing:
 
-* org.sparkle-project.InstallerLauncher.xpc (Installer.xpc in Sparkle 2.2 beta)
-* org.sparkle-project.Downloader.xpc (Downloader.xpc in Sparkle 2.2 beta)
+* Installer.xpc (org.sparkle-project.InstallerLauncher.xpc prior to Sparkle 2.2)
+* Downloader.xpc (org.sparkle-project.Downloader.xpc prior to Sparkle 2.2)
 
 There are two other XPC Services, not bundled by default, for communicating to Sparkle's installer helpers:
 
-* org.sparkle-project.InstallerConnection.xpc (InstallerConnection.xpc in Sparkle 2.2 beta)
-* org.sparkle-project.InstallerStatus.xpc (InstallerStatus.xpc in Sparkle 2.2 beta)
+* InstallerConnection.xpc (org.sparkle-project.InstallerConnection.xpc prior to Sparkle 2.2)
+* InstallerStatus.xpc (org.sparkle-project.InstallerStatus.xpc prior to Sparkle 2.2)
 
-In order for Sparkle to work in a sandboxed application, the application must call out to XPC Services to perform the updating and installation. Only the InstallerLauncher XPC Service is strictly required. The other services are optional depending on your use case.
+In order for Sparkle to work in a sandboxed application, the application must call out to XPC Services to perform the updating and installation. Only the Installer XPC Service is strictly required. The other services are optional depending on your use case.
 
 If you build Sparkle yourself, you can optionally choose to change `XPC_SERVICE_BUNDLE_ID_PREFIX` in `ConfigCommon.xcconfig` from `org.sparkle-project` to your own prefix. In this configuration file, you can also choose which services Sparkle should bundle (by setting `SPARKLE_EMBED_*_XPC_SERVICE` variables). Please see notes below on integrating each of these services.
 
-#### Installer Launcher Service
+#### Installer Service
 
-The Installer Launcher Service is required for Sandboxed applications. Sparkle by default bundles this XPC Service in its framework bundle.
+The Installer Service is required for Sandboxed applications. Sparkle by default bundles this XPC Service in its framework bundle.
 
 To enable the service, you must set [SUEnableInstallerLauncherService](/documentation/customization#sandboxing-settings) boolean to `YES` in your application's Info.plist.
 
@@ -41,7 +41,7 @@ The Downloader XPC Service is optional for Sandboxed applications. Sparkle by de
 Use this service only if your sandboxed application does not request the `com.apple.security.network.client` entitlement. The downloader service allows using Sparkle without forcing the network client entitlement on your entire application. There are a couple caveats with using the downloader service though:
 
 * It may not work well if your release notes reference external content that would require making additional network requests.
-* We fall back to using the legacy WebKit WebView for release notes due to a [known WKWebView defect](https://github.com/feedback-assistant/reports/issues/1). Please file a feedback report to Apple duping to FB6993802 if you want Sparkle to use WKWebView without enforcing the `com.apple.security.network.client` entitlement on your sandboxed application.
+* We fall back to using the legacy WebKit WebView for release notes due to a [known WKWebView defect](https://github.com/feedback-assistant/reports/issues/1). Please file a feedback report to Apple duping to FB6993802 preventing the use of WKWebView without enforcing the `com.apple.security.network.client` entitlement on your sandboxed application.
 
 To enable the service, you must set [SUEnableDownloaderService](/documentation/customization#sandboxing-settings) boolean to `YES` in your application's Info.plist.
 
@@ -59,7 +59,7 @@ The Installer Connection & Status Services are optional (as of changes integrate
 
 This entitlement allows Sparkle to communicate with its installer and updater progress tools on your system. If you are building your application in Xcode, `$(PRODUCT_BUNDLE_IDENTIFIER)` will be automatically substituted with your application's bundle identifier.
 
-If you cannot add entitlements (eg: your process inherits another application's restricted sandbox), you will need to [enable the XPC Services](/documentation/customization#sandboxing-settings) instead and need to enable embedding the services in Sparkle's `ConfigCommon.xcconfig`.
+If you cannot add entitlements (e.g. your process inherits another application's restricted sandbox), you will need to [enable the XPC Services](/documentation/customization#sandboxing-settings) instead and need to enable embedding the services in Sparkle's `ConfigCommon.xcconfig`.
 
 ### Code Signing
 
@@ -74,8 +74,8 @@ If you `Code Sign on Copy` Sparkle.framework, Xcode will re-sign Sparkle with yo
 You may re-sign Sparkle for distribution manually if needed like so:
 
 ```sh
-codesign -f -s "$CODE_SIGN_IDENTITY" -o runtime Sparkle.framework/Versions/B/XPCServices/org.sparkle-project.InstallerLauncher.xpc
-codesign -f -s "$CODE_SIGN_IDENTITY" -o runtime --entitlements Entitlements/org.sparkle-project.Downloader.entitlements Sparkle.framework/Versions/B/XPCServices/org.sparkle-project.Downloader.xpc
+codesign -f -s "$CODE_SIGN_IDENTITY" -o runtime Sparkle.framework/Versions/B/XPCServices/Installer.xpc
+codesign -f -s "$CODE_SIGN_IDENTITY" -o runtime --entitlements Entitlements/Downloader.entitlements Sparkle.framework/Versions/B/XPCServices/Downloader.xpc
 
 codesign -f -s "$CODE_SIGN_IDENTITY" -o runtime Sparkle.framework/Versions/B/Autoupdate
 codesign -f -s "$CODE_SIGN_IDENTITY" -o runtime Sparkle.framework/Versions/B/Updater.app
@@ -84,6 +84,8 @@ codesign -f -s "$CODE_SIGN_IDENTITY" -o runtime Sparkle.framework
 ```
 
 Adjust the paths and code sign identity accordingly. The `--preserve-metadata=entitlements` is not used because we don't want to preserve the existing `com.apple.security.get-task-allow` entitlements for distribution. Also the `--deep` option is not used here because the Downloader XPC Service needs to be signed with a specific entitlement that aren't applicable to the other binaries.
+
+Due to different code signing requirements, please do not add `--deep` to `OTHER_CODE_SIGN_FLAGS` or from custom build scripts when signing your application. This is a common source of Sandboxing errors.
 
 ### Removing XPC Services
 

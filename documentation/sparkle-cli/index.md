@@ -6,7 +6,7 @@ title: sparkle-cli
 
 ## sparkle-cli
 
-Sparkle 2.0 includes a command line utility that can update Sparkle-based applications and bundles.
+Sparkle 2 includes a command line utility that can update Sparkle-based applications and bundles. This tool is a [thin wrapper around using Sparkle's framework](https://github.com/sparkle-project/Sparkle/tree/2.x/sparkle-cli) to update external bundles.
 
 ### Usage
 
@@ -30,11 +30,13 @@ Description:
   specified, then checking for updates is aborted.
 
   Unless --interactive is specified, this tool will not request for escalated
-  authorization. Running as root is not supported.
+  authorization. Alternatively, this tool can be run as root under an active user login
+  session, which will not require (and disallow) interaction.
 
   If --defer-install is specified, this tool will exit leaving a spawned process
   for finishing the installation after the target application terminates.
 
+  If update installation fails due to not having permission (e.g. from Gatekeeper) to replace the old bundle, an exit status of 8 is returned.
   Please specify --user-agent-name if you intend to use this tool in an automated way.
 Options:
  --application
@@ -82,8 +84,6 @@ Options:
     Enable verbose logging.
 ```
 
-Note Sparkle 2.2 (currently in beta) will allow running sparkle-cli as root without using `--interactive`. This page will be updated when Sparkle 2.2 is released.
-
 ### Example
 
 One example is I updated an application on my machine I knew was out of date by running:
@@ -95,3 +95,5 @@ One example is I updated an application on my machine I knew was out of date by 
 ### Caveats
 
 There are caveats for updating applications you do not own with sparkle-cli. For example an app may implement Sparkle's delegate methods for using a custom version comparator or feed URL, but sparkle-cli has no way of knowing to use these if they are not extractable externally.
+
+On macOS 13 (Ventura) and later, users will need to approve external updaters like sparkle-cli to make modifications to update other developer's applications. If you use an external updater like sparkle-cli to update your own application, make sure the bundle you're updating and the updater is signed with the same Team ID.
