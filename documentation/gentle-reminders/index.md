@@ -6,11 +6,9 @@ title: Gentle Update Reminders
 
 ## Gentle Update Reminders
 
-While Sparkle's standard UI tries to provide update reminders to the user at opportune times, the gentle update reminder APIs allow developers to provide and customize update reminders in a more gentle way.
+While Sparkle's standard UI tries to provide update reminders to the user at opportune times, the gentle update reminder APIs in Sparkle 2.2 and later allow developers to provide and customize update reminders in a more flexible way.
 
-**Note**: This article is for Sparkle 2.2, which is currently in beta.
-
-### About Update Checks
+### Scheduled Update Checks
 
 Once Sparkle has permission to check for updates automatically, it is programmed to schedule update checks on a regular basis defined by the [`SUScheduledCheckInterval`](/documentation/customization/) setting. Sparkle handles this automatically without polling your server too often and by ensuring that users receive updates in a timely manner.
 
@@ -23,7 +21,7 @@ For backgrounded applications (apps that do not appear in the Dock), Sparkle 2.2
 
 Note even for updates downloaded silently in the background and installed after the app terminates, Sparkle may show an update alert to the user if the application hasn't quit for 1 week or if the user needs to authorize to install an update due to lack of sufficient write permissions. Sparkle does not operate in a UI-less mode in all cases even if updates are set to automatically download.
 
-If you want your application to deliver scheduled alerts in a gentle yet noticeable manner, you may opt into Sparkle's Gentle Reminders APIs. These are a part of [SPUStandardUserDriverDelegate](/documentation/api-reference/Protocols/SPUStandardUserDriverDelegate.html), which is a part of Sparkle's standard user interface.
+If you want your application to deliver scheduled alerts in a more gentle yet noticeable manner, you may opt into Sparkle's Gentle Reminders APIs. These are a part of [SPUStandardUserDriverDelegate](/documentation/api-reference/Protocols/SPUStandardUserDriverDelegate.html), which is a part of Sparkle's standard user interface.
 
 ### Gentle Reminders APIs
 

@@ -8,8 +8,6 @@ We strongly recommend upgrading Sparkle to the [latest production release](//git
 
 ## Upgrading to Sparkle 2.2
 
-**Note**: Sparkle 2.2 is currently in beta.
-
 If you're upgrading from Sparkle 2.0 or 2.1 and sandbox your app, Sparkle 2.2 has renamed the XPC Services referenced in the [sandboxed applications](/documentation/sandboxing) guide. If you have scripts that reference these services you will need to update them.
 
 Sparkle 2.2 provides [gentle update reminders](/documentation/gentle-reminders) which background-running (dockless) applications that schedule update checks at the least need to check out.
