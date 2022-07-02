@@ -43,15 +43,15 @@ For testing when an update is ready to be checked right away (near app launch), 
 defaults delete my-app-bundle-id SULastCheckTime
 ```
 
-For testing when an update will be checked in the background around 30 seconds from now (not near app launch), set the last update check time right before launching your app:
+For testing when an update will be checked in the background around 30-60 seconds from now (not near app launch), set the last update check time right before launching your app:
 
 ```sh
 defaults write my-app-bundle-id SULastCheckTime -date "$(date -v-1d -v+30S)"
 ```
 
-Note this sets the last update check time to one day prior plus 30 additional seconds. This assumes your app uses the default scheduled check interval time of 1 day, otherwise you may need to adjust this computed date accordingly.
+Note this sets the last update check time to one day prior plus 30 additional seconds. This assumes your app uses the default scheduled check interval time of 1 day, otherwise you may need to adjust this computed date accordingly. Sparkle may also add a potential 15 second leeway delay for improved system performance.
 
-For testing these examples you may also want to disable automatic downloading of updates if you opted into it.
+For testing these examples you may also want to disable automatic downloading of updates if you opted into them.
 
 #### Window Title Accessory Example
 
