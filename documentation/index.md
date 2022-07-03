@@ -89,6 +89,8 @@ Since Sparkle is downloading executable code to your users' systems, you must be
     * [Updates of preference panes and plugins](/documentation/bundles/) *must* be signed with EdDSA.
     * Updates to regular application bundles that are signed with Apple's Developer ID program are strongly recommended to be signed with EdDSA for better security and fallback. Sparkle now deprecates not using EdDSA for these updates.
 
+Please ensure your signing keys are kept safe and cannot be stolen if your web server is compromised. One way to ensure this for example is not having your signing keys accessible from the machine that is hosting your product.
+
 #### EdDSA (ed25519) signatures
 
 To prepare signing with EdDSA signatures:
