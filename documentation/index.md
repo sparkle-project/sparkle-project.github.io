@@ -174,7 +174,7 @@ You can also create the appcast file manually (not recommended):
 
 ### 6. Test Sparkle out
 
-* Use an older verison of your app, or if you don't have one yet, make one seem older by editing `Info.plist` and change `CFBundleVersion` to a lower version.
+* Use an older version of your app, or if you don't have one yet, make one seem older by editing `Info.plist` and change `CFBundleVersion` to a lower version.
   * A genuine older version of the app is required to test [delta updates](/documentation/delta-updates/), because Sparkle will ignore the delta update if the app doesn't match update's checksum.
   * Editing `CFBundleVersion` of the latest version of the app is useful for testing the latest version of Sparkle framework.
 * Run the app, then quit. Sparkle doesn't ask the user about updates until the _second_ launch, in order to make your users' first-launch impression cleaner.
