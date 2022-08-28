@@ -128,10 +128,14 @@ If you use another UI toolkit, these are the relevant APIs in Sparkle 2 for chec
 
 * [-[SPUStandardUpdaterController startUpdater]](/documentation/api-reference/Classes/SPUStandardUpdaterController.html#/c:objc(cs)SPUStandardUpdaterController(im)startUpdater) or [-[SPUUpdater startUpdater:]](/documentation/api-reference/Classes/SPUUpdater.html#/c:objc(cs)SPUUpdater(im)startUpdater:) for starting the updater (unless it is specified to be automatically started)
 * [-[SPUStandardUpdaterController checkForUpdates:]](/documentation/api-reference/Classes/SPUStandardUpdaterController.html#/c:objc(cs)SPUStandardUpdaterController(im)checkForUpdates:) or [-[SPUUpdater checkForUpdates]](/documentation/api-reference/Classes/SPUUpdater.html#/c:objc(cs)SPUUpdater(im)checkForUpdates) for checking for updates
-* [-[SPUUpdater canCheckForUpdates]](/documentation/api-reference/Classes/SPUUpdater.html#/c:objc(cs)SPUUpdater(py)canCheckForUpdates) for menu item validation. This property is also KVO compliant.
+* [-[SPUUpdater canCheckForUpdates]](/documentation/api-reference/Classes/SPUUpdater.html#/c:objc(cs)SPUUpdater(py)canCheckForUpdates) for menu item validation and knowing when the user can check for updates. This property is also [KVO compliant and its value changes are observable](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/KeyValueObserving/Articles/KVOBasics.html#//apple_ref/doc/uid/20002252-BAJEAIEE).
 
 If you are using Sparkle 1, you will need to use these APIs:
 
 * `+[SUUpdater sharedUpdater]` for creating and starting the updater automatically
 * `-[SUUpdater checkForUpdates:]` for checking for updates
 * `-[SUUpdater validateMenuItem:]` for menu item validation
+
+Prefer to set the updater's initial properties in your bundle's Info.plist as described in [Customizing Sparkle](/documentation/customization/). This includes properties like the updater's feed URL and its update checking behavior. Avoid setting these properties programatically except from user setting changes. Besides setting up signing keys, only configuring the feed URL (via `SUFeedURL` in your bundle's Info.plist) is required.
+
+Also avoid forcing Sparkle to check for updates on launch unless your application requires this. This can interfere with Sparkle's default behavior for asking users permission to check for updates on second launch and to check for updates once every 24 hours to prevent frequent polling.
