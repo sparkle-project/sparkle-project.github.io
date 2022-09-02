@@ -20,7 +20,7 @@ jobs:
     steps:
       - name: "Test source branch"
         run: |
-          echo "Source branch: ${{ github.event.inputs.sourceBranch }}"
+          echo "Source branch: ${{ github.event.inputs.sourceRef }}"
           exit 1
       - name: "Set up Ruby"
         uses: ruby/setup-ruby@v1
@@ -37,7 +37,7 @@ jobs:
           repository: 'sparkle-project/Sparkle'
           token: ${{ secrets.BOT_PERSONAL_ACCESS_TOKEN }}
           submodules: true
-          ref: ${{ github.event.inputs.sourceBranch }}
+          ref: ${{ github.event.inputs.sourceRef }}
           fetch-depth: 0
           path: 'sparkle-source'
 
