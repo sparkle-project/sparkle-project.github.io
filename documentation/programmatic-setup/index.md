@@ -120,6 +120,130 @@ Note Sparkle's standard user interface cannot display release notes because macO
 
 If you run into issues with loading the Sparkle framework from your plug-in at runtime, please refer to [Add the Sparkle framework to your project](/documentation/#1-add-the-sparkle-framework-to-your-project) where the setup guide talks about having the <samp>Runpath Search Paths</samp> set to `@loader_path/../Frameworks` and using an `Apple Development` certificate for development to satisfy Library Validation. This applies to the setup for the plug-in target as well.
 
+## Create an Updater in Qt
+
+This is an example of creating an updater in Sparkle 2 with Qt and uses [Key-Value Observing (KVO)](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/KeyValueObserving/KeyValueObserving.html) to ensure the check for update's menu item state is updated. This example can also be used as reference when integrating Sparkle into other non-Apple provided toolkits.
+
+```objectivec++
+// File: updater.h
+// Description: Header interface for your application's updater. Implementation could differ by platform.
+
+#ifndef UPDATER_H
+#define UPDATER_H
+
+#include <QObject>
+
+class QAction;
+
+#ifdef __OBJC__
+@class AppUpdaterDelegate;
+#endif
+
+class Updater : public QObject
+{
+public:
+    // Caller example from a QMainWindow subclass:
+    /*
+     QAction *updaterAction = new QAction("&Check for Updates…", this);
+     updaterAction->setMenuRole(QAction::ApplicationSpecificRole);
+     
+     QMenu *updaterMenu = menuBar()->addMenu("&Updater");
+     updaterMenu->addAction(updaterAction);
+    
+     Updater *updater = new Updater(updaterAction);
+     */
+    // This constructor initializes the updater,
+    // and takes care of connecting the check for updates action and updating its enabled state
+    Updater(QAction *checkForUpdatesAction);
+
+private slots:
+    void checkForUpdates();
+
+private:
+#ifdef __OBJC__
+    // Expose ObjC type only to updater_sparkle.mm. This allows ARC to properly track its lifetime.
+    AppUpdaterDelegate *_updaterDelegate;
+#else
+    void *_updaterDelegate;
+#endif
+};
+
+#endif
+```
+
+```objectivec++
+// File: updater_sparkle.mm
+// Description: macOS and Sparkle implementation for the application's updater
+// Notes: Compile updater_sparkle.mm with -fobjc-arc because this file assumes Automatic Reference Counting (ARC) is enabled
+
+#include "updater.h"
+#include <qaction.h>
+
+#import <Sparkle/Sparkle.h>
+
+// An updater delegate class that mainly takes care of updating the check for updates menu item's state
+// This class can also be used to implement other updater delegate methods
+@interface AppUpdaterDelegate : NSObject <SPUUpdaterDelegate>
+
+@property (nonatomic) SPUStandardUpdaterController *updaterController;
+
+@end
+
+@implementation AppUpdaterDelegate
+
+- (void)observeCanCheckForUpdatesWithAction:(QAction *)action
+{
+    [_updaterController.updater addObserver:self forKeyPath:NSStringFromSelector(@selector(canCheckForUpdates)) options:(NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew) context:(void *)action];
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey, id> *)change context:(void *)context
+{
+    if ([keyPath isEqualToString:NSStringFromSelector(@selector(canCheckForUpdates))]) {
+        QAction *menuAction = (QAction *)context;
+        menuAction->setEnabled(_updaterController.updater.canCheckForUpdates);
+    } else {
+        [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+    }
+}
+
+- (void)dealloc
+{
+    [_updaterController.updater removeObserver:self forKeyPath:NSStringFromSelector(@selector(canCheckForUpdates))];
+}
+
+@end
+
+// Creates and starts the updater. There's nothing else required.
+Updater::Updater(QAction *checkForUpdatesAction)
+{
+    _updaterDelegate = [[AppUpdaterDelegate alloc] init];
+    _updaterDelegate.updaterController = [[SPUStandardUpdaterController alloc] initWithStartingUpdater:YES updaterDelegate:_updaterDelegate userDriverDelegate:nil];
+    
+    connect(checkForUpdatesAction, &QAction::triggered, this, &Updater::checkForUpdates);
+    
+    [_updaterDelegate observeCanCheckForUpdatesWithAction:checkForUpdatesAction];
+}
+
+// Called when the user checks for updates
+void Updater::checkForUpdates()
+{
+    [_updaterDelegate.updaterController checkForUpdates:nil];
+}
+```
+
+Specific steps on setting up an application and incorporating a framework using an external build system are outside the scope of this document. However, on the lower level you will need to at least:
+
+* Add `updater_sparkle.mm` to source files to compile on macOS using `-fobjc-arc` compile flags and add `updater.h` to your project too
+* Link against your copy of Sparkle (`-framework Sparkle`)
+* Set the framework search path to the parent directory that contains `Sparkle.framework` (`-F/path/to/dir/`)
+* Add a runtime search path (`rpath`) so your application searches for Sparkle in your app's Frameworks directory (`-Wl,-rpath,@loader_path`). Use `otool -l <executable-path>` and `otool -L <executable-path>` to ensure all paths your application references are self-contained or provided from the macOS system.
+* Copy `Sparkle.framework` into your built application bundle in `Contents/Frameworks/`
+* Set the `CFBundleIdentifier`, `CFBundleVersion`, and `CFBundleShortVersionString` keys in your application's Info.plist
+* Set the `SUFeedURL` and `SUPublicEDKey` keys in your app's `Info.plist` described in [later documentation sections](/documentation/#3-segue-for-security-concerns)
+* Set the deployment target to your application (`-mmacosx-version-min=version` flag and `LSMinimumSystemVersion` Info.plist key) and build architectures (e.g. `-arch arm64 -arch x86_64`)
+
+Build systems may provide higher-level constructs to set these details. For example, `cmake`'s [`find_library`](https://cmake.org/cmake/help/latest/command/find_library.html) command on a framework will automatically add `-framework A` and `-F<fullPath>` and `cmake`'s' [`MACOSX_BUNDLE_INFO_PLIST`](https://cmake.org/cmake/help/latest/prop_tgt/MACOSX_BUNDLE_INFO_PLIST.html) property can be used to provide custom Info.plist keys.
+
 ## Additional APIs
 
 In Sparkle 2 you can also choose to instantiate and use [SPUUpdater](/documentation/api-reference/Classes/SPUUpdater.html) directly instead of the [SPUStandardUpdaterController](/documentation/api-reference/Classes/SPUStandardUpdaterController.html) wrapper if you need more control over your user interface or what bundle to update.
@@ -136,6 +260,6 @@ If you are using Sparkle 1, you will need to use these APIs:
 * `-[SUUpdater checkForUpdates:]` for checking for updates
 * `-[SUUpdater validateMenuItem:]` for menu item validation
 
-Prefer to set the updater's initial properties in your bundle's Info.plist as described in [Customizing Sparkle](/documentation/customization/). This includes properties like the updater's feed URL and its update checking behavior. Avoid setting these properties programatically except from user setting changes. Besides setting up signing keys, only configuring the feed URL (via `SUFeedURL` in your bundle's Info.plist) is required.
+Prefer to set the updater's initial properties in your bundle's Info.plist as described in [Customizing Sparkle](/documentation/customization/). This includes properties like the updater's feed URL and its update checking behavior. Avoid setting these properties programatically except from user setting changes. Only configuring the feed URL and signing keys (via `SUFeedURL` and `SUPublicEDKey`) in your bundle's Info.plist is required, which are described in [later documentation sections](/documentation/#3-segue-for-security-concerns).
 
-Also avoid forcing Sparkle to check for updates on launch unless your application requires this. This can interfere with Sparkle's default behavior for asking users permission to check for updates on second launch and to check for updates once every 24 hours to prevent frequent polling.
+Also avoid forcing Sparkle to check for updates on launch unless your application requires this. This can interfere with Sparkle's default behavior for asking users permission to check for updates on second launch and to check for updates periodically without probing too often.
