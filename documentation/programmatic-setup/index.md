@@ -236,7 +236,7 @@ Specific steps on setting up an application and incorporating a framework using 
 * Add `updater_sparkle.mm` to source files to compile on macOS using `-fobjc-arc` compile flags and add `updater.h` to your project too
 * Link against your copy of Sparkle (`-framework Sparkle`)
 * Set the framework search path to the parent directory that contains `Sparkle.framework` (`-F/path/to/dir/`)
-* Add a runtime search path (`rpath`) so your application searches for Sparkle in your app's Frameworks directory (`-Wl,-rpath,@loader_path`). Use `otool -l <executable-path>` and `otool -L <executable-path>` to ensure all paths your application references are self-contained or provided from the macOS system.
+* Add a runtime search path (rpath) so your application searches for Sparkle in your app's Frameworks directory (`-Wl,-rpath,@loader_path`). Use `otool -l <executable-path>` and `otool -L <executable-path>` to ensure all paths your application references are self-contained or provided from the macOS system.
 * Copy `Sparkle.framework` into your built application bundle in `Contents/Frameworks/` and make sure symlinks are properly preserved
 * Set the `CFBundleIdentifier`, `CFBundleVersion`, and `CFBundleShortVersionString` keys in your application's Info.plist
 * Set the `SUFeedURL` and `SUPublicEDKey` keys in your app's `Info.plist` described in [later documentation sections](/documentation/#3-segue-for-security-concerns)
