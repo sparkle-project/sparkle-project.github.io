@@ -1,7 +1,12 @@
 name: "Update API Reference"
 
 on:
-  workflow_dispatch
+  workflow_dispatch:
+    inputs:
+      sourceRef:
+        description: "Sparkle source branch or tag to checkout"
+        required: true
+        default: "2.x"
 
 concurrency: 
   group: update-repo-${{ github.ref }}
@@ -28,6 +33,7 @@ jobs:
           repository: 'sparkle-project/Sparkle'
           token: ${{ secrets.BOT_PERSONAL_ACCESS_TOKEN }}
           submodules: true
+          ref: ${{ github.event.inputs.sourceBranch }}
           fetch-depth: 0
           path: 'sparkle-source'
 

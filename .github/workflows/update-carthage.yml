@@ -1,7 +1,12 @@
 name: "Update Carthage Package"
 
 on:
-  workflow_dispatch
+  workflow_dispatch:
+    inputs:
+      sourceRef:
+        description: "Sparkle source branch or tag to checkout"
+        required: true
+        default: "2.x"
 
 concurrency: 
   group: update-repo-${{ github.ref }}
@@ -18,6 +23,7 @@ jobs:
         with:
           repository: 'sparkle-project/Sparkle'
           token: ${{ secrets.BOT_PERSONAL_ACCESS_TOKEN }}
+          ref: ${{ github.event.inputs.sourceRef }}
           submodules: true
           fetch-depth: 0
           path: 'sparkle-source'
