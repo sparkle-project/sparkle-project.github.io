@@ -18,6 +18,10 @@ jobs:
     runs-on: macos-12
 
     steps:
+      - name: "Test source branch"
+        run: |
+          echo "Source branch: ${{ github.event.inputs.sourceBranch }}"
+          exit 1
       - name: "Set up Ruby"
         uses: ruby/setup-ruby@v1
         with:
