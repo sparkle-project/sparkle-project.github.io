@@ -154,6 +154,7 @@ public:
      */
     // This constructor initializes the updater,
     // and takes care of connecting the check for updates action and updating its enabled state
+    // Note: this must be called on the main thread
     Updater(QAction *checkForUpdatesAction);
 
 private slots:
@@ -208,7 +209,9 @@ private:
 
 - (void)dealloc
 {
-    [_updaterController.updater removeObserver:self forKeyPath:NSStringFromSelector(@selector(canCheckForUpdates))];
+    @autoreleasepool {
+        [_updaterController.updater removeObserver:self forKeyPath:NSStringFromSelector(@selector(canCheckForUpdates))];
+    }
 }
 
 @end
@@ -216,18 +219,22 @@ private:
 // Creates and starts the updater. There's nothing else required.
 Updater::Updater(QAction *checkForUpdatesAction)
 {
-    _updaterDelegate = [[AppUpdaterDelegate alloc] init];
-    _updaterDelegate.updaterController = [[SPUStandardUpdaterController alloc] initWithStartingUpdater:YES updaterDelegate:_updaterDelegate userDriverDelegate:nil];
-    
-    connect(checkForUpdatesAction, &QAction::triggered, this, &Updater::checkForUpdates);
-    
-    [_updaterDelegate observeCanCheckForUpdatesWithAction:checkForUpdatesAction];
+    @autoreleasepool {
+        _updaterDelegate = [[AppUpdaterDelegate alloc] init];
+        _updaterDelegate.updaterController = [[SPUStandardUpdaterController alloc] initWithStartingUpdater:YES updaterDelegate:_updaterDelegate userDriverDelegate:nil];
+        
+        connect(checkForUpdatesAction, &QAction::triggered, this, &Updater::checkForUpdates);
+        
+        [_updaterDelegate observeCanCheckForUpdatesWithAction:checkForUpdatesAction];
+    }
 }
 
 // Called when the user checks for updates
 void Updater::checkForUpdates()
 {
-    [_updaterDelegate.updaterController checkForUpdates:nil];
+    @autoreleasepool {
+        [_updaterDelegate.updaterController checkForUpdates:nil];
+    }
 }
 ```
 
