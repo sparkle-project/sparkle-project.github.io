@@ -16,7 +16,7 @@
     <header>
       <div class="content-wrapper">
         <p>
-          <a href="../index.html">Sparkle 2.2.2 Docs</a>
+          <a href="../index.html">Sparkle 2.2.1 Docs</a>
           <span class="no-mobile"> (58% documented)</span>
         </p>
     
@@ -537,7 +537,7 @@ This is an alternative to providing a <code><a href="../Classes/SUAppcastItem.ht
 
 <p>This version string should contain three period-separated components.</p>
 
-<p>Example: <code>10.13.0</code></p>
+<p>Example: <code>10.12.0</code></p>
 
 <p>Use <code><a href="../Classes/SUAppcastItem.html#/c:objc(cs)SUAppcastItem(py)minimumOperatingSystemVersionIsOK">minimumOperatingSystemVersionIsOK</a></code> property to test if the current running system passes this requirement.</p>
 
@@ -611,7 +611,7 @@ This is an alternative to providing a <code><a href="../Classes/SUAppcastItem.ht
 
 <p>This version string should contain three period-separated components.</p>
 
-<p>Example: <code>10.14.0</code></p>
+<p>Example: <code>10.13.0</code></p>
 
 <p>Use <code><a href="../Classes/SUAppcastItem.html#/c:objc(cs)SUAppcastItem(py)maximumOperatingSystemVersionIsOK">maximumOperatingSystemVersionIsOK</a></code> property  to test if the current running system passes this requirement.</p>
 
@@ -1071,83 +1071,6 @@ The value is an update item that will have <code><a href="../Classes/SUAppcastIt
                   <li class="item">
                     <div>
                       <code>
-                      <a name="/c:objc(cs)SUAppcastItem(py)deltaFromSparkleExecutableSize"></a>
-                      <a name="//apple_ref/objc/Property/deltaFromSparkleExecutableSize" class="dashAnchor"></a>
-                      <a class="token" href="#/c:objc(cs)SUAppcastItem(py)deltaFromSparkleExecutableSize">deltaFromSparkleExecutableSize</a>
-                      </code>
-                    </div>
-                    <div class="height-container">
-                      <div class="pointer-container"></div>
-                      <section class="section">
-                        <div class="pointer"></div>
-                        <div class="abstract">
-                          <p>The expected size of the Sparkle executable file before applying this delta update.</p>
-
-<p>This attribute is used to test if the delta item can still be applied. If Sparkle&rsquo;s executable file has changed (e.g. from having an architecture stripped),
-then the delta item cannot be applied.</p>
-
-<p>This is extracted from the <code>sparkle:deltaFromSparkleExecutableSize</code> attribute from the <code>&lt;enclosure&gt;</code> element of a <code>sparkle:deltas</code> item.
-This attribute is optional for delta update items.</p>
-
-                        </div>
-                        <div class="declaration">
-                          <h4>Declaration</h4>
-                          <div class="language">
-                            <p class="aside-title">Objective-C</p>
-                            <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">readonly</span><span class="p">,</span> <span class="n">nullable</span><span class="p">)</span> <span class="n">NSNumber</span> <span class="o">*</span><span class="n">deltaFromSparkleExecutableSize</span><span class="p">;</span></code></pre>
-
-                          </div>
-                          <div class="language">
-                            <p class="aside-title">Swift</p>
-                            <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">deltaFromSparkleExecutableSize</span><span class="p">:</span> <span class="kt">NSNumber</span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
-
-                          </div>
-                        </div>
-                      </section>
-                    </div>
-                  </li>
-                  <li class="item">
-                    <div>
-                      <code>
-                      <a name="/c:objc(cs)SUAppcastItem(py)deltaFromSparkleLocales"></a>
-                      <a name="//apple_ref/objc/Property/deltaFromSparkleLocales" class="dashAnchor"></a>
-                      <a class="token" href="#/c:objc(cs)SUAppcastItem(py)deltaFromSparkleLocales">deltaFromSparkleLocales</a>
-                      </code>
-                    </div>
-                    <div class="height-container">
-                      <div class="pointer-container"></div>
-                      <section class="section">
-                        <div class="pointer"></div>
-                        <div class="abstract">
-                          <p>An expected set of Sparkle&rsquo;s locales present on disk before applying this delta update.</p>
-
-<p>This attribute is used to test if the delta item can still be applied. If Sparkle&rsquo;s list of locales present on disk  (.lproj directories) do not contain any items from this set,
-(e.g. from having localization files stripped) then the delta item cannot be applied. This set does not need to be a complete list of locales. Sparkle may even decide
-to not process all them. 1-10 should be a decent amount.</p>
-
-<p>This is extracted from the <code>sparkle:deltaFromSparkleLocales</code> attribute from the <code>&lt;enclosure&gt;</code> element of a <code>sparkle:deltas</code> item.
-The locales extracted from this attribute are delimited by a comma (e.g. &ldquo;en,ca,fr,hr,hu&rdquo;). This attribute is optional for delta update items.</p>
-
-                        </div>
-                        <div class="declaration">
-                          <h4>Declaration</h4>
-                          <div class="language">
-                            <p class="aside-title">Objective-C</p>
-                            <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">readonly</span><span class="p">,</span> <span class="n">nullable</span><span class="p">)</span> <span class="n">NSSet</span><span class="o">&lt;</span><span class="n">NSString</span> <span class="o">*&gt;</span> <span class="o">*</span><span class="n">deltaFromSparkleLocales</span><span class="p">;</span></code></pre>
-
-                          </div>
-                          <div class="language">
-                            <p class="aside-title">Swift</p>
-                            <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">deltaFromSparkleLocales</span><span class="p">:</span> <span class="kt">Set</span><span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;</span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
-
-                          </div>
-                        </div>
-                      </section>
-                    </div>
-                  </li>
-                  <li class="item">
-                    <div>
-                      <code>
                       <a name="/c:objc(cs)SUAppcastItem(py)deltaUpdate"></a>
                       <a name="//apple_ref/objc/Property/deltaUpdate" class="dashAnchor"></a>
                       <a class="token" href="#/c:objc(cs)SUAppcastItem(py)deltaUpdate">deltaUpdate</a>
@@ -1555,7 +1478,7 @@ The locales extracted from this attribute are delimited by a comma (e.g. &ldquo;
       </div>
       <div class="footer-wrapper">
         <section id="footer">
-          <p>&copy; 2022 <a class="link" href="https://sparkle-project.org" target="_blank" rel="external noopener">Sparkle Project</a>. All rights reserved. (Last updated: 2022-09-02)</p>
+          <p>&copy; 2022 <a class="link" href="https://sparkle-project.org" target="_blank" rel="external noopener">Sparkle Project</a>. All rights reserved. (Last updated: 2022-07-16)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.14.2</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
         </section>
       </div>
