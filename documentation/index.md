@@ -50,7 +50,7 @@ If you want to add Sparkle manually:
   * Click your target in the project editor.
   * Click on the <samp>General</samp> tab.
   * In <samp>Frameworks, Libraries, and Embedded Content</samp> section, change Sparkle.framework to <samp>Embed & Sign</samp>.
-* In <samp>Build Settings</samp> tab set "<samp>Runpath Search Paths</samp>" to `@loader_path/../Frameworks` (for non-Xcode projects add the flags `-Wl,-rpath,@loader_path/../Frameworks`). This is not a necessary step in recent versions of Xcode.
+* In <samp>Build Settings</samp> tab set "<samp>Runpath Search Paths</samp>" to `@loader_path/../Frameworks` (for non-Xcode projects add the flags `-Wl,-rpath,@loader_path/../Frameworks`). By default, recent versions of Xcode set this to `@executable_path/../Frameworks` which is already sufficient for regular applications.
 * If you have your own process for copying/packaging your app make sure it preserves symlinks!
 
 If you enable Library Validation, which is part of the Hardened Runtime and required for notarization, you will also need to either sign your application with an `Apple Development` certificate for development (requires being in Apple's developer program), or disable library validation for Debug configurations only. Otherwise, the system may not let your application load Sparkle if you attempt to sign to run locally via an ad-hoc signature. This is not an issue for distribution when you sign your application with a Developer ID certificate.
@@ -74,6 +74,8 @@ These instructions are for regular .app bundles in Cocoa. If you want to use Spa
 * If you'd like, make a "<samp>Check for Updates…</samp>" menu item in the application menu; set its target to the `SPUStandardUpdaterController` instance and its action to `checkForUpdates:`.
 
 If you are using Sparkle 1, you will need to use `SUUpdater` instead of `SPUStandardUpdaterController` in the above steps. In Sparkle 2, `SUUpdater` is a deprecated stub. While it is still functional for transitional purposes, new applications will want to migrate to `SPUStandardUpdaterController`.
+
+That's it. No other API calls are required to start the updater when instantiating Sparkle from a nib.
 
 ### 3. Segue for security concerns
 
