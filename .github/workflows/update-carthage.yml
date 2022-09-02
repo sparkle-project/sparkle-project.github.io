@@ -19,7 +19,7 @@ jobs:
 
     steps:
       - name: "Checkout Sparkle Sources"
-        uses: actions/checkout@3
+        uses: actions/checkout@v3
         with:
           repository: 'sparkle-project/Sparkle'
           token: ${{ secrets.BOT_PERSONAL_ACCESS_TOKEN }}
