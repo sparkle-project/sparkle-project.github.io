@@ -75,7 +75,7 @@ These instructions are for regular .app bundles in Cocoa. If you want to use Spa
 
 If you are using Sparkle 1, you will need to use `SUUpdater` instead of `SPUStandardUpdaterController` in the above steps. In Sparkle 2, `SUUpdater` is a deprecated stub. While it is still functional for transitional purposes, new applications will want to migrate to `SPUStandardUpdaterController`.
 
-That's it. No other API calls are required to start the updater when instantiating Sparkle from a nib.
+That's it. No other API calls are required to start the updater and have it periodically check for new updates when instantiating Sparkle from a nib.
 
 ### 3. Segue for security concerns
 
