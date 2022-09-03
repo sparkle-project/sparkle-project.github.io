@@ -249,7 +249,7 @@ Specific steps on setting up an application and incorporating a framework using 
 * Set the `SUFeedURL` and `SUPublicEDKey` keys in your app's `Info.plist` described in [later documentation sections](/documentation/#3-segue-for-security-concerns)
 * Set the deployment target to your application (`-mmacosx-version-min=version` flag and `LSMinimumSystemVersion` Info.plist key) and build architectures (e.g. `-arch arm64 -arch x86_64`)
 
-Build systems may provide higher-level constructs to set these details. For example, `cmake`'s [`find_library`](https://cmake.org/cmake/help/latest/command/find_library.html) command on a framework will automatically add `-framework A` and `-F<fullPath>` and `cmake`'s' [`MACOSX_BUNDLE_INFO_PLIST`](https://cmake.org/cmake/help/latest/prop_tgt/MACOSX_BUNDLE_INFO_PLIST.html) property can be used to provide custom Info.plist keys.
+Build systems may provide higher-level constructs to set these details. For example, `cmake`'s [`find_library`](https://cmake.org/cmake/help/latest/command/find_library.html) command on a framework will automatically add `-framework A` and `-F<fullPath>` and `cmake`'s [`MACOSX_BUNDLE_INFO_PLIST`](https://cmake.org/cmake/help/latest/prop_tgt/MACOSX_BUNDLE_INFO_PLIST.html) property can be used to provide custom Info.plist keys.
 
 ## Additional APIs
 
@@ -267,6 +267,10 @@ If you are using Sparkle 1, you will need to use these APIs:
 * `-[SUUpdater checkForUpdates:]` for checking for updates
 * `-[SUUpdater validateMenuItem:]` for menu item validation
 
-Prefer to set the updater's initial properties in your bundle's Info.plist as described in [Customizing Sparkle](/documentation/customization/). This includes properties like the updater's feed URL and its update checking behavior. Avoid setting these properties programatically except from user setting changes. Only configuring the feed URL and signing keys (via `SUFeedURL` and `SUPublicEDKey`) in your bundle's Info.plist is required, which are described in [later documentation sections](/documentation/#3-segue-for-security-concerns).
+## API Expectations
 
-Also avoid forcing Sparkle to check for updates on launch unless your application requires this. This can interfere with Sparkle's default behavior for asking users permission to check for updates on second launch and to check for updates periodically without probing too often.
+Prefer to set the updater's initial properties in your bundle's Info.plist as described in [Customizing Sparkle](/documentation/customization/). This includes properties like the updater's feed URL and its update checking behavior. Only configuring the feed URL and signing keys (via `SUFeedURL` and `SUPublicEDKey`) in your bundle's Info.plist is required, which are described in [later documentation sections](/documentation/#3-segue-for-security-concerns).
+
+Only set [SPUUpdater](/documentation/api-reference/Classes/SPUUpdater.html) properties programatically when the user wants to make updater setting changes, otherwise you may be ignoring the user's preferences and resetting the updater's cycle unnecessarily. Similarly, developers shouldn't maintain their own set of user defaults on top of [SPUUpdater](/documentation/api-reference/Classes/SPUUpdater.html) properties that may already be backed by `NSUserDefaults` from user setting changes.
+
+Also avoid forcing Sparkle to check for updates in the background on launch unless your application requires this behavior. This can interfere with Sparkle's default behavior for asking the user's permission to check for updates automatically on second launch, and for checking for updates periodically without probing too often.
