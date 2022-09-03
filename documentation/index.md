@@ -75,11 +75,11 @@ These instructions are for regular .app bundles in Cocoa. If you want to use Spa
 
 If you are using Sparkle 1, you will need to use `SUUpdater` instead of `SPUStandardUpdaterController` in the above steps. In Sparkle 2, `SUUpdater` is a deprecated stub. While it is still functional for transitional purposes, new applications will want to migrate to `SPUStandardUpdaterController`.
 
-That's it. No other API calls are required to start the updater and have it periodically check for new updates when instantiating Sparkle from a nib.
+That's it. No other API calls are required to start the updater. If you intend to pursue additional updater APIs, please first check [API Expectations](/documentation/programmatic-setup#api-expectations) from our programmatic setup.
 
 ### 3. Segue for security concerns
 
-Since Sparkle is downloading executable code to your users' systems, you must be very careful about security. To let Sparkle know that a downloaded update is not corrupted and came from you (instead of a malicious attacker), we recommend:
+Because Sparkle is downloading executable code to your users' systems, you must be very careful about security. To let Sparkle know that a downloaded update is not corrupted and came from you (instead of a malicious attacker), we recommend:
 
   * Serve updates over HTTPS.
     * Your app *will not update on macOS 10.11 or later* unless you comply with Apple's [App Transport Security](/documentation/app-transport-security/) requirements. HTTP requests will be rejected by the system.
