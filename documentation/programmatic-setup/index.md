@@ -146,7 +146,7 @@ class Updater : public QObject
 public:
     // Caller example from a QMainWindow subclass:
     /*
-     QAction *updaterAction = new QAction("&Check for Updates…", this);
+     QAction *updaterAction = new QAction(tr("&Check for Updates…"), this);
      updaterAction->setMenuRole(QAction::ApplicationSpecificRole);
      
      QMenu *updaterMenu = menuBar()->addMenu("&Updater");
