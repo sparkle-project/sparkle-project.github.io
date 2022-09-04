@@ -141,6 +141,8 @@ class QAction;
 
 class Updater : public QObject
 {
+    Q_OBJECT
+    
 public:
     // Caller example from a QMainWindow subclass:
     /*
