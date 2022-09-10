@@ -190,7 +190,7 @@ That's it! You're done! You don't have to do any more. But you might want to:
 
 * [Read more on publishing an update](/documentation/publishing/#publishing-an-update)
 * [Customize Sparkle's settings and behavior](/documentation/customization/) for your product.
-* [Add update settings](/documentation/preferences-ui/) to your preferences panel.
+* [Add update settings](/documentation/preferences-ui/) to your settings panel.
 * [Add binary delta updates](/documentation/delta-updates/) to your application.
 * [Add gentle update reminders](/documentation/gentle-reminders) for your application.
 * [Learn about gathering anonymous statistics about your users' systems](/documentation/system-profiling/).

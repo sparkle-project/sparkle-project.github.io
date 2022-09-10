@@ -35,6 +35,8 @@ import Sparkle
 }
 ```
 
+For adding additional updater settings, you may also want to check out [Adding a Settings UI in Cocoa](/documentation/preferences-ui#add-a-settings-ui-in-cocoa).
+
 ## Create an Updater in SwiftUI
 
 This is an example of creating an updater in Sparkle 2 with SwiftUI. It creates a new menu item allowing users to check for new updates and ensures its disabled state is updated.
@@ -43,52 +45,59 @@ This is an example of creating an updater in Sparkle 2 with SwiftUI. It creates 
 import SwiftUI
 import Sparkle
 
-// This view model class manages Sparkle's updater and publishes when new updates are allowed to be checked
-final class UpdaterViewModel: ObservableObject {
-    private let updaterController: SPUStandardUpdaterController
-    
+// This view model class publishes when new updates can be checked by the user
+final class CheckForUpdatesViewModel: ObservableObject {
     @Published var canCheckForUpdates = false
-    
-    init() {
-        // If you want to start the updater manually, pass false to startingUpdater and call .startUpdater() later
-        // This is where you can also pass an updater delegate if you need one
-        updaterController = SPUStandardUpdaterController(startingUpdater: true, updaterDelegate: nil, userDriverDelegate: nil)
-        
-        updaterController.updater.publisher(for: \.canCheckForUpdates)
+
+    init(updater: SPUUpdater) {
+        updater.publisher(for: \.canCheckForUpdates)
             .assign(to: &$canCheckForUpdates)
-    }
-    
-    func checkForUpdates() {
-        updaterController.checkForUpdates(nil)
     }
 }
 
-// This additional view is needed for the disabled state on the menu item to work properly before Monterey.
-// See https://stackoverflow.com/questions/68553092/menu-not-updating-swiftui-bug for more information
+// This is the view for the Check for Updates menu item
+// Note this intermediate view is necessary for the disabled state on the menu item to work properly before Monterey.
+// See https://stackoverflow.com/questions/68553092/menu-not-updating-swiftui-bug for more info
 struct CheckForUpdatesView: View {
-    @ObservedObject var updaterViewModel: UpdaterViewModel
+    @ObservedObject private var checkForUpdatesViewModel: CheckForUpdatesViewModel
+    private let updater: SPUUpdater
+    
+    init(updater: SPUUpdater) {
+        self.updater = updater
+        
+        // Create our view model for our CheckForUpdatesView
+        self.checkForUpdatesViewModel = CheckForUpdatesViewModel(updater: updater)
+    }
     
     var body: some View {
-        Button("Check for Updates…", action: updaterViewModel.checkForUpdates)
-            .disabled(!updaterViewModel.canCheckForUpdates)
+        Button("Check for Updates…", action: updater.checkForUpdates)
+            .disabled(!checkForUpdatesViewModel.canCheckForUpdates)
     }
 }
 
 @main
 struct MyApp: App {
-    @StateObject var updaterViewModel = UpdaterViewModel()
+    private let updaterController: SPUStandardUpdaterController
+    
+    init() {
+        // If you want to start the updater manually, pass false to startingUpdater and call .startUpdater() later
+        // This is where you can also pass an updater delegate if you need one
+        updaterController = SPUStandardUpdaterController(startingUpdater: true, updaterDelegate: nil, userDriverDelegate: nil)
+    }
     
     var body: some Scene {
         WindowGroup {
         }
         .commands {
             CommandGroup(after: .appInfo) {
-                CheckForUpdatesView(updaterViewModel: updaterViewModel)
+                CheckForUpdatesView(updater: updaterController.updater)
             }
         }
     }
 }
 ```
+
+For adding additional updater settings, you may also want to check out [Add Settings in SwiftUI](/documentation/preferences-ui#add-settings-in-swiftui).
 
 ## Create an Updater in Mac Catalyst
 
@@ -275,7 +284,7 @@ This section only applies if you plan to use additional updater APIs that are no
 
 Prefer to set the updater's initial properties in your bundle's Info.plist as described in [Customizing Sparkle](/documentation/customization/). This includes properties like the updater's feed URL and its update checking behavior. Only configuring the feed URL and signing keys (via `SUFeedURL` and `SUPublicEDKey`) in your bundle's Info.plist is strongly recommended, which are described in [later documentation sections](/documentation/#3-segue-for-security-concerns).
 
-Only set [SPUUpdater](/documentation/api-reference/Classes/SPUUpdater.html) (or `SUUpdater` for Sparkle 1) properties, related to update checking, programatically when the user wants to make updater setting changes, otherwise you may be ignoring the user's preferences and resetting the updater's cycle unnecessarily. Similarly, developers shouldn't maintain their own set of user defaults on top of [SPUUpdater](/documentation/api-reference/Classes/SPUUpdater.html) (or `SUUpdater`) properties that are documented to already be backed by `NSUserDefaults` from user setting changes.
+Only set [SPUUpdater](/documentation/api-reference/Classes/SPUUpdater.html) (or `SUUpdater` for Sparkle 1) properties, related to update checking, programatically when the user wants to make updater setting changes, otherwise you may be ignoring the user's preferences and resetting the updater's cycle unnecessarily. Similarly, developers shouldn't maintain their own set of user defaults on top of [SPUUpdater](/documentation/api-reference/Classes/SPUUpdater.html) (or `SUUpdater`) properties that are documented to already be backed by `NSUserDefaults` from user setting changes. Please also refer to [Adding a Settings UI](/documentation/preferences-ui) for examples.
 
 If you want to switch to an alternative feed at runtime, please check our section on [setting the feed programmatically](/documentation/publishing#setting-the-feed-programmatically) first on the recommended API usage (which is not through `-setFeedURL:`).
 
