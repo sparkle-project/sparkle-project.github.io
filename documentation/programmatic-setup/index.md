@@ -35,7 +35,7 @@ import Sparkle
 }
 ```
 
-For adding additional updater settings, you may also want to check out [Adding a Preferences UI in Cocoa](/documentation/preferences-ui#add-a-settings-ui-in-cocoa).
+For adding additional updater settings, you may also want to check out [Adding a Settings UI in Cocoa](/documentation/preferences-ui#add-a-settings-ui-in-cocoa).
 
 ## Create an Updater in SwiftUI
 
