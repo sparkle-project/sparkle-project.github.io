@@ -262,6 +262,8 @@ Specific steps on setting up an application and incorporating a framework using 
 
 Build systems may provide higher-level constructs to set these details. For example, `cmake`'s [`find_library`](https://cmake.org/cmake/help/latest/command/find_library.html) command on a framework will automatically add `-framework A` and `-F<fullPath>` and `cmake`'s [`MACOSX_BUNDLE_INFO_PLIST`](https://cmake.org/cmake/help/latest/prop_tgt/MACOSX_BUNDLE_INFO_PLIST.html) property can be used to provide custom Info.plist keys.
 
+For adding additional updater settings, you may also want to check out [Add Settings in Qt](/documentation/preferences-ui#add-settings-in-qt).
+
 ## Core APIs
 
 In Sparkle 2 you can also choose to instantiate and use [SPUUpdater](/documentation/api-reference/Classes/SPUUpdater.html) directly instead of the [SPUStandardUpdaterController](/documentation/api-reference/Classes/SPUStandardUpdaterController.html) wrapper if you need more control over your user interface or what bundle to update.

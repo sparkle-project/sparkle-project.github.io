@@ -81,6 +81,67 @@ var body: some Scene {
 }
 ```
 
+### Adding Settings in Qt
+
+This is a continuation from [Creating an Updater in Qt](/documentation/programmatic-setup#create-an-updater-in-qt) and illustrates one way of adding updater settings.
+
+Add new methods for connecting and setting the updater's [automaticallyChecksForUpdates](/documentation/api-reference/Classes/SPUUpdater.html#/c:objc(cs)SPUUpdater(py)automaticallyChecksForUpdates) property from a `QCheckBox`:
+
+
+```objectivec++
+// File: updater.h
+
+/* ... */
+
+class QAction;
+class QCheckBox;
+
+class Updater : public QObject
+{
+    Q_OBJECT
+
+public:
+    Updater(QAction *checkForUpdatesAction);
+    void connectAutomaticallyCheckForUpdatesButton(QCheckBox *checkBox);
+private slots:
+    void checkForUpdates();
+    void setAutomaticallyCheckForUpdates(int newState);
+
+    /* ... */
+}
+
+```
+
+Then implement the new methods:
+
+```objectivec++
+#include "updater.h"
+#include <qaction.h>
+#include <qcheckbox.h>
+
+#import <Sparkle/Sparkle.h>
+
+/* ... */
+
+void Updater::connectAutomaticallyCheckForUpdatesButton(QCheckBox *checkBox)
+{
+    @autoreleasepool {
+        checkBox->setChecked(_updaterDelegate.updaterController.updater.automaticallyChecksForUpdates ? Qt::CheckState::Checked : Qt::CheckState::Unchecked);
+        connect(checkBox, &QCheckBox::stateChanged, this, &Updater::setAutomaticallyCheckForUpdates);
+    }
+}
+
+// Called when the user toggles automatically check for updates checkbox
+void Updater::setAutomaticallyCheckForUpdates(int newState)
+{
+    @autoreleasepool {
+        _updaterDelegate.updaterController.updater.automaticallyChecksForUpdates = (newState == Qt::CheckState::Checked);
+    }
+}
+```
+
+Note that [automaticallyChecksForUpdates](/documentation/api-reference/Classes/SPUUpdater.html#/c:objc(cs)SPUUpdater(py)automaticallyChecksForUpdates) is an updater setting that is backed by `NSUserDefaults`, and shouldn't be backed by additional defaults. Also note this property should only be set upon the user toggling the checkbox.
+
 ---
 
 ## Sparkle 1
