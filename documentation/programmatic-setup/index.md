@@ -35,7 +35,7 @@ import Sparkle
 }
 ```
 
-For adding additional updater settings, you may also want to check out [Adding a Settings UI in Cocoa](/documentation/preferences-ui#add-a-settings-ui-in-cocoa).
+For adding additional updater settings, you may also want to check out [Adding a Settings UI in Cocoa](/documentation/preferences-ui#adding-a-settings-ui-in-cocoa).
 
 ## Create an Updater in SwiftUI
 
@@ -97,7 +97,7 @@ struct MyApp: App {
 }
 ```
 
-For adding additional updater settings, you may also want to check out [Add Settings in SwiftUI](/documentation/preferences-ui#add-settings-in-swiftui).
+For adding additional updater settings, you may also want to check out [Adding Settings in SwiftUI](/documentation/preferences-ui#adding-settings-in-swiftui).
 
 ## Create an Updater in Mac Catalyst
 
@@ -262,7 +262,7 @@ Specific steps on setting up an application and incorporating a framework using 
 
 Build systems may provide higher-level constructs to set these details. For example, `cmake`'s [`find_library`](https://cmake.org/cmake/help/latest/command/find_library.html) command on a framework will automatically add `-framework A` and `-F<fullPath>` and `cmake`'s [`MACOSX_BUNDLE_INFO_PLIST`](https://cmake.org/cmake/help/latest/prop_tgt/MACOSX_BUNDLE_INFO_PLIST.html) property can be used to provide custom Info.plist keys.
 
-For adding additional updater settings, you may also want to check out [Add Settings in Qt](/documentation/preferences-ui#add-settings-in-qt).
+For adding additional updater settings, you may also want to check out [Adding Settings in Qt](/documentation/preferences-ui#adding-settings-in-qt).
 
 ## Core APIs
 
