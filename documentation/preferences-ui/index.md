@@ -1,14 +1,14 @@
 ---
 layout: documentation
 id: documentation
-title: Adding a Preferences UI
+title: Adding a Settings UI
 ---
 
 ## Sparkle 2
 
-### Adding a Preferences UI in Cocoa
+### Adding a Settings UI in Cocoa
 
-These instructions below are for adding preferences in a Cocoa nib and assume you have a Preferences nib with its `File's Owner` being set to your Preferences controller class (e.g, a `NSWindowController` subclass). The controller class should have an `updater` property set to your application's `SPUUpdater`, which may be passed from your application's delegate.
+These instructions below are for adding settings in a Cocoa nib and assume you have a Settings nib with its `File's Owner` being set to your Settings controller class (e.g, a `NSWindowController` subclass). The controller class should have an `updater` property set to your application's `SPUUpdater`, which may be passed from your application's delegate.
 
 #### Enable automatic checking
 
@@ -26,7 +26,7 @@ These instructions below are for adding preferences in a Cocoa nib and assume yo
 * Check the Bind to: check button, choose `File's Owner` from the popup, and set the Model Key Path to `updater.updateCheckInterval`.
 * Select Enabled, check the Bind to: check button, choose `File's Owner` from the popup, and set the Model Key Path to `updater.automaticallyChecksForUpdates`.
 
-#### Other preferences
+#### Other settings
 
 Follow directions similar to [Enable automatic checking](#enable-automatic-checking) to bind a check button to `updater.sendsSystemProfile` or `updater.automaticallyDownloadsUpdates`. See [customization](/documentation/customization/#infoplist-settings) for details on the available keys.
 
@@ -34,13 +34,13 @@ Follow directions similar to [Enable automatic checking](#enable-automatic-check
 
 This is a continuation from [Creating an Updater in SwiftUI](/documentation/programmatic-setup#create-an-updater-in-swiftui).
 
-Create a new view for our updater settings:
+Create a new view for the updater settings:
 
 ```swift
 // This is the view for our updater settings
 // It manages local state for checking for updates and automatically downloading updates
 // Upon user changes to these, the updater's properties are set. These are backed by NSUserDefaults.
-// Note the updater properties must *only* be set when the user changes the state.
+// Note the updater properties should *only* be set when the user changes the state.
 struct UpdaterSettingsView: View {
     private let updater: SPUUpdater
     
@@ -85,7 +85,7 @@ var body: some Scene {
 
 ## Sparkle 1
 
-These instructions below are for adding preferences in a Cocoa nib and assume you have a Preferences nib with its `File's Owner` being set to your Preferences controller class (e.g, a `NSWindowController` subclass). The controller class should have an `updater` property set to your application's `SUUpdater`, which may be passed from your application's delegate.
+These instructions below are for adding settings in a Cocoa nib and assume you have a Settings nib with its `File's Owner` being set to your Settings controller class (e.g, a `NSWindowController` subclass). The controller class should have an `updater` property set to your application's `SUUpdater`, which may be passed from your application's delegate.
 
 ### Enable automatic checking
 
@@ -103,13 +103,13 @@ These instructions below are for adding preferences in a Cocoa nib and assume yo
 * Check the Bind to: check button, choose `File's Owner` from the popup, and set the Model Key Path to `updater.updateCheckInterval`.
 * Select Enabled, check the Bind to: check button, choose `File's Owner` from the popup, and set the Model Key Path to `updater.automaticallyChecksForUpdates`.
 
-### Other preferences
+### Other settings
 
 Follow directions similar to [Enable automatic checking](#enable-automatic-checking). to bind a check button to `sendsSystemProfile` or `automaticallyDownloadsUpdates`. See [customization](/documentation/customization/#infoplist-settings) for details on the available keys.
 
-### Preferences for non-app bundles
+### Settings for non-app bundles
 
-These directions do not work for non-app bundles, as the updater you add to the nib will be the `sharedUpdater` for the application bundle. To be able to bind to the updater for your bundle, you can add the following accessor to your preferences controller (the owner of the nib):
+These directions do not work for non-app bundles, as the updater you add to the nib will be the `sharedUpdater` for the application bundle. To be able to bind to the updater for your bundle, you can add the following accessor to your settings controller (the owner of the nib):
 
 ```objc
 - (SUUpdater *)updater {

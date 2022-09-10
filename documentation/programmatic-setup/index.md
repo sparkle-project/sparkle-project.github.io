@@ -35,6 +35,8 @@ import Sparkle
 }
 ```
 
+For adding additional updater settings, you may also want to check out [Adding a Preferences UI in Cocoa](/documentation/preferences-ui#add-a-settings-ui-in-cocoa).
+
 ## Create an Updater in SwiftUI
 
 This is an example of creating an updater in Sparkle 2 with SwiftUI. It creates a new menu item allowing users to check for new updates and ensures its disabled state is updated.
@@ -64,7 +66,7 @@ struct CheckForUpdatesView: View {
         self.updater = updater
         
         // Create our view model for our CheckForUpdatesView
-        checkForUpdatesViewModel = CheckForUpdatesViewModel(updater: updater)
+        self.checkForUpdatesViewModel = CheckForUpdatesViewModel(updater: updater)
     }
     
     var body: some View {
@@ -95,7 +97,7 @@ struct MyApp: App {
 }
 ```
 
-Check [Add Settings in SwiftUI](/documentation/preferences-ui#add-settings-in-swiftui) for adding updater settings for the user.
+For adding additional updater settings, you may also want to check out [Add Settings in SwiftUI](/documentation/preferences-ui#add-settings-in-swiftui).
 
 ## Create an Updater in Mac Catalyst
 
@@ -282,7 +284,7 @@ This section only applies if you plan to use additional updater APIs that are no
 
 Prefer to set the updater's initial properties in your bundle's Info.plist as described in [Customizing Sparkle](/documentation/customization/). This includes properties like the updater's feed URL and its update checking behavior. Only configuring the feed URL and signing keys (via `SUFeedURL` and `SUPublicEDKey`) in your bundle's Info.plist is strongly recommended, which are described in [later documentation sections](/documentation/#3-segue-for-security-concerns).
 
-Only set [SPUUpdater](/documentation/api-reference/Classes/SPUUpdater.html) (or `SUUpdater` for Sparkle 1) properties, related to update checking, programatically when the user wants to make updater setting changes, otherwise you may be ignoring the user's preferences and resetting the updater's cycle unnecessarily. Similarly, developers shouldn't maintain their own set of user defaults on top of [SPUUpdater](/documentation/api-reference/Classes/SPUUpdater.html) (or `SUUpdater`) properties that are documented to already be backed by `NSUserDefaults` from user setting changes. Please also refer to [Adding a Preferences UI](/documentation/preferences-ui).
+Only set [SPUUpdater](/documentation/api-reference/Classes/SPUUpdater.html) (or `SUUpdater` for Sparkle 1) properties, related to update checking, programatically when the user wants to make updater setting changes, otherwise you may be ignoring the user's preferences and resetting the updater's cycle unnecessarily. Similarly, developers shouldn't maintain their own set of user defaults on top of [SPUUpdater](/documentation/api-reference/Classes/SPUUpdater.html) (or `SUUpdater`) properties that are documented to already be backed by `NSUserDefaults` from user setting changes. Please also refer to [Adding a Settings UI](/documentation/preferences-ui) for examples.
 
 If you want to switch to an alternative feed at runtime, please check our section on [setting the feed programmatically](/documentation/publishing#setting-the-feed-programmatically) first on the recommended API usage (which is not through `-setFeedURL:`).
 
