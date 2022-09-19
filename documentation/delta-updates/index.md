@@ -58,10 +58,14 @@ BinaryDelta apply path/to/old/MyApp.app path/to/patched/MyApp.app patch.delta
                   sparkle:deltaFrom="1.6"
                   length="1428"
                   type="application/octet-stream"
-                  sparkle:edSignature="..." />
+                  sparkle:edSignature="..."
+                  sparkle:deltaFromSparkleExecutableSize="1844096"
+                  sparkle:deltaFromSparkleLocales="en,ca,fr,hr,hu" />
    </sparkle:deltas>
 </item>
 ```
+
+Sparkle 2.3 (beta) introduces two optional attributes for testing if a delta update can be applied before downloading a delta update. These are the `sparkle:deltaFromSparkleExecutableSize` and `sparkle:deltaFromSparkleLocales` attributes. The `sparkle:deltaFromSparkleExecutableSize` attribute refers to the file size in bytes of `Sparkle.framework/Versions/B/Sparkle` from the older application. The `deltaFromSparkleLocales` refers to a comma-delimited partial list of `.lproj` locale directory names (minus the path extension) in `Sparkle.framework/Versions/B/Resources/` from the old application. These attributes help Sparkle detect cases where a user strips your application's localizations or architecture slices. In these cases, Sparkle can skip attempting to download and apply a delta update.
 
 ### Compatibility
 
