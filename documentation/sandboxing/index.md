@@ -57,7 +57,7 @@ The Installer Connection & Status Services are optional (as of changes integrate
 </array>
 ```
 
-This entitlement allows Sparkle to communicate with its installer and updater progress tools on your system. If you are building your application in Xcode, `$(PRODUCT_BUNDLE_IDENTIFIER)` will be automatically substituted with your application's bundle identifier.
+This entitlement allows Sparkle to communicate with its installer and updater progress tools on your system. If you are building your application in Xcode, `$(PRODUCT_BUNDLE_IDENTIFIER)` will be automatically substituted with your application's bundle identifier. Most sandboxed applications need to add this entitlement.
 
 If you cannot add entitlements (e.g. your process inherits another application's restricted sandbox), you will need to [enable the XPC Services](/documentation/customization#sandboxing-settings) instead and need to enable embedding the services in Sparkle's `ConfigCommon.xcconfig`.
 
