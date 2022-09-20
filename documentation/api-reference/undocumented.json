@@ -2,127 +2,134 @@
   "warnings": [
     {
       "file": "/Users/runner/work/sparkle-project.github.io/sparkle-project.github.io/sparkle-source/Sparkle/SPUUpdaterDelegate.h",
-      "line": 22,
+      "line": 23,
       "symbol": "SUUpdaterDidFinishLoadingAppCastNotification",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
       "warning": "undocumented"
     },
     {
       "file": "/Users/runner/work/sparkle-project.github.io/sparkle-project.github.io/sparkle-source/Sparkle/SPUUpdaterDelegate.h",
-      "line": 23,
+      "line": 24,
       "symbol": "SUUpdaterDidFindValidUpdateNotification",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
       "warning": "undocumented"
     },
     {
       "file": "/Users/runner/work/sparkle-project.github.io/sparkle-project.github.io/sparkle-source/Sparkle/SPUUpdaterDelegate.h",
-      "line": 24,
+      "line": 25,
       "symbol": "SUUpdaterDidNotFindUpdateNotification",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
       "warning": "undocumented"
     },
     {
       "file": "/Users/runner/work/sparkle-project.github.io/sparkle-project.github.io/sparkle-source/Sparkle/SPUUpdaterDelegate.h",
-      "line": 25,
+      "line": 26,
       "symbol": "SUUpdaterWillRestartNotification",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
       "warning": "undocumented"
     },
     {
       "file": "/Users/runner/work/sparkle-project.github.io/sparkle-project.github.io/sparkle-source/Sparkle/SPUUpdaterDelegate.h",
-      "line": 30,
+      "line": 31,
       "symbol": "SUUpdaterAppcastItemNotificationKey",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
       "warning": "undocumented"
     },
     {
       "file": "/Users/runner/work/sparkle-project.github.io/sparkle-project.github.io/sparkle-source/Sparkle/SPUUpdaterDelegate.h",
-      "line": 32,
+      "line": 33,
       "symbol": "SUUpdaterAppcastNotificationKey",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
       "warning": "undocumented"
     },
     {
       "file": "/Users/runner/work/sparkle-project.github.io/sparkle-project.github.io/sparkle-source/Sparkle/SPUUpdaterDelegate.h",
-      "line": 38,
+      "line": 39,
       "symbol": "SUSystemProfilerApplicationNameKey",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
       "warning": "undocumented"
     },
     {
       "file": "/Users/runner/work/sparkle-project.github.io/sparkle-project.github.io/sparkle-source/Sparkle/SPUUpdaterDelegate.h",
-      "line": 39,
+      "line": 40,
       "symbol": "SUSystemProfilerApplicationVersionKey",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
       "warning": "undocumented"
     },
     {
       "file": "/Users/runner/work/sparkle-project.github.io/sparkle-project.github.io/sparkle-source/Sparkle/SPUUpdaterDelegate.h",
-      "line": 40,
+      "line": 41,
       "symbol": "SUSystemProfilerCPU64bitKey",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
       "warning": "undocumented"
     },
     {
       "file": "/Users/runner/work/sparkle-project.github.io/sparkle-project.github.io/sparkle-source/Sparkle/SPUUpdaterDelegate.h",
-      "line": 41,
+      "line": 42,
       "symbol": "SUSystemProfilerCPUCountKey",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
       "warning": "undocumented"
     },
     {
       "file": "/Users/runner/work/sparkle-project.github.io/sparkle-project.github.io/sparkle-source/Sparkle/SPUUpdaterDelegate.h",
-      "line": 42,
+      "line": 43,
       "symbol": "SUSystemProfilerCPUFrequencyKey",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
       "warning": "undocumented"
     },
     {
       "file": "/Users/runner/work/sparkle-project.github.io/sparkle-project.github.io/sparkle-source/Sparkle/SPUUpdaterDelegate.h",
-      "line": 43,
+      "line": 44,
       "symbol": "SUSystemProfilerCPUTypeKey",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
       "warning": "undocumented"
     },
     {
       "file": "/Users/runner/work/sparkle-project.github.io/sparkle-project.github.io/sparkle-source/Sparkle/SPUUpdaterDelegate.h",
-      "line": 44,
+      "line": 45,
       "symbol": "SUSystemProfilerCPUSubtypeKey",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
       "warning": "undocumented"
     },
     {
       "file": "/Users/runner/work/sparkle-project.github.io/sparkle-project.github.io/sparkle-source/Sparkle/SPUUpdaterDelegate.h",
-      "line": 45,
+      "line": 46,
       "symbol": "SUSystemProfilerHardwareModelKey",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
       "warning": "undocumented"
     },
     {
       "file": "/Users/runner/work/sparkle-project.github.io/sparkle-project.github.io/sparkle-source/Sparkle/SPUUpdaterDelegate.h",
-      "line": 46,
+      "line": 47,
       "symbol": "SUSystemProfilerMemoryKey",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
       "warning": "undocumented"
     },
     {
       "file": "/Users/runner/work/sparkle-project.github.io/sparkle-project.github.io/sparkle-source/Sparkle/SPUUpdaterDelegate.h",
-      "line": 47,
+      "line": 48,
       "symbol": "SUSystemProfilerOperatingSystemVersionKey",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
       "warning": "undocumented"
     },
     {
       "file": "/Users/runner/work/sparkle-project.github.io/sparkle-project.github.io/sparkle-source/Sparkle/SPUUpdaterDelegate.h",
-      "line": 48,
+      "line": 49,
       "symbol": "SUSystemProfilerPreferredLanguageKey",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.constant",
       "warning": "undocumented"
     },
     {
       "file": "/Users/runner/work/sparkle-project.github.io/sparkle-project.github.io/sparkle-source/Sparkle/SPUUpdaterDelegate.h",
-      "line": 447,
+      "line": 459,
       "symbol": "SPUUpdaterDelegate.-updaterMayCheckForUpdates:",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/sparkle-project.github.io/sparkle-project.github.io/sparkle-source/Sparkle/SPUUpdaterDelegate.h",
+      "line": 461,
+      "symbol": "SPUUpdaterDelegate.-updater:userDidSkipThisVersion:",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
       "warning": "undocumented"
     },
@@ -135,36 +142,43 @@
     },
     {
       "file": "/Users/runner/work/sparkle-project.github.io/sparkle-project.github.io/sparkle-source/Sparkle/SPUUserDriver.h",
-      "line": 268,
+      "line": 273,
       "symbol": "SPUUserDriver.-showUpdateNotFoundWithAcknowledgement:",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/runner/work/sparkle-project.github.io/sparkle-project.github.io/sparkle-source/Sparkle/SPUUserDriver.h",
-      "line": 270,
+      "line": 275,
       "symbol": "SPUUserDriver.-showUpdateInstallationDidFinishWithAcknowledgement:",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/runner/work/sparkle-project.github.io/sparkle-project.github.io/sparkle-source/Sparkle/SPUUserDriver.h",
-      "line": 272,
+      "line": 277,
       "symbol": "SPUUserDriver.-dismissUserInitiatedUpdateCheck",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/runner/work/sparkle-project.github.io/sparkle-project.github.io/sparkle-source/Sparkle/SPUUserDriver.h",
-      "line": 274,
+      "line": 279,
       "symbol": "SPUUserDriver.-showInstallingUpdate",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/runner/work/sparkle-project.github.io/sparkle-project.github.io/sparkle-source/Sparkle/SPUUserDriver.h",
-      "line": 276,
+      "line": 281,
       "symbol": "SPUUserDriver.-showSendingTerminationSignal",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/sparkle-project.github.io/sparkle-project.github.io/sparkle-source/Sparkle/SPUUserDriver.h",
+      "line": 283,
+      "symbol": "SPUUserDriver.-showInstallingUpdateWithApplicationTerminated:",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
       "warning": "undocumented"
     },
@@ -184,28 +198,28 @@
     },
     {
       "file": "/Users/runner/work/sparkle-project.github.io/sparkle-project.github.io/sparkle-source/Sparkle/SUAppcastItem.h",
-      "line": 353,
+      "line": 373,
       "symbol": "SUAppcastItem.-init",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/runner/work/sparkle-project.github.io/sparkle-project.github.io/sparkle-source/Sparkle/SUAppcastItem.h",
-      "line": 363,
+      "line": 383,
       "symbol": "SUAppcastItem.-initWithDictionary:",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/runner/work/sparkle-project.github.io/sparkle-project.github.io/sparkle-source/Sparkle/SUAppcastItem.h",
-      "line": 364,
+      "line": 384,
       "symbol": "SUAppcastItem.-initWithDictionary:failureReason:",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/runner/work/sparkle-project.github.io/sparkle-project.github.io/sparkle-source/Sparkle/SUAppcastItem.h",
-      "line": 365,
+      "line": 385,
       "symbol": "SUAppcastItem.-initWithDictionary:relativeToURL:failureReason:",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
       "warning": "undocumented"
@@ -738,153 +752,167 @@
     {
       "file": "/Users/runner/work/sparkle-project.github.io/sparkle-project.github.io/sparkle-source/Sparkle/SUUpdaterDelegate.h",
       "line": 130,
-      "symbol": "SUUpdaterDelegate.-updater:willDownloadUpdate:withRequest:",
+      "symbol": "SUUpdaterDelegate.-updaterShouldShowUpdateAlertForScheduledUpdate:forItem:",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/runner/work/sparkle-project.github.io/sparkle-project.github.io/sparkle-source/Sparkle/SUUpdaterDelegate.h",
       "line": 138,
-      "symbol": "SUUpdaterDelegate.-updater:didDownloadUpdate:",
+      "symbol": "SUUpdaterDelegate.-updater:didDismissUpdateAlertPermanently:forItem:",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/runner/work/sparkle-project.github.io/sparkle-project.github.io/sparkle-source/Sparkle/SUUpdaterDelegate.h",
       "line": 147,
+      "symbol": "SUUpdaterDelegate.-updater:willDownloadUpdate:withRequest:",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/sparkle-project.github.io/sparkle-project.github.io/sparkle-source/Sparkle/SUUpdaterDelegate.h",
+      "line": 155,
+      "symbol": "SUUpdaterDelegate.-updater:didDownloadUpdate:",
+      "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/work/sparkle-project.github.io/sparkle-project.github.io/sparkle-source/Sparkle/SUUpdaterDelegate.h",
+      "line": 164,
       "symbol": "SUUpdaterDelegate.-updater:failedToDownloadUpdate:error:",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/runner/work/sparkle-project.github.io/sparkle-project.github.io/sparkle-source/Sparkle/SUUpdaterDelegate.h",
-      "line": 154,
+      "line": 171,
       "symbol": "SUUpdaterDelegate.-userDidCancelDownload:",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/runner/work/sparkle-project.github.io/sparkle-project.github.io/sparkle-source/Sparkle/SUUpdaterDelegate.h",
-      "line": 162,
+      "line": 179,
       "symbol": "SUUpdaterDelegate.-updater:willExtractUpdate:",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/runner/work/sparkle-project.github.io/sparkle-project.github.io/sparkle-source/Sparkle/SUUpdaterDelegate.h",
-      "line": 170,
+      "line": 187,
       "symbol": "SUUpdaterDelegate.-updater:didExtractUpdate:",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/runner/work/sparkle-project.github.io/sparkle-project.github.io/sparkle-source/Sparkle/SUUpdaterDelegate.h",
-      "line": 178,
+      "line": 195,
       "symbol": "SUUpdaterDelegate.-updater:willInstallUpdate:",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/runner/work/sparkle-project.github.io/sparkle-project.github.io/sparkle-source/Sparkle/SUUpdaterDelegate.h",
-      "line": 186,
+      "line": 203,
       "symbol": "SUUpdaterDelegate.-updater:userDidSkipThisVersion:",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/runner/work/sparkle-project.github.io/sparkle-project.github.io/sparkle-source/Sparkle/SUUpdaterDelegate.h",
-      "line": 202,
+      "line": 219,
       "symbol": "SUUpdaterDelegate.-updater:shouldPostponeRelaunchForUpdate:untilInvoking:",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/runner/work/sparkle-project.github.io/sparkle-project.github.io/sparkle-source/Sparkle/SUUpdaterDelegate.h",
-      "line": 217,
+      "line": 234,
       "symbol": "SUUpdaterDelegate.-updater:shouldPostponeRelaunchForUpdate:",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/runner/work/sparkle-project.github.io/sparkle-project.github.io/sparkle-source/Sparkle/SUUpdaterDelegate.h",
-      "line": 227,
+      "line": 244,
       "symbol": "SUUpdaterDelegate.-updaterShouldRelaunchApplication:",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/runner/work/sparkle-project.github.io/sparkle-project.github.io/sparkle-source/Sparkle/SUUpdaterDelegate.h",
-      "line": 234,
+      "line": 251,
       "symbol": "SUUpdaterDelegate.-updaterWillRelaunchApplication:",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/runner/work/sparkle-project.github.io/sparkle-project.github.io/sparkle-source/Sparkle/SUUpdaterDelegate.h",
-      "line": 241,
+      "line": 258,
       "symbol": "SUUpdaterDelegate.-updaterDidRelaunchApplication:",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/runner/work/sparkle-project.github.io/sparkle-project.github.io/sparkle-source/Sparkle/SUUpdaterDelegate.h",
-      "line": 256,
+      "line": 273,
       "symbol": "SUUpdaterDelegate.-versionComparatorForUpdater:",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/runner/work/sparkle-project.github.io/sparkle-project.github.io/sparkle-source/Sparkle/SUUpdaterDelegate.h",
-      "line": 265,
+      "line": 282,
       "symbol": "SUUpdaterDelegate.-versionDisplayerForUpdater:",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/runner/work/sparkle-project.github.io/sparkle-project.github.io/sparkle-source/Sparkle/SUUpdaterDelegate.h",
-      "line": 276,
+      "line": 293,
       "symbol": "SUUpdaterDelegate.-pathToRelaunchForUpdater:",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/runner/work/sparkle-project.github.io/sparkle-project.github.io/sparkle-source/Sparkle/SUUpdaterDelegate.h",
-      "line": 284,
+      "line": 301,
       "symbol": "SUUpdaterDelegate.-updaterWillShowModalAlert:",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/runner/work/sparkle-project.github.io/sparkle-project.github.io/sparkle-source/Sparkle/SUUpdaterDelegate.h",
-      "line": 292,
+      "line": 309,
       "symbol": "SUUpdaterDelegate.-updaterDidShowModalAlert:",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/runner/work/sparkle-project.github.io/sparkle-project.github.io/sparkle-source/Sparkle/SUUpdaterDelegate.h",
-      "line": 304,
+      "line": 321,
       "symbol": "SUUpdaterDelegate.-updater:willInstallUpdateOnQuit:immediateInstallationInvocation:",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/runner/work/sparkle-project.github.io/sparkle-project.github.io/sparkle-source/Sparkle/SUUpdaterDelegate.h",
-      "line": 315,
+      "line": 332,
       "symbol": "SUUpdaterDelegate.-updater:willInstallUpdateOnQuit:immediateInstallationBlock:",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/runner/work/sparkle-project.github.io/sparkle-project.github.io/sparkle-source/Sparkle/SUUpdaterDelegate.h",
-      "line": 325,
+      "line": 342,
       "symbol": "SUUpdaterDelegate.-updater:didCancelInstallUpdateOnQuit:",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/runner/work/sparkle-project.github.io/sparkle-project.github.io/sparkle-source/Sparkle/SUUpdaterDelegate.h",
-      "line": 333,
+      "line": 350,
       "symbol": "SUUpdaterDelegate.-updater:didAbortWithError:",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
       "warning": "undocumented"

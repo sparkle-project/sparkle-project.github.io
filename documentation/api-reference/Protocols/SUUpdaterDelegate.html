@@ -16,7 +16,7 @@
     <header>
       <div class="content-wrapper">
         <p>
-          <a href="../index.html">Sparkle 2.2.2 Docs</a>
+          <a href="../index.html">Sparkle 2.3.0-beta.2 Docs</a>
           <span class="no-mobile"> (58% documented)</span>
         </p>
     
@@ -320,6 +320,75 @@
                           <div class="language">
                             <p class="aside-title">Swift</p>
                             <pre class="highlight swift"><code><span class="kd">optional</span> <span class="kd">func</span> <span class="nf">updaterDidNotFindUpdate</span><span class="p">(</span><span class="n">_</span> <span class="nv">updater</span><span class="p">:</span> <span class="kt"><a href="../Classes/SUUpdater.html">SUUpdater</a></span><span class="p">)</span></code></pre>
+
+                          </div>
+                        </div>
+                      </section>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <div>
+                      <code>
+                      <a name="/c:objc(pl)SUUpdaterDelegate(im)updaterShouldShowUpdateAlertForScheduledUpdate:forItem:"></a>
+                      <a name="//apple_ref/objc/Method/-updaterShouldShowUpdateAlertForScheduledUpdate:forItem:" class="dashAnchor"></a>
+                      <a class="token" href="#/c:objc(pl)SUUpdaterDelegate(im)updaterShouldShowUpdateAlertForScheduledUpdate:forItem:">-updaterShouldShowUpdateAlertForScheduledUpdate:<wbr>forItem:<wbr></a>
+                      </code>
+                    </div>
+                    <div class="height-container">
+                      <div class="pointer-container"></div>
+                      <section class="section">
+                        <div class="pointer"></div>
+                        <div class="abstract">
+                          <p>Undocumented</p>
+
+                        </div>
+                        <div class="declaration">
+                          <h4>Declaration</h4>
+                          <div class="language">
+                            <p class="aside-title">Objective-C</p>
+                            <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span>
+    <span class="nf">updaterShouldShowUpdateAlertForScheduledUpdate</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n"><a href="../Classes/SUUpdater.html">SUUpdater</a></span> <span class="o">*</span><span class="p">)</span><span class="nv">updater</span>
+                                           <span class="nf">forItem</span><span class="p">:</span>
+                                               <span class="p">(</span><span class="n">nonnull</span> <span class="n"><a href="../Classes/SUAppcastItem.html">SUAppcastItem</a></span> <span class="o">*</span><span class="p">)</span><span class="nv">item</span><span class="p">;</span></code></pre>
+
+                          </div>
+                          <div class="language">
+                            <p class="aside-title">Swift</p>
+                            <pre class="highlight swift"><code><span class="kd">optional</span> <span class="kd">func</span> <span class="nf">updaterShouldShowUpdateAlert</span><span class="p">(</span><span class="n">forScheduledUpdate</span> <span class="nv">updater</span><span class="p">:</span> <span class="kt"><a href="../Classes/SUUpdater.html">SUUpdater</a></span><span class="p">,</span> <span class="k">for</span> <span class="nv">item</span><span class="p">:</span> <span class="kt"><a href="../Classes/SUAppcastItem.html">SUAppcastItem</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                          </div>
+                        </div>
+                      </section>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <div>
+                      <code>
+                      <a name="/c:objc(pl)SUUpdaterDelegate(im)updater:didDismissUpdateAlertPermanently:forItem:"></a>
+                      <a name="//apple_ref/objc/Method/-updater:didDismissUpdateAlertPermanently:forItem:" class="dashAnchor"></a>
+                      <a class="token" href="#/c:objc(pl)SUUpdaterDelegate(im)updater:didDismissUpdateAlertPermanently:forItem:">-updater:<wbr>didDismissUpdateAlertPermanently:<wbr>forItem:<wbr></a>
+                      </code>
+                    </div>
+                    <div class="height-container">
+                      <div class="pointer-container"></div>
+                      <section class="section">
+                        <div class="pointer"></div>
+                        <div class="abstract">
+                          <p>Undocumented</p>
+
+                        </div>
+                        <div class="declaration">
+                          <h4>Declaration</h4>
+                          <div class="language">
+                            <p class="aside-title">Objective-C</p>
+                            <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">updater</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n"><a href="../Classes/SUUpdater.html">SUUpdater</a></span> <span class="o">*</span><span class="p">)</span><span class="nv">updater</span>
+    <span class="nf">didDismissUpdateAlertPermanently</span><span class="p">:(</span><span class="n">BOOL</span><span class="p">)</span><span class="nv">permanently</span>
+                             <span class="nf">forItem</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n"><a href="../Classes/SUAppcastItem.html">SUAppcastItem</a></span> <span class="o">*</span><span class="p">)</span><span class="nv">item</span><span class="p">;</span></code></pre>
+
+                          </div>
+                          <div class="language">
+                            <p class="aside-title">Swift</p>
+                            <pre class="highlight swift"><code><span class="kd">optional</span> <span class="kd">func</span> <span class="nf">updater</span><span class="p">(</span><span class="n">_</span> <span class="nv">updater</span><span class="p">:</span> <span class="kt"><a href="../Classes/SUUpdater.html">SUUpdater</a></span><span class="p">,</span> <span class="n">didDismissUpdateAlertPermanently</span> <span class="nv">permanently</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">,</span> <span class="k">for</span> <span class="nv">item</span><span class="p">:</span> <span class="kt"><a href="../Classes/SUAppcastItem.html">SUAppcastItem</a></span><span class="p">)</span></code></pre>
 
                           </div>
                         </div>
@@ -1210,8 +1279,8 @@
       </div>
       <div class="footer-wrapper">
         <section id="footer">
-          <p>&copy; 2022 <a class="link" href="https://sparkle-project.org" target="_blank" rel="external noopener">Sparkle Project</a>. All rights reserved. (Last updated: 2022-09-02)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.14.2</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
+          <p>&copy; 2022 <a class="link" href="https://sparkle-project.org" target="_blank" rel="external noopener">Sparkle Project</a>. All rights reserved. (Last updated: 2022-09-20)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.14.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
         </section>
       </div>
     </div>
