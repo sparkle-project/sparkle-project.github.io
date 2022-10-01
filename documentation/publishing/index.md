@@ -114,18 +114,18 @@ Note that the internal version number (`CFBundleVersion` and `sparkle:version`) 
 
 If an update to your application raises the required version of macOS, you can only offer that update to qualified users.
 
-Add a `sparkle:minimumSystemVersion` child to the `<item>` in question specifying the required system version, such as "10.11.0" (be sure to specify a three-part version in form of *major.minor.patch*):
+Add a `sparkle:minimumSystemVersion` child to the `<item>` in question specifying the required system version, such as "10.13.0" (be sure to specify a three-part version in form of *major.minor.patch*):
 
 ```xml
 <item>
     <title>Version 2.0 (2 bugs fixed; 3 new features)</title>
     <link>https://myproductwebsite.com</link>
     <sparkle:version>2.0</sparkle:version>
-    <sparkle:minimumSystemVersion>10.11.0</sparkle:minimumSystemVersion>
+    <sparkle:minimumSystemVersion>10.13.0</sparkle:minimumSystemVersion>
 </item>
 ```
 
-Note that Sparkle 2 only works with macOS 10.11 or later (macOS 10.9 or later for Sparkle 1), so that's the lowest minimum version you can use.
+Note that Sparkle 2.3 or later only works with macOS 10.13 or later (macOS 10.11 or later for Sparkle 2.2.2 and macOS 10.9 or later for Sparkle 1), so that's the lowest minimum version you can use.
 
 Sparkle also supports a `sparkle:maximumSystemVersion` element that can limit the maximum system version similarly.
 

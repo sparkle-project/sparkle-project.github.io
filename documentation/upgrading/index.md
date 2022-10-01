@@ -6,6 +6,14 @@ title: Upgrading from previous versions of Sparkle
 
 We strongly recommend upgrading Sparkle to the [latest production release](//github.com/{{ site.github_username }}/Sparkle/releases), as there have been important fixes in reliability and [security](/documentation/security) of updates. Very old versions of Sparkle also suffer some incompatibilities with the latest macOS versions.
 
+## Upgrading to Sparkle 2.3
+
+Sparkle 2.3 now requires macOS 10.13 (High Sierra) or later.
+
+`generate_appcast` now only preserves necessary updates and moves old update files into a `old_updates` directory. Please run `generate_appcast --help` for more details.
+
+Serving updates using DSA only without EdDSA is no longer supported.
+
 ## Upgrading to Sparkle 2.2
 
 If you're upgrading from Sparkle 2.0 or 2.1 and sandbox your app, Sparkle 2.2 has renamed the XPC Services referenced in the [sandboxed applications](/documentation/sandboxing) guide. If you have scripts that reference these services you will need to update them.
