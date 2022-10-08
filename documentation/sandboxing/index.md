@@ -6,48 +6,32 @@ title: Sandboxing with Sparkle
 
 Using Sparkle in a sandboxed application is only supported in Sparkle 2. If you do not sandbox your application, you may skip this page unless you are interested in [Removing the XPC Services](#removing-xpc-services).
 
-If you are migrating from an older beta version of Sparkle 2, the XPC Services have been moved into Sparkle's framework bundle. You will need to stop bundling the XPC Services directly inside your application and add Info.plist keys to enable the services now. This is described in the sections below.
+If you are migrating from an older beta version of Sparkle 2, the XPC Services have been moved into Sparkle's framework bundle. You will need to stop bundling the XPC Services directly inside your application and add Info.plist keys to enable the services. This is described in the sections below.
 
 ## Sandboxing
 
-### XPC Services
+### Integration
 
-In order for Sparkle to work in a sandboxed application, the framework must call out to XPC Services to perform updating and installation.
+In order for Sparkle to function in a sandboxed environment, the application must call out to XPC Services and ensure the application's entitlement requirements are met.
 
-Sparkle by default bundles two XPC Services inside the framework for sandboxing:
+Sparkle by default bundles two XPC Services inside the framework for sandboxing your application:
 
 * Installer.xpc (org.sparkle-project.InstallerLauncher.xpc prior to Sparkle 2.2)
-* Downloader.xpc (org.sparkle-project.Downloader.xpc prior to Sparkle 2.2)
+* Downloader.xpc (org.sparkle-project.Downloader.xpc prior to Sparkle 2.2; optional)
 
-There are two other XPC Services, not bundled by default, for communicating to Sparkle's installer helpers:
+Please read the below sections on full integration details.
 
-* InstallerConnection.xpc (org.sparkle-project.InstallerConnection.xpc prior to Sparkle 2.2)
-* InstallerStatus.xpc (org.sparkle-project.InstallerStatus.xpc prior to Sparkle 2.2)
+#### Installation
 
-In order for Sparkle to work in a sandboxed application, the application must call out to XPC Services to perform the updating and installation. Only the Installer XPC Service is strictly required. The other services are optional depending on your use case.
+The Installer XPC Service is required for Sandboxed applications. Sparkle by default bundles this XPC Service in its framework bundle.
 
-If you build Sparkle yourself, you can optionally choose to change `XPC_SERVICE_BUNDLE_ID_PREFIX` in `ConfigCommon.xcconfig` from `org.sparkle-project` to your own prefix. In this configuration file, you can also choose which services Sparkle should bundle (by setting `SPARKLE_EMBED_*_XPC_SERVICE` variables). Please see notes below on integrating each of these services.
-
-#### Installer Service
-
-The Installer Service is required for Sandboxed applications. Sparkle by default bundles this XPC Service in its framework bundle.
+This service lets Sparkle install updates outside of your application's sandbox.
 
 To enable the service, you must set [SUEnableInstallerLauncherService](/documentation/customization#sandboxing-settings) boolean to `YES` in your application's Info.plist.
 
-#### Downloader Service
+#### Communication
 
-The Downloader XPC Service is optional for Sandboxed applications. Sparkle by default bundles this XPC Service in its framework bundle.
-
-Use this service only if your sandboxed application does not request the `com.apple.security.network.client` entitlement. The downloader service allows using Sparkle without forcing the network client entitlement on your entire application. There are a couple caveats with using the downloader service though:
-
-* It may not work well if your release notes reference external content that would require making additional network requests.
-* We fall back to using the legacy WebKit WebView for release notes due to a [known WKWebView defect](https://github.com/feedback-assistant/reports/issues/1). Please file a feedback report to Apple duping to FB6993802 preventing the use of WKWebView without enforcing the `com.apple.security.network.client` entitlement on your sandboxed application.
-
-To enable the service, you must set [SUEnableDownloaderService](/documentation/customization#sandboxing-settings) boolean to `YES` in your application's Info.plist.
-
-#### Installer Connection & Status Services
-
-The Installer Connection & Status Services are optional (as of changes integrated on [April 4, 2021](https://github.com/sparkle-project/Sparkle/pull/1812)) and are not bundled in the Sparkle framework by default. Instead of using these services, you will need to add the following entitlement to your sandboxed application:
+To allow Sparkle to communicate to its running installer tools, you will need to add the following entitlement to your sandboxed application:
 
 ```xml
 <key>com.apple.security.temporary-exception.mach-lookup.global-name</key>
@@ -57,9 +41,20 @@ The Installer Connection & Status Services are optional (as of changes integrate
 </array>
 ```
 
-This entitlement allows Sparkle to communicate with its installer and updater progress tools on your system. If you are building your application in Xcode, `$(PRODUCT_BUNDLE_IDENTIFIER)` will be automatically substituted with your application's bundle identifier.
+If you are building your application in Xcode, `$(PRODUCT_BUNDLE_IDENTIFIER)` will be automatically substituted with your application's bundle identifier.
 
-If you cannot add entitlements (e.g. your process inherits another application's restricted sandbox), you will need to [enable the XPC Services](/documentation/customization#sandboxing-settings) instead and need to enable embedding the services in Sparkle's `ConfigCommon.xcconfig`.
+In the unusual case that you cannot add entitlements (e.g. your process inherits another application's restricted sandbox), you will need to [enable the Installer Connection & Status XPC Services](/documentation/customization#sandboxing-settings) instead and enable embedding the services in Sparkle's `ConfigCommon.xcconfig` when building Sparkle from source.
+
+#### Downloader
+
+The Downloader XPC Service is optional for Sandboxed applications. Sparkle by default bundles this XPC Service in its framework bundle.
+
+Use this service only if your sandboxed application does not request the `com.apple.security.network.client` entitlement. The downloader service allows using Sparkle without forcing the network client entitlement on your entire application. There are a couple caveats with using the downloader service though:
+
+* It may not work well if your release notes reference external content that would require making additional network requests.
+* We fall back to using the legacy WebKit WebView for release notes due to a [known WKWebView defect](https://github.com/feedback-assistant/reports/issues/1). Please file a feedback report to Apple duping to FB6993802 preventing the use of WKWebView without enforcing the `com.apple.security.network.client` entitlement on your sandboxed application.
+
+To enable the service, you must set [SUEnableDownloaderService](/documentation/customization#sandboxing-settings) boolean to `YES` in your application's Info.plist.
 
 ### Code Signing
 
