@@ -178,7 +178,7 @@ You can also create the appcast file manually (not recommended):
 
 * Use an older version of your app, or if you don't have one yet, make one seem older by editing `Info.plist` and change `CFBundleVersion` to a lower version.
   * A genuine older version of the app is required to test [delta updates](/documentation/delta-updates/), because Sparkle will ignore the delta update if the app doesn't match update's checksum.
-  * Editing `CFBundleVersion` of the latest version of the app is useful for testing the latest version of Sparkle framework.
+  * Editing `CFBundleVersion` of the latest development version of the app is useful for testing the latest version of Sparkle framework.
 * Run the app, then quit. By default, Sparkle doesn't ask the user's permission for checking updates until the _second_ launch, in order to make your users' first-launch impression cleaner.
 * Run the app again. The update process should proceed as expected. Note by default, Sparkle checks for updates in the background once every 24 hours. To test automatic update checks immediately, run `defaults delete my-bundle-id SULastCheckTime` to clear the last update check time before launching the app. Alternatively, initiate a manual update check from the app's menu bar.
 
