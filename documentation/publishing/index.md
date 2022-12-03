@@ -323,10 +323,11 @@ func allowedChannels(for updater: SPUUpdater) -> Set<String> {
 }
 ```
 
-Note that an updater cannot exclude itself from the default channel. Channels are intended to be a way to branch off updates to your application until newer updates are ready to come back to the default channel.
+Note that an updater cannot exclude itself from the default channel. Channels are intended to be a way to branch off updates to your application until newer updates are ready to come back to the default channel. On the other hand, channels are not intended to be used for parallel releases (such as distributing "1.0" and "1.0 demo" for example).
 
 Channels can only be used when all of your users downloading your appcast are running a version of Sparkle that supports them. Sparkle 2 added them as of [June 27, 2021](https://github.com/sparkle-project/Sparkle/pull/1879). You can expedite this process by [switching to a new appcast](#upgrading-to-newer-features). Otherwise older versions of Sparkle may need to set the feed url programmatically below.
 
+If you were using `-setFeedURL:` for alternate feeds and want to migrate to using channels, please see important notes below in setting the feed url programmatically on how to migrate away from using that API.
 
 ## Setting the feed programmatically
 
