@@ -22,6 +22,10 @@ Sparkle 2.2 provides [gentle update reminders](/documentation/gentle-reminders) 
 
 The `-s` flag to `generate_appcast` and `sign_update` for passing the private EdDSA key as a command line argument is now deprecated. Please run these tools with `-h` for more information if you were using this option.
 
+## Upgrading to Sparkle 2.1
+
+Sparkle 2.1 introduces a new major format for delta updates, which creates more efficient patches and migrates away from deprecated APIs (xar). If you don't use `generate_appcast`, please check the [compatibility notes for creating delta updates](/documentation/delta-updates/#compatibility).
+
 ## Upgrading to Sparkle 2.0
 
 Sparkle 2 now requires macOS 10.11 (El Capitan) or later.
@@ -84,7 +88,7 @@ See [Sparkle 2's APIs](/documentation/api-reference) for more information.
 
 ## Upgrading to Sparkle 1.26
 
-Support for serving bare, or non-archived, flat packages (`*.pkg` or `*.mpkg`) has been added in Sparkle 1.26, but you should still use archived packages until majority of your users update. Please see [Package Updates](/documentation/package-updates) for migration details.
+Support for serving bare, or non-archived, flat packages (`*.pkg` or `*.mpkg`) has been added in Sparkle 1.26. Please see [Package Updates](/documentation/package-updates) for migration details.
 
 ## Upgrading to Sparkle 1.21
 
