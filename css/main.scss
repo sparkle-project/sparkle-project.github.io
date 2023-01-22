@@ -241,6 +241,13 @@ samp {
     }
 }
 
+td {
+    /* If text overflows, we want text to be vertically aligned to top */
+    vertical-align: top;
+    
+    padding: 0 2.2em 0 0;
+}
+
 /*
     CSS syntax highlighting generated from:
     pygmentize -S friendly -f html -a .highlight
