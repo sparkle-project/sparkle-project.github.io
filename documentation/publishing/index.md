@@ -22,8 +22,10 @@ ditto -c -k --sequesterRsrc --keepParent MyApp.app MyApp.zip
 For creating a LZMA compressed archive with optimal compression (but slower decompression), `tar` can be used for updates instead:
 
 ```sh
-tar cfJ MyApp.tar.xz MyApp.app
+tar --no-xattrs -cJf MyApp.tar.xz MyApp.app
 ```
+
+Note this assumes your application does not use extended attributes and [places code and data into their proper places](https://developer.apple.com/library/archive/technotes/tn2206/_index.html#//apple_ref/doc/uid/DTS40007919-CH1-TNTAG201) because creating a tar with extended attributes may cause extraction issues on older systems.
 
 Please see [notes for Installer packages](/documentation/package-updates) if you are not updating a regular bundle.
 
