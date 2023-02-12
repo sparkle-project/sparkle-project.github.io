@@ -16,7 +16,7 @@
     <header>
       <div class="content-wrapper">
         <p>
-          <a href="../index.html">Sparkle 2.3.1 Docs</a>
+          <a href="../index.html">Sparkle 2.3.2 Docs</a>
           <span class="no-mobile"> (58% documented)</span>
         </p>
     
@@ -150,6 +150,67 @@ If you don&rsquo;t implement this method or return <code>nil,</code> the standar
                             <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">id</span><span class="o">&lt;</span><span class="n"><a href="../Protocols/SUVersionDisplay.html">SUVersionDisplay</a></span><span class="o">&gt;</span> <span class="n">_Nullable</span><span class="p">)</span><span class="n">standardUserDriverRequestsVersionDisplayer</span><span class="p">;</span></code></pre>
 
                           </div>
+                        </div>
+                      </section>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <div>
+                      <code>
+                      <a name="/c:objc(pl)SPUStandardUserDriverDelegate(im)standardUserDriverShouldShowVersionHistoryForAppcastItem:"></a>
+                      <a name="//apple_ref/objc/Method/-standardUserDriverShouldShowVersionHistoryForAppcastItem:" class="dashAnchor"></a>
+                      <a class="token" href="#/c:objc(pl)SPUStandardUserDriverDelegate(im)standardUserDriverShouldShowVersionHistoryForAppcastItem:">-standardUserDriverShouldShowVersionHistoryForAppcastItem:<wbr></a>
+                      </code>
+                    </div>
+                    <div class="height-container">
+                      <div class="pointer-container"></div>
+                      <section class="section">
+                        <div class="pointer"></div>
+                        <div class="abstract">
+                          <p>Decides whether or not the standard user driver should provide an option to show full release notes to the user.</p>
+
+<p>When a user checks for new updates and no new update is found, Sparkle by default will offer to show the application&rsquo;s version history to the user
+by providing a &ldquo;Version History&rdquo; button in the no new update available alert.</p>
+
+<p>If this delegate method is implemented to return <code>NO</code>, then Sparkle will not provide an option to show full release notes to the user.</p>
+
+                        </div>
+                        <div class="declaration">
+                          <h4>Declaration</h4>
+                          <div class="language">
+                            <p class="aside-title">Objective-C</p>
+                            <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span><span class="nf">standardUserDriverShouldShowVersionHistoryForAppcastItem</span><span class="p">:</span>
+    <span class="p">(</span><span class="n">nonnull</span> <span class="n"><a href="../Classes/SUAppcastItem.html">SUAppcastItem</a></span> <span class="o">*</span><span class="p">)</span><span class="nv">item</span><span class="p">;</span></code></pre>
+
+                          </div>
+                          <div class="language">
+                            <p class="aside-title">Swift</p>
+                            <pre class="highlight swift"><code><span class="kd">optional</span> <span class="kd">func</span> <span class="nf">standardUserDriverShouldShowVersionHistory</span><span class="p">(</span><span class="k">for</span> <span class="nv">item</span><span class="p">:</span> <span class="kt"><a href="../Classes/SUAppcastItem.html">SUAppcastItem</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                          </div>
+                        </div>
+                        <div>
+                          <h4>Parameters</h4>
+                          <table class="graybox">
+                            <tbody>
+                              <tr>
+                                <td>
+                                  <code>
+                                  <em>item</em>
+                                  </code>
+                                </td>
+                                <td>
+                                  <div>
+                                    <p>The appcast item corresponding to the latest version available.</p>
+                                  </div>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                        <div>
+                          <h4>Return Value</h4>
+                          <p><code>YES</code> to allow Sparkle to show full release notes to the user, otherwise <code>NO</code> to disallow this.</p>
                         </div>
                       </section>
                     </div>
@@ -751,7 +812,7 @@ please see <code><a href="../Protocols/SPUStandardUserDriverDelegate.html#/c:obj
       </div>
       <div class="footer-wrapper">
         <section id="footer">
-          <p>&copy; 2022 <a class="link" href="https://sparkle-project.org" target="_blank" rel="external noopener">Sparkle Project</a>. All rights reserved. (Last updated: 2022-12-23)</p>
+          <p>&copy; 2023 <a class="link" href="https://sparkle-project.org" target="_blank" rel="external noopener">Sparkle Project</a>. All rights reserved. (Last updated: 2023-02-12)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.14.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
         </section>
       </div>
