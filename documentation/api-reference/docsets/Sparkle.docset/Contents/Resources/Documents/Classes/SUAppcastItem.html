@@ -16,8 +16,8 @@
     <header>
       <div class="content-wrapper">
         <p>
-          <a href="../index.html">Sparkle 2.3.2 Docs</a>
-          <span class="no-mobile"> (58% documented)</span>
+          <a href="../index.html">Sparkle 2.4.0-beta.1 Docs</a>
+          <span class="no-mobile"> (59% documented)</span>
         </p>
     
     
@@ -92,7 +92,7 @@ All the remaining properties describing an update to the application are optiona
                           <h4>Declaration</h4>
                           <div class="language">
                             <p class="aside-title">Objective-C</p>
-                            <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">copy</span><span class="p">,</span> <span class="n">readonly</span><span class="p">)</span> <span class="n">NSString</span> <span class="o">*</span><span class="n">_Nonnull</span> <span class="n">versionString</span><span class="p">;</span></code></pre>
+                            <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">copy</span><span class="p">,</span> <span class="n">readonly</span><span class="p">)</span> <span class="n">NSString</span> <span class="o">*</span><span class="n">_Nonnull</span> <span class="n">versionString</span><span class="p">;</span></code></pre>
 
                           </div>
                           <div class="language">
@@ -132,7 +132,7 @@ All the remaining properties describing an update to the application are optiona
                           <h4>Declaration</h4>
                           <div class="language">
                             <p class="aside-title">Objective-C</p>
-                            <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">copy</span><span class="p">,</span> <span class="n">readonly</span><span class="p">)</span> <span class="n">NSString</span> <span class="o">*</span><span class="n">_Nonnull</span> <span class="n">displayVersionString</span><span class="p">;</span></code></pre>
+                            <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">copy</span><span class="p">,</span> <span class="n">readonly</span><span class="p">)</span> <span class="n">NSString</span> <span class="o">*</span><span class="n">_Nonnull</span> <span class="n">displayVersionString</span><span class="p">;</span></code></pre>
 
                           </div>
                           <div class="language">
@@ -171,7 +171,7 @@ In cases where a download cannot be provided, an <code><a href="../Classes/SUApp
                           <h4>Declaration</h4>
                           <div class="language">
                             <p class="aside-title">Objective-C</p>
-                            <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">readonly</span><span class="p">,</span> <span class="n">nullable</span><span class="p">)</span> <span class="n">NSURL</span> <span class="o">*</span><span class="n">fileURL</span><span class="p">;</span></code></pre>
+                            <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">readonly</span><span class="p">,</span> <span class="n">nullable</span><span class="p">)</span> <span class="n">NSURL</span> <span class="o">*</span><span class="n">fileURL</span><span class="p">;</span></code></pre>
 
                           </div>
                           <div class="language">
@@ -250,7 +250,7 @@ The link should point to the product&rsquo;s web page.</p>
                           <h4>Declaration</h4>
                           <div class="language">
                             <p class="aside-title">Objective-C</p>
-                            <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">readonly</span><span class="p">,</span> <span class="n">nullable</span><span class="p">)</span> <span class="n">NSURL</span> <span class="o">*</span><span class="n">infoURL</span><span class="p">;</span></code></pre>
+                            <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">readonly</span><span class="p">,</span> <span class="n">nullable</span><span class="p">)</span> <span class="n">NSURL</span> <span class="o">*</span><span class="n">infoURL</span><span class="p">;</span></code></pre>
 
                           </div>
                           <div class="language">
@@ -288,7 +288,7 @@ The link should point to the product&rsquo;s web page.</p>
                           <h4>Declaration</h4>
                           <div class="language">
                             <p class="aside-title">Objective-C</p>
-                            <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">readonly</span><span class="p">,</span> <span class="n">getter</span><span class="o">=</span><span class="n">isInformationOnlyUpdate</span><span class="p">)</span> <span class="n">BOOL</span> <span class="n">informationOnlyUpdate</span><span class="p">;</span></code></pre>
+                            <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">readonly</span><span class="p">,</span> <span class="n">getter</span><span class="o">=</span><span class="n">isInformationOnlyUpdate</span><span class="p">)</span> <span class="n">BOOL</span> <span class="n">informationOnlyUpdate</span><span class="p">;</span></code></pre>
 
                           </div>
                           <div class="language">
@@ -322,7 +322,7 @@ The link should point to the product&rsquo;s web page.</p>
                           <h4>Declaration</h4>
                           <div class="language">
                             <p class="aside-title">Objective-C</p>
-                            <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">copy</span><span class="p">,</span> <span class="n">readonly</span><span class="p">,</span> <span class="n">nullable</span><span class="p">)</span> <span class="n">NSString</span> <span class="o">*</span><span class="n">title</span><span class="p">;</span></code></pre>
+                            <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">copy</span><span class="p">,</span> <span class="n">readonly</span><span class="p">,</span> <span class="n">nullable</span><span class="p">)</span> <span class="n">NSString</span> <span class="o">*</span><span class="n">title</span><span class="p">;</span></code></pre>
 
                           </div>
                           <div class="language">
@@ -359,7 +359,7 @@ The link should point to the product&rsquo;s web page.</p>
                           <h4>Declaration</h4>
                           <div class="language">
                             <p class="aside-title">Objective-C</p>
-                            <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">copy</span><span class="p">,</span> <span class="n">readonly</span><span class="p">,</span> <span class="n">nullable</span><span class="p">)</span> <span class="n">NSString</span> <span class="o">*</span><span class="n">dateString</span><span class="p">;</span></code></pre>
+                            <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">copy</span><span class="p">,</span> <span class="n">readonly</span><span class="p">,</span> <span class="n">nullable</span><span class="p">)</span> <span class="n">NSString</span> <span class="o">*</span><span class="n">dateString</span><span class="p">;</span></code></pre>
 
                           </div>
                           <div class="language">
@@ -395,7 +395,7 @@ The link should point to the product&rsquo;s web page.</p>
                           <h4>Declaration</h4>
                           <div class="language">
                             <p class="aside-title">Objective-C</p>
-                            <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">copy</span><span class="p">,</span> <span class="n">readonly</span><span class="p">,</span> <span class="n">nullable</span><span class="p">)</span> <span class="n">NSDate</span> <span class="o">*</span><span class="n">date</span><span class="p">;</span></code></pre>
+                            <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">copy</span><span class="p">,</span> <span class="n">readonly</span><span class="p">,</span> <span class="n">nullable</span><span class="p">)</span> <span class="n">NSDate</span> <span class="o">*</span><span class="n">date</span><span class="p">;</span></code></pre>
 
                           </div>
                           <div class="language">
@@ -433,7 +433,7 @@ The link should point to the product&rsquo;s web page.</p>
                           <h4>Declaration</h4>
                           <div class="language">
                             <p class="aside-title">Objective-C</p>
-                            <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">readonly</span><span class="p">,</span> <span class="n">nullable</span><span class="p">)</span> <span class="n">NSURL</span> <span class="o">*</span><span class="n">releaseNotesURL</span><span class="p">;</span></code></pre>
+                            <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">readonly</span><span class="p">,</span> <span class="n">nullable</span><span class="p">)</span> <span class="n">NSURL</span> <span class="o">*</span><span class="n">releaseNotesURL</span><span class="p">;</span></code></pre>
 
                           </div>
                           <div class="language">
@@ -470,12 +470,57 @@ This is an alternative to providing a <code><a href="../Classes/SUAppcastItem.ht
                           <h4>Declaration</h4>
                           <div class="language">
                             <p class="aside-title">Objective-C</p>
-                            <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">copy</span><span class="p">,</span> <span class="n">readonly</span><span class="p">,</span> <span class="n">nullable</span><span class="p">)</span> <span class="n">NSString</span> <span class="o">*</span><span class="n">itemDescription</span><span class="p">;</span></code></pre>
+                            <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">copy</span><span class="p">,</span> <span class="n">readonly</span><span class="p">,</span> <span class="n">nullable</span><span class="p">)</span> <span class="n">NSString</span> <span class="o">*</span><span class="n">itemDescription</span><span class="p">;</span></code></pre>
 
                           </div>
                           <div class="language">
                             <p class="aside-title">Swift</p>
                             <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">itemDescription</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                          </div>
+                        </div>
+                      </section>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <div>
+                      <code>
+                      <a name="/c:objc(cs)SUAppcastItem(py)itemDescriptionFormat"></a>
+                      <a name="//apple_ref/objc/Property/itemDescriptionFormat" class="dashAnchor"></a>
+                      <a class="token" href="#/c:objc(cs)SUAppcastItem(py)itemDescriptionFormat">itemDescriptionFormat</a>
+                      </code>
+                    </div>
+                    <div class="height-container">
+                      <div class="pointer-container"></div>
+                      <section class="section">
+                        <div class="pointer"></div>
+                        <div class="abstract">
+                          <p>The format of the <code><a href="../Classes/SUAppcastItem.html#/c:objc(cs)SUAppcastItem(py)itemDescription">itemDescription</a></code> for inline/embedded release notes if provided.</p>
+
+<p>This may be:</p>
+
+<ul>
+<li><code>html</code></li>
+<li><code>plain-text</code></li>
+</ul>
+
+<p>This is extracted from the <code>sparkle:descriptionFormat</code> attribute in the <code>&lt;description&gt;</code> element.</p>
+
+<p>If the format is not provided in the <code>&lt;description&gt;</code> element of the appcast item, then this property may default to <code>html</code>.</p>
+
+<p>If the <code>&lt;description&gt;</code> element of the appcast item is not available, this property is <code>nil</code>.</p>
+
+                        </div>
+                        <div class="declaration">
+                          <h4>Declaration</h4>
+                          <div class="language">
+                            <p class="aside-title">Objective-C</p>
+                            <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">readonly</span><span class="p">,</span> <span class="n">nullable</span><span class="p">)</span> <span class="n">NSString</span> <span class="o">*</span><span class="n">itemDescriptionFormat</span><span class="p">;</span></code></pre>
+
+                          </div>
+                          <div class="language">
+                            <p class="aside-title">Swift</p>
+                            <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">itemDescriptionFormat</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
 
                           </div>
                         </div>
@@ -508,7 +553,7 @@ This is an alternative to providing a <code><a href="../Classes/SUAppcastItem.ht
                           <h4>Declaration</h4>
                           <div class="language">
                             <p class="aside-title">Objective-C</p>
-                            <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">readonly</span><span class="p">,</span> <span class="n">nullable</span><span class="p">)</span> <span class="n">NSURL</span> <span class="o">*</span><span class="n">fullReleaseNotesURL</span><span class="p">;</span></code></pre>
+                            <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">readonly</span><span class="p">,</span> <span class="n">nullable</span><span class="p">)</span> <span class="n">NSURL</span> <span class="o">*</span><span class="n">fullReleaseNotesURL</span><span class="p">;</span></code></pre>
 
                           </div>
                           <div class="language">
@@ -548,7 +593,7 @@ This is an alternative to providing a <code><a href="../Classes/SUAppcastItem.ht
                           <h4>Declaration</h4>
                           <div class="language">
                             <p class="aside-title">Objective-C</p>
-                            <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">copy</span><span class="p">,</span> <span class="n">readonly</span><span class="p">,</span> <span class="n">nullable</span><span class="p">)</span> <span class="n">NSString</span> <span class="o">*</span><span class="n">minimumSystemVersion</span><span class="p">;</span></code></pre>
+                            <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">copy</span><span class="p">,</span> <span class="n">readonly</span><span class="p">,</span> <span class="n">nullable</span><span class="p">)</span> <span class="n">NSString</span> <span class="o">*</span><span class="n">minimumSystemVersion</span><span class="p">;</span></code></pre>
 
                           </div>
                           <div class="language">
@@ -622,7 +667,7 @@ This is an alternative to providing a <code><a href="../Classes/SUAppcastItem.ht
                           <h4>Declaration</h4>
                           <div class="language">
                             <p class="aside-title">Objective-C</p>
-                            <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">copy</span><span class="p">,</span> <span class="n">readonly</span><span class="p">,</span> <span class="n">nullable</span><span class="p">)</span> <span class="n">NSString</span> <span class="o">*</span><span class="n">maximumSystemVersion</span><span class="p">;</span></code></pre>
+                            <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">copy</span><span class="p">,</span> <span class="n">readonly</span><span class="p">,</span> <span class="n">nullable</span><span class="p">)</span> <span class="n">NSString</span> <span class="o">*</span><span class="n">maximumSystemVersion</span><span class="p">;</span></code></pre>
 
                           </div>
                           <div class="language">
@@ -784,7 +829,7 @@ Old applications must be using Sparkle 2 or later to interpret the channel eleme
                           <h4>Declaration</h4>
                           <div class="language">
                             <p class="aside-title">Objective-C</p>
-                            <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">copy</span><span class="p">,</span> <span class="n">readonly</span><span class="p">,</span> <span class="n">nullable</span><span class="p">)</span> <span class="n">NSNumber</span> <span class="o">*</span><span class="n">phasedRolloutInterval</span><span class="p">;</span></code></pre>
+                            <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">copy</span><span class="p">,</span> <span class="n">readonly</span><span class="p">,</span> <span class="n">nullable</span><span class="p">)</span> <span class="n">NSNumber</span> <span class="o">*</span><span class="n">phasedRolloutInterval</span><span class="p">;</span></code></pre>
 
                           </div>
                           <div class="language">
@@ -826,7 +871,7 @@ Old applications must be using Sparkle 2 or later to interpret the channel eleme
                           <h4>Declaration</h4>
                           <div class="language">
                             <p class="aside-title">Objective-C</p>
-                            <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">copy</span><span class="p">,</span> <span class="n">readonly</span><span class="p">,</span> <span class="n">nullable</span><span class="p">)</span> <span class="n">NSString</span> <span class="o">*</span><span class="n">minimumAutoupdateVersion</span><span class="p">;</span></code></pre>
+                            <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">copy</span><span class="p">,</span> <span class="n">readonly</span><span class="p">,</span> <span class="n">nullable</span><span class="p">)</span> <span class="n">NSString</span> <span class="o">*</span><span class="n">minimumAutoupdateVersion</span><span class="p">;</span></code></pre>
 
                           </div>
                           <div class="language">
@@ -860,7 +905,7 @@ Old applications must be using Sparkle 2 or later to interpret the channel eleme
                           <h4>Declaration</h4>
                           <div class="language">
                             <p class="aside-title">Objective-C</p>
-                            <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">readonly</span><span class="p">,</span> <span class="n">getter</span><span class="o">=</span><span class="n">isMajorUpgrade</span><span class="p">)</span> <span class="n">BOOL</span> <span class="n">majorUpgrade</span><span class="p">;</span></code></pre>
+                            <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">readonly</span><span class="p">,</span> <span class="n">getter</span><span class="o">=</span><span class="n">isMajorUpgrade</span><span class="p">)</span> <span class="n">BOOL</span> <span class="n">majorUpgrade</span><span class="p">;</span></code></pre>
 
                           </div>
                           <div class="language">
@@ -938,7 +983,7 @@ Old applications must be using Sparkle 2 or later to interpret the channel eleme
                           <h4>Declaration</h4>
                           <div class="language">
                             <p class="aside-title">Objective-C</p>
-                            <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">readonly</span><span class="p">,</span> <span class="n">getter</span><span class="o">=</span><span class="n">isCriticalUpdate</span><span class="p">)</span> <span class="n">BOOL</span> <span class="n">criticalUpdate</span><span class="p">;</span></code></pre>
+                            <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">readonly</span><span class="p">,</span> <span class="n">getter</span><span class="o">=</span><span class="n">isCriticalUpdate</span><span class="p">)</span> <span class="n">BOOL</span> <span class="n">criticalUpdate</span><span class="p">;</span></code></pre>
 
                           </div>
                           <div class="language">
@@ -981,7 +1026,7 @@ This is only useful for sharing appcasts between Sparkle on Mac and Sparkle on o
                           <h4>Declaration</h4>
                           <div class="language">
                             <p class="aside-title">Objective-C</p>
-                            <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">copy</span><span class="p">,</span> <span class="n">readonly</span><span class="p">,</span> <span class="n">nullable</span><span class="p">)</span> <span class="n">NSString</span> <span class="o">*</span><span class="n">osString</span><span class="p">;</span></code></pre>
+                            <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">copy</span><span class="p">,</span> <span class="n">readonly</span><span class="p">,</span> <span class="n">nullable</span><span class="p">)</span> <span class="n">NSString</span> <span class="o">*</span><span class="n">osString</span><span class="p">;</span></code></pre>
 
                           </div>
                           <div class="language">
@@ -1015,7 +1060,7 @@ This is only useful for sharing appcasts between Sparkle on Mac and Sparkle on o
                           <h4>Declaration</h4>
                           <div class="language">
                             <p class="aside-title">Objective-C</p>
-                            <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">readonly</span><span class="p">,</span> <span class="n">getter</span><span class="o">=</span><span class="n">isMacOsUpdate</span><span class="p">)</span> <span class="n">BOOL</span> <span class="n">macOsUpdate</span><span class="p">;</span></code></pre>
+                            <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">readonly</span><span class="p">,</span> <span class="n">getter</span><span class="o">=</span><span class="n">isMacOsUpdate</span><span class="p">)</span> <span class="n">BOOL</span> <span class="n">macOsUpdate</span><span class="p">;</span></code></pre>
 
                           </div>
                           <div class="language">
@@ -1056,7 +1101,7 @@ The value is an update item that will have <code><a href="../Classes/SUAppcastIt
                           <h4>Declaration</h4>
                           <div class="language">
                             <p class="aside-title">Objective-C</p>
-                            <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">copy</span><span class="p">,</span> <span class="n">readonly</span><span class="p">,</span> <span class="n">nullable</span><span class="p">)</span> <span class="n">NSDictionary</span><span class="o">&lt;</span><span class="n">NSString</span> <span class="o">*</span><span class="p">,</span> <span class="n">SUAppcastItem</span> <span class="o">*&gt;</span> <span class="o">*</span><span class="n">deltaUpdates</span><span class="p">;</span></code></pre>
+                            <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">copy</span><span class="p">,</span> <span class="n">readonly</span><span class="p">,</span> <span class="n">nullable</span><span class="p">)</span> <span class="n">NSDictionary</span><span class="o">&lt;</span><span class="n">NSString</span> <span class="o">*</span><span class="p">,</span> <span class="n">SUAppcastItem</span> <span class="o">*&gt;</span> <span class="o">*</span><span class="n">deltaUpdates</span><span class="p">;</span></code></pre>
 
                           </div>
                           <div class="language">
@@ -1167,7 +1212,7 @@ The locales extracted from this attribute are delimited by a comma (e.g. &ldquo;
                           <h4>Declaration</h4>
                           <div class="language">
                             <p class="aside-title">Objective-C</p>
-                            <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">readonly</span><span class="p">,</span> <span class="n">getter</span><span class="o">=</span><span class="n">isDeltaUpdate</span><span class="p">)</span> <span class="n">BOOL</span> <span class="n">deltaUpdate</span><span class="p">;</span></code></pre>
+                            <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">readonly</span><span class="p">,</span> <span class="n">getter</span><span class="o">=</span><span class="n">isDeltaUpdate</span><span class="p">)</span> <span class="n">BOOL</span> <span class="n">deltaUpdate</span><span class="p">;</span></code></pre>
 
                           </div>
                           <div class="language">
@@ -1201,7 +1246,7 @@ The locales extracted from this attribute are delimited by a comma (e.g. &ldquo;
                           <h4>Declaration</h4>
                           <div class="language">
                             <p class="aside-title">Objective-C</p>
-                            <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">copy</span><span class="p">,</span> <span class="n">readonly</span><span class="p">)</span> <span class="n">NSDictionary</span> <span class="o">*</span><span class="n">_Nonnull</span> <span class="n">propertiesDictionary</span><span class="p">;</span></code></pre>
+                            <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">copy</span><span class="p">,</span> <span class="n">readonly</span><span class="p">)</span> <span class="n">NSDictionary</span> <span class="o">*</span><span class="n">_Nonnull</span> <span class="n">propertiesDictionary</span><span class="p">;</span></code></pre>
 
                           </div>
                           <div class="language">
@@ -1555,7 +1600,7 @@ The locales extracted from this attribute are delimited by a comma (e.g. &ldquo;
       </div>
       <div class="footer-wrapper">
         <section id="footer">
-          <p>&copy; 2023 <a class="link" href="https://sparkle-project.org" target="_blank" rel="external noopener">Sparkle Project</a>. All rights reserved. (Last updated: 2023-02-12)</p>
+          <p>&copy; 2023 <a class="link" href="https://sparkle-project.org" target="_blank" rel="external noopener">Sparkle Project</a>. All rights reserved. (Last updated: 2023-03-04)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.14.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
         </section>
       </div>

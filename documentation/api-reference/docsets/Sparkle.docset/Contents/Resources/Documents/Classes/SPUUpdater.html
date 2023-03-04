@@ -16,8 +16,8 @@
     <header>
       <div class="content-wrapper">
         <p>
-          <a href="../index.html">Sparkle 2.3.2 Docs</a>
-          <span class="no-mobile"> (58% documented)</span>
+          <a href="../index.html">Sparkle 2.4.0-beta.1 Docs</a>
+          <span class="no-mobile"> (59% documented)</span>
         </p>
     
     
@@ -328,7 +328,9 @@ If the user is already being presented with an update, that update will be shown
 <p>You usually do not need to call this method directly. If <code><a href="../Classes/SPUUpdater.html#/c:objc(cs)SPUUpdater(py)automaticallyChecksForUpdates">automaticallyChecksForUpdates</a></code> is <code>YES,</code>
 Sparkle calls this method automatically according to its update schedule using the <code><a href="../Classes/SPUUpdater.html#/c:objc(cs)SPUUpdater(py)updateCheckInterval">updateCheckInterval</a></code>
 and the <code><a href="../Classes/SPUUpdater.html#/c:objc(cs)SPUUpdater(py)lastUpdateCheckDate">lastUpdateCheckDate</a></code>. Therefore, you should typically only consider calling this method directly if you
-opt out of automatic update checks.</p>
+opt out of automatic update checks. Calling this method when updating your own bundle is invalid if Sparkle is configured
+to ask the user&rsquo;s permission to check for updates automatically and <code><a href="../Classes/SPUUpdater.html#/c:objc(cs)SPUUpdater(py)automaticallyChecksForUpdates">automaticallyChecksForUpdates</a></code> is <code>NO</code>.
+If you want to reset the updater&rsquo;s cycle after an updater setting change, see <code>resetUpdateCycle</code> or <code>resetUpdateCycleAfterShortDelay</code> instead.</p>
 
 <p>This is meant for programmatically initating a check for updates in the background without the user initiating it.
 This check will not show UI if no new updates are found.</p>
@@ -336,7 +338,7 @@ This check will not show UI if no new updates are found.</p>
 <p>If a new update is found, the updater&rsquo;s user driver may handle showing it at an appropriate (but not necessarily immediate) time.
 If you want control over when and how a new update is shown, please see <a href="https://sparkle-project.org/documentation/gentle-reminders/">https://sparkle-project.org/documentation/gentle-reminders/</a></p>
 
-<p>Note if automated updating is turned on, either a new update may be downloaded in the background to be installed silently,
+<p>Note if automated downloading/installing is turned on, either a new update may be downloaded in the background to be installed silently,
 or an already downloaded update may be shown.</p>
 
 <p>This will not find updates that the user has opted into skipping.</p>
@@ -599,6 +601,10 @@ This is to allow reverting this property without kicking off a schedule change i
 
 <p>By default, updates are not automatically downloaded.</p>
 
+<p>By default starting from Sparkle 2.4, users are provided an option to opt in to automatically downloading and installing updates when they are asked if they want automatic update checks enabled.
+The default value for this option is based on what the developer sets <code>SUAutomaticallyUpdate</code> in their Info.plist.
+This is not done if <code>SUEnableAutomaticChecks</code> is set in the Info.plist however. Please check <code><a href="../Classes/SPUUpdater.html#/c:objc(cs)SPUUpdater(py)automaticallyChecksForUpdates">automaticallyChecksForUpdates</a></code> property for more details.</p>
+
 <p>Note that the developer can disallow automatic downloading of updates from being enabled (via <code>SUAllowsAutomaticUpdates</code> Info.plist key).
 In this case, this property will return NO regardless of how this property is set.</p>
 
@@ -642,12 +648,13 @@ Do not always set it on launch unless you want to ignore the user&rsquo;s prefer
                           <p>The URL of the appcast used to download update information.</p>
 
 <p>If the updater&rsquo;s delegate implements <code><a href="../Protocols/SPUUpdaterDelegate.html#/c:objc(pl)SPUUpdaterDelegate(im)feedURLStringForUpdater:">-[SPUUpdaterDelegate feedURLStringForUpdater:]</a></code>, this will return that feed URL.
-Otherwise if the feed URL has been set before, the feed URL returned will be retrieved from the host bundle&rsquo;s user defaults.
+Otherwise if the feed URL has been set before using <code>-[SPUUpdater setFeedURL:]</code>, the feed URL returned will be retrieved from the host bundle&rsquo;s user defaults.
 Otherwise the feed URL in the host bundle&rsquo;s Info.plist will be returned.
 If no feed URL can be retrieved, returns nil.</p>
 
 <p>For setting a primary feed URL, please set the <code>SUFeedURL</code> property in your Info.plist.
-For setting an alternative feed URL, please prefer <code><a href="../Protocols/SPUUpdaterDelegate.html#/c:objc(pl)SPUUpdaterDelegate(im)feedURLStringForUpdater:">-[SPUUpdaterDelegate feedURLStringForUpdater:]</a></code> over <code>-setFeedURL:</code></p>
+For setting an alternative feed URL, please prefer <code><a href="../Protocols/SPUUpdaterDelegate.html#/c:objc(pl)SPUUpdaterDelegate(im)feedURLStringForUpdater:">-[SPUUpdaterDelegate feedURLStringForUpdater:]</a></code> over <code>-setFeedURL:</code>.
+Please see the documentation for <code>-setFeedURL:</code> for migrating away from that API.</p>
 
 <p>This property must be called on the main thread; calls from background threads will return nil.</p>
 
@@ -664,6 +671,56 @@ For setting an alternative feed URL, please prefer <code><a href="../Protocols/S
                             <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">feedURL</span><span class="p">:</span> <span class="kt">URL</span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
 
                           </div>
+                        </div>
+                      </section>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <div>
+                      <code>
+                      <a name="/c:objc(cs)SPUUpdater(im)clearFeedURLFromUserDefaults"></a>
+                      <a name="//apple_ref/objc/Method/-clearFeedURLFromUserDefaults" class="dashAnchor"></a>
+                      <a class="token" href="#/c:objc(cs)SPUUpdater(im)clearFeedURLFromUserDefaults">-clearFeedURLFromUserDefaults</a>
+                      </code>
+                    </div>
+                    <div class="height-container">
+                      <div class="pointer-container"></div>
+                      <section class="section">
+                        <div class="pointer"></div>
+                        <div class="abstract">
+                          <p>Clears any feed URL from the host bundle&rsquo;s user defaults that was set via <code>-setFeedURL:</code></p>
+
+<p>You should call this method if you have used <code>-setFeedURL:</code> in the past and want to stop using that API.
+Otherwise for compatibility Sparkle will prefer to use the feed URL that was set in the user defaults over the one that was specified in the host bundle&rsquo;s Info.plist,
+which is often undesirable (except for testing purposes).</p>
+
+<p>If a feed URL is found stored in the host bundle&rsquo;s user defaults (from calling <code>-setFeedURL:</code>) before it gets cleared,
+then that previously set URL is returned from this method.</p>
+
+<p>This method should be called as soon as possible, after your application finished launching or right after the updater has been started
+if you manually manage starting the updater.</p>
+
+<p>Updaters that update other developer&rsquo;s bundles should not call this method.</p>
+
+<p>This method must be called on the main thread.</p>
+
+                        </div>
+                        <div class="declaration">
+                          <h4>Declaration</h4>
+                          <div class="language">
+                            <p class="aside-title">Objective-C</p>
+                            <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">nullable</span> <span class="n">NSURL</span> <span class="o">*</span><span class="p">)</span><span class="n">clearFeedURLFromUserDefaults</span><span class="p">;</span></code></pre>
+
+                          </div>
+                          <div class="language">
+                            <p class="aside-title">Swift</p>
+                            <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">clearFeedURLFromUserDefaults</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">URL</span><span class="p">?</span></code></pre>
+
+                          </div>
+                        </div>
+                        <div>
+                          <h4>Return Value</h4>
+                          <p>A previously set feed URL in the host bundle&rsquo;s user defaults, if available, otherwise this returns <code>nil</code></p>
                         </div>
                       </section>
                     </div>
@@ -858,12 +915,13 @@ if update checks are automatically scheduled.</p>
                       <section class="section">
                         <div class="pointer"></div>
                         <div class="abstract">
-                          <p>Appropriately schedules or cancels the update checking timer according to the settings for the time interval and automatic checks.</p>
+                          <p>Appropriately re-schedules the update checking timer according to the current updater settings.</p>
 
-<p>If you change the <code><a href="../Classes/SPUUpdater.html#/c:objc(cs)SPUUpdater(py)updateCheckInterval">updateCheckInterval</a></code> or <code><a href="../Classes/SPUUpdater.html#/c:objc(cs)SPUUpdater(py)automaticallyChecksForUpdates">automaticallyChecksForUpdates</a></code> properties, the update cycle will be reset automatically after a short delay.
-The update cycle is also started automatically after the updater is started. In all these cases, this method should not be called directly.</p>
+<p>This method should only be called in response to a user changing updater settings. This method may trigger a new update check to occur in the background if an updater setting such as the updater&rsquo;s feed or allowed channels has changed.</p>
 
-<p>This call does not change the date of the next check, but only the internal timer.</p>
+<p>If the <code><a href="../Classes/SPUUpdater.html#/c:objc(cs)SPUUpdater(py)updateCheckInterval">updateCheckInterval</a></code> or <code><a href="../Classes/SPUUpdater.html#/c:objc(cs)SPUUpdater(py)automaticallyChecksForUpdates">automaticallyChecksForUpdates</a></code> properties are changed, this method is automatically invoked after a short delay using <code>resetUpdateCycleAfterShortDelay</code>. In these cases, manually resetting the update cycle is not necessary.</p>
+
+<p>See also <code>resetUpdateCycleAfterShortDelay</code> which gives the user a short delay before triggering a cycle reset.</p>
 
                         </div>
                         <div class="declaration">
@@ -876,6 +934,46 @@ The update cycle is also started automatically after the updater is started. In 
                           <div class="language">
                             <p class="aside-title">Swift</p>
                             <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">resetUpdateCycle</span><span class="p">()</span></code></pre>
+
+                          </div>
+                        </div>
+                      </section>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <div>
+                      <code>
+                      <a name="/c:objc(cs)SPUUpdater(im)resetUpdateCycleAfterShortDelay"></a>
+                      <a name="//apple_ref/objc/Method/-resetUpdateCycleAfterShortDelay" class="dashAnchor"></a>
+                      <a class="token" href="#/c:objc(cs)SPUUpdater(im)resetUpdateCycleAfterShortDelay">-resetUpdateCycleAfterShortDelay</a>
+                      </code>
+                    </div>
+                    <div class="height-container">
+                      <div class="pointer-container"></div>
+                      <section class="section">
+                        <div class="pointer"></div>
+                        <div class="abstract">
+                          <p>Appropriately re-schedules the update checking timer according to the current updater settings after a short cancellable delay.</p>
+
+<p>This method calls <code>resetUpdateCycle</code> after a short delay to give the user a short amount of time to cancel changing an updater setting.
+If this method is called again, any previous reset request that is still inflight will be cancelled.</p>
+
+<p>For example, if the user changes the <code><a href="../Classes/SPUUpdater.html#/c:objc(cs)SPUUpdater(py)automaticallyChecksForUpdates">automaticallyChecksForUpdates</a></code> setting to <code>YES</code>, but quickly undoes their change then
+no cycle reset will be done.</p>
+
+<p>If the <code><a href="../Classes/SPUUpdater.html#/c:objc(cs)SPUUpdater(py)updateCheckInterval">updateCheckInterval</a></code> or <code><a href="../Classes/SPUUpdater.html#/c:objc(cs)SPUUpdater(py)automaticallyChecksForUpdates">automaticallyChecksForUpdates</a></code> properties are changed, this method is automatically invoked. In these cases, manually resetting the update cycle is not necessary.</p>
+
+                        </div>
+                        <div class="declaration">
+                          <h4>Declaration</h4>
+                          <div class="language">
+                            <p class="aside-title">Objective-C</p>
+                            <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">resetUpdateCycleAfterShortDelay</span><span class="p">;</span></code></pre>
+
+                          </div>
+                          <div class="language">
+                            <p class="aside-title">Swift</p>
+                            <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">resetUpdateCycleAfterShortDelay</span><span class="p">()</span></code></pre>
 
                           </div>
                         </div>
@@ -1080,7 +1178,7 @@ The update cycle is also started automatically after the updater is started. In 
       </div>
       <div class="footer-wrapper">
         <section id="footer">
-          <p>&copy; 2023 <a class="link" href="https://sparkle-project.org" target="_blank" rel="external noopener">Sparkle Project</a>. All rights reserved. (Last updated: 2023-02-12)</p>
+          <p>&copy; 2023 <a class="link" href="https://sparkle-project.org" target="_blank" rel="external noopener">Sparkle Project</a>. All rights reserved. (Last updated: 2023-03-04)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.14.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
         </section>
       </div>
