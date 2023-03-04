@@ -339,7 +339,7 @@ func feedURLString(for updater: SPUUpdater) -> String? {
 }
 ```
 
-Sparkle also has `-setFeedURL:` or `feedURL` property on the updater which we do not recommend using due to race conditions and user defaults permanence. If you wish to migrate away from this API, you should set the feed URL to nil using this API to clear out any custom feed you have previously set in the bundle's user defaults, so Sparkle doesn't automatically read it.
+Sparkle also has `-setFeedURL:` or `feedURL` property on the updater which we do not recommend using due to race conditions and user defaults permanence. If you wish to migrate away from this API, you should set the feed URL to nil using this API to clear out any custom feed you have previously set in the bundle's user defaults, so Sparkle doesn't automatically read it. In Sparkle 2.4 (beta) or later, you should instead use `-clearFeedURLFromUserDefaults` however.
 
 Web servers can also potentially customize the feed sent back to the client on a per request basis. The [userAgentString](/documentation/api-reference/Classes/SPUUpdater.html#/c:objc(cs)SPUUpdater(py)userAgentString), [httpHeaders](/documentation/api-reference/Classes/SPUUpdater.html#/c:objc(cs)SPUUpdater(py)httpHeaders), and [-[SPUUpdaterDelegate feedParametersForUpdater:sendingSystemProfile:]](/documentation/api-reference/Protocols/SPUUpdaterDelegate.html#/c:objc(pl)SPUUpdaterDelegate(im)feedParametersForUpdater:sendingSystemProfile:) methods from the client may be useful for this.
 
@@ -370,6 +370,8 @@ Instead of linking external release notes using the `<sparkle:releaseNotesLink>`
 ```
 
 You can embed just marked up text (it'll be displayed using standard system font), or a full document with `<!DOCTYPE html><style>`, etc.
+
+In Sparkle 2.4 (beta) or later, you can also embed plain text release notes using `<description sparkle:format="plain-text">`.
 
 ## Full release notes
 

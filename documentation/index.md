@@ -186,6 +186,8 @@ You can also create the appcast file manually (not recommended):
 
 The update process will be logged to `Console.app`. If anything goes wrong, you should find detailed explanation in the log.
 
+Make sure to also keep Sparkle's debug symbols files (`.dSYM`) around as they will be useful for symbolicating crash logs if something were to go wrong.
+
 ### Next steps
 
 That's it! You're done! You don't have to do any more. But you might want to:
