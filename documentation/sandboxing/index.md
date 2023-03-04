@@ -31,7 +31,7 @@ To enable the service, you must set [SUEnableInstallerLauncherService](/document
 
 #### Communication
 
-To allow Sparkle to communicate to its running installer tools, you will need to add the following entitlement to your sandboxed application:
+To allow Sparkle to communicate to its running installer tools, you will need to add the following temporary exception to your `.entitlements` file for your sandboxed application:
 
 ```xml
 <key>com.apple.security.temporary-exception.mach-lookup.global-name</key>
