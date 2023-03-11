@@ -89,7 +89,7 @@ We recommend reading Apple's article on [reducing the download size for iOS app 
 
 * Do not make unnecessary modifications to files. Compare the contents of the prior and new versions of your app and verify that you've only changed what you expect within your app bundle. Running `BinaryDelta --verbose` will show a diff of what has changed.
 * Content that you expect to change in an update should be stored in separate files from content that you don't expect to change. This reduces the size of the delta update and increases its install speed.
-* Avoid renaming files or folders. Our version 3 delta format has heuristics for tracking when files are moved around in some cases however.
+* Avoid renaming files or folders. The version 3 delta format however has heuristics for tracking when large files with the same name are moved/duplicated to a new location, and when a framework version in `*.framework/Versions/` has changed.
 
 ### Metadata Specification
 
