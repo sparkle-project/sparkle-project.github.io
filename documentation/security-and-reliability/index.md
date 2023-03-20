@@ -5,7 +5,7 @@ title: Update Improvements
 ---
 ## Security and Reliability Changes
 
-These are a list of *major* security and reliability improvements in Sparkle, or reasons why you should consider upgrading Sparkle. Note this list is missing many other minor improvements that the [latest production release](//github.com/{{ site.github_username }}/Sparkle/releases) of Sparkle may have.
+These are a list of *major* security and reliability improvements in Sparkle, or reasons why developers should consider upgrading Sparkle. Note this list is missing many other minor improvements that the [latest production release](//github.com/{{ site.github_username }}/Sparkle/releases) of Sparkle may have.
 
 | Version         | Changes                                                                                                                                  |
 | --------------- | -------------------------------------------------------------------------------------------------------------------------------------- |

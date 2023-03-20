@@ -339,7 +339,7 @@ func feedURLString(for updater: SPUUpdater) -> String? {
 }
 ```
 
-Sparkle also has `-setFeedURL:` or `feedURL` property on the updater which we do not recommend using due to race conditions and user defaults permanence. To migrate away from using this API, you should use [-[SPUUpdater clearFeedURLFromUserDefaults]](https://sparkle-project.github.io/documentation/api-reference/Classes/SPUUpdater.html#/c:objc(cs)SPUUpdater(im)clearFeedURLFromUserDefaults) immediately after starting the updater in Sparkle 2.4 (beta) or later. This will clear out any custom feed you have previously set in the bundles's user defaults, so Sparkle doesn't automatically read it later. For older versions of Sparkle, you should instead set the feed URL to `nil` using `-setFeedURL:`.
+Sparkle also has `-setFeedURL:` or `feedURL` property on the updater which is deprecated and not recommended using due to race conditions and user defaults permanence. To migrate away from using this API, you should use [-[SPUUpdater clearFeedURLFromUserDefaults]](https://sparkle-project.github.io/documentation/api-reference/Classes/SPUUpdater.html#/c:objc(cs)SPUUpdater(im)clearFeedURLFromUserDefaults) immediately after starting the updater in Sparkle 2.4 or later. This will clear out any custom feed you have previously set in the bundles's user defaults, so Sparkle doesn't automatically read it later. For older versions of Sparkle, you should instead set the feed URL to `nil` using `-setFeedURL:`.
 
 
 ## Upgrading to newer features
@@ -370,7 +370,7 @@ Instead of linking external release notes using the `<sparkle:releaseNotesLink>`
 
 You can embed just marked up text (it'll be displayed using standard system font), or a full document with `<!DOCTYPE html><style>`, etc.
 
-In Sparkle 2.4 (beta) or later, you can also embed plain text release notes using `<description sparkle:format="plain-text">`.
+In Sparkle 2.4 or later, you can also embed plain text release notes using `<description sparkle:format="plain-text">`.
 
 ## Full release notes
 
