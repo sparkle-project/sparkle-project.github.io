@@ -6,6 +6,12 @@ title: Upgrading from previous versions of Sparkle
 
 We strongly recommend upgrading Sparkle to the [latest production release](//github.com/{{ site.github_username }}/Sparkle/releases) because there have been [important security and reliability improvements](/documentation/security-and-reliability). Very old versions of Sparkle also suffer some incompatibilities with the latest macOS versions.
 
+## Upgrading to Sparkle 2.4
+
+Sparkle 2.4 strips debug symbols more aggressively now. Please keep a copy of Sparkle’s debug symbols files (.dSYM) around if you build Sparkle from source yourself instead of using a prepackaged version. Otherwise debug symbols can be downloaded from a Sparkle distribution in our [Releases](https://github.com/sparkle-project/Sparkle/releases) page.
+
+The `-setFeedURL:` method on `SPUUpdater` is also now deprecated. Please see [setting the feed programmatically](/documentation/publishing/#setting-the-feed-programmatically) to migrate away from this API.
+
 ## Upgrading to Sparkle 2.3
 
 Sparkle 2.3 now requires macOS 10.13 (High Sierra) or later.
