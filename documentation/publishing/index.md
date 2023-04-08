@@ -106,7 +106,7 @@ Note that the internal version number (`CFBundleVersion` and `sparkle:version`) 
 
 ## Minimum system version requirements
 
-If an update to your application raises the required version of macOS, you can only offer that update to qualified users.
+If an update to your application raises the required version of macOS, you can restrict that update to qualified users.
 
 Add a `sparkle:minimumSystemVersion` child to the `<item>` in question specifying the required system version, such as "10.13.0" (be sure to specify a three-part version in form of *major.minor.patch*):
 
