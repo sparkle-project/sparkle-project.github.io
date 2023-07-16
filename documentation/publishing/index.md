@@ -388,6 +388,41 @@ In Sparkle 2, the `<sparkle:fullReleaseNotesLink>` element may be used to specif
 
 Alternatively, an application that uses Sparkle's standard user interface may implement [-[SPUStandardUserDriverDelegate standardUserDriverShowVersionHistoryForAppcastItem:]](/documentation/api-reference/Protocols/SPUStandardUserDriverDelegate.html#/c:objc(pl)SPUStandardUserDriverDelegate(im)standardUserDriverShowVersionHistoryForAppcastItem:) to show full offline or in-app release notes to the user.
 
+## Adapting release notes based on currently installed version
+
+When displaying your release notes HTML, Sparkle automatically adds a `sparkle-installed-version` class to certain elements, based on the user's currently installed app version. This is useful for highlighting changes relevant to the user: you can use CSS to de-emphasize already-installed releases.
+
+Sparkle looks for elements with a `sparkle-version` data attribute whose value exactly matches the installed app's `CFBundleVersion` (usually surfaced in Xcode as the _Build_). All matching elements receive the `sparkle-installed-version` class.
+
+For example, these three div elements are eligible:
+
+```html
+<div data-sparkle-version="3">
+    Version 1.2: Update icon
+</div>
+
+<div data-sparkle-version="2">
+    Version 1.1: Fix list
+</div>
+
+<div data-sparkle-version="1">
+    Version 1.0: Everything is new
+</div>
+```
+
+You can make use of this injected class by styling the marked element, or elements around it.  
+For instance, the following CSS will make the installed version `<div>` semi-transparent, and completely hide previous versions:
+
+```css
+div.sparkle-installed-version {
+    opacity: 0.5;
+}
+
+div.sparkle-installed-version ~ div {
+    display: none;
+}
+```
+
 ## Localization
 
 You can provide additional release notes for localization purposes. For instance:
