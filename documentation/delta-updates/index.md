@@ -96,7 +96,7 @@ We recommend reading Apple's article on [reducing the download size for iOS app 
 Binary delta updates do not support and will reject the following metadata:
 
 * Access control lists (ACLs) in either the old or new application.
-* Extended attributes containing code signing information in either the old or new application. This can be resolved by properly structuring your application such that data and code are placed in the correct directories per [Code Signing in Depth guide](https://developer.apple.com/library/archive/technotes/tn2206/_index.html#//apple_ref/doc/uid/DTS40007919-CH1-TNTAG201). Only mach-o binaries should embed code signing information.
+* Extended attributes containing code signing information in either the old or new application. This can be resolved by properly structuring your application such that data and code are placed in the correct directories per [Placing Content in a Bundle guide](https://developer.apple.com/documentation/bundleresources/placing_content_in_a_bundle). Only mach-o binaries or bundles containing them should embed code signing information.
 * Creating or applying diffs on file systems which do not preserve regular permission modes like FAT are not supported. Sparkle 2.2 and later performs a permission validation test before downloading delta updates. Sparkle's executable must have file permissions `0755`.
 
 Binary delta updates will pass but ignore or warn about the following metadata:
