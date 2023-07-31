@@ -390,7 +390,7 @@ Alternatively, an application that uses Sparkle's standard user interface may im
 
 ## Adapting release notes based on currently installed version
 
-When displaying HTML release notes, Sparkle automatically adds a `sparkle-installed-version` class to certain elements, based on the user's currently installed app version. This is useful for highlighting changes relevant to the user: you can use CSS to de-emphasize already-installed releases.
+When displaying HTML release notes, Sparkle 2.5 (beta) and later automatically adds a `sparkle-installed-version` class to certain elements, based on the user's currently installed app version. This is useful for highlighting changes relevant to the user: you can use CSS to de-emphasize already-installed releases.
 
 Sparkle looks for elements with a `sparkle-version` data attribute whose value exactly matches the installed app's `CFBundleVersion`. All matching elements receive the `sparkle-installed-version` class.
 
