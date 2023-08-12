@@ -62,9 +62,9 @@ If you follow standard workflows and archive & export your application to [Distr
 
 However, if you need to code sign Sparkle with a specific certificate for development or use an alternative workflow for distributing your application outside of Xcode's archive and export workflow, then you will need to manually re-sign Sparkle and its XPC Services with your own certificate.
 
-By default, Sparkle distributions include XPC Services and helper tools that are signed with an ad-hoc signature, Hardened Runtime enabled, and a `com.apple.security.get-task-allow` entitlement to allow debugging. This combination works for common development workflows, but is not ideal for distribution.
+By default, Sparkle distributions include XPC Services and helper tools that are signed with an ad-hoc signature and Hardened Runtime enabled. Older Sparkle distributions (before 2.4) may also include a `com.apple.security.get-task-allow` entitlement. This combination works for common development workflows, but is not ideal for distribution.
 
-If you `Code Sign on Copy` Sparkle.framework, Xcode will re-sign Sparkle with your project's certificate but will not re-sign the XPC Services and other helpers inside the framework. Xcode does re-sign these services and helpers, preserves the Hardened Runtime, and strips the `com.apple.security.get-task-allow` entitlements when you Archive and Export an application for notarization and thus works sufficiently well there however.
+If you `Code Sign on Copy` Sparkle.framework, Xcode will re-sign Sparkle with your project's certificate but will not re-sign the XPC Services and other helpers inside the framework. Xcode does re-sign these services and helpers, preserves the Hardened Runtime, and strips `com.apple.security.get-task-allow` entitlements when you Archive and Export an application for notarization and thus works sufficiently well there however.
 
 You may re-sign Sparkle for distribution manually if needed like so:
 
@@ -78,14 +78,14 @@ codesign -f -s "$CODE_SIGN_IDENTITY" -o runtime Sparkle.framework/Versions/B/Upd
 codesign -f -s "$CODE_SIGN_IDENTITY" -o runtime Sparkle.framework
 ```
 
-Adjust the paths and code sign identity accordingly. The `--preserve-metadata=entitlements` is not used because we don't want to preserve the existing `com.apple.security.get-task-allow` entitlements for distribution. Also the `--deep` option is not used here because the Downloader XPC Service needs to be signed with a specific entitlement that aren't applicable to the other binaries.
+Adjust the paths and code sign identity accordingly. The `--preserve-metadata=entitlements` is not used because we don't want to preserve any existing `com.apple.security.get-task-allow` entitlements for distribution. Also the `--deep` option is not used here because the Downloader XPC Service needs to be signed with a specific entitlement that aren't applicable to the other binaries.
 
 Due to different code signing requirements, please do not add `--deep` to `OTHER_CODE_SIGN_FLAGS` or from custom build scripts when signing your application. This is a common source of Sandboxing errors.
+
+### Testing
+
+If Xcode has issues running your application using Sparkle and its XPC Services (such as being unable to attach to the process), try editing your project's Scheme and disable *Debug XPC services used by app* or test your application detached from Xcode to see if it works there. This may be needed because the XPC Services we distribute are signed with the Hardened Runtime which prevents debugging.
 
 ### Removing XPC Services
 
 If you do not sandbox your application, we do not recommend using Sparkle's XPC Services. You may choose to remove Sparkle's XPC Services in a post install script when copying the framework to your application. Alternatively you can alter Sparkle's `ConfigCommon.xcconfig` to not embed the XPC Services. This is optional and up to you. The same applies if you do sandbox your application but do not need to use or embed the Downloader XPC Service in particular.
-
-### Testing
-
-If Xcode has issues running your application using Sparkle and its XPC Services (such as being unable to attach to the process), try editing your project's Scheme and disable *Debug XPC services used by app* or test your application detached from Xcode to see if it works there. This shouldn't be an issue in a development environment if you follow the standard workflow we suggest, but this may be needed if the XPC Service is signed with the Hardened Runtime and not with the `com.apple.security.get-task-allow` entitlement.
