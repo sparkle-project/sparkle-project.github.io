@@ -428,8 +428,8 @@ div.sparkle-installed-version ~ div {
 You can provide additional release notes for localization purposes. For instance:
 
 ```xml
-<sparkle:releaseNotesLink>https://example.com/app/2.0.html</sparkle:releaseNotesLink>
-<sparkle:releaseNotesLink xml:lang="de">https://example.com/app/2.0_German.html</sparkle:releaseNotesLink>
+<sparkle:releaseNotesLink xml:lang="en">https://example.com/app/2.0.en.html</sparkle:releaseNotesLink>
+<sparkle:releaseNotesLink xml:lang="de">https://example.com/app/2.0.de.html</sparkle:releaseNotesLink>
 ```
 
 Use the `xml:lang` attribute with the appropriate two-letter country code for each localization. You can also use this attribute with the `<description>` tag.
