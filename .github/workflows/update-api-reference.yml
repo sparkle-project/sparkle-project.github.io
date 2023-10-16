@@ -23,10 +23,8 @@ jobs:
         with:
           ruby-version: 3.2.2
 
-        # activesupport is causing compilation issues: https://stackoverflow.com/questions/77236339/after-updating-cocoapods-to-1-13-0-it-throws-error
       - name: "Set up jazzy"
         run: |
-          gem uninstall activesupport
           gem install jazzy
 
       - name: "Checkout Sparkle Sources"
