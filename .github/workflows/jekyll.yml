@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
     - name: Build the site in the jekyll/builder container
       # We will need to remove api-reference from XML validation. Some issues are incorect and others we need to get resolved upstream.
       run: |
