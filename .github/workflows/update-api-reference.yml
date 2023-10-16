@@ -25,7 +25,7 @@ jobs:
 
       - name: "Set up jazzy"
         run: |
-          gem install jazzy -v 0.14.3
+          gem install jazzy
 
       - name: "Checkout Sparkle Sources"
         uses: actions/checkout@v4
