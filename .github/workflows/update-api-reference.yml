@@ -15,20 +15,20 @@ concurrency:
 jobs:
   api-documentation:
     name: "Update API Reference Documentation"
-    runs-on: macos-12
+    runs-on: macos-13
 
     steps:
       - name: "Set up Ruby"
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 2.7.4
+          ruby-version: 3.2.2
 
       - name: "Set up jazzy"
         run: |
           gem install jazzy
 
       - name: "Checkout Sparkle Sources"
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           repository: 'sparkle-project/Sparkle'
           token: ${{ secrets.BOT_PERSONAL_ACCESS_TOKEN }}
@@ -38,7 +38,7 @@ jobs:
           path: 'sparkle-source'
 
       - name: "Checkout Website Sources"
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           token: ${{ secrets.BOT_PERSONAL_ACCESS_TOKEN }}
           fetch-depth: 0
