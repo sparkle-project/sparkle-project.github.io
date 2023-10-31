@@ -7,6 +7,16 @@ title: Package Updates
 
 Package installation allows Sparkle to update your application by downloading and installing a package, `pkg`, or multi-package, `mpkg` usually without user interaction except for asking for an administrator password.
 
+Note package installation should only be used for apps with very custom installation needs that cannot be satisfied by distributing a regular app bundle. For Sparkle, the downsides of using package updates are:
+
+* Installs always require user authorization which also prevents silent automatic installs
+* Slower relaunching and installation of updates on quit
+* No support for [delta updates](/documentation/delta-updates) for more efficient updates
+* No fallback for [rotating signing keys](/documentation#rotating-signing-keys) in case the app's Developer ID changes
+* No support for generating updates easily using the `generate_appcast` tool
+
+Applications that [install daemons](https://developer.apple.com/documentation/servicemanagement/smappservice) or [install system extensions](https://developer.apple.com/documentation/systemextensions/installing_system_extensions_and_drivers) do not need to distribute package installers.
+
 ### Bare Package Installation
 
 Sparkle supports serving and signing flat `*.pkg` or `*.mpkg` packages directly without having to zip or archive them. This method requires users from old versions of your application to be using [Sparkle 1.26 or later](/documentation/upgrading/). If you have users running older versions of Sparkle, you can expedite migration by [switching to a new appcast](/documentation/publishing/#upgrading-to-newer-features), or use [Archived Package Installation](#archived-package-installation) until the majority of your users update.
