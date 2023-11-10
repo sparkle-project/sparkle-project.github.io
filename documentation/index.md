@@ -11,7 +11,7 @@ If your app already has an older version of Sparkle or you wish to migrate to Sp
 
 ### 1. Add the Sparkle framework to your project
 
-If you use [Swift Package Manager](https://swift.org/package-manager/):
+#### 1.1. Using [Swift Package Manager](https://swift.org/package-manager/):
 
   * In your Xcode project: <samp>File</samp> › <samp>Add Packages…</samp>
   * Enter `https://github.com/sparkle-project/Sparkle` as the package repository URL
@@ -19,12 +19,12 @@ If you use [Swift Package Manager](https://swift.org/package-manager/):
 
   From Xcode's project navigator, if you right click and show the `Sparkle` package in Finder, you will find Sparkle's tools to generate and sign updates in `../artifacts/sparkle/Sparkle/bin/` (in Finder you may need to go up one folder from `checkouts` via `Go › Enclosing Folder`).
 
-If you use [CocoaPods](//cocoapods.org):
+#### 1.2. Using [CocoaPods](//cocoapods.org):
 
   * Add `pod 'Sparkle'` to your Podfile.
   * Add or uncomment `use_frameworks!` in your Podfile.
 
-If you use [Carthage](https://github.com/Carthage/Carthage):
+#### 1.3. Using [Carthage](https://github.com/Carthage/Carthage):
   * Add `binary "https://sparkle-project.org/Carthage/Sparkle.json"` to your Cartfile.
   * Run `carthage update`
   * Link the Sparkle framework to your app target:
@@ -40,7 +40,7 @@ If you use [Carthage](https://github.com/Carthage/Carthage):
 
   Sparkle only supports using a `binary` origin with Carthage because Carthage strips necessary code signing information when building the project from source.
 
-If you want to add Sparkle manually:
+#### 1.4. Manual installation:
 
 * Get the [latest version](//github.com/{{ site.github_username }}/Sparkle/releases/latest) of Sparkle.
 * Link the Sparkle framework to your app target:
