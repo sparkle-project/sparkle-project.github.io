@@ -17,7 +17,7 @@ If you use [Swift Package Manager](https://swift.org/package-manager/):
   * Enter `https://github.com/sparkle-project/Sparkle` as the package repository URL
   * Choose the Package Options. The default options will let Xcode automatically update versions of Sparkle 2.
 
-  From Xcode's project navigator, if you right click and show the `Sparkle` package in Finder, you will find Sparkle's tools to generate and sign updates in `../artifacts/sparkle/Sparkle/bin/` (in Finder you may need to go up one folder from `checkouts` via `Go › Enclosing Folder`).
+    From Xcode's project navigator, if you right click and show the `Sparkle` package in Finder, you will find Sparkle's tools to generate and sign updates in `../artifacts/sparkle/Sparkle/bin/` (in Finder you may need to go up one folder from `checkouts` via `Go › Enclosing Folder`).
 
 If you use [CocoaPods](//cocoapods.org):
 
@@ -36,9 +36,9 @@ If you use [Carthage](https://github.com/Carthage/Carthage):
     * Click on the <samp>General</samp> tab.
     * In <samp>Frameworks, Libraries, and Embedded Content</samp> section, change Sparkle.framework to <samp>Embed & Sign</samp>.
 
-  Sparkle's tools to generate and sign updates are not included from Carthage and need to be grabbed from [our latest release](//github.com/{{ site.github_username }}/Sparkle/releases/latest).
+    Sparkle's tools to generate and sign updates are not included from Carthage and need to be grabbed from [our latest release](//github.com/{{ site.github_username }}/Sparkle/releases/latest).
 
-  Sparkle only supports using a `binary` origin with Carthage because Carthage strips necessary code signing information when building the project from source.
+    Sparkle only supports using a `binary` origin with Carthage because Carthage strips necessary code signing information when building the project from source.
 
 If you want to add Sparkle manually:
 
