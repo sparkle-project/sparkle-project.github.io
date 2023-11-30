@@ -165,7 +165,7 @@ Sparkle uses appcasts to get information about software updates. An appcast is a
 If you update regular app bundles and you have set up EdDSA signatures, you can use a tool to generate appcasts automatically:
 
   1. Build your app and compress it (e.g. in a ZIP/tar.xz/DMG archive), and put the archive in a new folder. This folder will be used to store all your future updates.
-  2. Run `generate_appcast` tool from Sparkle's distribution archive specifying the path to the folder with update archives. Allow it to access the Keychain if it asks for it (it's needed to generate signatueres in the appcast).
+  2. Run `generate_appcast` tool from Sparkle's distribution archive specifying the path to the folder with update archives. Allow it to access the Keychain if it asks for it (it's needed to generate signatures in the appcast).
 
         ./bin/generate_appcast /path/to/your/updates_folder/
 
