@@ -423,6 +423,8 @@ div.sparkle-installed-version ~ div {
 }
 ```
 
+Note this feature is not supported if your application uses the Downloader XPC Service.
+
 ## Localization
 
 You can provide additional release notes for localization purposes. For instance:
