@@ -49,10 +49,11 @@ In the unusual case that you cannot add entitlements (e.g. your process inherits
 
 The Downloader XPC Service is optional for Sandboxed applications. Sparkle by default bundles this XPC Service in its framework bundle.
 
-Use this service only if your sandboxed application does not request the `com.apple.security.network.client` entitlement. The downloader service allows using Sparkle without forcing the network client entitlement on your entire application. There are a couple caveats with using the downloader service though:
+Use this service only if your sandboxed application does not request the `com.apple.security.network.client` entitlement. The downloader service allows using Sparkle without forcing the network client entitlement on your entire application. There are a few caveats with using the downloader service which you may want to consider:
 
 * It may not work well if your release notes reference external content that would require making additional network requests.
-* We fall back to using the legacy WebKit WebView for release notes due to a [known WKWebView defect](https://github.com/feedback-assistant/reports/issues/1). Please file a feedback report to Apple duping to FB6993802 preventing the use of WKWebView without enforcing the `com.apple.security.network.client` entitlement on your sandboxed application.
+* We fall back to using WebKit's deprecated `WebView` for release notes due to a [known WKWebView defect](https://github.com/feedback-assistant/reports/issues/1). Please file a bug report on [WebKit's issues tracker](https://webkit.org/reporting-bugs/) or a Feedback Assistant report to Apple relating to FB6993802 preventing the use of WKWebView without having the `com.apple.security.network.client` entitlement on your sandboxed application. Emphasize that this defect blocks your app's adoption from WebKit1 to WebKit2.
+* [Adapting release notes based on the currently installed version](/documentation/publishing#adapting-release-notes-based-on-currently-installed-version) is not supported because this feature is not implemented for Sparkle's legacy WebKit view.
 
 To enable the service, you must set [SUEnableDownloaderService](/documentation/customization#sandboxing-settings) boolean to `YES` in your application's Info.plist.
 
