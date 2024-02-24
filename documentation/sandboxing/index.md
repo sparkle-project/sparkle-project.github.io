@@ -54,6 +54,7 @@ Use this service only if your sandboxed application does not request the `com.ap
 * It may not work well if your release notes reference external content that would require making additional network requests.
 * We fall back to using WebKit's deprecated `WebView` for release notes due to a [known WKWebView defect](https://github.com/feedback-assistant/reports/issues/1). Please file a bug report on [WebKit's issues tracker](https://webkit.org/reporting-bugs/) or a Feedback Assistant report to Apple relating to FB6993802 preventing the use of WKWebView without having the `com.apple.security.network.client` entitlement on your sandboxed application. Emphasize that this defect blocks your app's adoption from WebKit1 to WebKit2.
 * [Adapting release notes based on the currently installed version](/documentation/publishing#adapting-release-notes-based-on-currently-installed-version) is not supported because this feature is not implemented for Sparkle's legacy WebKit view.
+* As of Sparkle 2.6 (beta), the Downloader XPC Service is not sandboxed by default. If you want to sandbox this service, you will need to uncomment `DOWNLOADER_SANDBOXED_ENTITLEMENTS` and modify `XPC_SERVICE_BUNDLE_ID_PREFIX` in Sparkle's `ConfigCommon.xcconfig` when building Sparkle from source. Sandboxing this XPC Service requires using a custom bundle ID for it, otherwise conflicts may arise with other sandboxed apps using the service.
 
 To enable the service, you must set [SUEnableDownloaderService](/documentation/customization#sandboxing-settings) boolean to `YES` in your application's Info.plist.
 
@@ -71,7 +72,12 @@ You may re-sign Sparkle for distribution manually if needed like so:
 
 ```sh
 codesign -f -s "$CODE_SIGN_IDENTITY" -o runtime Sparkle.framework/Versions/B/XPCServices/Installer.xpc
+
+# For versions < 2.6
 codesign -f -s "$CODE_SIGN_IDENTITY" -o runtime --entitlements Entitlements/Downloader.entitlements Sparkle.framework/Versions/B/XPCServices/Downloader.xpc
+
+# For versions >= 2.6 (beta)
+#codesign -f -s "$CODE_SIGN_IDENTITY" -o runtime --preserve-metadata=entitlements Sparkle.framework/Versions/B/XPCServices/Downloader.xpc
 
 codesign -f -s "$CODE_SIGN_IDENTITY" -o runtime Sparkle.framework/Versions/B/Autoupdate
 codesign -f -s "$CODE_SIGN_IDENTITY" -o runtime Sparkle.framework/Versions/B/Updater.app
@@ -79,7 +85,7 @@ codesign -f -s "$CODE_SIGN_IDENTITY" -o runtime Sparkle.framework/Versions/B/Upd
 codesign -f -s "$CODE_SIGN_IDENTITY" -o runtime Sparkle.framework
 ```
 
-Adjust the paths and code sign identity accordingly. The `--preserve-metadata=entitlements` is not used because we don't want to preserve any existing `com.apple.security.get-task-allow` entitlements for distribution. Also the `--deep` option is not used here because the Downloader XPC Service needs to be signed with a specific entitlement that aren't applicable to the other binaries.
+Adjust the paths and code sign identity accordingly. The `--deep` option is not used here because the Downloader XPC Service may optionally be signed with a specific entitlement that aren't applicable to the other binaries.
 
 Due to different code signing requirements, please do not add `--deep` to `OTHER_CODE_SIGN_FLAGS` or from custom build scripts when signing your application. This is a common source of Sandboxing errors.
 
