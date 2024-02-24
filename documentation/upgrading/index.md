@@ -6,6 +6,10 @@ title: Upgrading from previous versions of Sparkle
 
 We strongly recommend upgrading Sparkle to the [latest production release](//github.com/{{ site.github_username }}/Sparkle/releases) because there have been [important security and reliability improvements](/documentation/security-and-reliability). Very old versions of Sparkle also suffer some incompatibilities with the latest macOS versions.
 
+## Upgrading to Sparkle 2.6 (beta)
+
+Sparkle 2.6 no longer sandboxes the Downloader XPC Service by default. If you enabled this XPC Service, please see the updated [sandboxing guide](/documentation/sandboxing) for more information.
+
 ## Upgrading to Sparkle 2.4
 
 Sparkle 2.4 strips debug symbols more aggressively now. Please keep a copy of Sparkle’s debug symbols files (.dSYM) around if you build Sparkle from source yourself instead of using a prepackaged version. Otherwise debug symbols can be downloaded from a Sparkle distribution in our [Releases](https://github.com/sparkle-project/Sparkle/releases) page.
