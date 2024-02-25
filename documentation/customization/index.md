@@ -33,8 +33,8 @@ Here are the Info.plist settings relevant to use for Sandboxed applications usin
 {:.table .table-bordered}
 | Key | Type | Value |
 | --- | ---- | ----- | ------- |
-| `SUEnableInstallerLauncherService` | Boolean | Default: `NO`. Set this to `YES` to enable using the Installer Launcher XPC Service. This is required for all Sandboxed applications. |
-| `SUEnableDownloaderService` | Boolean | Default: `NO`. Set this to `YES` to enable using the Downloader XPC Service. This is required for Sandboxed applications that do not request the `com.apple.security.network.client` entitlement. Do not enable this XPC Service if your application already requests this entitlement. |
+| `SUEnableInstallerLauncherService` | Boolean | Default: `NO`. Set this to `YES` to enable using the Installer Launcher XPC Service, which is required for all Sandboxed applications. Do not enable this XPC Service if your application is not sandboxed (sandboxed applications must have the `com.apple.security.app-sandbox` entitlement). |
+| `SUEnableDownloaderService` | Boolean | Default: `NO`. Set this to `YES` to enable using the Downloader XPC Service. Do not enable this XPC Service if your sandboxed application already requests the `com.apple.security.network.client` entitlement. |
 | `SUEnableInstallerConnectionService` | Boolean | Default: `NO`. Set this to `YES` to enable using the Installer Connection Service. This service is usually not needed due to being able to [add a mach name lookup exception entitlement](/documentation/sandboxing#installer-connection--status-services) instead. This service is not included in Sparkle's framework distribution by default. |
 | `SUEnableInstallerStatusService` | Boolean | Default: `NO`. Set this to `YES` to enable using the Installer Status Service. This service is usually not needed due to being able to [add a mach name lookup exception entitlement](/documentation/sandboxing#installer-connection--status-services) instead. This service is not included in Sparkle's framework distribution by default. |
 

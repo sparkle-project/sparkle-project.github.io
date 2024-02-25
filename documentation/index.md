@@ -7,7 +7,7 @@ title: Documentation
 
 If your app already has an older version of Sparkle or you wish to migrate to Sparkle 2, please see [upgrading from previous versions](/documentation/upgrading/).
 
-[Sandboxed applications](/documentation/sandboxing) are only supported in Sparkle 2.
+If your app is sandboxed, please also check the [sandboxing guide](/documentation/sandboxing).
 
 ### 1. Add the Sparkle framework to your project
 
@@ -59,7 +59,7 @@ If you want to add Sparkle manually:
 
 If you enable Library Validation, which is part of the Hardened Runtime and required for notarization, you will also need to either sign your application with an `Apple Development` certificate for development (requires being in Apple's developer program), or disable library validation for Debug configurations only. Otherwise, the system may not let your application load Sparkle if you attempt to sign to run locally via an ad-hoc signature. This is not an issue for distribution when you sign your application with a Developer ID certificate.
 
-Sandboxed applications using Sparkle 2 require [additional setup](/documentation/sandboxing).
+Sandboxed applications using Sparkle also require following the [sandboxing guide](/documentation/sandboxing).
 
 [Pre-releases](//github.com/{{ site.github_username }}/Sparkle/releases) when available are published on GitHub. They are also available in Swift Package Manager, CocoaPods, and Carthage too by specifying the pre-release version in your project's manifest.
 
