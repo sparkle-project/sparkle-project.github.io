@@ -23,7 +23,7 @@ Please read the below sections on full integration details.
 
 #### Installation
 
-The Installer XPC Service is required for Sandboxed applications. Sparkle by default bundles this XPC Service in its framework bundle.
+The Installer XPC Service is required for Sandboxed applications.
 
 This service lets Sparkle install updates outside of your application's sandbox.
 
@@ -43,11 +43,11 @@ To allow Sparkle to communicate to its running installer tools for sandboxed app
 
 If you are building your application in Xcode, `$(PRODUCT_BUNDLE_IDENTIFIER)` will be automatically substituted with your application's bundle identifier.
 
-In the unusual case that you cannot add entitlements (e.g. your process inherits another application's restricted sandbox), you will need to [enable the Installer Connection & Status XPC Services](/documentation/customization#sandboxing-settings) instead and enable embedding the services in Sparkle's `ConfigCommon.xcconfig` when building Sparkle from source.
+In the rare case that you cannot add entitlements (e.g. your process inherits another application's restricted sandbox), you will need to [enable the Installer Connection & Status XPC Services](/documentation/customization#sandboxing-settings) instead and enable embedding the services in Sparkle's `ConfigCommon.xcconfig` when building Sparkle from source.
 
 #### Downloader
 
-The Downloader XPC Service is only needed for Sandboxed applications that do not request the `com.apple.security.network.client` entitlement. If your sandboxed application already needs to use this entitlement for network access, then you should not enable the Downloader XPC Service. Sparkle by default bundles this XPC Service in its framework bundle.
+The Downloader XPC Service is only needed for Sandboxed applications that do not request the `com.apple.security.network.client` entitlement. If your sandboxed application already needs to use this entitlement for network access, then you should not enable the Downloader XPC Service.
 
 The downloader service allows using Sparkle without forcing the network client entitlement on your entire sandboxed application. There are a few drawbacks with using the downloader service though which you may want to consider:
 
