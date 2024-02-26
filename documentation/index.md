@@ -7,7 +7,7 @@ title: Documentation
 
 If your app already has an older version of Sparkle or you wish to migrate to Sparkle 2, please see [upgrading from previous versions](/documentation/upgrading/).
 
-If your app is sandboxed, please also check the [sandboxing guide](/documentation/sandboxing).
+If you want to sandbox an existing application using Sparkle, please jump to the [sandboxing guide](/documentation/sandboxing).
 
 ### 1. Add the Sparkle framework to your project
 
