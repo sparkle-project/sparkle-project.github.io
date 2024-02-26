@@ -17,7 +17,7 @@ In order for Sparkle to function in a sandboxed environment, the application mus
 Sparkle by default bundles two XPC Services inside the framework for sandboxing your application:
 
 * Installer.xpc (org.sparkle-project.InstallerLauncher.xpc prior to Sparkle 2.2)
-* Downloader.xpc (org.sparkle-project.Downloader.xpc prior to Sparkle 2.2; optional)
+* Downloader.xpc (org.sparkle-project.Downloader.xpc prior to Sparkle 2.2; for apps that don't have network client access)
 
 Please read the below sections on full integration details.
 
@@ -95,4 +95,8 @@ If Xcode has issues running your application using Sparkle and its XPC Services 
 
 ### Removing XPC Services
 
-You should not use Sparkle's XPC Services for applications that are not sandboxed. In this case, you may choose to remove Sparkle's XPC Services in a post install script when copying the framework to your application. Alternatively you can alter Sparkle's `ConfigCommon.xcconfig` to not embed the XPC Services. This is optional and up to you. The same applies if you do sandbox your application but do not need to use or embed the Downloader XPC Service in particular.
+This section is optional and is for developers that want to trim down Sparkle.
+
+If you do not sandbox your application and thus do not enable Sparkle's XPC Services, you may choose to remove these services in a post install script when copying the framework to your application. Alternatively you can alter Sparkle's `ConfigCommon.xcconfig` to not embed the XPC Services when building Sparkle from source.
+
+The same can apply if you do sandbox your application but do not need to enable or embed the Downloader XPC Service in particular.
