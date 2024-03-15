@@ -49,7 +49,7 @@ In the rare case that you cannot add entitlements (e.g. your process inherits an
 
 #### Downloader
 
-The Downloader XPC Service is only needed for Sandboxed applications that do not request the `com.apple.security.network.client` entitlement. If your sandboxed application already needs to use this entitlement for network access, then you should not enable the Downloader XPC Service.
+The Downloader XPC Service is only needed for Sandboxed applications that do not request the `com.apple.security.network.client` (Outgoing Network Connections) entitlement. If your sandboxed application already needs to use this entitlement for network access, then you should not enable the Downloader XPC Service.
 
 The downloader service allows using Sparkle without forcing the network client entitlement on your entire sandboxed application. There are a few drawbacks with using the downloader service though which you may want to consider:
 
