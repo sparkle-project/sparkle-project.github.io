@@ -56,9 +56,11 @@ The downloader service allows using Sparkle without forcing the network client e
 * We fall back to using WebKit's deprecated `WebView` for release notes due to a [known WKWebView defect](https://github.com/feedback-assistant/reports/issues/1). Please file a bug report on [WebKit's issues tracker](https://webkit.org/reporting-bugs/) or a Feedback Assistant report to Apple relating to FB6993802 preventing the use of WKWebView without having the `com.apple.security.network.client` entitlement on your sandboxed application. Emphasize that this defect blocks your app's adoption from WebKit1 to WebKit2.
 * [Adapting release notes based on the currently installed version](/documentation/publishing#adapting-release-notes-based-on-currently-installed-version) is not supported because this feature is not implemented for Sparkle's legacy WebKit view.
 * It may not work well if your release notes reference external content that would require making additional network requests.
-* As of Sparkle 2.6, the Downloader XPC Service is not sandboxed by default. If you want to sandbox this XPC service (this is optional), you will need to uncomment `DOWNLOADER_SANDBOXED_ENTITLEMENTS` and modify `XPC_SERVICE_BUNDLE_ID_PREFIX` in Sparkle's `ConfigCommon.xcconfig` when building Sparkle from source. Sandboxing this XPC Service requires using a custom bundle ID for it, otherwise conflicts may arise with other sandboxed apps using the service.
+* As of Sparkle 2.6, the Downloader XPC Service is not sandboxed by default. If you want to sandbox this XPC service (this is optional), you will need to uncomment `DOWNLOADER_SANDBOXED_ENTITLEMENTS` and modify `XPC_SERVICE_BUNDLE_ID_PREFIX` in Sparkle's `ConfigCommon.xcconfig` when building Sparkle from source. Sandboxing this XPC Service requires using a custom bundle ID for it, otherwise conflicts may arise with other sandboxed apps using the service. This option is not available when using a pre-built version of Sparkle or a version provided from a package manager.
 
-To enable the service, you must set [SUEnableDownloaderService](/documentation/customization#sandboxing-settings) boolean to `YES` in your application's Info.plist.
+If these drawbacks are not appealing to you, you may want to consider enabling the `com.apple.security.network.client` (Outgoing Network Connections) entitlement on your application instead of enabling the Downloader XPC Service.
+
+If you still want to enable the service, you must set [SUEnableDownloaderService](/documentation/customization#sandboxing-settings) boolean to `YES` in your application's Info.plist.
 
 ### Code Signing
 
