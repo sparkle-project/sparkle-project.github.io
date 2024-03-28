@@ -142,42 +142,42 @@
     },
     {
       "file": "/Users/runner/work/sparkle-project.github.io/sparkle-project.github.io/sparkle-source/Sparkle/SPUUserDriver.h",
-      "line": 282,
+      "line": 286,
       "symbol": "SPUUserDriver.-showUpdateNotFoundWithAcknowledgement:",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/runner/work/sparkle-project.github.io/sparkle-project.github.io/sparkle-source/Sparkle/SPUUserDriver.h",
-      "line": 284,
+      "line": 288,
       "symbol": "SPUUserDriver.-showUpdateInstallationDidFinishWithAcknowledgement:",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/runner/work/sparkle-project.github.io/sparkle-project.github.io/sparkle-source/Sparkle/SPUUserDriver.h",
-      "line": 286,
+      "line": 290,
       "symbol": "SPUUserDriver.-dismissUserInitiatedUpdateCheck",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/runner/work/sparkle-project.github.io/sparkle-project.github.io/sparkle-source/Sparkle/SPUUserDriver.h",
-      "line": 288,
+      "line": 292,
       "symbol": "SPUUserDriver.-showInstallingUpdate",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/runner/work/sparkle-project.github.io/sparkle-project.github.io/sparkle-source/Sparkle/SPUUserDriver.h",
-      "line": 290,
+      "line": 294,
       "symbol": "SPUUserDriver.-showSendingTerminationSignal",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/runner/work/sparkle-project.github.io/sparkle-project.github.io/sparkle-source/Sparkle/SPUUserDriver.h",
-      "line": 292,
+      "line": 296,
       "symbol": "SPUUserDriver.-showInstallingUpdateWithApplicationTerminated:",
       "symbol_kind": "sourcekitten.source.lang.objc.decl.method.instance",
       "warning": "undocumented"
