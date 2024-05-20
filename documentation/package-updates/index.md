@@ -15,7 +15,7 @@ Note package installation should only be used for apps with very custom installa
 * No fallback for [rotating signing keys](/documentation#rotating-signing-keys) in case your signing keys need to change
 * No support for generating updates easily using the `generate_appcast` tool
 
-Applications that [install daemons](https://developer.apple.com/documentation/servicemanagement/smappservice) or [install system extensions](https://developer.apple.com/documentation/systemextensions/installing_system_extensions_and_drivers) do not need to distribute package installers.
+Applications that [install daemons](https://developer.apple.com/documentation/servicemanagement/smappservice) or [install system extensions](https://developer.apple.com/documentation/systemextensions/installing-system-extensions-and-drivers) do not need to distribute package installers.
 
 ### Bare Package Installation
 
