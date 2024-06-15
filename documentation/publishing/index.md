@@ -478,17 +478,13 @@ func updaterDidNotFindUpdate(_ updater: SPUUpdater, error: Error) {
 }
 ```
 
-## Alternate download locations for other operating systems
+## Support for other operating systems
 
-Sparkle is available for [Windows](http://winsparkle.org).
+Sparkle is available for other platforms and operating systems. Check out [WinSparkle](https://winsparkle.org) and [NetSparkle](https://netsparkleupdater.github.io/NetSparkle/).
 
-To keep the appcast file compatible with the standard Sparkle implementation, a new tag has to be used for cross platform support. It is suggested to use the following to specify downloads for non macOS systems:
+We recommend using separate appcast feeds for macOS and Windows versions of your app.
 
-```xml
-<sparkle:enclosure sparkle:os="os_name" ... />
-```
-
-Replace _os_name_ with either "windows" or "linux", respectively (mind the lower case!). Feel free to add other OS names as needed.
+While there is partial support for having macOS and non-macOS items in the same appcast feed (using a `sparkle:os` attribute in a `sparkle:enclosure` element), it is not recommended.
 
 ## API Specification
 
