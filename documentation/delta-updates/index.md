@@ -11,10 +11,6 @@ For each new version you release, you can provide a list of `.delta` files in ad
 
 If the user is running a version of the app for which you haven't provided a `.delta`, or if the patch doesn't apply cleanly, they'll use the non-delta "full" update.
 
-<div class="alert alert-warning" role="alert">
-<strong>Note:</strong> Due to a macOS change, new delta patches must be created using generate_appcast or BinaryDelta from a Sparkle 1.27.0 or later distribution. Note that newly generated patches are still backwards compatible and can be patched from applications using versions of Sparkle framework older than 1.27.0.
-</div>
-
 ### Automated generation
 
 The `./bin/generate_appcast` tool that comes with Sparkle [automatically generates and signs delta updates](/documentation/#5-publish-your-appcast).
@@ -73,11 +69,12 @@ When you create a delta update between two versions of your application, you mus
 
 | Delta Format   | Supports                      | Changes                                                                                        |
 | --------------- | ----------------------------- | ---------------------------------------------------------------------------------------------------- |
+| 4               | Sparkle 2.7 (beta)            | Preserves bundle creation date, more efficient hash verification. |
 | 3               | Sparkle 2.1                   | More efficient custom delta container format, lzma compression + other compression options, file rename heuristic tracking. |
 | 2               | Sparkle 1.10                  | Improved and changed hash function for reducing collisions.                                          |
 | 1               | Sparkle 1.5                   | Added initial binary delta format using libxar and bzip2 compression. Tracking of insertions, deletions, and binary file diffs using bsdiff. |
 
-Note if you are using `generate_appcast`, picking the delta version to use is automatically handled. If you are using `BinaryDelta create` though, you will need to pass the appropriate delta version via the `--version` argument.
+Note if you are using `generate_appcast`, picking the delta version to use is automatically handled. If you are manually using `BinaryDelta create` though, you will need to pass the appropriate delta version via the `--version` argument.
 
 Older delta format versions will eventually be phased out. Please do not create new patches using an older version than necessary. Always use the latest tools when creating delta patches because they may contain minor bug fixes that don't require a major format change.
 
@@ -105,6 +102,8 @@ Binary delta updates will pass but ignore or warn about the following metadata:
 * File permissions on symbolic links that are not `0755` are ignored, and `0755` will always be used instead. A warning will be issued. Some filesystems, e.g. Linux ones, do not support file permissions on symbolic links.
 * Irregular file permissions on files that are not `0755` or `0644` will be respected, but a warning may be issued (from Sparkle 2.1 onwards).
 * Custom icons users set using a resource fork (e.g. using Finder's `Get Info` window) are ignored/preserved when applying patches, but prohibited when creating patches (from Sparkle 2.2 onwards).
+* File modification dates are ignored and not preserved (but modification dates for the app bundle and embedded mdimporter bundles are later updated during installation)
+* File creation dates are ignored and not preserved inside the app bundle (but the creation date for the outer app bundle is preserved in the version 4 format).
 
 Binary delta updates do support the following meta changes:
 

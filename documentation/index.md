@@ -93,7 +93,7 @@ Because Sparkle is downloading executable code to your users' systems, you must 
     * Updates using [Installer package](/documentation/package-updates/) (`.pkg`) *must* be signed with EdDSA.
     * [Binary Delta updates](/documentation/delta-updates/) *must* be signed with EdDSA.
     * [Updates of preference panes and plugins](/documentation/bundles/) *must* be signed with EdDSA.
-    * Updates to regular application bundles that are signed with Apple's Developer ID program are strongly recommended to be signed with EdDSA for better security and fallback. Sparkle now deprecates not using EdDSA for these updates.
+    * Updates to regular application bundles that are signed with Apple's Developer ID program are strongly recommended to be signed with EdDSA for better security and fallback. Not using EdDSA signing for these updates is deprecated.
 
 Please ensure your signing keys are kept safe and cannot be stolen if your web server is compromised. One way to ensure this for example is not having your signing keys accessible from the machine that is hosting your product.
 
@@ -133,7 +133,7 @@ If you are code-signing your application via Apple's Developer ID program, Spark
 
 #### Rotating signing keys
 
-For regular application updates, if you both code-sign your application with Apple's Developer ID program and include a public EdDSA key for signing your update archive, Sparkle allows rotating keys by issuing a new update that changes either your Apple code signing certificate or your EdDSA keys.
+For regular application updates, if you both code-sign your application with Apple's Developer ID program and include a public EdDSA key for signing your update archive, Sparkle allows rotating keys by issuing a new update that changes either your Apple code signing certificate or your EdDSA keys (but not both). For applications that opt into enabling [SUVerifyUpdateBeforeExtraction](/documentation/customization/), the update archive must also be an Apple Developer ID code signed disk image.
 
 We recommend rotating keys only when necessary like if you need to change your Developer ID certificate, lose access to your EdDSA private key, or need to change (Ed)DSA keys due to [migrating away from DSA](eddsa-migration).
 
@@ -153,7 +153,7 @@ If you distribute your app on your website as a ZIP or a tar archive (due to [ap
 
 If your app is running from a read-only mount, you can encourage (if you want) your user to move the app into /Applications. Some frameworks, although not officially sanctioned here, exist for this purpose. Note Sparkle will not by default automatically disturb your user if an update cannot be performed.
 
-Sparkle supports updating from DMG, ZIP archives, tarballs, and [installer packages](/documentation/package-updates/), so you can generally reuse the same archive for distribution of your app on your website as well as Sparkle updates.
+Sparkle supports updating from DMG, ZIP archives, tarballs, Apple Archives (as of Sparkle 2.7 beta / macOS 10.15), and [installer packages](/documentation/package-updates/), so you can generally reuse the same archive for distribution of your app on your website as well as Sparkle updates.
 
 ### 5. Publish your appcast
 
@@ -164,7 +164,7 @@ Sparkle uses appcasts to get information about software updates. An appcast is a
 
 If you update regular app bundles and you have set up EdDSA signatures, you can use a tool to generate appcasts automatically:
 
-  1. Build your app and compress it (e.g. in a ZIP/tar.xz/DMG archive), and put the archive in a new folder. This folder will be used to store all your future updates.
+  1. Build your app and compress it (e.g. in a DMG/ZIP/tar.xz/.aar archive), and put the archive in a new folder. This folder will be used to store all your future updates.
   2. Run `generate_appcast` tool from Sparkle's distribution archive specifying the path to the folder with update archives. Allow it to access the Keychain if it asks for it (it's needed to generate signatures in the appcast).
 
         ./bin/generate_appcast /path/to/your/updates_folder/
