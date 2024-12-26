@@ -9,23 +9,27 @@ So you're ready to release a new version of your app. How do you go about doing 
 
 ### Archive your app
 
-Put a copy of your .app (with the same name as the version it's replacing) in a .zip, .tar.xz, or .dmg.
+Put a copy of your .app (with the same name as the version it's replacing) in a .dmg, .zip, .tar.\*, or .aar.
 
 Make sure symlinks are preserved when you create the archive. macOS frameworks use symlinks, and their code signature will be broken if your archival tool follows symlinks instead of archiving them.
 
-For creating zip archives, `ditto` can be used (behaves similar to Finder's Compress option):
+For creating dmg archives, APFS formatted images that use lzfse compression are recommended for decent decompression speed.
+
+For creating zip archives, use `ditto` (behaves similar to Finder's Compress option):
 
 ```sh
 ditto -c -k --sequesterRsrc --keepParent MyApp.app MyApp.zip
 ```
 
-For creating a LZMA compressed archive with optimal compression (but slower decompression), `tar` can be used for updates instead:
+For creating tar archives, stripping extended attributes is recommended for backwards compatibility from older systems. This example creates a LZMA compressed tar archive with high compression (but slower decompression).
 
 ```sh
 tar --no-xattrs -cJf MyApp.tar.xz MyApp.app
 ```
 
-Note this assumes your application does not use extended attributes and [places code and data into their proper places](https://developer.apple.com/documentation/bundleresources/placing_content_in_a_bundle) because creating a tar with extended attributes may cause extraction issues on older systems.
+Note `--no-xattrs` assumes your application and its code signature does not rely on extended attributes and [places code and data into their proper places](https://developer.apple.com/documentation/bundleresources/placing_content_in_a_bundle).
+
+For creating Apple Archives (`.aar`), check `man aa`. Sparkle 2.7 (beta) / macOS 10.15+ support this format. Enabling [SUVerifyUpdateBeforeExtraction](/documentation/customization/) is required for using this archive type.
 
 Please see [notes for Installer packages](/documentation/package-updates) if you are not updating a regular bundle.
 
