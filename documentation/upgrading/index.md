@@ -6,9 +6,9 @@ title: Upgrading from previous versions of Sparkle
 
 We strongly recommend upgrading Sparkle to the [latest production release](//github.com/{{ site.github_username }}/Sparkle/releases) because there have been [important security and reliability improvements](/documentation/security-and-reliability). Very old versions of Sparkle also suffer some incompatibilities with the latest macOS versions.
 
-## Upgrading to Sparkle 2.7 (beta)
+## Upgrading to Sparkle 2.7
 
-Sparkle 2.7 (beta) introduces a new format for delta updates, which preserves the creation date of the app bundle and creates slightly more efficient patches. If you don't use `generate_appcast`, please check the [compatibility notes for creating delta updates](/documentation/delta-updates/#compatibility).
+Sparkle 2.7 introduces a new format for delta updates, which preserves the creation date of the app bundle and creates slightly more efficient patches. If you don't use `generate_appcast`, please check the [compatibility notes for creating delta updates](/documentation/delta-updates/#compatibility).
 
 [Custom version comparators](/documentation/api-reference/Protocols/SPUUpdaterDelegate.html#/c:objc(pl)SPUUpdaterDelegate(im)versionComparatorForUpdater:) have been deprecated. Please use an increasing (numerical `x`, `x.y`, or `x.y.z`) `CFBundleVersion` / `sparkle:version` instead and disjoint them from more human presentable `CFBundleShortVersionString` / `sparkle:shortVersionString` if needed.
 
