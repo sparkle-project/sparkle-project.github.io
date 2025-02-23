@@ -29,7 +29,7 @@ tar --no-xattrs -cJf MyApp.tar.xz MyApp.app
 
 Note `--no-xattrs` assumes your application and its code signature does not rely on extended attributes and [places code and data into their proper places](https://developer.apple.com/documentation/bundleresources/placing_content_in_a_bundle).
 
-For creating Apple Archives (`.aar`), check `man aa`. Sparkle 2.7 (beta) / macOS 10.15+ support this format. Enabling [SUVerifyUpdateBeforeExtraction](/documentation/customization/) is required for using this archive type.
+For creating Apple Archives (`.aar`), check `man aa`. Sparkle 2.7 / macOS 10.15+ support this format. Enabling [SUVerifyUpdateBeforeExtraction](/documentation/customization/) is required for using this archive type.
 
 Please see [notes for Installer packages](/documentation/package-updates) if you are not updating a regular bundle.
 

@@ -69,7 +69,7 @@ When you create a delta update between two versions of your application, you mus
 
 | Delta Format   | Supports                      | Changes                                                                                        |
 | --------------- | ----------------------------- | ---------------------------------------------------------------------------------------------------- |
-| 4               | Sparkle 2.7 (beta)            | Preserves bundle creation date, more efficient hash verification. |
+| 4               | Sparkle 2.7                   | Preserves bundle creation date, more efficient hash verification. |
 | 3               | Sparkle 2.1                   | More efficient custom delta container format, lzma compression + other compression options, file rename heuristic tracking. |
 | 2               | Sparkle 1.10                  | Improved and changed hash function for reducing collisions.                                          |
 | 1               | Sparkle 1.5                   | Added initial binary delta format using libxar and bzip2 compression. Tracking of insertions, deletions, and binary file diffs using bsdiff. |

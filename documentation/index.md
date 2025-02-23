@@ -153,7 +153,7 @@ If you distribute your app on your website as a ZIP or a tar archive (due to [ap
 
 If your app is running from a read-only mount, you can encourage (if you want) your user to move the app into /Applications. Some frameworks, although not officially sanctioned here, exist for this purpose. Note Sparkle will not by default automatically disturb your user if an update cannot be performed.
 
-Sparkle supports updating from DMG, ZIP archives, tarballs, Apple Archives (as of Sparkle 2.7 beta / macOS 10.15), and [installer packages](/documentation/package-updates/), so you can generally reuse the same archive for distribution of your app on your website as well as Sparkle updates.
+Sparkle supports updating from DMG, ZIP archives, tarballs, Apple Archives (as of Sparkle 2.7 / macOS 10.15), and [installer packages](/documentation/package-updates/), so you can generally reuse the same archive for distribution of your app on your website as well as Sparkle updates.
 
 ### 5. Publish your appcast
 
