@@ -321,7 +321,7 @@ func allowedChannels(for updater: SPUUpdater) -> Set<String> {
 }
 ```
 
-Note that an updater cannot exclude itself from the default channel. Channels are intended to be a way to branch off updates to your application until newer updates are ready to come back to the default channel. On the other hand, channels are not intended to be used for parallel releases (such as distributing "1.0" and "1.0 demo" for example).
+Note that an updater cannot exclude itself from the default channel. Channels are intended to be a way to branch off updates to your application until newer updates are ready to come back to the default channel. On the other hand, channels are not intended to be used for parallel releases (such as distributing "1.0" and "1.0 demo" for example) or for releases that are never superseded by a release in the default channel.
 
 Channels can only be used when all of your users downloading your appcast are running a version of Sparkle that supports them. Sparkle 2 added them as of [June 27, 2021](https://github.com/sparkle-project/Sparkle/pull/1879). You can expedite this process by [switching to a new appcast](#upgrading-to-newer-features). Otherwise older versions of Sparkle may need to set the feed url programmatically below.
 
@@ -331,7 +331,7 @@ If you were using `-setFeedURL:` for alternate feeds and want to migrate to usin
 
 The appcast feed URL can be changed programmatically at runtime. If the feed URL is always static and the same, please set it in the Info.plist with the `SUFeedURL` key instead. Even if you have a secondary appcast feed, we recommend keeping a default one specified in the application's Info.plist.
 
-If you want to set the feed programmatically to provide beta/nightly updates, please try to adopt [channels](#channels) in the future instead. If you are supporting older Sparkle versions, continue reading on.
+If you want to set the feed programmatically to provide beta/nightly updates, please try to adopt [channels](#channels) in the future instead.
 
 The recommended way to change the feed URL programmatically is using `-[SUUpdaterDelegate feedURLStringForUpdater:]` or [-[SPUUpdaterDelegate feedURLStringForUpdater:]](/documentation/api-reference/Protocols/SPUUpdaterDelegate.html#/c:objc(pl)SPUUpdaterDelegate(im)feedURLStringForUpdater:) in Sparkle 2.
 
