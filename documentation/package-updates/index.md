@@ -5,7 +5,7 @@ title: Package Updates
 ---
 ## Package Updates
 
-Package installation allows Sparkle to update your application by downloading and installing a package, `pkg`, or multi-package, `mpkg` usually without user interaction except for asking for an administrator password.
+Package installation allows Sparkle to update your application by downloading and installing a package, `pkg`, or multi-package, `mpkg` without user interaction except for asking for an administrator password.
 
 Note package installation should only be used for apps with very custom installation needs that cannot be satisfied by distributing a regular app bundle. For Sparkle, the downsides of using package updates are:
 
@@ -16,6 +16,8 @@ Note package installation should only be used for apps with very custom installa
 * No support for generating updates easily using the `generate_appcast` tool
 
 Applications that [install daemons](https://developer.apple.com/documentation/servicemanagement/smappservice) or [install system extensions](https://developer.apple.com/documentation/systemextensions/installing-system-extensions-and-drivers) do not need to distribute package installers.
+
+As of Sparkle 2.7.3, installing package updates may not work in development builds of apps where Sparkle's helper tools are not usually re-signed. If this is the case, please [test Sparkle](/documentation#6-test-sparkle-out) either from a notarized version of your app, or from a version that was installed by your package installer.
 
 ### Bare Package Installation
 
@@ -28,13 +30,3 @@ This method is the recommended way of serving package based updates because it a
 A package installation occurs when Sparkle finds a `*.pkg` or `*.mpkg` file in the root of the download archive (e.g, from within a `.zip`).
 
 **Note**: For Sparkle 2, you must also add `sparkle:installationType="package"` to your appcast item's `enclosure` for updating archived packages.
-
-### Interactive Archived UI Installation
-
-**Warning**: This type of installation is deprecated and may be removed one day. Please don't use it for future updates to your application.
-
-An interactive installation occurs when Sparkle finds a `*.sparkle_interactive.pkg` or `*.sparkle_interactive.mpkg` file in the root of the download archive.
-
-The package will be installed using macOS's built-in GUI installer. The installation will require user to manually click through the steps, so we don't recommend this type of installation. You must also archive your package update (e.g, in a `.zip`) to get this behavior.
-
-**Note**: For Sparkle 2, you must also add `sparkle:installationType="interactive-package"` to your appcast item's `enclosure` for updating interactive packages.

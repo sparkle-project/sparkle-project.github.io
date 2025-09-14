@@ -12,6 +12,8 @@ Sparkle 2.7 introduces a new format for delta updates, which preserves the creat
 
 [Custom version comparators](/documentation/api-reference/Protocols/SPUUpdaterDelegate.html#/c:objc(pl)SPUUpdaterDelegate(im)versionComparatorForUpdater:) have been deprecated. Please use an increasing (numerical `x`, `x.y`, or `x.y.z`) `CFBundleVersion` / `sparkle:version` instead and disjoint them from more human presentable `CFBundleShortVersionString` / `sparkle:shortVersionString` if needed.
 
+As of 2.7.3, package updates may need to be tested with a production build of your app, rather than a development one. Please see [package updates](/documentation/package-updates) for more information.
+
 ## Upgrading to Sparkle 2.6
 
 Sparkle 2.6 no longer sandboxes the Downloader XPC Service by default. If you enabled this XPC Service, please see the updated [sandboxing guide](/documentation/sandboxing) for more information.
