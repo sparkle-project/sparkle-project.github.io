@@ -16,7 +16,7 @@
     <header>
       <div class="content-wrapper">
         <p>
-          <a href="../index.html">Sparkle 2.7.1 Docs</a>
+          <a href="../index.html">Sparkle 2.8.0 Docs</a>
           <span class="no-mobile"> (59% documented)</span>
         </p>
     
@@ -72,6 +72,8 @@
 </ul>
 
 <p>Please view the documentation on each of these properties for more detail if you are to configure them dynamically.</p>
+
+<p>This class must be used on the main thread.</p>
 
             </section>
             <section class="section task-group-section">
@@ -294,11 +296,13 @@ For example, the standard updater controller (<code><a href="../Classes/SPUStand
 
 <p>If an update hasn&rsquo;t started, the user may be shown that a new check for updates is occurring.
 If an update has already been downloaded or begun installing from a previous session, the user may be presented to install that update.
-If the user is already being presented with an update, that update will be shown to the user in active focus.</p>
+If the user is already being presented with an update or update permission prompt, that notice may be shown to the user in active focus
+(as long as the user driver is the standard <code><a href="../Classes/SPUStandardUserDriver.html">SPUStandardUserDriver</a></code> or if it implements <code><a href="../Protocols/SPUUserDriver.html#/c:objc(pl)SPUUserDriver(im)showUpdateInFocus">-[SPUUserDriver showUpdateInFocus]</a></code>).</p>
 
-<p>This will find updates that the user has previously opted into skipping.</p>
+<p>This will find updates that the user has previously opted into skipping.
+See <code><a href="../Classes/SPUUpdater.html#/c:objc(cs)SPUUpdater(py)canCheckForUpdates">canCheckForUpdates</a></code> property which can determine when this method may be invoked.</p>
 
-<p>See <code><a href="../Classes/SPUUpdater.html#/c:objc(cs)SPUUpdater(py)canCheckForUpdates">canCheckForUpdates</a></code> property which can determine when this method may be invoked.</p>
+<p>This must be called on the main thread.</p>
 
                         </div>
                         <div class="declaration">
@@ -352,6 +356,8 @@ or an already downloaded update may be shown.</p>
 
 <p>This method does not do anything if there is a <code><a href="../Classes/SPUUpdater.html#/c:objc(cs)SPUUpdater(py)sessionInProgress">sessionInProgress</a></code>.</p>
 
+<p>This must be called on the main thread.</p>
+
                         </div>
                         <div class="declaration">
                           <h4>Declaration</h4>
@@ -397,6 +403,8 @@ this probing check is completed.</p>
 
 <p>This method does not do anything if there is a <code><a href="../Classes/SPUUpdater.html#/c:objc(cs)SPUUpdater(py)sessionInProgress">sessionInProgress</a></code>.</p>
 
+<p>This must be called on the main thread.</p>
+
                         </div>
                         <div class="declaration">
                           <h4>Declaration</h4>
@@ -429,8 +437,11 @@ this probing check is completed.</p>
                         <div class="abstract">
                           <p>A property indicating whether or not updates can be checked by the user.</p>
 
-<p>An update check can be made by the user when an update session isn&rsquo;t in progress, or when an update or its progress is being shown to the user.
-A user cannot check for updates when data (such as the feed or an update) is still being downloaded automatically in the background.</p>
+<p>An update check can be made by the user when an update session isn&rsquo;t in progress.
+An update check can also be made when an update or its progress is being shown to the user
+(as long as the user driver is the standard <code><a href="../Classes/SPUStandardUserDriver.html">SPUStandardUserDriver</a></code> or if it implements <code><a href="../Protocols/SPUUserDriver.html#/c:objc(pl)SPUUserDriver(im)showUpdateInFocus">-[SPUUserDriver showUpdateInFocus]</a></code>).</p>
+
+<p>A user cannot check for updates when data (such as the feed or an update) is still being downloaded automatically in the background.</p>
 
 <p>This property is suitable to use for menu item validation for seeing if <code><a href="../Classes/SPUUpdater.html#/c:objc(cs)SPUUpdater(im)checkForUpdates">-checkForUpdates</a></code> can be invoked.</p>
 
@@ -530,7 +541,9 @@ For testing environments, you can disable update checks by passing <code>-SUEnab
 to your app&rsquo;s command line arguments instead of setting this property.</p>
 
 <p>The update schedule cycle will be reset in a short delay after the property&rsquo;s new value is set.
-This is to allow reverting this property without kicking off a schedule change immediately</p>
+This is to allow reverting this property without kicking off a schedule change immediately.</p>
+
+<p>This property is KVO compliant. This property must be called on the main thread.</p>
 
                         </div>
                         <div class="declaration">
@@ -572,7 +585,9 @@ Only set this property if the user wants to change the default via a user settin
 Do not always set it on launch unless you want to ignore the user&rsquo;s preference.</p>
 
 <p>The update schedule cycle will be reset in a short delay after the property&rsquo;s new value is set.
-This is to allow reverting this property without kicking off a schedule change immediately</p>
+This is to allow reverting this property without kicking off a schedule change immediately.</p>
+
+<p>This property is KVO compliant. This property must be called on the main thread.</p>
 
                         </div>
                         <div class="declaration">
@@ -621,6 +636,8 @@ In this case, this property will return NO regardless of how this property is se
 Hence developers shouldn&rsquo;t maintain an additional user default for this property.
 Only set this property if the user wants to change the default via a user settings option.
 Do not always set it on launch unless you want to ignore the user&rsquo;s preference.</p>
+
+<p>This property is KVO compliant. This property must be called on the main thread.</p>
 
                         </div>
                         <div class="declaration">
@@ -856,6 +873,8 @@ if you manually manage starting the updater.</p>
 
 <p>Setting this property will persist in the host bundle&rsquo;s user defaults.</p>
 
+<p>This property is KVO compliant. This property must be called on the main thread.</p>
+
                         </div>
                         <div class="declaration">
                           <h4>Declaration</h4>
@@ -891,6 +910,8 @@ if you manually manage starting the updater.</p>
 <p>For testing purposes, the last update check is stored in the <code>SULastCheckTime</code> key in the host bundle&rsquo;s user defaults.
 For example, <code>defaults delete my-bundle-id SULastCheckTime</code> can be invoked to clear the last update check time and test
 if update checks are automatically scheduled.</p>
+
+<p>This property must be called on the main thread.</p>
 
                         </div>
                         <div class="declaration">
@@ -929,6 +950,8 @@ if update checks are automatically scheduled.</p>
 <p>If the <code><a href="../Classes/SPUUpdater.html#/c:objc(cs)SPUUpdater(py)updateCheckInterval">updateCheckInterval</a></code> or <code><a href="../Classes/SPUUpdater.html#/c:objc(cs)SPUUpdater(py)automaticallyChecksForUpdates">automaticallyChecksForUpdates</a></code> properties are changed, this method is automatically invoked after a short delay using <code><a href="../Classes/SPUUpdater.html#/c:objc(cs)SPUUpdater(im)resetUpdateCycleAfterShortDelay">-resetUpdateCycleAfterShortDelay</a></code>. In these cases, manually resetting the update cycle is not necessary.</p>
 
 <p>See also <code><a href="../Classes/SPUUpdater.html#/c:objc(cs)SPUUpdater(im)resetUpdateCycleAfterShortDelay">-resetUpdateCycleAfterShortDelay</a></code> which gives the user a short delay before triggering a cycle reset.</p>
+
+<p>This must be called on the main thread.</p>
 
                         </div>
                         <div class="declaration">
@@ -969,6 +992,8 @@ If this method is called again, any previous reset request that is still infligh
 no cycle reset will be done.</p>
 
 <p>If the <code><a href="../Classes/SPUUpdater.html#/c:objc(cs)SPUUpdater(py)updateCheckInterval">updateCheckInterval</a></code> or <code><a href="../Classes/SPUUpdater.html#/c:objc(cs)SPUUpdater(py)automaticallyChecksForUpdates">automaticallyChecksForUpdates</a></code> properties are changed, this method is automatically invoked. In these cases, manually resetting the update cycle is not necessary.</p>
+
+<p>This must be called on the main thread.</p>
 
                         </div>
                         <div class="declaration">
@@ -1185,7 +1210,7 @@ no cycle reset will be done.</p>
       </div>
       <div class="footer-wrapper">
         <section id="footer">
-          <p>&copy; 2025 <a class="link" href="https://sparkle-project.org" target="_blank" rel="external noopener">Sparkle Project</a>. All rights reserved. (Last updated: 2025-06-16)</p>
+          <p>&copy; 2025 <a class="link" href="https://sparkle-project.org" target="_blank" rel="external noopener">Sparkle Project</a>. All rights reserved. (Last updated: 2025-09-16)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.15.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
         </section>
       </div>
