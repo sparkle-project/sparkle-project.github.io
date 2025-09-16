@@ -6,6 +6,12 @@ title: Upgrading from previous versions of Sparkle
 
 We strongly recommend upgrading Sparkle to the [latest production release](//github.com/{{ site.github_username }}/Sparkle/releases) because there have been [important security and reliability improvements](/documentation/security-and-reliability). Very old versions of Sparkle also suffer some incompatibilities with the latest macOS versions.
 
+## Upgrading to Sparkle 2.8
+
+Sparkle 2.8 introduces a refreshed UI for the update & release notes window.
+
+Interactive GUI package updates (using `*.sparkle_interactive.pkg`), which have been deprecated, are no longer supported. Please switch to regular [package updates](/documentation/package-updates) if you were using them.
+
 ## Upgrading to Sparkle 2.7
 
 Sparkle 2.7 introduces a new format for delta updates, which preserves the creation date of the app bundle and creates slightly more efficient patches. If you don't use `generate_appcast`, please check the [compatibility notes for creating delta updates](/documentation/delta-updates/#compatibility).
