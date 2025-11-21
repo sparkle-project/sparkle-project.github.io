@@ -59,11 +59,11 @@ If you want to add Sparkle manually:
 
 If you enable Library Validation, which is part of the Hardened Runtime and required for notarization, you will also need to either sign your application with an `Apple Development` certificate for development (requires being in Apple's developer program), or disable library validation for Debug configurations only. Otherwise, the system may not let your application load Sparkle if you attempt to sign to run locally via an ad-hoc signature. This is not an issue for distribution when you sign your application with a Developer ID certificate.
 
-Sandboxed applications using Sparkle also require following the [sandboxing guide](/documentation/sandboxing).
+If your application is sandboxed, please also follow the [sandboxing guide](/documentation/sandboxing). Otherwise, you may optionally be interested in [removing Sparkle's XPC Services](/documentation/sandboxing#removing-xpc-services) to save space.
 
 [Pre-releases](//github.com/{{ site.github_username }}/Sparkle/releases) when available are published on GitHub. They are also available in Swift Package Manager, CocoaPods, and Carthage too by specifying the pre-release version in your project's manifest.
 
-A more nightly build from our repository can be downloaded from our [GitHub Actions page](https://github.com/sparkle-project/Sparkle/actions?query=event%3Apush+is%3Asuccess+branch%3A2.x) by selecting a recent workflow commit and downloading the `Sparkle-distribution*.tar.xz` artifact. Alternatively, you may clone Sparkle's repository with all its submodules, run `make release`, and extract the binaries in the resulting `Sparkle-*.tar.xz` (or `.bz2`) archive.
+A more nightly build from our repository can be downloaded from our [GitHub Actions page](https://github.com/sparkle-project/Sparkle/actions?query=event%3Apush+is%3Asuccess+branch%3A2.x) by selecting a recent workflow commit and downloading the `Sparkle-distribution*.tar.xz` artifact. Alternatively, you may clone Sparkle's repository, run `make release`, and extract the binaries in the resulting `Sparkle-*.tar.xz` (or `.bz2`) archive.
 
 ### 2. Set up a Sparkle updater object
 
@@ -86,7 +86,7 @@ That's it. No other API calls are required to start the updater and have it mana
 Because Sparkle is downloading executable code to your users' systems, you must be very careful about security. To let Sparkle know that a downloaded update is not corrupted and came from you (instead of a malicious attacker), we recommend:
 
   * Serve updates over HTTPS.
-    * Your app *will not update on macOS 10.11 or later* unless you comply with Apple's [App Transport Security](/documentation/app-transport-security/) requirements. HTTP requests will be rejected by the system.
+    * Your app *will not update* unless you comply with Apple's [App Transport Security](/documentation/app-transport-security/) requirements. HTTP requests will be rejected by the system.
     * You can get free certificates from [Let's Encrypt](https://certbot.eff.org/), and test [server configuration](https://mozilla.github.io/server-side-tls/ssl-config-generator/) with [ssltest](https://www.ssllabs.com/ssltest/).
   * Sign the application via Apple's Developer ID program.
   * Sign the published update archive with Sparkle's EdDSA (ed25519) signature.

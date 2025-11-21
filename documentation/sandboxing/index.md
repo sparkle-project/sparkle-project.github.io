@@ -104,3 +104,35 @@ This section is optional and is for developers that want to trim down Sparkle.
 If you do not sandbox your application and thus do not enable Sparkle's XPC Services, you may choose to remove these services in a post install script when copying the framework to your application. Alternatively you can alter Sparkle's `ConfigCommon.xcconfig` to not embed the XPC Services when building Sparkle from source.
 
 The same can apply if you do sandbox your application but do not need to enable or embed the Downloader XPC Service in particular.
+
+Below is an example of a run script that only runs in Release and can be configured to remove the XPC Services you don't need. It can be added to your application target's `Build Phases` after copying the Sparkle framework.
+
+```bash
+#!/bin/bash
+
+# Only run for Release builds
+if [ "$CONFIGURATION" != "Release" ]; then
+    exit 0
+fi
+
+APP_PATH="${TARGET_BUILD_DIR}/${WRAPPER_NAME}"
+SPARKLE_FRAMEWORK="${APP_PATH}/Contents/Frameworks/Sparkle.framework"
+
+# Paths to remove if present
+PATHS_TO_REMOVE=(
+    # Assuming you don't need the Downloader XPC Service
+    "${SPARKLE_FRAMEWORK}/Versions/B/XPCServices/Downloader.xpc"
+    
+    # Uncomment these two lines if you don't need any XPC Services
+    #"${SPARKLE_FRAMEWORK}/Versions/B/XPCServices"
+    #"${SPARKLE_FRAMEWORK}/XPCServices"
+)
+
+for p in "${PATHS_TO_REMOVE[@]}"; do
+    if [ -e "$p" ] || [ -L "$p" ]; then
+        rm -rf "$p"
+    fi
+done
+
+exit 0
+```
