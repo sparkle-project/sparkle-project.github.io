@@ -105,13 +105,13 @@ If you do not sandbox your application and thus do not enable Sparkle's XPC Serv
 
 The same can apply if you do sandbox your application but do not need to enable or embed the Downloader XPC Service in particular.
 
-Below is an example of a run script that only runs in Release and can be configured to remove the XPC Services you don't need. It can be added to your application target's `Build Phases` after copying the Sparkle framework.
+Below is an example of a run script that only runs in install / archive builds and can be configured to remove the XPC Services you don't need. It can be added to your application target's `Build Phases` after copying the Sparkle framework.
 
 ```bash
 #!/bin/bash
 
-# Only run for Release builds
-if [ "$CONFIGURATION" != "Release" ]; then
+# Only run for install / archive builds
+if [ "$ACTION" != "install" ]; then
     exit 0
 fi
 
@@ -133,6 +133,9 @@ for p in "${PATHS_TO_REMOVE[@]}"; do
         rm -rf "$p"
     fi
 done
+
+# Re-sign to fix code signing signature
+codesign --force --sign "$EXPANDED_CODE_SIGN_IDENTITY" --preserve-metadata "$SPARKLE_FRAMEWORK"
 
 exit 0
 ```
