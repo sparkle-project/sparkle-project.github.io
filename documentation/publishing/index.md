@@ -333,7 +333,7 @@ The appcast feed URL can be changed programmatically at runtime. If the feed URL
 
 If you want to set the feed programmatically to provide beta/nightly updates, please try to adopt [channels](#channels) in the future instead.
 
-The recommended way to change the feed URL programmatically is using `-[SUUpdaterDelegate feedURLStringForUpdater:]` or [-[SPUUpdaterDelegate feedURLStringForUpdater:]](/documentation/api-reference/Protocols/SPUUpdaterDelegate.html#/c:objc(pl)SPUUpdaterDelegate(im)feedURLStringForUpdater:) in Sparkle 2.
+The recommended way to change the feed URL programmatically is using [-[SPUUpdaterDelegate feedURLStringForUpdater:]](/documentation/api-reference/Protocols/SPUUpdaterDelegate.html#/c:objc(pl)SPUUpdaterDelegate(im)feedURLStringForUpdater:).
 
 Here is an example:
 
