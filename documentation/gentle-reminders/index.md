@@ -242,4 +242,4 @@ let UPDATE_NOTIFICATION_IDENTIFIER = "UpdateCheck"
 
 ## Custom User Interfaces
 
-The APIs for gentle reminders discussed here are a part of Sparkle's standard user interface and are great if you want to leverage Sparkle's standard UI. If you need even greater customization, you can implement your own custom user interface by writing your your own [SPUUserDriver](/documentation/api-reference/Protocols/SPUUserDriver.html) and passing it when you instantiate a [`SPUUpdater`](/documentation/api-reference/Classes/SPUUpdater.html). 
+The APIs for gentle reminders discussed here are a part of Sparkle's standard user interface and are great if you want to leverage Sparkle's standard UI. If you need even greater customization, you can implement your own [custom user interface](/documentation/custom-user-interfaces).

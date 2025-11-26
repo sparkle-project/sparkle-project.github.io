@@ -75,7 +75,7 @@ Plug-ins that share the same process as their host should prefer to use an out-o
 
 `SPUUpdater` when used directly can:
 * Update other Sparkle-based bundles
-* Use a custom user interface (`SPUUserDriver`)
+* Use a [custom user interface](/documentation/custom-user-interfaces) (`SPUUserDriver`)
 
 [sparkle-cli](/documentation/sparkle-cli) makes use of both these features as an example.
 
