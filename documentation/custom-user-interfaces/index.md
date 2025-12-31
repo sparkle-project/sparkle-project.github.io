@@ -20,6 +20,8 @@ Reference classes in Sparkle's repository that implement `SPUUserDriver` are:
 * [SUPopUpTitlebarUserDriver](https://github.com/sparkle-project/Sparkle/blob/2.x/TestApplication/SUPopUpTitlebarUserDriver.m): Alternative user interface to the Sparkle Test App
 * [SUCommandLineUserDriver](https://github.com/sparkle-project/Sparkle/blob/2.x/sparkle-cli/SPUCommandLineUserDriver.m): User interface to the [sparkle-cli](/documentation/sparkle-cli) tool
 
+Please note `SPUUserDriver` must present a user interface. This protocol is not used in a way that eliminates UI or installs updates silently. If you want updates to be downloaded and installed silently in the background when feasible, please opt into automatic updates via [SUAutomaticallyUpdate](/documentation/customization/). 
+
 Futher sections below highlight scenarios you will need to consider when implementing a custom UI.
 
 ### Update Check Permission
