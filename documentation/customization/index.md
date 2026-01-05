@@ -14,7 +14,7 @@ For example:
 
 Some of the Info.plist settings below are also paired with an updater API to change the settings at runtime, like `SUEnableAutomaticChecks` with [automaticallyChecksForUpdates](/documentation/api-reference/Classes/SPUUpdater.html#/c:objc(cs)SPUUpdater(py)automaticallyChecksForUpdates). The Info.plist settings are meant for default configuration, while the runtime APIs are in response to user setting changes. Please do not use the runtime APIs for setting initial default behavior. Check how to [add update settings](/documentation/preferences-ui/) for examples on changing user settings.
 
-### Info.plist Settings
+### General Settings
 
 {:.table .table-bordered}
 | Key | Type | Value |
@@ -26,13 +26,21 @@ Some of the Info.plist settings below are also paired with an updater API to cha
 | `SUAutomaticallyUpdate` | Boolean | Default: `NO`. Enables automatic download and installation of updates by default. If set to `YES`, Sparkle will attempt to download and install new updates silently in the background. Updates may be downloaded but not installed automatically if authorization is required. If the application hasn't quit for 1 week the user will be presented with installing the downloaded update (unless the updater delegate overrides this).<br/>This default property can later be overridden by setting [automaticallyDownloadsUpdates](/documentation/api-reference/Classes/SPUUpdater.html#/c:objc(cs)SPUUpdater(py)automaticallyDownloadsUpdates) in response to user setting changes (for example, the standard update alert has a checkbox for changing this).
 | `SUAllowsAutomaticUpdates` | Boolean | By default, Sparkle automatically presents your users with the *option* to allow to automatically download and install any available updates if automatic checking of updates is enabled.<br/>Set this to `NO` to disallow automatic updates and require manual installation every time.<br/>Set this to `YES` to always allow automatic updates even if automatic checking of updates is disabled. |
 | `SUEnableSystemProfiling` | Boolean | Default: `NO`. Enables anonymous system profiling. See [System Profiling](/documentation/system-profiling) for more. |
-| `SUVerifyUpdateBeforeExtraction` | Boolean | Default: `NO`. Set this to `YES` to force verification of updates before Sparkle extracts the downloaded update. Use this setting if you want stronger update validation and you aren't likely to lose access to your private EdDSA key (typically stored inside the macOS Keychain). EdDSA signing is required to use this setting. [Key rotation](/documentation/#rotating-signing-keys) is still possible by using Apple Developer ID code signed disk images as fallback. This setting is available in Sparkle 2.7 and later. |
 | `SUShowReleaseNotes` | Boolean | Default: `YES`. Set this to `NO` to hide release notes display from the update alert. |
-| `SUAllowedURLSchemes` | Array of Strings | An array of custom URL schemes allowed to be clicked from Sparkle's release notes view. By default, Sparkle only allows clicks to links that have a safe known URL scheme (like `https`). This setting is available in Sparkle 2.5 and later.
 | `SUBundleName` | String | Optional alternative bundle display name. For example, if your bundle name already has a version number appended to it, setting this may help smooth out certain messages, e.g. "MyApp 3 4.0 is now available" vs "MyApp 4.0 is now available". |
 | `SUDefaultsDomain` | String | Optional alternative `NSUserDefaults` domain name if you don't want to use the standard user defaults, for example when accessing preferences from an App Group suite. |
-| `SUEnableJavaScript` | Boolean | Default: `NO`. Set this to `YES` if you want to allow JavaScript in your release notes. |
 | `SURelaunchHostBundle` | Boolean | Default: `NO`. For plug-ins in Sparkle 2, set this to `YES` to re-launch the host targetted bundle instead of the application bundle. For example, this can be used to re-open a System Settings prefpane after an update has been installed.
+
+### Security Settings
+
+{:.table .table-bordered}
+| Key | Type | Value |
+| --- | ---- | ----- | ------- |
+| `SUVerifyUpdateBeforeExtraction` | Boolean | Default: `NO`. Set this to `YES` to force verification of updates before Sparkle extracts the downloaded update. Use this setting if you want stronger update validation and you aren't likely to lose access to your private EdDSA key (typically stored inside the macOS Keychain). EdDSA signing is required to use this setting. [Changing EdDSA keys](/documentation/#rotating-signing-keys) is still possible by using Apple Developer ID code signed disk images as a fallback. This setting is available since Sparkle 2.7. |
+| `SURequireSignedFeed` | Boolean | Default: `NO`. Set this to `YES` to make Sparkle validate appcasts and release notes are signed. Use this setting if you want secure validation of the update information presented to the user, and you aren't likely to lose access to your private EdDSA key (typically stored inside the macOS Keychain). This setting is available since Sparkle 2.9 (beta), and also requires enabling `SUVerifyUpdateBeforeExtraction` as a prerequisite.
+| `SUSignedFeedFailureExpirationInterval` | Number | The number of seconds it takes for a feed signing validation failure to expire. The default is `1728000` (20 days), and a special value of `0` disables feed signing failures from expiring. If Sparkle hasn't successfully validated a feed for this amount of time after the first signing failure, it will finally present new updates to users. This setting is a failsafe in case you lose access to your EdDSA signing keys, but can still serve updates through [rotating keys](/documentation/#rotating-signing-keys). In this scenario, release notes are not shown and informational only updates are not supported. `SURequireSignedFeed` must be enabled for this setting to take effect.
+| `SUAllowedURLSchemes` | Array of Strings | An array of custom URL schemes allowed to be clicked from Sparkle's release notes view. By default, Sparkle only allows clicks to links that have a safe known URL scheme (like `https`). This setting is available in Sparkle 2.5 and later.
+| `SUEnableJavaScript` | Boolean | Default: `NO`. Set this to `YES` if you want to allow JavaScript in your release notes. |
 
 ### Sandboxing Settings
 
