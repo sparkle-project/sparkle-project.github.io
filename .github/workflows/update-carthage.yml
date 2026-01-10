@@ -15,7 +15,7 @@ concurrency:
 jobs:
   api-documentation:
     name: "Update Carthage Package"
-    runs-on: macos-13
+    runs-on: macos-26
 
     steps:
       - name: "Checkout Sparkle Sources"
