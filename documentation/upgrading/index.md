@@ -6,6 +6,10 @@ title: Upgrading from previous versions of Sparkle
 
 We strongly recommend upgrading Sparkle to the [latest production release](//github.com/{{ site.github_username }}/Sparkle/releases) because there have been [important security and reliability improvements](/documentation/security-and-reliability). Very old versions of Sparkle also suffer some incompatibilities with the latest macOS versions.
 
+## Upgrading to Sparkle 2.9 (beta)
+
+Sparkle 2.9 (beta) no longer distributes sparkle-cli as part of the binary distribution. Please see [the sparkle-cli documentation](/documentation/sparkle-cli) if you were depending on the tool.
+
 ## Upgrading to Sparkle 2.8
 
 Sparkle 2.8 introduces a refreshed UI for the update & release notes window.
