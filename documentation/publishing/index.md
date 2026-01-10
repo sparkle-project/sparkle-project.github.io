@@ -29,7 +29,7 @@ tar --no-xattrs -cJf MyApp.tar.xz MyApp.app
 
 Note `--no-xattrs` assumes your application and its code signature does not rely on extended attributes and [places code and data into their proper places](https://developer.apple.com/documentation/bundleresources/placing_content_in_a_bundle).
 
-For creating Apple Archives (`.aar`), check `man aa`. Sparkle 2.7 / macOS 10.15+ support this format. Enabling [SUVerifyUpdateBeforeExtraction](/documentation/customization/) is required for using this archive type.
+For creating Apple Archives (`.aar`), check `man aa`. Sparkle 2.7 / macOS 10.15+ support this format. Enabling [SUVerifyUpdateBeforeExtraction](/documentation/customization#security-settings) is required for using this archive type.
 
 Please see [notes for Installer packages](/documentation/package-updates) if you are not updating a regular bundle.
 
@@ -39,21 +39,37 @@ In order to prevent corruption and man-in-the-middle attacks against your users,
 
 Signatures are automatically generated when you make an appcast using `generate_appcast` tool. This is the recommended method.
 
+--
+
 To manually generate signatures for your updates, Sparkle includes a tool to help you make a EdDSA signature of the archive. From the Sparkle distribution:
 
 ```sh
 ./bin/sign_update path_to_your_update.(zip|dmg|tar.*)
 ```
 
-The output will be an XML fragment with your update's EdDSA signature and (optional) file size like so:
+The output will be an XML fragment with your update's EdDSA signature and file size like so:
 
 ```xml
 sparkle:edSignature="7cLALFUHSwvEJWSkV8aMreoBe4fhRa4FncC5NoThKxwThL6FDR7hTiPJh1fo2uagnPogisnQsgFgq6mGkt2RBw==" length="1623481"
 ```
 
-You'll add these attributes to your enclosure in the next step.
+You'll add these attributes to your enclosure element in the next step.
 
-Since 10.11, macOS has [App Transport Security](//developer.apple.com/library/prerelease/mac/technotes/App-Transport-Security-Technote/) policy which blocks apps from using insecure HTTP connections. This restriction applies to Sparkle as well, so you will need to serve your appcast and the update files over HTTPS.
+--
+
+If your app opts into [SURequireSignedFeed](/documentation/customization#security-settings), you will also need to sign any release note files (unless you choose to [embed them](#embedded-release-notes)):
+
+```sh
+./bin/sign_update path_to_your_releasenotes.html
+```
+
+The output will be an XML fragment with your release note's EdDSA signature and file size like so:
+
+```xml
+sparkle:edSignature="4KjvG1GjKwXrxfqXbU1j2CYClEDdkMDp2Ii2ICV+Jgx00MDpHFLpLJ+/2tHy9Mp9bTUk5KlpCG1OWBu4nLKOCw==" sparkle:length="1467"
+```
+
+You'll add these attributes to your `sparkle:releaseNotesLink` element in the next step.
 
 ### Update your appcast
 
@@ -74,6 +90,8 @@ You need to create an `<item>` for your update in your appcast. See the [sample 
                 type="application/octet-stream" />
 </item>
 ```
+
+If your app opts into [SURequireSignedFeed](/documentation/customization#security-settings), you will also need to add the signature attributes to the `sparkle:releaseNotesLink` and run `sign_update` on the appcast file to update and sign it. Please see the [signed sample appcast](/files/sparkletestcast-signed.xml) for an example.
 
 Test your update, and you're done!
 
@@ -123,13 +141,25 @@ Add a `sparkle:minimumSystemVersion` child to the `<item>` in question specifyin
 </item>
 ```
 
-Note that Sparkle 2.3 or later only works with macOS 10.13 or later (macOS 10.11 or later for Sparkle 2.2.2 and macOS 10.9 or later for Sparkle 1), so that's the lowest minimum version you can use.
-
 Sparkle also supports a `sparkle:maximumSystemVersion` element that can limit the maximum system version similarly.
 
-Please note that if your application is built using the macOS 10.15 SDK or earlier, the system may report its operating system as 10.16.0 for [compatibility reasons](https://eclecticlight.co/2020/07/21/big-sur-is-both-10-16-and-11-0-its-official/). To minimize issues, we recommend building your application with an up to date Xcode and SDK.
+To minimize compatibility issues, we recommend building your application with an up to date Xcode and SDK because macOS can report the OS version differently when compiling on older SDKs and deploying to newer OS's.
 
-Additionally in Sparkle 2, if the user checks for new updates manually and the cannot update because of an operating system requirement, the standard updater alert will inform the user their operating system is incompatible and provide them an option to visit your website specified by the `<link>` element.
+As of Sparkle 2.9 (beta), a `sparkle:hardwareRequirements` element can also be added to make an update require Apple silicon:
+
+```xml
+<item>
+    <title>Version 2.0 (2 bugs fixed; 3 new features)</title>
+    <link>https://myproductwebsite.com</link>
+    <sparkle:version>2.0</sparkle:version>
+    <sparkle:hardwareRequirements>arm64</sparkle:hardwareRequirements>
+    <sparkle:minimumSystemVersion>12.0</sparkle:minimumSystemVersion>
+</item>
+```
+
+Please see [upgrading to newer features](#upgrading-to-newer-features) for more information if you want to specify a hardware requirement and have existing users running older versions of Sparkle.
+
+Lastly, if the user checks for new updates manually and the cannot update because of a system requirement, the standard updater alert will inform the user their system is incompatible and provide them an option to visit your website specified by the `<link>` element.
 
 ## Major upgrades
 
@@ -352,7 +382,23 @@ To make use of Sparkle's newest features (such as channels or dropping DSA signa
 
 One approach is just waiting until the majority of your users are running a recent version of Sparkle and your application.
 
-A second approach is migrating to a new `SUFeedURL` in your new application's `Info.plist`. This ensures that the application versions using your newer appcast have access to newer features.
+A more comprehensive approach is migrating to a new `SUFeedURL` in your new application's `Info.plist`. This ensures that the application versions using your newer appcast have access to newer features.
+
+--
+
+If all your users are running Sparkle 2.9 (beta) or later, instead of switching appcasts, you can use the `sparkle:minimumUpdateVersion` element to specify the minimum bundle version required to update. This example requires users to be running `1.9` or later to see the update for `2.0`:
+
+```xml
+<item>
+    <title>Version 2.0</title>
+    <sparkle:version>2.0</sparkle:version>
+    <sparkle:minimumUpdateVersion>1.9</sparkle:minimumUpdateVersion>
+</item>
+<item>
+    <title>Version 1.9</title>
+    <sparkle:version>1.9</sparkle:version>
+</item>
+```
 
 ## Embedded release notes
 
@@ -374,7 +420,9 @@ Instead of linking external release notes using the `<sparkle:releaseNotesLink>`
 
 You can embed just marked up text (it'll be displayed using standard system font), or a full document with `<!DOCTYPE html><style>`, etc.
 
-In Sparkle 2.4 or later, you can also embed plain text release notes using `<description sparkle:format="plain-text">`.
+As of Sparkle 2.4, you can embed plain text release notes using `<description sparkle:format="plain-text">`.
+
+As of Sparkle 2.9 (beta) and macOS 12, you can embed markdown release notes using `<description sparkle:format="markdown">`.
 
 ## Full release notes
 
@@ -393,6 +441,8 @@ In Sparkle 2, the `<sparkle:fullReleaseNotesLink>` element may be used to specif
 Alternatively, an application that uses Sparkle's standard user interface may implement [-[SPUStandardUserDriverDelegate standardUserDriverShowVersionHistoryForAppcastItem:]](/documentation/api-reference/Protocols/SPUStandardUserDriverDelegate.html#/c:objc(pl)SPUStandardUserDriverDelegate(im)standardUserDriverShowVersionHistoryForAppcastItem:) to show full offline or in-app release notes to the user.
 
 ## Adapting release notes based on currently installed version
+
+### Adapting HTML release notes
 
 When displaying HTML release notes, Sparkle 2.5 and later automatically adds a `sparkle-installed-version` class to certain elements, based on the user's currently installed app version. This is useful for highlighting changes relevant to the user: you can use CSS to de-emphasize already-installed releases.
 
@@ -427,7 +477,65 @@ div.sparkle-installed-version ~ div {
 }
 ```
 
-Note this feature is not supported if your application uses the Downloader XPC Service.
+Note this feature is not supported if your application uses the Downloader XPC Service because the legacy web view doesn't support this feature.
+
+### Adapting markdown or plain text release notes
+
+As of Sparkle 2.9 (beta) `-[SPUStandardUserDriverDelegate standardUserDriverWillShowReleaseNotesText:forUpdate:withBundleDisplayVersion:bundleVersion:]` can be used to customize the final presentation of release notes text for markdown and plain text release notes.
+
+For example, if we have a markdown document like:
+
+```markdown
+## Version 1.2
+
+* Update icon
+
+## Version 1.1
+
+* Fix list
+
+## Version 1.0
+
+* Everything is new
+```
+
+The code below will make the installed version section light gray, and completely remove previous versions.
+
+```swift
+func standardUserDriverWillShowReleaseNotesText(_ releaseNotesAttributedString: NSAttributedString, forUpdate update: SUAppcastItem, withBundleDisplayVersion bundleDisplayVersion: String, bundleVersion: String) -> NSAttributedString? {
+    let comparator = SUStandardVersionComparator()
+    
+    var currentVersionComparison = ComparisonResult.orderedAscending
+    let newReleaseNotesAttributedString = NSMutableAttributedString(attributedString: releaseNotesAttributedString)
+    
+    releaseNotesAttributedString.enumerateAttributes(in: NSMakeRange(0, releaseNotesAttributedString.length)) { attributes, range, stop in
+        let text = releaseNotesAttributedString.attributedSubstring(from: range).string
+        // Is this a 'Version xx' line?
+        if text.hasPrefix("Version ") {
+            let components = text.split(separator: " ")
+            if components.count == 2 {
+                let version = components[1].trimmingCharacters(in: .newlines)
+                currentVersionComparison = comparator.compareVersion(bundleDisplayVersion, toVersion: version)
+            }
+        }
+        
+        switch currentVersionComparison {
+        case .orderedAscending:
+            break
+        case .orderedSame:
+            // Same version as installed version gets light gray color
+            newReleaseNotesAttributedString.addAttribute(.foregroundColor, value: NSColor.lightGray, range: range)
+        case .orderedDescending:
+            // Older versions than installed version will be removed
+            newReleaseNotesAttributedString.replaceCharacters(in: NSMakeRange(range.location, newReleaseNotesAttributedString.length - range.location), with: "")
+            stop.pointee = true
+        }
+    }
+    return newReleaseNotesAttributedString
+}
+```
+
+Note that markdown release notes are supported as of Sparkle 2.9 (beta) and requires macOS 12. Plain text release notes are supported as of Sparkle 2.4.
 
 ## Localization
 

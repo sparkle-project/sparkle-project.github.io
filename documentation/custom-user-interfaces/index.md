@@ -6,7 +6,7 @@ title: Custom User Interfaces
 
 ## Custom User Interfaces
 
-Sparkle's standard user interface handles many standard behaviors for you. However, some applications may want their own tailored user interface. Before switching to a custom UI for your updater, you should consider if your application will provide the updating functionality users want. For example, users appreciate viewing release notes when being shown a new update is available. Some users may also prefer to reduce update notifications/badges/alerts/custom UI indicators altogether by automatically downloading and installing updates in the future. You may also want to check [gentle update reminders](/documentation/gentle-reminders) for changing how Sparkle's standard update alert can be presented.
+Sparkle's standard user interface handles many standard behaviors for you. However, some applications may want their own tailored user interface. Before switching to a custom UI for your updater, you should consider if your application will provide the updating functionality users want. For example, users appreciate viewing release notes when being shown a new update is available. Some users may also prefer to reduce update notifications/badges/alerts/custom UI indicators altogether by automatically downloading and installing updates, which the standard UI provides a setting for. You may also want to check [gentle update reminders](/documentation/gentle-reminders) for changing how Sparkle's standard update alert can be presented.
 
 ### SPUUserDriver
 

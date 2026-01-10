@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<!-- sparkle-sign-warning:
+IMPORTANT: This file was signed by Sparkle. Any modifications to this file requires re-signing this file with generate_appcast or sign_update! The signed signature will be embedded at the end of this file.
+-->
+<rss xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" xmlns:dc="http://purl.org/dc/elements/1.1/" version="2.0">
+    <channel>
+        <title>Sparkle Test App Changelog</title>
+        <link>http://sparkle-project.org/files/sparkletestcast.xml</link>
+        <description>Most recent changes with links to updates.</description>
+        <language>en</language>
+        <item>
+            <title>Version 3.0</title>
+            <link>https://sparkle-project.org</link>
+            <sparkle:version>3.0</sparkle:version>
+            <!-- Example of embedded release notes -->
+            <description><![CDATA[
+            <ul>
+              <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+              <li>Suspendisse sed felis ac ante ultrices rhoncus. Etiam quis elit vel nibh placerat facilisis in id leo.</li>
+              <li>Vestibulum nec tortor odio, nec malesuada libero. Cras vel convallis nunc.</li>
+              <li>Suspendisse tristique massa eget velit consequat tincidunt. Praesent sodales hendrerit pretium.</li>
+            </ul>
+          ]]></description>
+            <pubDate>Sun, 27 Jul 2014 15:20:11 +0000</pubDate>
+            <enclosure url="https://sparkle-project.org/files/Sparkle%20Test%20App3.zip" length="107798" type="application/octet-stream" sparkle:edSignature="7cLALFUHSwvEJWSkV8aMreoBe4fhRa4FncC5NoThKxwThL6FDR7hTiPJh1fo2uagnPogisnQsgFgq6mGkt2RBw=="/>
+        </item>
+        <item>
+            <title>Version 2.0</title>
+            <link>https://sparkle-project.org</link>
+            <sparkle:version>2.0</sparkle:version>
+            <!-- Example of external signed release notes -->
+            <sparkle:releaseNotesLink sparkle:edSignature="4KjvG1GjKwXrxfqXbU1j2CYClEDdkMDp2Ii2ICV+Jgx00MDpHFLpLJ+/2tHy9Mp9bTUk5KlpCG1OWBu4nLKOCw==" sparkle:length="1467">
+          https://sparkle-project.org/release_notes/app_2.0.html
+        </sparkle:releaseNotesLink>
+            <pubDate>Sat, 26 Jul 2014 15:20:11 +0000</pubDate>
+            <enclosure url="https://sparkle-project.org/files/Sparkle%20Test%20App.zip" length="107758" type="application/octet-stream" sparkle:edSignature="5wv7MoSNI5UbwrH+fRFIauntNrHlFErA70M5O2JKzUb+hQTcMwTwvwvzHdkYzxtfQMxx9w0MiD299OSovqVfCw=="/>
+        </item>
+    </channel>
+</rss><!-- sparkle-signatures:
+edSignature: LhZzxLxXCnbKLq4PGci8dGVsrPCzXUM5uech2cSAIQo37rMEj7f1gPO48h5wYGrAi/Kr8QTLhZUl5dueLxVvDA==
+length: 2578
+-->
