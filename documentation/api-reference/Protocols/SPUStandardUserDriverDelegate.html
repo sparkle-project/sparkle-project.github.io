@@ -16,8 +16,8 @@
     <header>
       <div class="content-wrapper">
         <p>
-          <a href="../index.html">Sparkle 2.8.1 Docs</a>
-          <span class="no-mobile"> (59% documented)</span>
+          <a href="../index.html">Sparkle 2.9.0-beta.1 Docs</a>
+          <span class="no-mobile"> (60% documented)</span>
         </p>
     
     
@@ -154,7 +154,7 @@ If you don&rsquo;t implement this method or return <code>nil,</code> the standar
                           </div>
                           <div class="language">
                             <p class="aside-title">Swift</p>
-                            <pre class="highlight swift"><code><span class="kd">optional</span> <span class="kd">func</span> <span class="nf">standardUserDriverRequestsVersionDisplayer</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Protocols/SUVersionDisplay.html">SUVersionDisplay</a></span><span class="p">?</span></code></pre>
+                            <pre class="highlight swift"><code><span class="kd">optional</span> <span class="kd">func</span> <span class="nf">standardUserDriverRequestsVersionDisplayer</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="p">(</span><span class="kd">any</span> <span class="kt"><a href="../Protocols/SUVersionDisplay.html">SUVersionDisplay</a></span><span class="p">)?</span></code></pre>
 
                           </div>
                         </div>
@@ -653,6 +653,109 @@ please see <code><a href="../Protocols/SPUStandardUserDriverDelegate.html#/c:obj
                       </section>
                     </div>
                   </li>
+                  <li class="item">
+                    <div>
+                      <code>
+                      <a name="/c:objc(pl)SPUStandardUserDriverDelegate(im)standardUserDriverWillShowReleaseNotesText:forUpdate:withBundleDisplayVersion:bundleVersion:"></a>
+                      <a name="//apple_ref/objc/Method/-standardUserDriverWillShowReleaseNotesText:forUpdate:withBundleDisplayVersion:bundleVersion:" class="dashAnchor"></a>
+                      <a class="token" href="#/c:objc(pl)SPUStandardUserDriverDelegate(im)standardUserDriverWillShowReleaseNotesText:forUpdate:withBundleDisplayVersion:bundleVersion:">-standardUserDriverWillShowReleaseNotesText:<wbr>forUpdate:<wbr>withBundleDisplayVersion:<wbr>bundleVersion:<wbr></a>
+                      </code>
+                    </div>
+                    <div class="height-container">
+                      <div class="pointer-container"></div>
+                      <section class="section">
+                        <div class="pointer"></div>
+                        <div class="abstract">
+                          <p>Called before the standard user driver shows plain-text or markdown release notes text to the user.</p>
+
+<p>The delegate has the opportunity to return a new attributed string for the release notes text that will be shown to the user.
+The <code>bundleDisplayVersion</code> and <code>bundleVersion</code> are supplied in case they&rsquo;re useful for creating a new attributed string.</p>
+
+<p>This method will not be invoked for HTML release notes. It is only applicable to plain-text and markdown release notes.</p>
+
+                        </div>
+                        <div class="declaration">
+                          <h4>Declaration</h4>
+                          <div class="language">
+                            <p class="aside-title">Objective-C</p>
+                            <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">NSAttributedString</span> <span class="o">*</span><span class="n">_Nullable</span><span class="p">)</span>
+    <span class="nf">standardUserDriverWillShowReleaseNotesText</span><span class="p">:</span>
+        <span class="p">(</span><span class="n">nonnull</span> <span class="n">NSAttributedString</span> <span class="o">*</span><span class="p">)</span><span class="nv">releaseNotesAttributedString</span>
+                                     <span class="nf">forUpdate</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n"><a href="../Classes/SUAppcastItem.html">SUAppcastItem</a></span> <span class="o">*</span><span class="p">)</span><span class="nv">update</span>
+                      <span class="nf">withBundleDisplayVersion</span><span class="p">:</span>
+                          <span class="p">(</span><span class="n">nonnull</span> <span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">bundleDisplayVersion</span>
+                                 <span class="nf">bundleVersion</span><span class="p">:</span>
+                                     <span class="p">(</span><span class="n">nonnull</span> <span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">bundleVersion</span><span class="p">;</span></code></pre>
+
+                          </div>
+                          <div class="language">
+                            <p class="aside-title">Swift</p>
+                            <pre class="highlight swift"><code><span class="kd">optional</span> <span class="kd">func</span> <span class="nf">standardUserDriverWillShowReleaseNotesText</span><span class="p">(</span><span class="n">_</span> <span class="nv">releaseNotesAttributedString</span><span class="p">:</span> <span class="kt">NSAttributedString</span><span class="p">,</span> <span class="n">forUpdate</span> <span class="nv">update</span><span class="p">:</span> <span class="kt"><a href="../Classes/SUAppcastItem.html">SUAppcastItem</a></span><span class="p">,</span> <span class="n">withBundleDisplayVersion</span> <span class="nv">bundleDisplayVersion</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">bundleVersion</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">NSAttributedString</span><span class="p">?</span></code></pre>
+
+                          </div>
+                        </div>
+                        <div>
+                          <h4>Parameters</h4>
+                          <table class="graybox">
+                            <tbody>
+                              <tr>
+                                <td>
+                                  <code>
+                                  <em>releaseNotesAttributedString</em>
+                                  </code>
+                                </td>
+                                <td>
+                                  <div>
+                                    <p>The release notes text that the standard user driver wants to show to the user.</p>
+                                  </div>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>
+                                  <code>
+                                  <em>update</em>
+                                  </code>
+                                </td>
+                                <td>
+                                  <div>
+                                    <p>The new update the release notes will be shown for.</p>
+                                  </div>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>
+                                  <code>
+                                  <em>bundleDisplayVersion</em>
+                                  </code>
+                                </td>
+                                <td>
+                                  <div>
+                                    <p>The current display version  (or <code>CFBundleShortVersionString</code>)  of the bundle that is being updated.</p>
+                                  </div>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>
+                                  <code>
+                                  <em>bundleVersion</em>
+                                  </code>
+                                </td>
+                                <td>
+                                  <div>
+                                    <p>The current version   (or <code>CFBundleVersion</code>) of the bundle that is being updated.</p>
+                                  </div>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                        <div>
+                          <h4>Return Value</h4>
+                          <p>A new attributed string for the release notes text to show, or <code>nil</code> if the <code>releaseNotesAttributedString</code> should still be used.</p>
+                        </div>
+                      </section>
+                    </div>
+                  </li>
                 </ul>
               </div>
             </section>
@@ -775,6 +878,9 @@ please see <code><a href="../Protocols/SPUStandardUserDriverDelegate.html#/c:obj
               <a href="../Enums.html">Enumerations</a>
               <ul class="nav-group-tasks">
                 <li class="nav-group-task">
+                  <a href="../Enums/SPUAppcastSigningValidationStatus.html">SPUAppcastSigningValidationStatus</a>
+                </li>
+                <li class="nav-group-task">
                   <a href="../Enums/SPUNoUpdateFoundReason.html">SPUNoUpdateFoundReason</a>
                 </li>
                 <li class="nav-group-task">
@@ -819,7 +925,7 @@ please see <code><a href="../Protocols/SPUStandardUserDriverDelegate.html#/c:obj
       </div>
       <div class="footer-wrapper">
         <section id="footer">
-          <p>&copy; 2025 <a class="link" href="https://sparkle-project.org" target="_blank" rel="external noopener">Sparkle Project</a>. All rights reserved. (Last updated: 2025-11-15)</p>
+          <p>&copy; 2026 <a class="link" href="https://sparkle-project.org" target="_blank" rel="external noopener">Sparkle Project</a>. All rights reserved. (Last updated: 2026-01-10)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.15.4</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
         </section>
       </div>

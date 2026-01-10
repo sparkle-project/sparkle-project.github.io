@@ -16,8 +16,8 @@
     <header>
       <div class="content-wrapper">
         <p>
-          <a href="../index.html">Sparkle 2.8.1 Docs</a>
-          <span class="no-mobile"> (59% documented)</span>
+          <a href="../index.html">Sparkle 2.9.0-beta.1 Docs</a>
+          <span class="no-mobile"> (60% documented)</span>
         </p>
     
     
@@ -45,12 +45,13 @@
                 <div class="declaration">
                   <div class="language">
                     <p class="aside-title">Objective-C</p>
-                    <pre class="highlight objective_c"><code><span class="k">@interface</span> <span class="nc">SPUUpdaterSettings</span> <span class="p">:</span> <span class="nc">NSObject</span></code></pre>
+                    <pre class="highlight objective_c"><code>
+<span class="k">@interface</span> <span class="nc">SPUUpdaterSettings</span> <span class="p">:</span> <span class="nc">NSObject</span></code></pre>
 
                   </div>
                   <div class="language">
                     <p class="aside-title">Swift</p>
-                    <pre class="highlight swift"><code><span class="kd">class</span> <span class="kt">SPUUpdaterSettings</span> <span class="p">:</span> <span class="kt">NSObject</span></code></pre>
+                    <pre class="highlight swift"><code><span class="kd">@MainActor</span> <span class="kd">class</span> <span class="kt">SPUUpdaterSettings</span> <span class="p">:</span> <span class="kt">NSObject</span></code></pre>
 
                   </div>
                 </div>
@@ -65,6 +66,37 @@ If the setting is not found in there, then the host&rsquo;s Info.plist file is l
             <section class="section task-group-section">
               <div class="task-group">
                 <ul>
+                  <li class="item">
+                    <div>
+                      <code>
+                      <a name="/c:objc(cs)SPUUpdaterSettings(im)init"></a>
+                      <a name="//apple_ref/objc/Method/-init" class="dashAnchor"></a>
+                      <a class="token discouraged" href="#/c:objc(cs)SPUUpdaterSettings(im)init">-init</a>
+                      </code>
+                    </div>
+                    <div class="height-container">
+                      <div class="pointer-container"></div>
+                      <section class="section">
+                        <div class="pointer"></div>
+                        <div class="aside aside-unavailable">
+                          <p class="aside-title">Unavailable</p>
+                          
+                        </div>
+                        <div class="abstract">
+                          <p>Undocumented</p>
+
+                        </div>
+                        <div class="declaration">
+                          <h4>Declaration</h4>
+                          <div class="language">
+                            <p class="aside-title">Objective-C</p>
+                            <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">instancetype</span><span class="p">)</span><span class="n">init</span> <span class="n">NS_UNAVAILABLE</span><span class="p">;</span></code></pre>
+
+                          </div>
+                        </div>
+                      </section>
+                    </div>
+                  </li>
                   <li class="item">
                     <div>
                       <code>
@@ -168,39 +200,6 @@ If the setting is not found in there, then the host&rsquo;s Info.plist file is l
                   <li class="item">
                     <div>
                       <code>
-                      <a name="/c:objc(cs)SPUUpdaterSettings(py)allowsAutomaticUpdatesOption"></a>
-                      <a name="//apple_ref/objc/Property/allowsAutomaticUpdatesOption" class="dashAnchor"></a>
-                      <a class="token" href="#/c:objc(cs)SPUUpdaterSettings(py)allowsAutomaticUpdatesOption">allowsAutomaticUpdatesOption</a>
-                      </code>
-                    </div>
-                    <div class="height-container">
-                      <div class="pointer-container"></div>
-                      <section class="section">
-                        <div class="pointer"></div>
-                        <div class="abstract">
-                          <p>Indicates whether or not automatically downloading updates is allowed to be turned on by the user.
-If this value is nil, the developer has not explicitly specified this option.</p>
-
-                        </div>
-                        <div class="declaration">
-                          <h4>Declaration</h4>
-                          <div class="language">
-                            <p class="aside-title">Objective-C</p>
-                            <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">readonly</span><span class="p">,</span> <span class="n">nullable</span><span class="p">)</span> <span class="n">NSNumber</span> <span class="o">*</span><span class="n">allowsAutomaticUpdatesOption</span><span class="p">;</span></code></pre>
-
-                          </div>
-                          <div class="language">
-                            <p class="aside-title">Swift</p>
-                            <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">allowsAutomaticUpdatesOption</span><span class="p">:</span> <span class="kt">NSNumber</span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
-
-                          </div>
-                        </div>
-                      </section>
-                    </div>
-                  </li>
-                  <li class="item">
-                    <div>
-                      <code>
                       <a name="/c:objc(cs)SPUUpdaterSettings(py)allowsAutomaticUpdates"></a>
                       <a name="//apple_ref/objc/Property/allowsAutomaticUpdates" class="dashAnchor"></a>
                       <a class="token" href="#/c:objc(cs)SPUUpdaterSettings(py)allowsAutomaticUpdates">allowsAutomaticUpdates</a>
@@ -212,6 +211,10 @@ If this value is nil, the developer has not explicitly specified this option.</p
                         <div class="pointer"></div>
                         <div class="abstract">
                           <p>Indicates whether or not automatically downloading updates is allowed to be turned on by the user.</p>
+
+<p>This property is determined by checking <code><a href="../Classes/SPUUpdaterSettings.html#/c:objc(cs)SPUUpdaterSettings(py)automaticallyChecksForUpdates">automaticallyChecksForUpdates</a></code> and <code><a href="../Classes/SPUUpdaterSettings.html#/c:objc(cs)SPUUpdaterSettings(py)allowsAutomaticUpdatesOption">allowsAutomaticUpdatesOption</a></code>.</p>
+
+<p>This property is KVO compliant. This property must be called on the main thread.</p>
 
                         </div>
                         <div class="declaration">
@@ -261,6 +264,79 @@ If this value is nil, the developer has not explicitly specified this option.</p
                           <div class="language">
                             <p class="aside-title">Swift</p>
                             <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">automaticallyDownloadsUpdates</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                          </div>
+                        </div>
+                      </section>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <div>
+                      <code>
+                      <a name="/c:objc(cs)SPUUpdaterSettings(py)allowsAutomaticUpdatesOption"></a>
+                      <a name="//apple_ref/objc/Property/allowsAutomaticUpdatesOption" class="dashAnchor"></a>
+                      <a class="token" href="#/c:objc(cs)SPUUpdaterSettings(py)allowsAutomaticUpdatesOption">allowsAutomaticUpdatesOption</a>
+                      </code>
+                    </div>
+                    <div class="height-container">
+                      <div class="pointer-container"></div>
+                      <section class="section">
+                        <div class="pointer"></div>
+                        <div class="abstract">
+                          <p>Indicates whether or not the developer allows turning on updates being automatically downloaded and installed.
+ If this value is nil, the developer has not explicitly specified this option (which is the default).</p>
+
+<p>Please prefer to use <code><a href="../Classes/SPUUpdaterSettings.html#/c:objc(cs)SPUUpdaterSettings(py)allowsAutomaticUpdates">allowsAutomaticUpdates</a></code> instead.</p>
+
+                        </div>
+                        <div class="declaration">
+                          <h4>Declaration</h4>
+                          <div class="language">
+                            <p class="aside-title">Objective-C</p>
+                            <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">readonly</span><span class="p">,</span> <span class="n">nullable</span><span class="p">)</span> <span class="n">NSNumber</span> <span class="o">*</span><span class="n">allowsAutomaticUpdatesOption</span><span class="p">;</span></code></pre>
+
+                          </div>
+                          <div class="language">
+                            <p class="aside-title">Swift</p>
+                            <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">allowsAutomaticUpdatesOption</span><span class="p">:</span> <span class="kt">NSNumber</span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                          </div>
+                        </div>
+                      </section>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <div>
+                      <code>
+                      <a name="/c:objc(cs)SPUUpdaterSettings(py)impatientUpdateCheckInterval"></a>
+                      <a name="//apple_ref/objc/Property/impatientUpdateCheckInterval" class="dashAnchor"></a>
+                      <a class="token" href="#/c:objc(cs)SPUUpdaterSettings(py)impatientUpdateCheckInterval">impatientUpdateCheckInterval</a>
+                      </code>
+                    </div>
+                    <div class="height-container">
+                      <div class="pointer-container"></div>
+                      <section class="section">
+                        <div class="pointer"></div>
+                        <div class="abstract">
+                          <p>The impatient update check interval.</p>
+
+<p>If an update has already been downloaded automatically in the background, Sparkle may not notify users of the update immediately,
+ and tries to install the update siliently on quit without notifying the user.</p>
+
+<p>Sparkle uses this long impatient update check interval to decide when to notify the user of the update if they haven&rsquo;t quit the app for a long time.
+ By default this check interval is set to 604800 seconds (which is 1 week). This interval must be bigger than the <code><a href="../Classes/SPUUpdaterSettings.html#/c:objc(cs)SPUUpdaterSettings(py)updateCheckInterval">updateCheckInterval</a></code>.</p>
+
+                        </div>
+                        <div class="declaration">
+                          <h4>Declaration</h4>
+                          <div class="language">
+                            <p class="aside-title">Objective-C</p>
+                            <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">readonly</span><span class="p">)</span> <span class="n">NSTimeInterval</span> <span class="n">impatientUpdateCheckInterval</span><span class="p">;</span></code></pre>
+
+                          </div>
+                          <div class="language">
+                            <p class="aside-title">Swift</p>
+                            <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">impatientUpdateCheckInterval</span><span class="p">:</span> <span class="kt">TimeInterval</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
 
                           </div>
                         </div>
@@ -423,6 +499,9 @@ If this value is nil, the developer has not explicitly specified this option.</p
               <a href="../Enums.html">Enumerations</a>
               <ul class="nav-group-tasks">
                 <li class="nav-group-task">
+                  <a href="../Enums/SPUAppcastSigningValidationStatus.html">SPUAppcastSigningValidationStatus</a>
+                </li>
+                <li class="nav-group-task">
                   <a href="../Enums/SPUNoUpdateFoundReason.html">SPUNoUpdateFoundReason</a>
                 </li>
                 <li class="nav-group-task">
@@ -467,7 +546,7 @@ If this value is nil, the developer has not explicitly specified this option.</p
       </div>
       <div class="footer-wrapper">
         <section id="footer">
-          <p>&copy; 2025 <a class="link" href="https://sparkle-project.org" target="_blank" rel="external noopener">Sparkle Project</a>. All rights reserved. (Last updated: 2025-11-15)</p>
+          <p>&copy; 2026 <a class="link" href="https://sparkle-project.org" target="_blank" rel="external noopener">Sparkle Project</a>. All rights reserved. (Last updated: 2026-01-10)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.15.4</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
         </section>
       </div>

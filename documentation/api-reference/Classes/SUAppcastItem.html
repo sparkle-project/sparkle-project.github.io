@@ -16,8 +16,8 @@
     <header>
       <div class="content-wrapper">
         <p>
-          <a href="../index.html">Sparkle 2.8.1 Docs</a>
-          <span class="no-mobile"> (59% documented)</span>
+          <a href="../index.html">Sparkle 2.9.0-beta.1 Docs</a>
+          <span class="no-mobile"> (60% documented)</span>
         </p>
     
     
@@ -50,7 +50,7 @@
                   </div>
                   <div class="language">
                     <p class="aside-title">Swift</p>
-                    <pre class="highlight swift"><code><span class="kd">class</span> <span class="kt">SUAppcastItem</span> <span class="p">:</span> <span class="kt">NSObject</span><span class="p">,</span> <span class="kt">NSSecureCoding</span></code></pre>
+                    <pre class="highlight swift"><code><span class="kd">class</span> <span class="kt">SUAppcastItem</span> <span class="p">:</span> <span class="kt">NSObject</span><span class="p">,</span> <span class="kt">NSSecureCoding</span><span class="p">,</span> <span class="kd">@unchecked</span> <span class="kt">Sendable</span></code></pre>
 
                   </div>
                 </div>
@@ -642,6 +642,78 @@ This is an alternative to providing a <code><a href="../Classes/SUAppcastItem.ht
                   <li class="item">
                     <div>
                       <code>
+                      <a name="/c:objc(cs)SUAppcastItem(py)minimumUpdateVersion"></a>
+                      <a name="//apple_ref/objc/Property/minimumUpdateVersion" class="dashAnchor"></a>
+                      <a class="token" href="#/c:objc(cs)SUAppcastItem(py)minimumUpdateVersion">minimumUpdateVersion</a>
+                      </code>
+                    </div>
+                    <div class="height-container">
+                      <div class="pointer-container"></div>
+                      <section class="section">
+                        <div class="pointer"></div>
+                        <div class="abstract">
+                          <p>This update will be ignored if the application&rsquo;s version precedes this update&rsquo;s minimum version.</p>
+
+<p>This application&rsquo;s version corresponds to the bundle&rsquo;s <code>CFBundleVersion</code></p>
+
+<p>The minimum update version is extracted from the <code>&lt;sparkle:minimumUpdateVersion&gt;</code> element.</p>
+
+<p>Use <code><a href="../Classes/SUAppcastItem.html#/c:objc(cs)SUAppcastItem(py)minimumUpdateVersionIsOK">minimumUpdateVersionIsOK</a></code> property to test if the current bundle passes this requirement.</p>
+
+<p>Old applications must be using Sparkle 2.9 or later, otherwise this property will be ignored.</p>
+
+                        </div>
+                        <div class="declaration">
+                          <h4>Declaration</h4>
+                          <div class="language">
+                            <p class="aside-title">Objective-C</p>
+                            <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">copy</span><span class="p">,</span> <span class="n">readonly</span><span class="p">,</span> <span class="n">nullable</span><span class="p">)</span> <span class="n">NSString</span> <span class="o">*</span><span class="n">minimumUpdateVersion</span><span class="p">;</span></code></pre>
+
+                          </div>
+                          <div class="language">
+                            <p class="aside-title">Swift</p>
+                            <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">minimumUpdateVersion</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                          </div>
+                        </div>
+                      </section>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <div>
+                      <code>
+                      <a name="/c:objc(cs)SUAppcastItem(py)minimumUpdateVersionIsOK"></a>
+                      <a name="//apple_ref/objc/Property/minimumUpdateVersionIsOK" class="dashAnchor"></a>
+                      <a class="token" href="#/c:objc(cs)SUAppcastItem(py)minimumUpdateVersionIsOK">minimumUpdateVersionIsOK</a>
+                      </code>
+                    </div>
+                    <div class="height-container">
+                      <div class="pointer-container"></div>
+                      <section class="section">
+                        <div class="pointer"></div>
+                        <div class="abstract">
+                          <p>Indicates whether or not the current bundle passes the <code><a href="../Classes/SUAppcastItem.html#/c:objc(cs)SUAppcastItem(py)minimumUpdateVersion">minimumUpdateVersion</a></code> requirement.</p>
+
+                        </div>
+                        <div class="declaration">
+                          <h4>Declaration</h4>
+                          <div class="language">
+                            <p class="aside-title">Objective-C</p>
+                            <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">readonly</span><span class="p">)</span> <span class="n">BOOL</span> <span class="n">minimumUpdateVersionIsOK</span><span class="p">;</span></code></pre>
+
+                          </div>
+                          <div class="language">
+                            <p class="aside-title">Swift</p>
+                            <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">minimumUpdateVersionIsOK</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                          </div>
+                        </div>
+                      </section>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <div>
+                      <code>
                       <a name="/c:objc(cs)SUAppcastItem(py)maximumSystemVersion"></a>
                       <a name="//apple_ref/objc/Property/maximumSystemVersion" class="dashAnchor"></a>
                       <a class="token" href="#/c:objc(cs)SUAppcastItem(py)maximumSystemVersion">maximumSystemVersion</a>
@@ -707,6 +779,76 @@ This is an alternative to providing a <code><a href="../Classes/SUAppcastItem.ht
                           <div class="language">
                             <p class="aside-title">Swift</p>
                             <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">maximumOperatingSystemVersionIsOK</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                          </div>
+                        </div>
+                      </section>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <div>
+                      <code>
+                      <a name="/c:objc(cs)SUAppcastItem(py)hardwareRequirements"></a>
+                      <a name="//apple_ref/objc/Property/hardwareRequirements" class="dashAnchor"></a>
+                      <a class="token" href="#/c:objc(cs)SUAppcastItem(py)hardwareRequirements">hardwareRequirements</a>
+                      </code>
+                    </div>
+                    <div class="height-container">
+                      <div class="pointer-container"></div>
+                      <section class="section">
+                        <div class="pointer"></div>
+                        <div class="abstract">
+                          <p>The required hardware requirements for this update if provided.</p>
+
+<p>Example: <code>arm64</code></p>
+
+<p>Use <code><a href="../Classes/SUAppcastItem.html#/c:objc(cs)SUAppcastItem(py)arm64HardwareRequirementIsOK">arm64HardwareRequirementIsOK</a></code> property to test if the current running system passes the <code>arm64</code> requirement.</p>
+
+<p>This is extracted from the <code>&lt;sparkle:hardwareRequirements&gt;</code> element, which is a comma-delimited list of hardware requirements.</p>
+
+                        </div>
+                        <div class="declaration">
+                          <h4>Declaration</h4>
+                          <div class="language">
+                            <p class="aside-title">Objective-C</p>
+                            <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">copy</span><span class="p">,</span> <span class="n">readonly</span><span class="p">)</span> <span class="n">NSSet</span><span class="o">&lt;</span><span class="n">NSString</span> <span class="o">*&gt;</span> <span class="o">*</span><span class="n">_Nonnull</span> <span class="n">hardwareRequirements</span><span class="p">;</span></code></pre>
+
+                          </div>
+                          <div class="language">
+                            <p class="aside-title">Swift</p>
+                            <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">hardwareRequirements</span><span class="p">:</span> <span class="kt">Set</span><span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                          </div>
+                        </div>
+                      </section>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <div>
+                      <code>
+                      <a name="/c:objc(cs)SUAppcastItem(py)arm64HardwareRequirementIsOK"></a>
+                      <a name="//apple_ref/objc/Property/arm64HardwareRequirementIsOK" class="dashAnchor"></a>
+                      <a class="token" href="#/c:objc(cs)SUAppcastItem(py)arm64HardwareRequirementIsOK">arm64HardwareRequirementIsOK</a>
+                      </code>
+                    </div>
+                    <div class="height-container">
+                      <div class="pointer-container"></div>
+                      <section class="section">
+                        <div class="pointer"></div>
+                        <div class="abstract">
+                          <p>Indicates whether or not the current running system passes the arm64 requirement if specified in the <code><a href="../Classes/SUAppcastItem.html#/c:objc(cs)SUAppcastItem(py)hardwareRequirements">hardwareRequirements</a></code> requirement.</p>
+
+                        </div>
+                        <div class="declaration">
+                          <h4>Declaration</h4>
+                          <div class="language">
+                            <p class="aside-title">Objective-C</p>
+                            <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">readonly</span><span class="p">)</span> <span class="n">BOOL</span> <span class="n">arm64HardwareRequirementIsOK</span><span class="p">;</span></code></pre>
+
+                          </div>
+                          <div class="language">
+                            <p class="aside-title">Swift</p>
+                            <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">arm64HardwareRequirementIsOK</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
 
                           </div>
                         </div>
@@ -794,6 +936,40 @@ Old applications must be using Sparkle 2 or later to interpret the channel eleme
                           <div class="language">
                             <p class="aside-title">Swift</p>
                             <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">installationType</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                          </div>
+                        </div>
+                      </section>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <div>
+                      <code>
+                      <a name="/c:objc(cs)SUAppcastItem(py)signingValidationStatus"></a>
+                      <a name="//apple_ref/objc/Property/signingValidationStatus" class="dashAnchor"></a>
+                      <a class="token" href="#/c:objc(cs)SUAppcastItem(py)signingValidationStatus">signingValidationStatus</a>
+                      </code>
+                    </div>
+                    <div class="height-container">
+                      <div class="pointer-container"></div>
+                      <section class="section">
+                        <div class="pointer"></div>
+                        <div class="abstract">
+                          <p>The appcast signing validation status that this appcast item came from.</p>
+
+<p>Please see documentation of <code><a href="../Enums/SPUAppcastSigningValidationStatus.html">SPUAppcastSigningValidationStatus</a></code> values for more information.</p>
+
+                        </div>
+                        <div class="declaration">
+                          <h4>Declaration</h4>
+                          <div class="language">
+                            <p class="aside-title">Objective-C</p>
+                            <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">readonly</span><span class="p">)</span> <span class="n"><a href="../Enums/SPUAppcastSigningValidationStatus.html">SPUAppcastSigningValidationStatus</a></span> <span class="n">signingValidationStatus</span><span class="p">;</span></code></pre>
+
+                          </div>
+                          <div class="language">
+                            <p class="aside-title">Swift</p>
+                            <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">signingValidationStatus</span><span class="p">:</span> <span class="kt"><a href="../Enums/SPUAppcastSigningValidationStatus.html">SPUAppcastSigningValidationStatus</a></span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
 
                           </div>
                         </div>
@@ -1557,6 +1733,9 @@ The locales extracted from this attribute are delimited by a comma (e.g. &ldquo;
               <a href="../Enums.html">Enumerations</a>
               <ul class="nav-group-tasks">
                 <li class="nav-group-task">
+                  <a href="../Enums/SPUAppcastSigningValidationStatus.html">SPUAppcastSigningValidationStatus</a>
+                </li>
+                <li class="nav-group-task">
                   <a href="../Enums/SPUNoUpdateFoundReason.html">SPUNoUpdateFoundReason</a>
                 </li>
                 <li class="nav-group-task">
@@ -1601,7 +1780,7 @@ The locales extracted from this attribute are delimited by a comma (e.g. &ldquo;
       </div>
       <div class="footer-wrapper">
         <section id="footer">
-          <p>&copy; 2025 <a class="link" href="https://sparkle-project.org" target="_blank" rel="external noopener">Sparkle Project</a>. All rights reserved. (Last updated: 2025-11-15)</p>
+          <p>&copy; 2026 <a class="link" href="https://sparkle-project.org" target="_blank" rel="external noopener">Sparkle Project</a>. All rights reserved. (Last updated: 2026-01-10)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.15.4</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
         </section>
       </div>

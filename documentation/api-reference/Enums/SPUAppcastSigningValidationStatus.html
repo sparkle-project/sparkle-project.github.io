@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>SPUNoUpdateFoundReason Enumeration Reference</title>
+    <title>SPUAppcastSigningValidationStatus Enumeration Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset='utf-8'>
@@ -11,8 +11,8 @@
     
   </head>
   <body>
-    <a name="//apple_ref/objc/Enum/SPUNoUpdateFoundReason" class="dashAnchor"></a>
-    <a title="SPUNoUpdateFoundReason Enumeration Reference"></a>
+    <a name="//apple_ref/objc/Enum/SPUAppcastSigningValidationStatus" class="dashAnchor"></a>
+    <a title="SPUAppcastSigningValidationStatus Enumeration Reference"></a>
     <header>
       <div class="content-wrapper">
         <p>
@@ -31,7 +31,7 @@
             <img id="carat" src="../img/carat.png" alt=""/>
             <a href="../Enums.html">Enumerations</a>
             <img id="carat" src="../img/carat.png" alt=""/>
-            SPUNoUpdateFoundReason Enumeration Reference
+            SPUAppcastSigningValidationStatus Enumeration Reference
           </span>
         </p>
       </div>
@@ -41,20 +41,33 @@
         <article class="main-content">
           <section>
             <section class="section">
-              <h1>SPUNoUpdateFoundReason</h1>
+              <h1>SPUAppcastSigningValidationStatus</h1>
                 <div class="declaration">
                   <div class="language">
-                    <p class="aside-title">Objective-C</p>
-                    <pre class="highlight objective_c"><code><span class="k">enum</span> <span class="n">SPUNoUpdateFoundReason</span> <span class="o">:</span> <span class="n">OSStatus</span> <span class="p">{}</span></code></pre>
-
-                  </div>
-                  <div class="language">
-                    <p class="aside-title">Swift</p>
-                    <pre class="highlight swift"><code><span class="kd">enum</span> <span class="kt">SPUNoUpdateFoundReason</span> <span class="p">:</span> <span class="kt">OSStatus</span><span class="p">,</span> <span class="kd">@unchecked</span> <span class="kt">Sendable</span></code></pre>
+                    
+                    <pre class="highlight objective_c"><code><span class="n">NS_ENUM</span><span class="p">(</span><span class="n">NSInteger</span><span class="p">,</span> <span class="n">SPUAppcastSigningValidationStatus</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="cm">/**
+     The bundle does not opt into requiring appcast signing and no validation of the appcast feed is done.
+     */</span>
+    <span class="n">SPUAppcastSigningValidationStatusSkipped</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+    
+    <span class="cm">/**
+     The appcast is signed and validation has passed succesfully.
+     */</span>
+    <span class="n">SPUAppcastSigningValidationStatusSucceeded</span><span class="p">,</span>
+    
+    <span class="cm">/**
+     The appcast is signed and validation has failed. In this case, appcast items operate in a 'safe' fallback mode
+     meaning that they cannot be marked as a critical update, cannot be marked as informational update,
+     and will not have any release note or link references.
+     */</span>
+    <span class="n">SPUAppcastSigningValidationStatusFailed</span><span class="p">,</span>
+<span class="p">}</span></code></pre>
 
                   </div>
                 </div>
-              <p>The reason why a new update is not available.</p>
+              <p>Undocumented</p>
 
             </section>
             <section class="section task-group-section">
@@ -63,9 +76,9 @@
                   <li class="item">
                     <div>
                       <code>
-                      <a name="/c:@E@SPUNoUpdateFoundReason@SPUNoUpdateFoundReasonUnknown"></a>
-                      <a name="//apple_ref/objc/Case/SPUNoUpdateFoundReasonUnknown" class="dashAnchor"></a>
-                      <a class="token" href="#/c:@E@SPUNoUpdateFoundReason@SPUNoUpdateFoundReasonUnknown">SPUNoUpdateFoundReasonUnknown</a>
+                      <a name="/c:@E@SPUAppcastSigningValidationStatus@SPUAppcastSigningValidationStatusSkipped"></a>
+                      <a name="//apple_ref/objc/Case/SPUAppcastSigningValidationStatusSkipped" class="dashAnchor"></a>
+                      <a class="token" href="#/c:@E@SPUAppcastSigningValidationStatus@SPUAppcastSigningValidationStatusSkipped">SPUAppcastSigningValidationStatusSkipped</a>
                       </code>
                     </div>
                     <div class="height-container">
@@ -73,19 +86,14 @@
                       <section class="section">
                         <div class="pointer"></div>
                         <div class="abstract">
-                          <p>A new update is unavailable for an unknown reason.</p>
+                          <p>The bundle does not opt into requiring appcast signing and no validation of the appcast feed is done.</p>
 
                         </div>
                         <div class="declaration">
                           <h4>Declaration</h4>
                           <div class="language">
                             <p class="aside-title">Objective-C</p>
-                            <pre class="highlight objective_c"><code><span class="n">SPUNoUpdateFoundReasonUnknown</span></code></pre>
-
-                          </div>
-                          <div class="language">
-                            <p class="aside-title">Swift</p>
-                            <pre class="highlight swift"><code><span class="k">case</span> <span class="n">unknown</span> <span class="o">=</span> <span class="mi">0</span></code></pre>
+                            <pre class="highlight objective_c"><code><span class="n">SPUAppcastSigningValidationStatusSkipped</span> <span class="o">=</span> <span class="mi">0</span></code></pre>
 
                           </div>
                         </div>
@@ -95,9 +103,9 @@
                   <li class="item">
                     <div>
                       <code>
-                      <a name="/c:@E@SPUNoUpdateFoundReason@SPUNoUpdateFoundReasonOnLatestVersion"></a>
-                      <a name="//apple_ref/objc/Case/SPUNoUpdateFoundReasonOnLatestVersion" class="dashAnchor"></a>
-                      <a class="token" href="#/c:@E@SPUNoUpdateFoundReason@SPUNoUpdateFoundReasonOnLatestVersion">SPUNoUpdateFoundReasonOnLatestVersion</a>
+                      <a name="/c:@E@SPUAppcastSigningValidationStatus@SPUAppcastSigningValidationStatusSucceeded"></a>
+                      <a name="//apple_ref/objc/Case/SPUAppcastSigningValidationStatusSucceeded" class="dashAnchor"></a>
+                      <a class="token" href="#/c:@E@SPUAppcastSigningValidationStatus@SPUAppcastSigningValidationStatusSucceeded">SPUAppcastSigningValidationStatusSucceeded</a>
                       </code>
                     </div>
                     <div class="height-container">
@@ -105,19 +113,14 @@
                       <section class="section">
                         <div class="pointer"></div>
                         <div class="abstract">
-                          <p>A new update is unavailable because the user is on the latest known version in the appcast feed.</p>
+                          <p>The appcast is signed and validation has passed succesfully.</p>
 
                         </div>
                         <div class="declaration">
                           <h4>Declaration</h4>
                           <div class="language">
                             <p class="aside-title">Objective-C</p>
-                            <pre class="highlight objective_c"><code><span class="n">SPUNoUpdateFoundReasonOnLatestVersion</span></code></pre>
-
-                          </div>
-                          <div class="language">
-                            <p class="aside-title">Swift</p>
-                            <pre class="highlight swift"><code><span class="k">case</span> <span class="n">onLatestVersion</span> <span class="o">=</span> <span class="mi">1</span></code></pre>
+                            <pre class="highlight objective_c"><code><span class="n">SPUAppcastSigningValidationStatusSucceeded</span></code></pre>
 
                           </div>
                         </div>
@@ -127,9 +130,9 @@
                   <li class="item">
                     <div>
                       <code>
-                      <a name="/c:@E@SPUNoUpdateFoundReason@SPUNoUpdateFoundReasonOnNewerThanLatestVersion"></a>
-                      <a name="//apple_ref/objc/Case/SPUNoUpdateFoundReasonOnNewerThanLatestVersion" class="dashAnchor"></a>
-                      <a class="token" href="#/c:@E@SPUNoUpdateFoundReason@SPUNoUpdateFoundReasonOnNewerThanLatestVersion">SPUNoUpdateFoundReasonOnNewerThanLatestVersion</a>
+                      <a name="/c:@E@SPUAppcastSigningValidationStatus@SPUAppcastSigningValidationStatusFailed"></a>
+                      <a name="//apple_ref/objc/Case/SPUAppcastSigningValidationStatusFailed" class="dashAnchor"></a>
+                      <a class="token" href="#/c:@E@SPUAppcastSigningValidationStatus@SPUAppcastSigningValidationStatusFailed">SPUAppcastSigningValidationStatusFailed</a>
                       </code>
                     </div>
                     <div class="height-container">
@@ -137,115 +140,16 @@
                       <section class="section">
                         <div class="pointer"></div>
                         <div class="abstract">
-                          <p>A new update is unavailable because the user is on a version newer than the latest known version in the appcast feed.</p>
+                          <p>The appcast is signed and validation has failed. In this case, appcast items operate in a &lsquo;safe&rsquo; fallback mode
+meaning that they cannot be marked as a critical update, cannot be marked as informational update,
+and will not have any release note or link references.</p>
 
                         </div>
                         <div class="declaration">
                           <h4>Declaration</h4>
                           <div class="language">
                             <p class="aside-title">Objective-C</p>
-                            <pre class="highlight objective_c"><code><span class="n">SPUNoUpdateFoundReasonOnNewerThanLatestVersion</span></code></pre>
-
-                          </div>
-                          <div class="language">
-                            <p class="aside-title">Swift</p>
-                            <pre class="highlight swift"><code><span class="k">case</span> <span class="n">onNewerThanLatestVersion</span> <span class="o">=</span> <span class="mi">2</span></code></pre>
-
-                          </div>
-                        </div>
-                      </section>
-                    </div>
-                  </li>
-                  <li class="item">
-                    <div>
-                      <code>
-                      <a name="/c:@E@SPUNoUpdateFoundReason@SPUNoUpdateFoundReasonSystemIsTooOld"></a>
-                      <a name="//apple_ref/objc/Case/SPUNoUpdateFoundReasonSystemIsTooOld" class="dashAnchor"></a>
-                      <a class="token" href="#/c:@E@SPUNoUpdateFoundReason@SPUNoUpdateFoundReasonSystemIsTooOld">SPUNoUpdateFoundReasonSystemIsTooOld</a>
-                      </code>
-                    </div>
-                    <div class="height-container">
-                      <div class="pointer-container"></div>
-                      <section class="section">
-                        <div class="pointer"></div>
-                        <div class="abstract">
-                          <p>A new update is unavailable because the user&rsquo;s operating system version is too old for the update.</p>
-
-                        </div>
-                        <div class="declaration">
-                          <h4>Declaration</h4>
-                          <div class="language">
-                            <p class="aside-title">Objective-C</p>
-                            <pre class="highlight objective_c"><code><span class="n">SPUNoUpdateFoundReasonSystemIsTooOld</span></code></pre>
-
-                          </div>
-                          <div class="language">
-                            <p class="aside-title">Swift</p>
-                            <pre class="highlight swift"><code><span class="k">case</span> <span class="n">systemIsTooOld</span> <span class="o">=</span> <span class="mi">3</span></code></pre>
-
-                          </div>
-                        </div>
-                      </section>
-                    </div>
-                  </li>
-                  <li class="item">
-                    <div>
-                      <code>
-                      <a name="/c:@E@SPUNoUpdateFoundReason@SPUNoUpdateFoundReasonSystemIsTooNew"></a>
-                      <a name="//apple_ref/objc/Case/SPUNoUpdateFoundReasonSystemIsTooNew" class="dashAnchor"></a>
-                      <a class="token" href="#/c:@E@SPUNoUpdateFoundReason@SPUNoUpdateFoundReasonSystemIsTooNew">SPUNoUpdateFoundReasonSystemIsTooNew</a>
-                      </code>
-                    </div>
-                    <div class="height-container">
-                      <div class="pointer-container"></div>
-                      <section class="section">
-                        <div class="pointer"></div>
-                        <div class="abstract">
-                          <p>A new update is unavailable because the user&rsquo;s operating system version is too new for the update.</p>
-
-                        </div>
-                        <div class="declaration">
-                          <h4>Declaration</h4>
-                          <div class="language">
-                            <p class="aside-title">Objective-C</p>
-                            <pre class="highlight objective_c"><code><span class="n">SPUNoUpdateFoundReasonSystemIsTooNew</span></code></pre>
-
-                          </div>
-                          <div class="language">
-                            <p class="aside-title">Swift</p>
-                            <pre class="highlight swift"><code><span class="k">case</span> <span class="n">systemIsTooNew</span> <span class="o">=</span> <span class="mi">4</span></code></pre>
-
-                          </div>
-                        </div>
-                      </section>
-                    </div>
-                  </li>
-                  <li class="item">
-                    <div>
-                      <code>
-                      <a name="/c:@E@SPUNoUpdateFoundReason@SPUNoUpdateFoundReasonHardwareDoesNotSupportARM64"></a>
-                      <a name="//apple_ref/objc/Case/SPUNoUpdateFoundReasonHardwareDoesNotSupportARM64" class="dashAnchor"></a>
-                      <a class="token" href="#/c:@E@SPUNoUpdateFoundReason@SPUNoUpdateFoundReasonHardwareDoesNotSupportARM64">SPUNoUpdateFoundReasonHardwareDoesNotSupportARM64</a>
-                      </code>
-                    </div>
-                    <div class="height-container">
-                      <div class="pointer-container"></div>
-                      <section class="section">
-                        <div class="pointer"></div>
-                        <div class="abstract">
-                          <p>A new update is unavailable because the user&rsquo;s system is an Intel Mac that doesn&rsquo;t support ARM64.</p>
-
-                        </div>
-                        <div class="declaration">
-                          <h4>Declaration</h4>
-                          <div class="language">
-                            <p class="aside-title">Objective-C</p>
-                            <pre class="highlight objective_c"><code><span class="n">SPUNoUpdateFoundReasonHardwareDoesNotSupportARM64</span></code></pre>
-
-                          </div>
-                          <div class="language">
-                            <p class="aside-title">Swift</p>
-                            <pre class="highlight swift"><code><span class="k">case</span> <span class="n">hardwareDoesNotSupportARM64</span> <span class="o">=</span> <span class="mi">5</span></code></pre>
+                            <pre class="highlight objective_c"><code><span class="n">SPUAppcastSigningValidationStatusFailed</span></code></pre>
 
                           </div>
                         </div>

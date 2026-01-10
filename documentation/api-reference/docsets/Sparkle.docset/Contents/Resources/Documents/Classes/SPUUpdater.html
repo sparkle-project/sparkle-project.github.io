@@ -16,8 +16,8 @@
     <header>
       <div class="content-wrapper">
         <p>
-          <a href="../index.html">Sparkle 2.8.1 Docs</a>
-          <span class="no-mobile"> (59% documented)</span>
+          <a href="../index.html">Sparkle 2.9.0-beta.1 Docs</a>
+          <span class="no-mobile"> (60% documented)</span>
         </p>
     
     
@@ -45,12 +45,13 @@
                 <div class="declaration">
                   <div class="language">
                     <p class="aside-title">Objective-C</p>
-                    <pre class="highlight objective_c"><code><span class="k">@interface</span> <span class="nc">SPUUpdater</span> <span class="p">:</span> <span class="nc">NSObject</span></code></pre>
+                    <pre class="highlight objective_c"><code>
+<span class="k">@interface</span> <span class="nc">SPUUpdater</span> <span class="p">:</span> <span class="nc">NSObject</span></code></pre>
 
                   </div>
                   <div class="language">
                     <p class="aside-title">Swift</p>
-                    <pre class="highlight swift"><code><span class="kd">class</span> <span class="kt">SPUUpdater</span> <span class="p">:</span> <span class="kt">NSObject</span></code></pre>
+                    <pre class="highlight swift"><code><span class="kd">@MainActor</span> <span class="kd">class</span> <span class="kt">SPUUpdater</span> <span class="p">:</span> <span class="kt">NSObject</span></code></pre>
 
                   </div>
                 </div>
@@ -112,7 +113,7 @@
                           </div>
                           <div class="language">
                             <p class="aside-title">Swift</p>
-                            <pre class="highlight swift"><code><span class="nf">init</span><span class="p">(</span><span class="nv">hostBundle</span><span class="p">:</span> <span class="kt">Bundle</span><span class="p">,</span> <span class="nv">applicationBundle</span><span class="p">:</span> <span class="kt">Bundle</span><span class="p">,</span> <span class="nv">userDriver</span><span class="p">:</span> <span class="kt"><a href="../Protocols/SPUUserDriver.html">SPUUserDriver</a></span><span class="p">,</span> <span class="nv">delegate</span><span class="p">:</span> <span class="kt"><a href="../Protocols/SPUUpdaterDelegate.html">SPUUpdaterDelegate</a></span><span class="p">?)</span></code></pre>
+                            <pre class="highlight swift"><code><span class="nf">init</span><span class="p">(</span><span class="nv">hostBundle</span><span class="p">:</span> <span class="kt">Bundle</span><span class="p">,</span> <span class="nv">applicationBundle</span><span class="p">:</span> <span class="kt">Bundle</span><span class="p">,</span> <span class="nv">userDriver</span><span class="p">:</span> <span class="kd">any</span> <span class="kt"><a href="../Protocols/SPUUserDriver.html">SPUUserDriver</a></span><span class="p">,</span> <span class="nv">delegate</span><span class="p">:</span> <span class="p">(</span><span class="kd">any</span> <span class="kt"><a href="../Protocols/SPUUpdaterDelegate.html">SPUUpdaterDelegate</a></span><span class="p">)?)</span></code></pre>
 
                           </div>
                         </div>
@@ -659,6 +660,45 @@ Do not always set it on launch unless you want to ignore the user&rsquo;s prefer
                   <li class="item">
                     <div>
                       <code>
+                      <a name="/c:objc(cs)SPUUpdater(py)allowsAutomaticUpdates"></a>
+                      <a name="//apple_ref/objc/Property/allowsAutomaticUpdates" class="dashAnchor"></a>
+                      <a class="token" href="#/c:objc(cs)SPUUpdater(py)allowsAutomaticUpdates">allowsAutomaticUpdates</a>
+                      </code>
+                    </div>
+                    <div class="height-container">
+                      <div class="pointer-container"></div>
+                      <section class="section">
+                        <div class="pointer"></div>
+                        <div class="abstract">
+                          <p>A property indicating whether or not the <em>option</em> to automatically download updates in the background can be turned on.</p>
+
+<p>This property can be used to determine whether an option to automatically download/install updates should be enabled.</p>
+
+<p>Its value depends  on <code><a href="../Classes/SPUUpdater.html#/c:objc(cs)SPUUpdater(py)automaticallyChecksForUpdates">automaticallyChecksForUpdates</a></code>, or the <code>SUAllowsAutomaticUpdates</code>in the host bundle&rsquo;s Info.plist if specified.
+Don&rsquo;t set <code>SUAllowsAutomaticUpdates</code> in the Info.plist unless you need custom behavior.</p>
+
+<p>This property is KVO compliant. This property must be called on the main thread.</p>
+
+                        </div>
+                        <div class="declaration">
+                          <h4>Declaration</h4>
+                          <div class="language">
+                            <p class="aside-title">Objective-C</p>
+                            <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">readonly</span><span class="p">)</span> <span class="n">BOOL</span> <span class="n">allowsAutomaticUpdates</span><span class="p">;</span></code></pre>
+
+                          </div>
+                          <div class="language">
+                            <p class="aside-title">Swift</p>
+                            <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">allowsAutomaticUpdates</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                          </div>
+                        </div>
+                      </section>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <div>
+                      <code>
                       <a name="/c:objc(cs)SPUUpdater(py)feedURL"></a>
                       <a name="//apple_ref/objc/Property/feedURL" class="dashAnchor"></a>
                       <a class="token" href="#/c:objc(cs)SPUUpdater(py)feedURL">feedURL</a>
@@ -1166,6 +1206,9 @@ no cycle reset will be done.</p>
               <a href="../Enums.html">Enumerations</a>
               <ul class="nav-group-tasks">
                 <li class="nav-group-task">
+                  <a href="../Enums/SPUAppcastSigningValidationStatus.html">SPUAppcastSigningValidationStatus</a>
+                </li>
+                <li class="nav-group-task">
                   <a href="../Enums/SPUNoUpdateFoundReason.html">SPUNoUpdateFoundReason</a>
                 </li>
                 <li class="nav-group-task">
@@ -1210,7 +1253,7 @@ no cycle reset will be done.</p>
       </div>
       <div class="footer-wrapper">
         <section id="footer">
-          <p>&copy; 2025 <a class="link" href="https://sparkle-project.org" target="_blank" rel="external noopener">Sparkle Project</a>. All rights reserved. (Last updated: 2025-11-15)</p>
+          <p>&copy; 2026 <a class="link" href="https://sparkle-project.org" target="_blank" rel="external noopener">Sparkle Project</a>. All rights reserved. (Last updated: 2026-01-10)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.15.4</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
         </section>
       </div>
