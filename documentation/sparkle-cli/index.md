@@ -6,7 +6,9 @@ title: sparkle-cli
 
 ## sparkle-cli
 
-Sparkle 2 includes a command line utility that can update Sparkle-based applications and bundles. This tool is a [thin wrapper around using Sparkle's framework](https://github.com/sparkle-project/Sparkle/tree/2.x/sparkle-cli) to update external bundles.
+Sparkle 2 has a command line utility that can update Sparkle-based applications and bundles.
+
+Note software that can update other Sparkle based apps often use [SPUUpdater](/documentation/api-reference/Classes/SPUUpdater.html) directly however. The [source code of sparkle-cli]((https://github.com/sparkle-project/Sparkle/tree/2.x/sparkle-cli)) shows how to update external bundles and shows how options like `--check-immediately` are implemented. If you want to deploy `sparkle-cli`, we recommend customizing its `PRODUCT_BUNDLE_IDENTIFIER` in `ConfigSparkleTool.xcconfig` and building it from source.
 
 ### Usage
 
@@ -63,9 +65,9 @@ Options:
     Otherwise, this value may be set and inferred automatically.
  --interactive
     Allows prompting the user for an authorization dialog prompt if the
-    installer needs elevated privileges, or allows performing an interactive
-    installer package. Without passing this, an exit status of 3 is returned
-    if an update requires user interaction. An exit status of 5 is returned
+    installer needs elevated privileges.
+    Without passing this, an exit status of 3 is returned if an update
+    requires user interaction. An exit status of 5 is returned
     if the user cancels the authorization prompt.
  --grant-automatic-checks
     If update permission is requested, this enables automatic update checks.
@@ -86,7 +88,7 @@ Options:
 
 ### Example
 
-One example is I updated an application on my machine I knew was out of date by running:
+One example is updating an out of date application on my Mac by running:
 
 ```sh
 ./sparkle.app/Contents/MacOS/sparkle --check-immediately /Applications/Hex\ Fiend.app/
@@ -94,6 +96,4 @@ One example is I updated an application on my machine I knew was out of date by 
 
 ### Caveats
 
-There are caveats for updating applications you do not own with sparkle-cli. For example an app may implement Sparkle's delegate methods for using a custom version comparator or feed URL, but sparkle-cli has no way of knowing to use these if they are not extractable externally.
-
-On macOS 13 (Ventura) and later, users will need to approve external updaters like sparkle-cli to make modifications to update other developer's applications. If you use an external updater like sparkle-cli to update your own application, make sure the bundle you're updating and the updater is signed with the same Team ID.
+There are caveats for updating applications you do not own with sparkle-cli. For example an app may implement Sparkle's delegate methods for using a custom version comparator (which is deprecated) or feed URL, but sparkle-cli has no way of knowing to use these automatically if they are not extractable externally.
