@@ -145,7 +145,7 @@ Sparkle also supports a `sparkle:maximumSystemVersion` element that can limit th
 
 To minimize compatibility issues, we recommend building your application with an up to date Xcode and SDK because macOS can report the OS version differently when compiling on older SDKs and deploying to newer OS's.
 
-As of Sparkle 2.9 (beta), a `sparkle:hardwareRequirements` element can also be added to make an update require Apple silicon:
+As of Sparkle 2.9, a `sparkle:hardwareRequirements` element can also be added to make an update require Apple silicon:
 
 ```xml
 <item>
@@ -386,7 +386,7 @@ A more comprehensive approach is migrating to a new `SUFeedURL` in your new appl
 
 --
 
-If all your users are running Sparkle 2.9 (beta) or later, instead of switching appcasts, you can use the `sparkle:minimumUpdateVersion` element to specify the minimum bundle version required to update. This example requires users to be running `1.9` or later to see the update for `2.0`:
+If all your users are running Sparkle 2.9 or later, instead of switching appcasts, you can use the `sparkle:minimumUpdateVersion` element to specify the minimum bundle version required to update. This example requires users to be running `1.9` or later to see the update for `2.0`:
 
 ```xml
 <item>
@@ -422,7 +422,7 @@ You can embed just marked up text (it'll be displayed using standard system font
 
 As of Sparkle 2.4, you can embed plain text release notes using `<description sparkle:format="plain-text">`.
 
-As of Sparkle 2.9 (beta) and macOS 12, you can embed markdown release notes using `<description sparkle:format="markdown">`.
+As of Sparkle 2.9 and macOS 12, you can embed markdown release notes using `<description sparkle:format="markdown">`.
 
 ## Full release notes
 
@@ -481,7 +481,7 @@ Note this feature is not supported if your application uses the Downloader XPC S
 
 ### Adapting markdown or plain text release notes
 
-As of Sparkle 2.9 (beta) `-[SPUStandardUserDriverDelegate standardUserDriverWillShowReleaseNotesText:forUpdate:withBundleDisplayVersion:bundleVersion:]` can be used to customize the final presentation of release notes text for markdown and plain text release notes.
+As of Sparkle 2.9 `-[SPUStandardUserDriverDelegate standardUserDriverWillShowReleaseNotesText:forUpdate:withBundleDisplayVersion:bundleVersion:]` can be used to customize the final presentation of release notes text for markdown and plain text release notes.
 
 For example, if we have a markdown document like:
 
@@ -535,7 +535,7 @@ func standardUserDriverWillShowReleaseNotesText(_ releaseNotesAttributedString: 
 }
 ```
 
-Note that markdown release notes are supported as of Sparkle 2.9 (beta) and requires macOS 12. Plain text release notes are supported as of Sparkle 2.4.
+Note that markdown release notes are supported as of Sparkle 2.9 and requires macOS 12. Plain text release notes are supported as of Sparkle 2.4.
 
 ## Localization
 

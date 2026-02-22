@@ -125,7 +125,7 @@ For greater security, you can opt into signing your update feed and release note
 
 With these options, more responsibility is on the developer to keep their signing keys safe and ensure their feeds and release notes stay correctly signed (modifications to these files will require re-signing them). For signed feeds, the [SUSignedFeedFailureExpirationInterval](/documentation/customization/#security-settings) option allows a limited fallback through [key rotation](#rotating-signing-keys) in case a feed hasn't been successfully validated for a lengthy period of time. Note when feed signing failures expire, Sparkle strips out information like release notes, links, and certain elements.
 
-Signed feeds are validated as of Sparkle 2.9 (beta).
+Signed feeds are validated as of Sparkle 2.9.
 
 #### Rotating signing keys
 
@@ -161,7 +161,7 @@ If you update regular app bundles and you have set up EdDSA signatures, you can 
 
   3. The tool will generate the appcast file (using filename from [`SUFeedURL`](/documentation/customization/)) and also [`*.delta` update](/documentation/delta-updates/) files for faster incremental updates. Upload your archives, the delta updates, and the appcast to your server.
 
-When generating the appcast, if an `.html` file exists with the same name as the archive, then it will added as the `releaseNotesLink`. As of Sparkle 2.9 (beta) and macOS 12, basic markdown support using a `.md` file has also been added. Run `generate_appcast -h` for a full overview and list of supported options.
+When generating the appcast, if an `.html` file exists with the same name as the archive, then it will added as the `releaseNotesLink`. As of Sparkle 2.9 and macOS 12, basic markdown support using a `.md` file has also been added. Run `generate_appcast -h` for a full overview and list of supported options.
 
 If your app opts into [SURequireSignedFeed](/documentation/customization/#security-settings), `generate_appcast` will also sign your appcast and release note files. If you make further modifications to your appcast or release notes, you will need to re-run generate_appcast to generate updated signatures.
 
