@@ -28,7 +28,7 @@ jobs:
           gem install jazzy
 
       - name: "Checkout Sparkle Sources"
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           repository: 'sparkle-project/Sparkle'
           token: ${{ secrets.BOT_PERSONAL_ACCESS_TOKEN }}
@@ -38,7 +38,7 @@ jobs:
           path: 'sparkle-source'
 
       - name: "Checkout Website Sources"
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           token: ${{ secrets.BOT_PERSONAL_ACCESS_TOKEN }}
           fetch-depth: 0
