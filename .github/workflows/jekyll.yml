@@ -12,11 +12,25 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v6
+    - uses: actions/checkout@v7
     - name: Build the site in the jekyll/builder container
-      # We will need to remove api-reference from XML validation. Some issues are incorect and others we need to get resolved upstream.
       run: |
         rm -rf documentation/api-reference
         docker run \
         -v ${{ github.workspace }}:/srv/jekyll -v ${{ github.workspace }}/_site:/srv/jekyll/_site \
-        jekyll/builder:latest /bin/bash -c "chmod 777 /srv/jekyll && jekyll build --future && find /srv/jekyll/_site -type f -name '*.html' -exec xmllint --noout {} \; && wget https://github.com/validator/validator/releases/download/18.11.5/vnu.jar_18.11.5.zip && unzip -p vnu.jar_18.11.5.zip dist/vnu.jar > vnu.jar && java -jar vnu.jar --skip-non-html /srv/jekyll/_site"
+        jekyll/builder:latest /bin/bash -c "chmod 777 /srv/jekyll && jekyll build --future"
+    # We skip api-reference from XML validation. Some issues are incorrect and others need to be resolved upstream.
+    - name: Validate HTML with xmllint
+      run: |
+        sudo apt-get install -y libxml2-utils
+        find ${{ github.workspace }}/_site -type f -name '*.html' -exec xmllint --noout {} \;
+    - name: Set up Java for Nu HTML Checker
+      uses: actions/setup-java@v4
+      with:
+        distribution: 'temurin'
+        java-version: '17'
+    - name: Validate HTML with Nu HTML Checker
+      run: |
+        wget -q https://github.com/validator/validator/releases/download/18.11.5/vnu.jar_18.11.5.zip
+        unzip -p vnu.jar_18.11.5.zip dist/vnu.jar > vnu.jar
+        java -jar vnu.jar --skip-non-html ${{ github.workspace }}/_site
