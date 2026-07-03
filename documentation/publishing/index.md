@@ -438,7 +438,7 @@ In Sparkle 2, the `<sparkle:fullReleaseNotesLink>` element may be used to specif
 </item>
 ```
 
-Alternatively, an application that uses Sparkle's standard user interface may implement [-[SPUStandardUserDriverDelegate standardUserDriverShowVersionHistoryForAppcastItem:]](/documentation/api-reference/Protocols/SPUStandardUserDriverDelegate.html#/c:objc(pl)SPUStandardUserDriverDelegate(im)standardUserDriverShowVersionHistoryForAppcastItem:) to show full offline or in-app release notes to the user.
+Alternatively, if you use Sparkle's standard user interface you may implement [-[SPUStandardUserDriverDelegate standardUserDriverShowVersionHistoryForAppcastItem:]](/documentation/api-reference/Protocols/SPUStandardUserDriverDelegate.html#/c:objc(pl)SPUStandardUserDriverDelegate(im)standardUserDriverShowVersionHistoryForAppcastItem:) to show full offline or in-app release notes to the user. If you want to hide the version history instead, you can use [-[SPUStandardUserDriverDelegate standardUserDriverShouldShowVersionHistoryForAppcastItem:]](/documentation/api-reference/Protocols/SPUStandardUserDriverDelegate.html#/c:objc(pl)SPUStandardUserDriverDelegate(im)standardUserDriverShouldShowVersionHistoryForAppcastItem:).
 
 ## Adapting release notes based on currently installed version
 
