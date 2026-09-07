@@ -130,14 +130,14 @@ Note that the internal version number (`CFBundleVersion` and `sparkle:version`) 
 
 If an update to your application raises the required version of macOS, you can restrict that update to qualified users.
 
-Add a `sparkle:minimumSystemVersion` child to the `<item>` in question specifying the required system version, such as "10.13.0" (be sure to specify a three-part version in form of *major.minor.patch*):
+Add a `sparkle:minimumSystemVersion` child to the `<item>` in question specifying the required system version, such as "12.0.0" (be sure to specify a three-part version in form of *major.minor.patch*):
 
 ```xml
 <item>
     <title>Version 2.0 (2 bugs fixed; 3 new features)</title>
     <link>https://myproductwebsite.com</link>
     <sparkle:version>2.0</sparkle:version>
-    <sparkle:minimumSystemVersion>10.13.0</sparkle:minimumSystemVersion>
+    <sparkle:minimumSystemVersion>12.0.0</sparkle:minimumSystemVersion>
 </item>
 ```
 
@@ -153,7 +153,7 @@ As of Sparkle 2.9, a `sparkle:hardwareRequirements` element can also be added to
     <link>https://myproductwebsite.com</link>
     <sparkle:version>2.0</sparkle:version>
     <sparkle:hardwareRequirements>arm64</sparkle:hardwareRequirements>
-    <sparkle:minimumSystemVersion>12.0</sparkle:minimumSystemVersion>
+    <sparkle:minimumSystemVersion>12.0.0</sparkle:minimumSystemVersion>
 </item>
 ```
 

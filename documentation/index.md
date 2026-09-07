@@ -35,11 +35,6 @@ If you use [Carthage](https://github.com/Carthage/Carthage):
 
     Sparkle only supports using a `binary` origin with Carthage because Carthage strips necessary code signing information when building the project from source.
 
-If you use [CocoaPods](//cocoapods.org) ([deprecated](https://blog.cocoapods.org/CocoaPods-Specs-Repo/)):
-
-  * Add `pod 'Sparkle'` to your Podfile.
-  * Add or uncomment `use_frameworks!` in your Podfile.
-
 If you want to add Sparkle manually:
 
 * Get the [latest version](//github.com/{{ site.github_username }}/Sparkle/releases/latest) of Sparkle.
