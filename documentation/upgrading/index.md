@@ -6,11 +6,15 @@ title: Upgrading from previous versions of Sparkle
 
 We strongly recommend upgrading Sparkle to the [latest production release](//github.com/{{ site.github_username }}/Sparkle/releases) because there have been [important security and reliability improvements](/documentation/security-and-reliability). Very old versions of Sparkle also suffer some incompatibilities with the latest macOS versions.
 
+## Upgrading to Sparkle 2.10 (beta)
+
+Sparkle 2.10 (beta) now requires macOS 12.0 (Monterey) or later.
+
+CocoaPods distribution has been removed. Visit the [documentation](/documentation) for more information on switching to Swift Package Manager or other distribution methods.
+
 ## Upgrading to Sparkle 2.9
 
 Sparkle 2.9 no longer distributes sparkle-cli as part of the binary distribution. Please see [the sparkle-cli documentation](/documentation/sparkle-cli) if you were depending on the tool.
-
-CocoaPods distribution has been [deprecated](https://blog.cocoapods.org/CocoaPods-Specs-Repo/). Visit the [documentation](/documentation) for more information on switching to Swift Package Manager or other distribution methods.
 
 ## Upgrading to Sparkle 2.8
 
