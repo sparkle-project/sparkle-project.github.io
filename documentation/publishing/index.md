@@ -80,9 +80,7 @@ You need to create an `<item>` for your update in your appcast. See the [sample 
     <title>Version 2.0 (2 bugs fixed; 3 new features)</title>
     <link>https://myproductwebsite.com</link>
     <sparkle:version>2.0</sparkle:version>
-    <sparkle:releaseNotesLink>
-        https://example.com/release_notes/app_2.0.html
-    </sparkle:releaseNotesLink>
+    <sparkle:releaseNotesLink>https://example.com/release_notes/app_2.0.html</sparkle:releaseNotesLink>
     <pubDate>Mon, 05 Oct 2015 19:20:11 +0000</pubDate>
     <enclosure url="https://example.com/downloads/app.zip.or.dmg.or.tar.etc"
                 sparkle:edSignature="7cLALFUHSwvEJWSkV8aMreoBe4fhRa4FncC5NoThKxwThL6FDR7hTiPJh1fo2uagnPogisnQsgFgq6mGkt2RBw=="
@@ -113,9 +111,7 @@ Set the `sparkle:version` element in your item to the internal, machine-readable
     <link>https://myproductwebsite.com</link>
     <sparkle:version>1248</sparkle:version>
     <sparkle:shortVersionString>1.5.1</sparkle:shortVersionString>
-    <sparkle:releaseNotesLink>
-        https://example.com/release_notes/app_2.0.html
-    </sparkle:releaseNotesLink>
+    <sparkle:releaseNotesLink>https://example.com/release_notes/app_2.0.html</sparkle:releaseNotesLink>
     <pubDate>Mon, 05 Oct 2015 19:20:11 +0000</pubDate>
     <enclosure url="https://example.com/downloads/app.zip.or.dmg.or.tar.etc"
                 sparkle:edSignature="7cLALFUHSwvEJWSkV8aMreoBe4fhRa4FncC5NoThKxwThL6FDR7hTiPJh1fo2uagnPogisnQsgFgq6mGkt2RBw=="

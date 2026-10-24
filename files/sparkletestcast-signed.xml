@@ -29,14 +29,12 @@ IMPORTANT: This file was signed by Sparkle. Any modifications to this file requi
             <link>https://sparkle-project.org</link>
             <sparkle:version>2.0</sparkle:version>
             <!-- Example of external signed release notes -->
-            <sparkle:releaseNotesLink sparkle:edSignature="4KjvG1GjKwXrxfqXbU1j2CYClEDdkMDp2Ii2ICV+Jgx00MDpHFLpLJ+/2tHy9Mp9bTUk5KlpCG1OWBu4nLKOCw==" sparkle:length="1467">
-          https://sparkle-project.org/release_notes/app_2.0.html
-        </sparkle:releaseNotesLink>
+            <sparkle:releaseNotesLink sparkle:edSignature="4KjvG1GjKwXrxfqXbU1j2CYClEDdkMDp2Ii2ICV+Jgx00MDpHFLpLJ+/2tHy9Mp9bTUk5KlpCG1OWBu4nLKOCw==" sparkle:length="1467">https://sparkle-project.org/release_notes/app_2.0.html</sparkle:releaseNotesLink>
             <pubDate>Sat, 26 Jul 2014 15:20:11 +0000</pubDate>
             <enclosure url="https://sparkle-project.org/files/Sparkle%20Test%20App.zip" length="107758" type="application/octet-stream" sparkle:edSignature="5wv7MoSNI5UbwrH+fRFIauntNrHlFErA70M5O2JKzUb+hQTcMwTwvwvzHdkYzxtfQMxx9w0MiD299OSovqVfCw=="/>
         </item>
     </channel>
 </rss><!-- sparkle-signatures:
-edSignature: LhZzxLxXCnbKLq4PGci8dGVsrPCzXUM5uech2cSAIQo37rMEj7f1gPO48h5wYGrAi/Kr8QTLhZUl5dueLxVvDA==
-length: 2578
+edSignature: kEUC8Fl3kZpf/PDMkhg10Y+s5qRuchzim5qNZmCR9yWuW+fA1jynrI+t45KihXhtYUHgCsIFqTIrzSc3NKecCQ==
+length: 2558
 -->
