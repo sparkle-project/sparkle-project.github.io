@@ -13,6 +13,7 @@ Note package installation should only be used for apps with very custom installa
 * Slower relaunching and installation of updates on quit
 * No support for [delta updates](/documentation/delta-updates) for more efficient updates
 * No fallback for [rotating signing keys](/documentation#rotating-signing-keys) in case your signing keys need to change
+* No prevention of downgrades for apps that don't [opt into signing feeds](/documentation#signing-feeds-optional) if your server and appcast feed is compromised
 * No support for generating updates easily using the `generate_appcast` tool
 
 Applications that [install daemons](https://developer.apple.com/documentation/servicemanagement/smappservice) or [install system extensions](https://developer.apple.com/documentation/systemextensions/installing-system-extensions-and-drivers) do not need to distribute package installers.
