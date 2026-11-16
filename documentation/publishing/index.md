@@ -89,7 +89,7 @@ You need to create an `<item>` for your update in your appcast. See the [sample 
 </item>
 ```
 
-If your app opts into [SURequireSignedFeed](/documentation/customization#security-settings), you will also need to add the signature attributes to the `sparkle:releaseNotesLink` and run `sign_update` on the appcast file to update and sign it. Please see the [signed sample appcast](/files/sparkletestcast-signed.xml) for an example.
+If your app opts into [SURequireSignedFeed](/documentation/customization#security-settings), you will need to add the signature attributes to the `sparkle:releaseNotesLink` and run `sign_update` on the appcast file to update and sign it. If your app also opts into [SURequireFeedBundleIdentifier](/documentation/customization#security-settings) (available since Sparkle 2.11 beta) you will also need to add your app's `sparkle:bundleIdentifier` element in the `channel`. Please see the [signed sample appcast](/files/sparkletestcast-signed.xml) for an example.
 
 Test your update, and you're done!
 

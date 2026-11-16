@@ -112,19 +112,21 @@ Be sure to keep your keys safe and not lose them (they will be erased if your ke
 
 Please visit [Migrating to EdDSA from DSA](eddsa-migration) if you are still providing DSA signatures so you can learn how to stop supporting them.
 
-#### Signing feeds (optional)
+#### Signing feeds (optional) {#signing-feeds}
 
 For greater security, you can opt into signing your update feed and release notes by enabling [SURequireSignedFeed](/documentation/customization/#security-settings). This validates the information presented to the user. For example, with a signed feed, an attacker that compromises an app's update server will not be able to inform and trick existing users to update from another location.
 
-[SUVerifyUpdateBeforeExtraction](/documentation/customization/#security-settings) must also be enabled to use signed feeds. This option enforces validation of update archives before extracting them.
+[SUVerifyUpdateBeforeExtraction](/documentation/customization/#security-settings) must be enabled to use signed feeds. This option enforces validation of update archives before extracting them.
+
+[SURequireFeedBundleIdentifier](/documentation/customization/#security-settings) is also recommended to be enabled for signed feeds. For [installer package updates](/documentation/package-updates/), this prevents cross-product downgrades if an attacker swaps your feed with another product's feed that is signed with the same keys.
 
 With these options, more responsibility is on the developer to keep their signing keys safe and ensure their feeds and release notes stay correctly signed (modifications to these files will require re-signing them). For signed feeds, the [SUSignedFeedFailureExpirationInterval](/documentation/customization/#security-settings) option allows a limited fallback through [key rotation](#rotating-signing-keys) in case a feed hasn't been successfully validated for a lengthy period of time. Note when feed signing failures expire, Sparkle strips out information like release notes, links, and certain elements.
 
-Signed feeds are validated as of Sparkle 2.9.
+Signed feeds are validated as of Sparkle 2.9. Feed bundle identifiers are validated as of Sparkle 2.11 (beta).
 
 #### Rotating signing keys
 
-For regular application updates (not installer package updates), if you both code-sign your application with Apple's Developer ID program and include a public EdDSA key for signing your update archive, Sparkle allows rotating keys by issuing a new update that changes either your Apple code signing certificate or your EdDSA keys (but not both). For applications that opt into enabling [SUVerifyUpdateBeforeExtraction](/documentation/customization/#security-settings), changing your EdDSA keys can only be done if the update archive is a Developer ID code signed disk image (dmg).
+For regular application updates (not [installer package updates](/documentation/package-updates/)), if you both code-sign your application with Apple's Developer ID program and include a public EdDSA key for signing your update archive, Sparkle allows rotating keys by issuing a new update that changes either your Apple code signing certificate or your EdDSA keys (but not both). For applications that opt into enabling [SUVerifyUpdateBeforeExtraction](/documentation/customization/#security-settings), changing your EdDSA keys can only be done if the update archive is a Developer ID code signed disk image (dmg).
 
 We recommend rotating keys only when necessary like if you need to change your Developer ID certificate, lose access to your EdDSA private key, or need to change (Ed)DSA keys due to [migrating away from DSA](eddsa-migration).
 

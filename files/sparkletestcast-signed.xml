@@ -8,6 +8,8 @@ IMPORTANT: This file was signed by Sparkle. Any modifications to this file requi
         <link>http://sparkle-project.org/files/sparkletestcast.xml</link>
         <description>Most recent changes with links to updates.</description>
         <language>en</language>
+        <!-- sparkle:bundleIdentifier is required if SURequireFeedBundleIdentifier is enabled in the app -->
+        <sparkle:bundleIdentifier>org.sparkle-project.SparkleTestApp</sparkle:bundleIdentifier>
         <item>
             <title>Version 3.0</title>
             <link>https://sparkle-project.org</link>
@@ -35,6 +37,6 @@ IMPORTANT: This file was signed by Sparkle. Any modifications to this file requi
         </item>
     </channel>
 </rss><!-- sparkle-signatures:
-edSignature: kEUC8Fl3kZpf/PDMkhg10Y+s5qRuchzim5qNZmCR9yWuW+fA1jynrI+t45KihXhtYUHgCsIFqTIrzSc3NKecCQ==
-length: 2558
+edSignature: fM8U861tWyt9yT+P6D7p4yrYtGg8k+UineVtgsJi4GqprtFhxeSBaBEOtlI2CndRCNq/Wo9gs8JDZ1Oumm08BA==
+length: 2763
 -->
